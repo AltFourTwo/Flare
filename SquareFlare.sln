@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "Sandbox\Sandbox.vcxproj", "{1380C995-766F-49A6-BD1A-CFC1B22193C4}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Flare2D", "Flare2D\Flare2D.vcxproj", "{D80C3F35-1303-4454-B9DB-88D7C3BCB6E1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SquareFlare", "SquareFlare\SquareFlare.vcxproj", "{D80C3F35-1303-4454-B9DB-88D7C3BCB6E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D80C3F35-1303-4454-B9DB-88D7C3BCB6E1}.Debug|x64.ActiveCfg = Debug|x64
-		{D80C3F35-1303-4454-B9DB-88D7C3BCB6E1}.Debug|x64.Build.0 = Debug|x64
-		{D80C3F35-1303-4454-B9DB-88D7C3BCB6E1}.Release|x64.ActiveCfg = Release|x64
-		{D80C3F35-1303-4454-B9DB-88D7C3BCB6E1}.Release|x64.Build.0 = Release|x64
 		{1380C995-766F-49A6-BD1A-CFC1B22193C4}.Debug|x64.ActiveCfg = Debug|x64
 		{1380C995-766F-49A6-BD1A-CFC1B22193C4}.Debug|x64.Build.0 = Debug|x64
 		{1380C995-766F-49A6-BD1A-CFC1B22193C4}.Release|x64.ActiveCfg = Release|x64
 		{1380C995-766F-49A6-BD1A-CFC1B22193C4}.Release|x64.Build.0 = Release|x64
+		{D80C3F35-1303-4454-B9DB-88D7C3BCB6E1}.Debug|x64.ActiveCfg = Debug|x64
+		{D80C3F35-1303-4454-B9DB-88D7C3BCB6E1}.Debug|x64.Build.0 = Debug|x64
+		{D80C3F35-1303-4454-B9DB-88D7C3BCB6E1}.Release|x64.ActiveCfg = Release|x64
+		{D80C3F35-1303-4454-B9DB-88D7C3BCB6E1}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

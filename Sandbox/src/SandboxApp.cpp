@@ -1,6 +1,6 @@
-#include <Flare2D.h>
+#include <SquareFlare.h>
 
-class Sandbox : public Flare2D::Application
+class Sandbox : public SquareFlare::Application
 {
 public:
    Sandbox()
@@ -16,7 +16,7 @@ public:
 };
 
 
-Flare2D::Application* Flare2D::Initialize()
+SquareFlare::Application* SquareFlare::Initialize()
 {
    return new Sandbox();
 }

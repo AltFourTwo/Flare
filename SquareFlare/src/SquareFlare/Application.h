@@ -2,10 +2,10 @@
 
 #include "Core.h"
 
-namespace Flare2D {
+namespace SquareFlare {
 
 
-	class F2D_API Application
+	class SQFL_API Application
 	{
 	
 	public:

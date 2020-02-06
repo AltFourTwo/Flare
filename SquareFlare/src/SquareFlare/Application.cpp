@@ -1,6 +1,6 @@
 #include "Application.h"
 
-namespace Flare2D
+namespace SquareFlare
 {
 
 

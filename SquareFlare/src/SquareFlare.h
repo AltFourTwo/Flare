@@ -1,0 +1,11 @@
+#pragma once
+
+// For use by SquareFlare applications!
+
+//#include "SquareFlare/Core.h"
+#include <stdio.h>
+#include "SquareFlare/Application.h"
+
+// ---------- Entry Point ----------
+#include "SquareFlare/EntryPoint.h"
+// ---------------------------------

@@ -18,16 +18,16 @@
     <ClInclude Include="src\Test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Flare2D.h">
+    <ClInclude Include="src\SquareFlare\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Flare2D\Core.h">
+    <ClInclude Include="src\SquareFlare\Core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Flare2D\Application.h">
+    <ClInclude Include="src\SquareFlare\EntryPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Flare2D\EntryPoint.h">
+    <ClInclude Include="src\SquareFlare.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClCompile Include="src\Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Flare2D\Application.cpp">
+    <ClCompile Include="src\SquareFlare\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
