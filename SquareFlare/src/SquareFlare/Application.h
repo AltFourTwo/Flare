@@ -4,7 +4,6 @@
 
 namespace SquareFlare {
 
-
 	class SQFL_API Application
 	{
 	
@@ -13,6 +12,8 @@ namespace SquareFlare {
 		Application();
 		virtual ~Application();
       void Run();
+
+
 	};
 
    // To be defined in client

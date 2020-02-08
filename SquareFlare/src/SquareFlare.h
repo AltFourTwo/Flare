@@ -5,6 +5,7 @@
 //#include "SquareFlare/Core.h"
 #include <stdio.h>
 #include "SquareFlare/Application.h"
+#include "StringComp/Comp.h"
 
 // ---------- Entry Point ----------
 #include "SquareFlare/EntryPoint.h"

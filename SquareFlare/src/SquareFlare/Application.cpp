@@ -3,7 +3,6 @@
 namespace SquareFlare
 {
 
-
    Application::Application()
    {}
 
