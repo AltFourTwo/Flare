@@ -143,6 +143,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Formatter.h" />
+    <ClInclude Include="src\Comments.h" />
     <ClInclude Include="src\SquareFlare.h" />
     <ClInclude Include="src\SquareFlare\Application.h" />
     <ClInclude Include="src\SquareFlare\Core.h" />
@@ -150,6 +152,7 @@
     <ClInclude Include="src\StringComp\Comp.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Formatter.cpp" />
     <ClCompile Include="src\SquareFlare\Application.cpp" />
     <ClCompile Include="src\StringComp\Comp.cpp" />
   </ItemGroup>

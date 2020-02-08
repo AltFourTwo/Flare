@@ -22,6 +22,8 @@
     <ClInclude Include="src\StringComp\Comp.h">
       <Filter>StringComp</Filter>
     </ClInclude>
+    <ClInclude Include="Formatter.h" />
+    <ClInclude Include="src\Comments.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SquareFlare\Application.cpp">
@@ -30,5 +32,6 @@
     <ClCompile Include="src\StringComp\Comp.cpp">
       <Filter>StringComp</Filter>
     </ClCompile>
+    <ClCompile Include="Formatter.cpp" />
   </ItemGroup>
 </Project>
