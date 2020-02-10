@@ -13,47 +13,69 @@ namespace Compose
 
    }
 
-   const char* Format( const char* a_message ... )
+   std::string Format( char* a_Message ... )
    {
-      char* l_FormattedMessage = new char[42];
+      std::vector<Formatter> x_Formatters;
+      bool x_ReadingFormatEnclosure = false;
+      bool x_Ignore = false;
+      char* x_FormatStringStart = 0;
+
       int i = 0;
-      while ( char c = a_message[i++])
+      while ( char c = a_Message[i++] )
       {
-         switch ( a_message[i] )
+         switch ( c )
          {
-            case Compose::Comp::OPENING_BRACE:
+            case Compose::OPENING_BRACE:
+               if ( x_ReadingFormatEnclosure && !x_Ignore )
+                  // Throws invalid format string : unexpected {
+                  throw;
+
+               if ( a_Message[i + 1] == OPENING_BRACE )
+                  i++;
+               else
+               {
+                  x_ReadingFormatEnclosure = true;
+                  x_FormatStringStart = ( a_Message + i );
+               }
 
                break;
-            case Compose::Comp::CLOSING_BRACE:
 
+            case Compose::CLOSING_BRACE:
+               if ( x_ReadingFormatEnclosure && !x_Ignore )
+               {
+                  x_ReadingFormatEnclosure = false;
+                  x_Formatters.push_back( Formatter( Utils::StringExtract(x_FormatStringStart, ( a_Message + i ) - x_FormatStringStart ) ) );
+               }
+               else if ( !x_ReadingFormatEnclosure && a_Message[i + 1] == CLOSING_BRACE )
+                  i++;
+               else
+               {
+                  // Throws invalid format string : unexpected }
+                  throw;
+               }
                break;
-            case Compose::Comp::ALIGNMENT_SEPARATOR:
 
+            case Compose::STRING_LITERAL_DELIMITER:
+               x_Ignore = x_Ignore ? false : true;
                break;
-            case Compose::Comp::FORMAT_SPERATOR:
 
-               break;
-            case Compose::Comp::STRING_LITERAL_DELIMITER:
-
-               break;
             default:
-
                break;
          }
       }
 
-      return a_message;
+      return a_Message;
    }
+   
+      /*
+      template<const char* a_message, typename ... Param>
+      const char* SomeFormat( const char* a_message, const Param& ... param )
+      {
 
-   /*
-   template<const char* a_message, typename ... Param>
-   const char* SomeFormat( const char* a_message, const Param& ... param )
-   {
 
 
-
-      return a_message;
-   }
-   */
+         return a_message;
+      }
+      */
 
 }

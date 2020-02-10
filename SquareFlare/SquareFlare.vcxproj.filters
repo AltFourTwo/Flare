@@ -22,8 +22,10 @@
     <ClInclude Include="src\StringComp\Comp.h">
       <Filter>StringComp</Filter>
     </ClInclude>
-    <ClInclude Include="Formatter.h" />
     <ClInclude Include="src\Comments.h" />
+    <ClInclude Include="src\StringComp\Formatter.h" />
+    <ClInclude Include="src\StringComp\IFormattable.h" />
+    <ClInclude Include="src\Utils\StringExtract.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SquareFlare\Application.cpp">
@@ -32,6 +34,7 @@
     <ClCompile Include="src\StringComp\Comp.cpp">
       <Filter>StringComp</Filter>
     </ClCompile>
-    <ClCompile Include="Formatter.cpp" />
+    <ClCompile Include="src\StringComp\Formatter.cpp" />
+    <ClCompile Include="src\Utils\StringExtract.cpp" />
   </ItemGroup>
 </Project>

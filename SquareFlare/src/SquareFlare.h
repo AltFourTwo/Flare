@@ -4,6 +4,7 @@
 
 //#include "SquareFlare/Core.h"
 #include <stdio.h>
+#include <string>
 #include "SquareFlare/Application.h"
 #include "StringComp/Comp.h"
 
