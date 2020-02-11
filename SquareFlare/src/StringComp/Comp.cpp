@@ -13,12 +13,12 @@ namespace Compose
 
    }
 
-   std::string Format( char* a_Message ... )
+   std::string Format( const char* a_Message ... )
    {
       std::vector<Formatter> x_Formatters;
       bool x_ReadingFormatEnclosure = false;
       bool x_Ignore = false;
-      char* x_FormatStringStart = 0;
+      const char* x_FormatStringStart = 0;
 
       int i = 0;
       while ( char c = a_Message[i++] )

@@ -1,12 +1,10 @@
-
-#include "Comp.h"
 #include "Formatter.h"
 
 namespace Compose
 {
 
-   // Why the eff are you calling the default constructor?!?!?
-   Formatter::Formatter( Utils::StringExtract& a_FormatString )
+   // Why are you calling the default constructor?!?!?
+   Formatter::Formatter( const Utils::StringExtract& a_FormatString )
    {
       StringFormatSection x_Section = INDEX;
       bool x_Aligned;

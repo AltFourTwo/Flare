@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Utils/StringExtract.h"
+#include "Comp.h"
+#include "../SquareFlare/Core.h"
 
 namespace Compose
 {
@@ -16,7 +18,7 @@ namespace Compose
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      Formatter::Formatter( Utils::StringExtract& a_FormatString );
+      Formatter::Formatter( const Utils::StringExtract& a_FormatString );
       ~Formatter();
 
 
