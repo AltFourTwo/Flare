@@ -8,6 +8,11 @@ workspace "SquareFlare"
 		"Dist"
 	}
 
+	defines
+	{
+		"SQFL_X64"
+	}
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 

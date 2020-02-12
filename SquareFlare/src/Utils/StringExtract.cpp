@@ -11,7 +11,6 @@ namespace Utils
    {
 
    }
-   */
 
    StringExtract::StringExtract( const StringExtract& a_SE ) :
       m_ExtractStart( 0 ),
@@ -19,10 +18,11 @@ namespace Utils
    {
 
    }
+   */
 
-   StringExtract::StringExtract( const char* a_ExtractStart, const long long a_Length ) : 
-      m_ExtractStart(a_ExtractStart),
-      m_Length(a_Length)
+   StringExtract::StringExtract( const char* a_ExtractStart, const char* a_ExtractEnd ) :
+      m_ExtractStart( a_ExtractStart ),
+      m_ExtractEnd( a_ExtractEnd )
    {
 
    }
@@ -33,8 +33,18 @@ namespace Utils
 
    /********************************\
    \*****   PUBLIC-FUNCTIONS   *****/
-   const char* StringExtract::ViewExtract() const
+   const char* StringExtract::ExtractStart() const
    {
-      return "ViewExtract";
+      return m_ExtractStart;
+   }
+
+   const char* StringExtract::ExtractEnd() const
+   {
+      return m_ExtractEnd;
+   }
+
+   const PTRSIZE StringExtract::Length() const
+   {
+      return m_ExtractEnd - m_ExtractStart;
    }
 }

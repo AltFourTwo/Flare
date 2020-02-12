@@ -9,3 +9,9 @@
 #else
    #error SquareFlare is windows only!
 #endif
+
+#ifdef SQFL_X64
+   #define PTRSIZE uint64_t
+#else
+   #define PTRSIZE uint32_t
+#endif

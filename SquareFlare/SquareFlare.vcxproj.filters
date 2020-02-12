@@ -7,8 +7,12 @@
     <Filter Include="StringComp">
       <UniqueIdentifier>{EBCD771D-D785-B96A-408D-92C62C64545B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{F68B420E-62A0-6ABF-2B22-0E1F97F566F0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Comments.h" />
     <ClInclude Include="src\SquareFlare.h" />
     <ClInclude Include="src\SquareFlare\Application.h">
       <Filter>SquareFlare</Filter>
@@ -22,10 +26,15 @@
     <ClInclude Include="src\StringComp\Comp.h">
       <Filter>StringComp</Filter>
     </ClInclude>
-    <ClInclude Include="src\Comments.h" />
-    <ClInclude Include="src\StringComp\Formatter.h" />
-    <ClInclude Include="src\StringComp\IFormattable.h" />
-    <ClInclude Include="src\Utils\StringExtract.h" />
+    <ClInclude Include="src\StringComp\Formatter.h">
+      <Filter>StringComp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StringComp\IFormattable.h">
+      <Filter>StringComp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\StringExtract.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SquareFlare\Application.cpp">
@@ -34,7 +43,11 @@
     <ClCompile Include="src\StringComp\Comp.cpp">
       <Filter>StringComp</Filter>
     </ClCompile>
-    <ClCompile Include="src\StringComp\Formatter.cpp" />
-    <ClCompile Include="src\Utils\StringExtract.cpp" />
+    <ClCompile Include="src\StringComp\Formatter.cpp">
+      <Filter>StringComp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\StringExtract.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
