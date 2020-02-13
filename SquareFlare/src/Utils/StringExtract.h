@@ -13,14 +13,12 @@ namespace Utils
       /*******************************\
       \*****   PRIVATE-MEMBERS   *****/
       private:
-      //const std::string& m_MainString;
       const char* m_ExtractStart;
       const char* m_ExtractEnd;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      //StringExtract( const StringExtract& a_SE );
       StringExtract( const char* a_ExtractStart, const char* a_ExtractEnd );
       ~StringExtract();
 
@@ -28,8 +26,8 @@ namespace Utils
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
-      const char* ExtractStart() const;
-      const char* ExtractEnd() const;
+      const char* const ExtractStart() const;
+      const char* const ExtractEnd() const;
       const PTRSIZE Length() const;
    };
 

@@ -9,31 +9,25 @@
 
 namespace Compose
 {
-   /***************************\
-   \*****   ENUMERATORS   *****/
-   enum ControlCharacters
+   class SQFL_API Composition
    {
-      OPENING_BRACE = '{',
-      CLOSING_BRACE = '}',
-      ALIGNMENT_SEPARATOR = ',',
-      FORMAT_SPERATOR = ':',
-      STRING_LITERAL_DELIMITER = '\''
-   };
+      /***************************\
+      \*****   ENUMERATORS   *****/
+      public:
+      enum ControlCharacters
+      {
+         OPENING_BRACE = '{',
+         CLOSING_BRACE = '}',
+         ALIGNMENT_SEPARATOR = ',',
+         FORMAT_SPERATOR = ':',
+         STRING_LITERAL_DELIMITER = '\''
+      };
 
-   enum StringFormatSection
-   {
-      INDEX = 1,
-      ALIGNMENT = 2,
-      FORMAT = 3
-   };
-
-   class SQFL_API Comp
-   {
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      Comp();
-      ~Comp();
+      Composition();
+      ~Composition();
 
       /*********************************\
       \*****   PRIVATE-FUNCTIONS   *****/

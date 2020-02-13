@@ -3,12 +3,12 @@
 namespace Compose
 {
 
-   Comp::Comp()
+   Composition::Composition()
    {
 
    }
 
-   Comp::~Comp()
+   Composition::~Composition()
    {
 
    }
@@ -33,7 +33,7 @@ namespace Compose
       {
          switch ( *i_ptr )
          {
-            case Compose::OPENING_BRACE:
+            case Composition::OPENING_BRACE:
                if ( !x_ReadingFormatEnclosure )
                {
                   x_ReadingFormatEnclosure = true;
@@ -41,7 +41,7 @@ namespace Compose
                }
                break;
 
-            case Compose::CLOSING_BRACE:
+            case Composition::CLOSING_BRACE:
                if ( x_ReadingFormatEnclosure && !x_Ignore )
                {
                   x_ReadingFormatEnclosure = false;
@@ -49,7 +49,7 @@ namespace Compose
                }
                break;
 
-            case Compose::STRING_LITERAL_DELIMITER:
+            case Composition::STRING_LITERAL_DELIMITER:
                if ( x_ReadingFormatEnclosure ) 
                   x_Ignore = !x_Ignore;
                break;

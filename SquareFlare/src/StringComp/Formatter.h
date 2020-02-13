@@ -8,22 +8,44 @@ namespace Compose
 {
    class Formatter
    {
+      /***************************\
+      \*****   ENUMERATORS   *****/
+      private:
+      enum StringFormatSection
+      {
+         INDEX = 1,
+         ALIGNMENT = 2,
+         FORMAT = 3
+      };
+
       /******************************\
       \*****   PUBLIC-MEMBERS   *****/
       public:
-      Utils::StringExtract* m_Index;
-      Utils::StringExtract* m_Alignment;
-      Utils::StringExtract* m_Format;
+      int m_Index;
+      int m_Alignment;
+      bool m_Aligned = false;
+      bool m_Formatted = false;
+
+      /*******************************\
+      \*****   PRIVATE-MEMBERS   *****/
+      private:
+      const Utils::StringExtract* m_IndexExtract;
+      const Utils::StringExtract* m_AlignmentExtract;
+      const Utils::StringExtract* m_FormatExtract;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      Formatter::Formatter( const Utils::StringExtract& a_FormatString );
+      Formatter( const Utils::StringExtract& a_FormatString );
       ~Formatter();
 
-
-
-
+      /*********************************\
+      \*****   PRIVATE-FUNCTIONS   *****/
+      private:
+      void ParseIndexExtract();
+      void ParseAlignmentExtract();
+      void ParseFormatExtract();
+      const Utils::StringExtract& GetStringExtractFromOfSection( StringFormatSection a_Section ) const;
    };
 
 }
