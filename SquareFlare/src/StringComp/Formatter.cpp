@@ -27,6 +27,9 @@ namespace Compose
             case Composition::CLOSING_BRACE:
                if ( i_ptr == a_FormatString.ExtractEnd() )
                {
+                  if ( x_ReadingStringLitteral )
+                     throw; // TODO Exception String litteral not closed.
+
                   if ( x_Section == INDEX )
                      m_IndexExtract = &Utils::StringExtract( x_SectionStart, i_ptr - 1 );
                   else if ( x_Section == ALIGNMENT )
@@ -86,6 +89,13 @@ namespace Compose
 
    Formatter::~Formatter()
    {}
+
+   /********************************\
+   \*****   PUBLIC-FUNCTIONS   *****/
+   std::string Formatter::FormatValue( IFormattable& a_Object )
+   {
+      return a_Object.FormatToString();
+   }
 
    /*********************************\
    \*****   PRIVATE-FUNCTIONS   *****/

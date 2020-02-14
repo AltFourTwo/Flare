@@ -1,7 +1,10 @@
 #pragma once
 
+#include <string>
+
 #include "Comp.h"
 #include "Utils/StringExtract.h"
+#include "IFormattable.h"
 
 namespace Compose
 {
@@ -37,6 +40,12 @@ namespace Compose
       public:
       Formatter( const Utils::StringExtract& a_FormatString );
       ~Formatter();
+
+      /********************************\
+      \*****   PUBLIC-FUNCTIONS   *****/
+      public:
+      std::string FormatValue( IFormattable& a_Object );
+
 
       /*********************************\
       \*****   PRIVATE-FUNCTIONS   *****/

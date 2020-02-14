@@ -6,6 +6,9 @@ namespace Compose
 {
    class SQFL_API IFormattable
    {
-      virtual const char* Format( const char* a_FormatString ) = 0;
+      /********************************\
+      \*****   PUBLIC-FUNCTIONS   *****/
+      public:
+      virtual const char* FormatToString( const char* a_FormatString ) = 0;
    };
 }

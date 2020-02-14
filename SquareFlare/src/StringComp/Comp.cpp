@@ -20,7 +20,7 @@ namespace Compose
 
       for ( auto iterator = x_Extracts.begin(); iterator < x_Extracts.end(); iterator++ )
       {
-
+         
       }
 
       return a_Message;
