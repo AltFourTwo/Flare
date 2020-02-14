@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 #include "../SquareFlare/Core.h"
 
 namespace Utils
@@ -17,8 +15,8 @@ namespace Utils
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      StringExtract( const char*& a_ExtractStart, const char*& a_ExtractEnd );
-      StringExtract( const char*& a_ExtractStart, int& a_Length );
+      StringExtract( const char* a_ExtractStart, const char* a_ExtractEnd );
+      StringExtract( const char* a_ExtractStart, PTRSIZE & a_Length );
       ~StringExtract();
 
       /********************************\

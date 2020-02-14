@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Utils/StringExtract.h"
 #include "Comp.h"
-#include "../SquareFlare/Core.h"
+#include "Utils/StringExtract.h"
 
 namespace Compose
 {
@@ -45,7 +44,7 @@ namespace Compose
       void ParseIndexExtract();
       void ParseAlignmentExtract();
       void ParseFormatExtract();
-      const Utils::StringExtract& GetStringExtractFromOfSection( StringFormatSection a_Section ) const;
+      const Utils::StringExtract& GetStringExtractOfSection( StringFormatSection a_Section ) const;
    };
 
 }

@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "../SquareFlare/Core.h"
-#include "Formatter.h"
+#include "Utils/StringExtract.h"
 
 namespace Compose
 {

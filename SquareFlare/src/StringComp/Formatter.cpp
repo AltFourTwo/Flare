@@ -91,7 +91,7 @@ namespace Compose
    \*****   PRIVATE-FUNCTIONS   *****/
    void Formatter::ParseIndexExtract()
    {
-      const Utils::StringExtract& x_FormatString = GetStringExtractFromOfSection( INDEX );
+      const Utils::StringExtract& x_FormatString = GetStringExtractOfSection( INDEX );
       m_Index = 0;
 
       for ( const char* i_ptr = x_FormatString.ExtractStart(); i_ptr <= x_FormatString.ExtractEnd(); i_ptr++ )
@@ -107,7 +107,7 @@ namespace Compose
 
    void Formatter::ParseAlignmentExtract()
    {
-      const Utils::StringExtract& x_FormatString = GetStringExtractFromOfSection( ALIGNMENT );
+      const Utils::StringExtract& x_FormatString = GetStringExtractOfSection( ALIGNMENT );
       m_Alignment = 0;
       bool x_AlignLeft = *x_FormatString.ExtractStart() == '-';
 
@@ -130,10 +130,10 @@ namespace Compose
 
    void Formatter::ParseFormatExtract()
    {
-      const Utils::StringExtract& x_FormatString = GetStringExtractFromOfSection( FORMAT );
+      const Utils::StringExtract& x_FormatString = GetStringExtractOfSection( FORMAT );
    }
 
-   const Utils::StringExtract& Formatter::GetStringExtractFromOfSection( Formatter::StringFormatSection a_Section ) const
+   const Utils::StringExtract& Formatter::GetStringExtractOfSection( Formatter::StringFormatSection a_Section ) const
    {
       switch ( a_Section )
       {
