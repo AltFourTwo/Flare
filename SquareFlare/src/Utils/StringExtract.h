@@ -6,8 +6,6 @@
 
 namespace Utils
 {
-
-
    class StringExtract
    {
       /*******************************\
@@ -19,9 +17,9 @@ namespace Utils
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      StringExtract( const char* a_ExtractStart, const char* a_ExtractEnd );
+      StringExtract( const char*& a_ExtractStart, const char*& a_ExtractEnd );
+      StringExtract( const char*& a_ExtractStart, int& a_Length );
       ~StringExtract();
-
 
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
@@ -30,5 +28,4 @@ namespace Utils
       const char* const ExtractEnd() const;
       const PTRSIZE Length() const;
    };
-
 }

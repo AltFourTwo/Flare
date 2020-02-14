@@ -4,12 +4,20 @@ namespace Utils
 {
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/
-   StringExtract::StringExtract( const char* a_ExtractStart, const char* a_ExtractEnd ) :
+   StringExtract::StringExtract( const char*& a_ExtractStart, const char*& a_ExtractEnd ) :
       m_ExtractStart( a_ExtractStart ),
       m_ExtractEnd( a_ExtractEnd )
    {
       if ( a_ExtractEnd < a_ExtractStart )
          throw; // TODO Exception Pointers out of order. 
+   }
+
+   StringExtract::StringExtract( const char*& a_ExtractStart, int& a_Length ) :
+      m_ExtractStart( a_ExtractStart ),
+      m_ExtractEnd( a_ExtractStart + a_Length )
+   {
+      if ( a_Length < 0 )
+         throw; // TODO Exception Length cannot be negative.
    }
 
    StringExtract::~StringExtract()
