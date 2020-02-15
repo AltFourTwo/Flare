@@ -30,5 +30,7 @@ namespace SquareFlare
       Compose::Format( "This is a message from : {0:'{'format'}',-15}.", hi );
 
       Compose::Format( "This is a message from : {0,15:'{'format'}'}.", hi );
+
+      Compose::Format( "This is a message from : {0,15:'{'format'}'} and {1,15:X}.", hi );
    }
 }

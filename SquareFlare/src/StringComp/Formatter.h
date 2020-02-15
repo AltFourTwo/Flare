@@ -31,6 +31,7 @@ namespace Compose
       /*******************************\
       \*****   PRIVATE-MEMBERS   *****/
       private:
+      Utils::StringExtract* m_WholeString;
       Utils::StringExtract* m_IndexExtract;
       Utils::StringExtract* m_AlignmentExtract;
       Utils::StringExtract* m_FormatExtract;

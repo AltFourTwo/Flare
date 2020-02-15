@@ -9,6 +9,8 @@ namespace Compose
       if ( a_FormatString.ExtractStart() + 1 == a_FormatString.ExtractEnd() )
          throw; // TODO Exception Empty format string.
 
+      m_WholeString = &a_FormatString;
+
       StringFormatSection x_Section = INDEX;
       bool x_ReadingStringLitteral = false;
       const char* x_SectionStart;
@@ -123,7 +125,7 @@ namespace Compose
          if ( *i_ptr >= '0' && *i_ptr <= '9' )
             m_Index += ( *i_ptr - '0' );
          else
-            throw; // TODO Exception Index is not a number.
+            throw; // TODO Exception Index must be a positive number found '*i_ptr'.
       }
    }
 
