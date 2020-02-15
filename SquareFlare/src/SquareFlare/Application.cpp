@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "Utils/TestObject.h"
 
 namespace SquareFlare
 {
@@ -14,6 +15,16 @@ namespace SquareFlare
    void Application::Run()
    {
       while ( true );
+   }
+   
+
+   void Application::Test()
+   {
+      TestObject hello;
+
+      TestObject bonjour;
+      bonjour.x = 5;
+      bonjour.y = 10;
    }
 
    

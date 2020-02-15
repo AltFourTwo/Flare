@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Comp.h"
+#include "Composition.h"
 #include "Utils/StringExtract.h"
 #include "IFormattable.h"
 
@@ -46,14 +46,11 @@ namespace Compose
       public:
       std::string FormatValue( IFormattable& a_Object );
 
-
       /*********************************\
       \*****   PRIVATE-FUNCTIONS   *****/
       private:
       void ParseIndexExtract();
       void ParseAlignmentExtract();
-      void ParseFormatExtract();
-      const Utils::StringExtract& GetStringExtractOfSection( StringFormatSection a_Section ) const;
    };
 
 }

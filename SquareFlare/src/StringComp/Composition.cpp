@@ -1,4 +1,4 @@
-#include "Comp.h"
+#include "Composition.h"
 #include "Formatter.h"
 
 namespace Compose
@@ -18,10 +18,15 @@ namespace Compose
    {
       std::vector<Utils::StringExtract> x_Extracts = Compose::ExtractFormatStrings(a_Message);
 
+      if ( x_Extracts.size() == 0 )
+         return a_Message;
+
+      /*
       for ( auto iterator = x_Extracts.begin(); iterator < x_Extracts.end(); iterator++ )
       {
-         
+         // Validate Indexes?
       }
+      */
 
       return a_Message;
    }

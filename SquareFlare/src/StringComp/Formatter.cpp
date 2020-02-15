@@ -69,7 +69,7 @@ namespace Compose
 
             case Composition::STRING_LITERAL_DELIMITER:
                if ( x_Section != FORMAT )
-                  throw; // TODO Exception string litteral found outside format section.
+                  throw; // TODO Exception String litteral found outside format section.
                x_ReadingStringLitteral = x_ReadingStringLitteral ? false : true;
                break;
 
@@ -82,9 +82,6 @@ namespace Compose
 
       if ( m_Aligned )
          this->ParseAlignmentExtract();
-
-      if ( m_Formatted )
-         this->ParseFormatExtract();
    }
 
    Formatter::~Formatter()
@@ -94,71 +91,59 @@ namespace Compose
    \*****   PUBLIC-FUNCTIONS   *****/
    std::string Formatter::FormatValue( IFormattable& a_Object )
    {
-      return a_Object.FormatToString();
+      if ( !m_Formatted )
+         return a_Object.ToString();
+
+      char* x_Format = new char[m_FormatExtract->Length() + 1];
+      int x_index = 0;
+
+      for ( const char* i_ptr = m_FormatExtract->ExtractStart(); i_ptr < m_FormatExtract->ExtractEnd(); i_ptr++ )
+      {
+         x_Format[x_index] = *i_ptr;
+         x_index++;
+      }
+
+      x_Format[m_FormatExtract->Length()] = 0;
+
+      return a_Object.ToString(x_Format);
    }
 
    /*********************************\
    \*****   PRIVATE-FUNCTIONS   *****/
    void Formatter::ParseIndexExtract()
    {
-      const Utils::StringExtract& x_FormatString = GetStringExtractOfSection( INDEX );
       m_Index = 0;
 
-      for ( const char* i_ptr = x_FormatString.ExtractStart(); i_ptr <= x_FormatString.ExtractEnd(); i_ptr++ )
+      for ( const char* i_ptr = m_IndexExtract->ExtractStart(); i_ptr <= m_IndexExtract->ExtractEnd(); i_ptr++ )
       {
          m_Index *= 10;
 
          if ( *i_ptr >= '0' && *i_ptr <= '9' )
             m_Index += ( *i_ptr - '0' );
          else
-            throw; // TODO Exception index is not a number.
+            throw; // TODO Exception Index is not a number.
       }
    }
 
    void Formatter::ParseAlignmentExtract()
    {
-      const Utils::StringExtract& x_FormatString = GetStringExtractOfSection( ALIGNMENT );
       m_Alignment = 0;
-      bool x_AlignLeft = *x_FormatString.ExtractStart() == '-';
+      bool x_AlignLeft = *m_AlignmentExtract->ExtractStart() == '-';
 
-      for ( const char* i_ptr = x_FormatString.ExtractStart(); i_ptr <= x_FormatString.ExtractEnd(); i_ptr++ )
+      for ( const char* i_ptr = m_AlignmentExtract->ExtractStart(); i_ptr <= m_AlignmentExtract->ExtractEnd(); i_ptr++ )
       {
-         if ( x_AlignLeft  )
+         if ( x_AlignLeft )
             continue;
-         
+
          m_Alignment *= 10;
 
          if ( *i_ptr >= '0' && *i_ptr <= '9' )
             m_Alignment += ( *i_ptr - '0' );
          else
-            throw; // TODO Exception index is not a number.
+            throw; // TODO Exception Alignment is not a number.
       }
 
       if ( x_AlignLeft )
          m_Alignment *= -1;
-   }
-
-   void Formatter::ParseFormatExtract()
-   {
-      const Utils::StringExtract& x_FormatString = GetStringExtractOfSection( FORMAT );
-   }
-
-   const Utils::StringExtract& Formatter::GetStringExtractOfSection( Formatter::StringFormatSection a_Section ) const
-   {
-      switch ( a_Section )
-      {
-         case INDEX:
-            return *m_IndexExtract;
-            break;
-         case ALIGNMENT:
-            return *m_AlignmentExtract;
-            break;
-         case FORMAT:
-            return *m_FormatExtract;
-            break;
-         default:
-            throw; // TODO Exception Unknown StringFormatSection value.
-            break;
-      }
    }
 }

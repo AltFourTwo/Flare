@@ -12,6 +12,7 @@ namespace SquareFlare {
 		Application();
 		virtual ~Application();
       void Run();
+      void Test();
 
 
 	};

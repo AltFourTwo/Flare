@@ -23,9 +23,6 @@
     <ClInclude Include="src\SquareFlare\EntryPoint.h">
       <Filter>SquareFlare</Filter>
     </ClInclude>
-    <ClInclude Include="src\StringComp\Comp.h">
-      <Filter>StringComp</Filter>
-    </ClInclude>
     <ClInclude Include="src\StringComp\Formatter.h">
       <Filter>StringComp</Filter>
     </ClInclude>
@@ -35,19 +32,23 @@
     <ClInclude Include="src\Utils\StringExtract.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="src\StringComp\Composition.h">
+      <Filter>StringComp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\TestObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SquareFlare\Application.cpp">
       <Filter>SquareFlare</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StringComp\Comp.cpp">
-      <Filter>StringComp</Filter>
     </ClCompile>
     <ClCompile Include="src\StringComp\Formatter.cpp">
       <Filter>StringComp</Filter>
     </ClCompile>
     <ClCompile Include="src\Utils\StringExtract.cpp">
       <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StringComp\Composition.cpp">
+      <Filter>StringComp</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

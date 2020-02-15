@@ -148,14 +148,15 @@
     <ClInclude Include="src\SquareFlare\Application.h" />
     <ClInclude Include="src\SquareFlare\Core.h" />
     <ClInclude Include="src\SquareFlare\EntryPoint.h" />
-    <ClInclude Include="src\StringComp\Comp.h" />
+    <ClInclude Include="src\StringComp\Composition.h" />
     <ClInclude Include="src\StringComp\Formatter.h" />
     <ClInclude Include="src\StringComp\IFormattable.h" />
     <ClInclude Include="src\Utils\StringExtract.h" />
+    <ClInclude Include="src\Utils\TestObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SquareFlare\Application.cpp" />
-    <ClCompile Include="src\StringComp\Comp.cpp" />
+    <ClCompile Include="src\StringComp\Composition.cpp" />
     <ClCompile Include="src\StringComp\Formatter.cpp" />
     <ClCompile Include="src\Utils\StringExtract.cpp" />
   </ItemGroup>

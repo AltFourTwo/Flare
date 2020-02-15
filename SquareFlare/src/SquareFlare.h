@@ -10,7 +10,7 @@
 #include <vector>
 
 #include "SquareFlare/Application.h"
-#include "StringComp/Comp.h"
+#include "StringComp/Composition.h"
 
 // ---------- Entry Point ----------
 #include "SquareFlare/EntryPoint.h"
