@@ -6,6 +6,7 @@
 
 #include "../SquareFlare/Core.h"
 #include "Utils/StringExtract.h"
+#include "IFormattable.h"
 
 namespace Compose
 {
@@ -36,9 +37,5 @@ namespace Compose
    };
 
    SQFL_API std::string Format( const char* a_Message ... );
-   SQFL_API std::vector<Utils::StringExtract> ExtractFormatStrings( const char* a_Text );
-   //SQFL_API const char* Extract( const char* a_Message, const char* a_ExtractStart, const char* a_ExtractEnd );
+   SQFL_API void ExtractFormatStrings( std::vector<Utils::StringExtract>& a_Extracts, const char* a_Text );
 }
-
-
-

@@ -94,7 +94,7 @@ namespace Compose
       if ( !m_Formatted )
          return a_Object.ToString();
 
-      char* x_Format = new char[m_FormatExtract->Length() + 1];
+      std::string x_Format;
       int x_index = 0;
 
       for ( const char* i_ptr = m_FormatExtract->ExtractStart(); i_ptr < m_FormatExtract->ExtractEnd(); i_ptr++ )
@@ -103,9 +103,9 @@ namespace Compose
          x_index++;
       }
 
-      x_Format[m_FormatExtract->Length()] = 0;
+      const char* x_cstr = x_Format.c_str();
 
-      return a_Object.ToString(x_Format);
+      return a_Object.ToString( x_cstr );
    }
 
    /*********************************\

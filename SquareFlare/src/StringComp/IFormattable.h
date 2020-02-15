@@ -10,6 +10,6 @@ namespace Compose
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
       virtual const char* ToString() = 0;
-      virtual const char* ToString( char*& const a_FormatString ) = 0;
+      virtual const char* ToString( const char*& a_FormatString ) = 0;
    };
 }

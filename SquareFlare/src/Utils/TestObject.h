@@ -9,21 +9,32 @@ class TestObject : public Compose::IFormattable
 {
    public:
 
-   int x = 0;
-   int y = 0;
+   int x;
+   int y;
 
-   const char* ToString()
+   TestObject() :
+      x(0), y(0)
+   {
+
+   }
+
+   ~TestObject()
+   {
+
+   }
+
+   const char* Compose::IFormattable::ToString()
    {
       return "TestObject";
    }
 
-   const char* ToString( char*& ptr)
+   const char* Compose::IFormattable::ToString( const char*& ptr)
    {
-      std::string stringe = ptr;
-      stringe += " x: " + x;
-      stringe += " y: " + y;
-      stringe += ".";
+      std::string strange = ptr;
+      strange += " x: " + x;
+      strange += " y: " + y;
+      strange += ".";
 
-      return stringe.c_str();
+      return strange.c_str();
    }
 };

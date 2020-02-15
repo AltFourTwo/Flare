@@ -16,7 +16,8 @@ namespace Compose
 
    std::string Format( const char* a_Message ... )
    {
-      std::vector<Utils::StringExtract> x_Extracts = Compose::ExtractFormatStrings(a_Message);
+      std::vector<Utils::StringExtract> x_Extracts;
+      ExtractFormatStrings( x_Extracts, a_Message );
 
       if ( x_Extracts.size() == 0 )
          return a_Message;
@@ -31,9 +32,8 @@ namespace Compose
       return a_Message;
    }
 
-   std::vector<Utils::StringExtract> ExtractFormatStrings( const char* a_Text )
+   void ExtractFormatStrings( std::vector<Utils::StringExtract>& a_Extracts, const char* a_Text )
    {
-      std::vector<Utils::StringExtract> x_Extracts;
       bool x_ReadingFormatEnclosure = false;
       bool x_Ignore = false;
       const char* x_FormatStringStart = 0;
@@ -55,7 +55,7 @@ namespace Compose
                if ( x_ReadingFormatEnclosure && !x_Ignore )
                {
                   x_ReadingFormatEnclosure = false;
-                  x_Extracts.push_back( Utils::StringExtract( x_FormatStringStart, i_ptr ) );
+                  a_Extracts.emplace_back( x_FormatStringStart, i_ptr );
                }
                break;
 
@@ -65,10 +65,9 @@ namespace Compose
                break;
          }
       }
+
       if ( x_ReadingFormatEnclosure )
          throw; // TODO Exception format string not closed.
-
-      return x_Extracts;
    }
 
 
