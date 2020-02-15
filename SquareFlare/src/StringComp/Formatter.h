@@ -31,14 +31,14 @@ namespace Compose
       /*******************************\
       \*****   PRIVATE-MEMBERS   *****/
       private:
-      const Utils::StringExtract* m_IndexExtract;
-      const Utils::StringExtract* m_AlignmentExtract;
-      const Utils::StringExtract* m_FormatExtract;
+      Utils::StringExtract* m_IndexExtract;
+      Utils::StringExtract* m_AlignmentExtract;
+      Utils::StringExtract* m_FormatExtract;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      Formatter( const Utils::StringExtract& a_FormatString );
+      Formatter( Utils::StringExtract& a_FormatString );
       ~Formatter();
 
       /********************************\

@@ -22,8 +22,8 @@ namespace Utils
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
-      const char* const ExtractStart() const;
-      const char* const ExtractEnd() const;
+      const char*& ExtractStart();
+      const char*& ExtractEnd();
       const PTRSIZE Length() const;
    };
 }

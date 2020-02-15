@@ -4,7 +4,7 @@ namespace Compose
 {
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/
-   Formatter::Formatter( const Utils::StringExtract& a_FormatString )
+   Formatter::Formatter( Utils::StringExtract& a_FormatString )
    {
       if ( a_FormatString.ExtractStart() + 1 == a_FormatString.ExtractEnd() )
          throw; // TODO Exception Empty format string.
@@ -52,6 +52,7 @@ namespace Compose
 
                m_Aligned = true;
                x_Section = ALIGNMENT;
+               x_SectionStart = i_ptr + 1;
                break;
 
             case Composition::FORMAT_SPERATOR:
@@ -65,6 +66,7 @@ namespace Compose
 
                m_Formatted = true;
                x_Section = FORMAT;
+               x_SectionStart = i_ptr + 1;
                break;
 
             case Composition::STRING_LITERAL_DELIMITER:
@@ -132,7 +134,7 @@ namespace Compose
 
       for ( const char* i_ptr = m_AlignmentExtract->ExtractStart(); i_ptr <= m_AlignmentExtract->ExtractEnd(); i_ptr++ )
       {
-         if ( x_AlignLeft )
+         if ( x_AlignLeft && i_ptr == m_AlignmentExtract->ExtractStart() )
             continue;
 
          m_Alignment *= 10;

@@ -22,12 +22,13 @@ namespace Compose
       if ( x_Extracts.size() == 0 )
          return a_Message;
 
-      /*
-      for ( auto iterator = x_Extracts.begin(); iterator < x_Extracts.end(); iterator++ )
+      for ( Utils::StringExtract x_Extract : x_Extracts )
       {
+         Formatter x_Formatter = Formatter( x_Extract );
+
+         // x_Formatter.m_Index
          // Validate Indexes?
       }
-      */
 
       return a_Message;
    }
