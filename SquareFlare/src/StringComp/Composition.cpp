@@ -14,7 +14,7 @@ namespace Compose
 
    }
 
-   std::string Format( const char* a_Message ... )
+   std::string Format( const char* a_Message, std::initializer_list<IFormattable> a_FormattableObjects )
    {
       std::vector<Utils::StringExtract> x_Extracts;
       ExtractFormatStrings( x_Extracts, a_Message );
@@ -22,12 +22,19 @@ namespace Compose
       if ( x_Extracts.size() == 0 )
          return a_Message;
 
+      const IFormattable* x_ObjectsPtr = a_FormattableObjects.begin();
+
       for ( Utils::StringExtract x_Extract : x_Extracts )
       {
          Formatter x_Formatter = Formatter( x_Extract );
 
-         // x_Formatter.m_Index
-         // Validate Indexes?
+         if ( x_Formatter.Alignment() > a_FormattableObjects.size() )
+            throw; // TODO Exception Index does not point to (one of) the passed parameter(s).
+
+         x_Formatter.FormatObject( *( x_ObjectsPtr + x_Formatter.Index() ) );
+
+
+         // Do Message Stuff.
       }
 
       return a_Message;
@@ -61,7 +68,7 @@ namespace Compose
                break;
 
             case Composition::STRING_LITERAL_DELIMITER:
-               if ( x_ReadingFormatEnclosure ) 
+               if ( x_ReadingFormatEnclosure )
                   x_Ignore = !x_Ignore;
                break;
          }
@@ -70,17 +77,4 @@ namespace Compose
       if ( x_ReadingFormatEnclosure )
          throw; // TODO Exception format string not closed.
    }
-
-
-
-   /*
-   template<const char* a_message, typename ... Param>
-   const char* SomeFormat( const char* a_message, const Param& ... param )
-   {
-
-
-
-      return a_message;
-   }
-   */
 }

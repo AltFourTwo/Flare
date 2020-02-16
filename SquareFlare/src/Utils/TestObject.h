@@ -23,12 +23,12 @@ class TestObject : public Compose::IFormattable
 
    }
 
-   const char* Compose::IFormattable::ToString()
+   const char* Compose::IFormattable::ToString() const
    {
       return "TestObject";
    }
 
-   const char* Compose::IFormattable::ToString( const char*& ptr)
+   const char* Compose::IFormattable::ToString( const char*& ptr) const
    {
       std::string strange = ptr;
       strange += " x: " + x;

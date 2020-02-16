@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <cstdarg>
 #include <vector>
 
 #include "../SquareFlare/Core.h"
@@ -36,6 +35,6 @@ namespace Compose
 
    };
 
-   SQFL_API std::string Format( const char* a_Message ... );
+   SQFL_API std::string Format( const char* a_Message, std::initializer_list<IFormattable> a_FormattableObjects );
    SQFL_API void ExtractFormatStrings( std::vector<Utils::StringExtract>& a_Extracts, const char* a_Text );
 }
