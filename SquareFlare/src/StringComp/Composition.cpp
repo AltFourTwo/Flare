@@ -14,7 +14,7 @@ namespace Compose
 
    }
 
-   std::string Format( const char* a_Message, std::initializer_list<IFormattable> a_FormattableObjects )
+   std::string Format( const char* a_Message, std::initializer_list<Formattable> a_FormattableObjects )
    {
       std::vector<Utils::StringExtract> x_Extracts;
       ExtractFormatStrings( x_Extracts, a_Message );
@@ -22,7 +22,7 @@ namespace Compose
       if ( x_Extracts.size() == 0 )
          return a_Message;
 
-      const IFormattable* x_ObjectsPtr = a_FormattableObjects.begin();
+      const Formattable* x_ObjectsPtr = a_FormattableObjects.begin();
 
       for ( Utils::StringExtract x_Extract : x_Extracts )
       {

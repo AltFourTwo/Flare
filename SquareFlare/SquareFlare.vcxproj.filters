@@ -38,6 +38,8 @@
     <ClInclude Include="src\Utils\TestObject.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="src\StringComp\Formattable.h" />
+    <ClInclude Include="src\StringComp\FInteger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SquareFlare\Application.cpp">
@@ -52,5 +54,6 @@
     <ClCompile Include="src\Utils\StringExtract.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\StringComp\FInteger.cpp" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../SquareFlare/Core.h"
+#include "SquareFlare/Core.h"
 
 namespace Utils
 {

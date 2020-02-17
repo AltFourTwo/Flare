@@ -1,5 +1,6 @@
 #pragma once
 
+#include "SquareFlare/Core.h"
 #include "StringComp/Composition.h"
 #include "StringComp/IFormattable.h"
 #include <string>

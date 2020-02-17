@@ -152,7 +152,10 @@
     <ClInclude Include="src\SquareFlare\Core.h" />
     <ClInclude Include="src\SquareFlare\EntryPoint.h" />
     <ClInclude Include="src\StringComp\Composition.h" />
+    <ClCompile Include="src\StringComp\FInteger.cpp" />
+    <ClInclude Include="src\StringComp\FInteger.h" />
     <ClInclude Include="src\StringComp\Formatter.h" />
+    <ClInclude Include="src\StringComp\Formattable.h" />
     <ClInclude Include="src\StringComp\IFormattable.h" />
     <ClInclude Include="src\Utils\StringExtract.h" />
     <ClInclude Include="src\Utils\TestObject.h" />

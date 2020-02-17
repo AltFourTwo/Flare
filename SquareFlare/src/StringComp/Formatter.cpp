@@ -93,7 +93,7 @@ namespace Compose
 
    /********************************\
    \*****   PUBLIC-FUNCTIONS   *****/
-   std::string Formatter::FormatObject( const IFormattable& a_Object )
+   std::string Formatter::FormatObject( const Formattable& a_Object )
    {
       if ( !m_Formatted )
          return a_Object.ToString();

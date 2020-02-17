@@ -2,9 +2,10 @@
 
 #include <string>
 
+#include "SquareFlare/Core.h"
 #include "Composition.h"
 #include "Utils/StringExtract.h"
-#include "IFormattable.h"
+#include "Formattable.h"
 
 namespace Compose
 {
@@ -41,7 +42,7 @@ namespace Compose
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
-      std::string FormatObject( const IFormattable& a_Object );
+      std::string FormatObject( const Formattable& a_Object );
 
       /*********************************\
       \*****   PRIVATE-FUNCTIONS   *****/
