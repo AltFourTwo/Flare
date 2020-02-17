@@ -8,14 +8,21 @@ namespace Compose
 {
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/
-   Formattable::Formattable( int& a_Int ) :
-      m_Data( Formattables::FInteger( a_Int ) ),
-      typeisint(true)
-   {}
+   Formattable::Formattable( int& a_Int )
+   {
+      m_Data = new Formattables::FInteger( a_Int );
+   }
 
    Formattable::Formattable( IFormattable& a_IFormattable ) :
-      m_Data( a_IFormattable )
+      m_Data( &a_IFormattable ),
+      m_CustomType( true)
    {}
+
+   Formattable::~Formattable()
+   {
+      if ( !m_CustomType )
+         delete m_Data;
+   }
 
    /********************************\
    \*****   PUBLIC-FUNCTIONS   *****/
@@ -23,12 +30,12 @@ namespace Compose
    {
       //if ( typeisint )
       //   return (*(( Formattables::FInteger* )&m_Data)).ToString();
-      return m_Data.ToString();
+      return m_Data->ToString();
    }
 
    const char* Formattable::ToString( const char*& a_FormatString ) const
    {
-      return m_Data.ToString( a_FormatString );
+      return m_Data->ToString( a_FormatString );
    }
 
    /**********************\

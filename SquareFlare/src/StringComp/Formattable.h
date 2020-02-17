@@ -10,14 +10,15 @@ namespace Compose
       /*******************************\
       \*****   PRIVATE-MEMBERS   *****/
       private:
-      IFormattable& m_Data;
-      bool typeisint = false;
+      IFormattable* m_Data;
+      bool m_CustomType = false;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
       Formattable( int& a_Int );
       Formattable( IFormattable& a_IFormattable );
+      ~Formattable();
 
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
