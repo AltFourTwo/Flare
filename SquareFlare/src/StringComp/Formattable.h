@@ -2,7 +2,6 @@
 
 #include "SquareFlare/Core.h"
 #include "IFormattable.h"
-#include "Formattables/FInteger.h"
 
 namespace Compose
 {
@@ -16,26 +15,14 @@ namespace Compose
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      Formattable( int& a_Int ) :
-         m_Data( Formattables::FInteger( a_Int ) )
-      {}
-
-      Formattable( IFormattable& a_IFormattable ) :
-         m_Data( a_IFormattable )
-      {}
+      Formattable( int& a_Int );
+      Formattable( IFormattable& a_IFormattable );
 
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
-      const char* ToString() const
-      {
-         return m_Data.ToString();
-      }
-
-      const char* ToString( const char*& a_FormatString) const
-      {
-         return m_Data.ToString( a_FormatString );
-      }
+      const char* ToString() const;
+      const char* ToString( const char*& a_FormatString) const;
    };
 
    /**********************\

@@ -55,5 +55,6 @@
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="src\StringComp\Formattables\FInteger.cpp" />
+    <ClCompile Include="src\StringComp\Formattable.cpp" />
   </ItemGroup>
 </Project>

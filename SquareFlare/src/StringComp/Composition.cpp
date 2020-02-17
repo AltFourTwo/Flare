@@ -28,7 +28,7 @@ namespace Compose
       {
          Formatter x_Formatter = Formatter( x_Extract );
 
-         if ( x_Formatter.Alignment() > a_FormattableObjects.size() )
+         if ( x_Formatter.Index() > a_FormattableObjects.size() )
             throw; // TODO Exception Index does not point to (one of) the passed parameter(s).
 
          x_Formatter.FormatObject( *( x_ObjectsPtr + x_Formatter.Index() ) );

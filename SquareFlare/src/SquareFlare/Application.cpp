@@ -22,16 +22,23 @@ namespace SquareFlare
       hi.x = 5;
       hi.y = 10;
 
-      Compose::Format( "This is a message from : {0}.", { hi } );
+      int y = 2;
+      int z = 4;
+      int az = 4;
+      int pbg = 6;
 
-      Compose::Format( "This is a message from : {0,-1}.", { hi } );
+      printf( Compose::Format( "This is a message from : {0}.", { hi } ).c_str() );
 
-      Compose::Format( "This is a message from : {0:'{'format'}'}.", { hi } );
+      printf( Compose::Format( "This is a message from : {0,-1}.", { hi } ).c_str() );
 
-      Compose::Format( "This is a message from : {0:'{'format'}',-15}.", { hi } );
+      printf( Compose::Format( "This is a message from : {0:'{'format'}'}.", { hi } ).c_str() );
 
-      Compose::Format( "This is a message from : {0,15:'{'format'}'}.", { hi } );
+      printf( Compose::Format( "This is a message from : {0:'{'format'}',-15}.", { hi } ).c_str() );
 
-      Compose::Format( "This is a message from : {0,15:'{'format'}'} and {1,15:X}.", { hi, hi }  );
+      printf( Compose::Format( "This is a message from : {0,15:'{'format'}'}.", { hi } ).c_str() );
+
+      printf( Compose::Format( "This is a message from : {0,15:'{'format'}'} and {1,15:X}.", { hi, hi }  ).c_str() );
+
+      printf( Compose::Format( "Maybe", { y, z, az, pbg } ).c_str() );
    }
 }

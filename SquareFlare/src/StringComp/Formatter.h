@@ -73,5 +73,4 @@ namespace Compose
          return m_Formatted;
       }
    };
-
 }
