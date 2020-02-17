@@ -9,7 +9,8 @@ namespace Compose
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/
    Formattable::Formattable( int& a_Int ) :
-      m_Data( Formattables::FInteger( a_Int ) )
+      m_Data( Formattables::FInteger( a_Int ) ),
+      typeisint(true)
    {}
 
    Formattable::Formattable( IFormattable& a_IFormattable ) :
@@ -20,6 +21,8 @@ namespace Compose
    \*****   PUBLIC-FUNCTIONS   *****/
    const char* Formattable::ToString() const
    {
+      //if ( typeisint )
+      //   return (*(( Formattables::FInteger* )&m_Data)).ToString();
       return m_Data.ToString();
    }
 

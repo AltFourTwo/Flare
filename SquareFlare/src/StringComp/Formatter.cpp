@@ -103,7 +103,7 @@ namespace Compose
 
       for ( const char* i_ptr = m_FormatExtract->ExtractStart(); i_ptr < m_FormatExtract->ExtractEnd(); i_ptr++ )
       {
-         x_Format[x_index] = *i_ptr;
+         x_Format += *i_ptr;
          x_index++;
       }
 

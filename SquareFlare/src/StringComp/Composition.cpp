@@ -22,6 +22,7 @@ namespace Compose
       if ( x_Extracts.size() == 0 )
          return a_Message;
 
+      std::string x_Message = a_Message;
       const Formattable* x_ObjectsPtr = a_FormattableObjects.begin();
 
       for ( Utils::StringExtract x_Extract : x_Extracts )
@@ -31,13 +32,13 @@ namespace Compose
          if ( x_Formatter.Index() > a_FormattableObjects.size() )
             throw; // TODO Exception Index does not point to (one of) the passed parameter(s).
 
-         x_Formatter.FormatObject( *( x_ObjectsPtr + x_Formatter.Index() ) );
-
+         x_Message += x_Formatter.FormatObject( *( x_ObjectsPtr + x_Formatter.Index() ) );
+         
 
          // Do Message Stuff.
       }
 
-      return a_Message;
+      return x_Message;
    }
 
    void ExtractFormatStrings( std::vector<Utils::StringExtract>& a_Extracts, const char* a_Text )

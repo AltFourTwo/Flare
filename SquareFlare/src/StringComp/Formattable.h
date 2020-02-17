@@ -11,6 +11,7 @@ namespace Compose
       \*****   PRIVATE-MEMBERS   *****/
       private:
       IFormattable& m_Data;
+      bool typeisint = false;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/

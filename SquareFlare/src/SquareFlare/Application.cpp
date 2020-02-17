@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Application.h"
 #include "Utils/TestObject.h"
 #include "StringComp/Composition.h"
@@ -27,18 +29,18 @@ namespace SquareFlare
       int az = 4;
       int pbg = 6;
 
-      printf( Compose::Format( "This is a message from : {0}.", { hi } ).c_str() );
+      std::cout << Compose::Format( "This is a message from : {0}.", { hi } ).c_str() << "\n";
 
-      printf( Compose::Format( "This is a message from : {0,-1}.", { hi } ).c_str() );
+      std::cout << Compose::Format( "This is a message from : {0,-1}.", { hi } ).c_str() << "\n";
 
-      printf( Compose::Format( "This is a message from : {0:'{'format'}'}.", { hi } ).c_str() );
+      std::cout << Compose::Format( "This is a message from : {0:'{'format'}'}.", { hi } ).c_str() << "\n";
 
-      printf( Compose::Format( "This is a message from : {0:'{'format'}',-15}.", { hi } ).c_str() );
+      std::cout << Compose::Format( "This is a message from : {0:'{'format'}',-15}.", { hi } ).c_str() << "\n";
 
-      printf( Compose::Format( "This is a message from : {0,15:'{'format'}'}.", { hi } ).c_str() );
+      std::cout << Compose::Format( "This is a message from : {0,15:'{'format'}'}.", { hi } ).c_str() << "\n";
 
-      printf( Compose::Format( "This is a message from : {0,15:'{'format'}'} and {1,15:X}.", { hi, hi }  ).c_str() );
+      std::cout << Compose::Format( "This is a message from : {0,15:'{'format'}'} and {1,15:X}.", { hi, hi }  ).c_str() << "\n";
 
-      printf( Compose::Format( "Maybe", { y, z, az, pbg } ).c_str() );
+      std::cout << Compose::Format( "Maybe {0},{1},{2},{3}.", { y, z, az, pbg } ).c_str() << "\n";
    }
 }
