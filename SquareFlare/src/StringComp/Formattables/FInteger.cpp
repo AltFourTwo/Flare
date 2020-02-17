@@ -14,7 +14,7 @@ namespace Compose::Formattables
    \*****   PUBLIC-FUNCTIONS   *****/
    const char* FInteger::ToString() const
    {
-      return Compose::ToString( m_Int );
+      return "This int : " + m_Int;
    }
 
    const char* FInteger::ToString( const char*& a_FormatString ) const
