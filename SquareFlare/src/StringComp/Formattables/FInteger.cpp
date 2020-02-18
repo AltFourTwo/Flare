@@ -12,13 +12,15 @@ namespace Compose::Formattables
 
    /********************************\
    \*****   PUBLIC-FUNCTIONS   *****/
-   const char* FInteger::ToString() const
+   std::string FInteger::ToString() const
    {
-      return "This int : " + m_Int;
+      return std::to_string( m_Int );
    }
 
-   const char* FInteger::ToString( const char*& a_FormatString ) const
+   std::string FInteger::ToString( const char*& a_FormatString ) const
    {
-      return "Format This Integer Please : " + m_Int;
+      std::string x_Out = "Format This Integer Please : ";
+
+      return x_Out + std::to_string( m_Int );
    }
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "SquareFlare/Core.h"
 #include "IFormattable.h"
 
@@ -23,8 +25,8 @@ namespace Compose
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
-      const char* ToString() const;
-      const char* ToString( const char*& a_FormatString) const;
+      std::string ToString() const;
+      std::string ToString( const char*& a_FormatString) const;
    };
 
    /**********************\

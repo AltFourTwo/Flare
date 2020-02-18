@@ -42,7 +42,7 @@ namespace Compose
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
-      std::string FormatObject( const Formattable& a_Object );
+      std::string FormatObject( const Formattable& a_Object ) const;
 
       /*********************************\
       \*****   PRIVATE-FUNCTIONS   *****/
@@ -53,22 +53,22 @@ namespace Compose
       /***********************\
       \*****   GETTERS   *****/
       public:
-      const int& Index()
+      const int& Index() const
       {
          return m_Index;
       }
 
-      const int& Alignment()
+      const int& Alignment() const
       {
          return m_Alignment;
       }
 
-      const bool& IsAligned()
+      const bool& IsAligned() const
       {
          return m_Aligned;
       }
 
-      const bool& IsFormatted()
+      const bool& IsFormatted() const
       {
          return m_Formatted;
       }

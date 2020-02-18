@@ -36,5 +36,5 @@ namespace Compose
    };
 
    SQFL_API std::string Format( const char* a_Message, std::initializer_list<Formattable> a_FormattableObjects );
-   SQFL_API void ExtractFormatStrings( std::vector<Utils::StringExtract>& a_Extracts, const char* a_Text );
+   SQFL_API void ExtractFormatStrings( const char* a_Text, std::vector<Utils::StringExtract>& a_Extracts );
 }

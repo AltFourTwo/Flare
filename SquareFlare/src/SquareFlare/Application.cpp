@@ -29,18 +29,18 @@ namespace SquareFlare
       int az = 4;
       int pbg = 6;
 
-      std::cout << Compose::Format( "This is a message from : {0}.", { hi } ).c_str() << "\n";
+      //std::cout << Compose::Format( "This is a message from : {0}.", { hi } ).c_str() << "\n";
 
-      std::cout << Compose::Format( "This is a message from : {0,-1}.", { hi } ).c_str() << "\n";
+      //std::cout << Compose::Format( "This is a message from : {0,-1}.", { hi } ).c_str() << "\n";
 
-      std::cout << Compose::Format( "This is a message from : {0:'{'format'}'}.", { hi } ).c_str() << "\n";
+      //std::cout << Compose::Format( "This is a message from : {0:'{'format'}'}.", { hi } ).c_str() << "\n";
 
-      std::cout << Compose::Format( "This is a message from : {0:'{'format'}',-15}.", { hi } ).c_str() << "\n";
+      //std::cout << Compose::Format( "This is a message from : {0:'{'format'}',-15}.", { hi } ).c_str() << "\n";
 
-      std::cout << Compose::Format( "This is a message from : {0,15:'{'format'}'}.", { hi } ).c_str() << "\n";
+      //std::cout << Compose::Format( "This is a message from : {0,15:'{'format'}'}.", { hi } ).c_str() << "\n";
 
-      std::cout << Compose::Format( "This is a message from : {0,15:'{'format'}'} and {1,15:X}.", { hi, hi }  ).c_str() << "\n";
+      //std::cout << Compose::Format( "This is a message from : {0,15:'{'format'}'} and {1,15:X}.", { hi, hi }  ).c_str() << "\n";
 
-      std::cout << Compose::Format( "Maybe {0},{1},{2},{3}.", { y, z, az, pbg } ).c_str() << "\n";
+      std::cout << Compose::Format( "Maybe {0:drkltjhdflktj},{1},{2},{3:fdgsfdgfdg}.", { y, z, az, pbg } ).c_str() << "\n";
    }
 }

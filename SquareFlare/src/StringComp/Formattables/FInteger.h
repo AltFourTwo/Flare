@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "SquareFlare/Core.h"
 #include "StringComp/IFormattable.h"
 
@@ -20,7 +22,7 @@ namespace Compose::Formattables
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
-      virtual const char* ToString() const;
-      virtual const char* ToString( const char*& a_FormatString ) const;
+      virtual std::string ToString() const;
+      virtual std::string ToString( const char*& a_FormatString ) const;
    };
 }

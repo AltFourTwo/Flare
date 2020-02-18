@@ -14,7 +14,7 @@ class TestObject : public Compose::IFormattable
    int y;
 
    TestObject() :
-      x(0), y(0)
+      x( 0 ), y( 0 )
    {
 
    }
@@ -24,18 +24,19 @@ class TestObject : public Compose::IFormattable
 
    }
 
-   const char* Compose::IFormattable::ToString() const
+   std::string Compose::IFormattable::ToString() const
    {
       return "TestObject";
    }
 
-   const char* Compose::IFormattable::ToString( const char*& ptr) const
+   std::string Compose::IFormattable::ToString( const char*& ptr ) const
    {
       std::string strange = ptr;
-      strange += " x: " + x;
-      strange += " y: " + y;
-      strange += ".";
+      strange += "x: ";
+      strange += std::to_string( x );
+      strange += " y: ";
+      strange += std::to_string( y );
 
-      return strange.c_str();
+      return strange;
    }
 };

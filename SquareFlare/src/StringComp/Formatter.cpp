@@ -93,23 +93,52 @@ namespace Compose
 
    /********************************\
    \*****   PUBLIC-FUNCTIONS   *****/
-   std::string Formatter::FormatObject( const Formattable& a_Object )
+   std::string Formatter::FormatObject( const Formattable& a_Object ) const
    {
       if ( !m_Formatted )
          return a_Object.ToString();
 
       std::string x_Format;
-      int x_index = 0;
+      x_Format.reserve( m_FormatExtract->Length() );
+      std::string x_FormattedObject;
+      bool x_ReadingStringLiteral = false;
+
 
       for ( const char* i_ptr = m_FormatExtract->ExtractStart(); i_ptr < m_FormatExtract->ExtractEnd(); i_ptr++ )
       {
-         x_Format += *i_ptr;
-         x_index++;
+         switch ( *i_ptr )
+         {
+            case Composition::STRING_LITERAL_DELIMITER:
+               if ( x_ReadingStringLiteral )
+                  x_ReadingStringLiteral = false;
+               else
+               {
+                  x_ReadingStringLiteral = true;
+                  if ( x_Format.length() > 0 )
+                  {
+                     const char* x_Cstr = x_Format.c_str();
+                     x_FormattedObject += a_Object.ToString( x_Cstr );
+                     x_Format.clear();
+                  }
+               }
+               break;
+
+            default:
+               if ( x_ReadingStringLiteral )
+                  x_FormattedObject += *i_ptr;
+               else
+                  x_Format += *i_ptr;
+               break;
+         }
       }
 
-      const char* x_cstr = x_Format.c_str();
+      if ( x_Format.length() > 0 )
+      {
+         const char* x_Cstr = x_Format.c_str();
+         x_FormattedObject += a_Object.ToString( x_Cstr );
+      }
 
-      return a_Object.ToString( x_cstr );
+      return x_FormattedObject;
    }
 
    /*********************************\

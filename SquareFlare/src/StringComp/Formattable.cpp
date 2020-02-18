@@ -15,7 +15,7 @@ namespace Compose
 
    Formattable::Formattable( IFormattable& a_IFormattable ) :
       m_Data( &a_IFormattable ),
-      m_CustomType( true)
+      m_CustomType( true )
    {}
 
    Formattable::~Formattable()
@@ -26,14 +26,12 @@ namespace Compose
 
    /********************************\
    \*****   PUBLIC-FUNCTIONS   *****/
-   const char* Formattable::ToString() const
+   std::string Formattable::ToString() const
    {
-      //if ( typeisint )
-      //   return (*(( Formattables::FInteger* )&m_Data)).ToString();
       return m_Data->ToString();
    }
 
-   const char* Formattable::ToString( const char*& a_FormatString ) const
+   std::string Formattable::ToString( const char*& a_FormatString ) const
    {
       return m_Data->ToString( a_FormatString );
    }
