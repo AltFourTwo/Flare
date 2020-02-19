@@ -41,6 +41,6 @@ namespace SquareFlare
 
       //std::cout << Compose::Format( "This is a message from : {0,15:'{'format'}'} and {1,15:X}.", { hi, hi }  ).c_str() << "\n";
 
-      std::cout << Compose::Format( "Maybe {0:drkltjhdflktj},{1},{2},{3:fdgsfdgfdg}.", { y, z, az, pbg } ).c_str() << "\n";
+      std::cout << Compose::Format( "Maybe {0:'[ 'hey' , 'there' ]'},{1},{2},{3}.", { y, z, az, pbg } ).c_str() << "\n";
    }
 }

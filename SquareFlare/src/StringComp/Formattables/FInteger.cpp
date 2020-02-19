@@ -19,7 +19,7 @@ namespace Compose::Formattables
 
    std::string FInteger::ToString( const char*& a_FormatString ) const
    {
-      std::string x_Out = "Format This Integer Please : ";
+      std::string x_Out = "Integer : ";
 
       return x_Out + std::to_string( m_Int );
    }

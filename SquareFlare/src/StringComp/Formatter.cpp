@@ -46,13 +46,15 @@ namespace Compose
                break;
 
             case Composition::ALIGNMENT_SEPARATOR:
-               if ( m_Aligned && !x_ReadingStringLitteral )
-                  throw; // TODO Exception Unescaped second , in format string.
+               if ( x_ReadingStringLitteral )
+                  break;
+               else if ( m_Aligned && !x_ReadingStringLitteral )
+                  throw; // TODO Exception Unexpected , after alignment has been defined.
 
                if ( x_Section == INDEX )
                   m_IndexExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
-               else
-                  m_FormatExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
+               else if ( x_Section == FORMAT )
+                  m_AlignmentExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
 
                m_Aligned = true;
                x_Section = ALIGNMENT;
@@ -60,12 +62,14 @@ namespace Compose
                break;
 
             case Composition::FORMAT_SPERATOR:
-               if ( m_Formatted && !x_ReadingStringLitteral )
-                  throw; // TODO Exception Unescaped second : in format string.
+               if ( x_ReadingStringLitteral )
+                  break;
+               else if ( m_Formatted && !x_ReadingStringLitteral )
+                  throw; // TODO Exception Unexpected : in format string.
 
                if ( x_Section == INDEX )
                   m_IndexExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
-               else
+               else if ( x_Section == ALIGNMENT )
                   m_AlignmentExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
 
                m_Formatted = true;
