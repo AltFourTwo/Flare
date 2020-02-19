@@ -25,12 +25,12 @@ namespace Utils
 
    /********************************\
    \*****   PUBLIC-FUNCTIONS   *****/
-   const char*& StringExtract::ExtractStart()
+   const char* const& StringExtract::ExtractStart() const
    {
       return m_ExtractStart;
    }
 
-   const char*& StringExtract::ExtractEnd()
+   const char* const& StringExtract::ExtractEnd() const
    {
       return m_ExtractEnd;
    }

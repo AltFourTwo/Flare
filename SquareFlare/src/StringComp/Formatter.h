@@ -28,10 +28,10 @@ namespace Compose
       int m_Alignment;
       bool m_Aligned = false;
       bool m_Formatted = false;
-      Utils::StringExtract* m_WholeString;
-      Utils::StringExtract* m_IndexExtract;
-      Utils::StringExtract* m_AlignmentExtract;
-      Utils::StringExtract* m_FormatExtract;
+      Utils::StringExtract m_WholeString;
+      Utils::StringExtract m_IndexExtract;
+      Utils::StringExtract m_AlignmentExtract;
+      Utils::StringExtract m_FormatExtract;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
