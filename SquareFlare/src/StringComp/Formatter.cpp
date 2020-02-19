@@ -54,7 +54,7 @@ namespace Compose
                if ( x_Section == INDEX )
                   m_IndexExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
                else if ( x_Section == FORMAT )
-                  m_AlignmentExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
+                  m_FormatExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
 
                m_Aligned = true;
                x_Section = ALIGNMENT;
@@ -110,7 +110,7 @@ namespace Compose
       bool x_ReadingStringLiteral = false;
 
 
-      for ( const char* i_ptr = m_FormatExtract.ExtractStart(); i_ptr < m_FormatExtract.ExtractEnd(); i_ptr++ )
+      for ( const char* i_ptr = m_FormatExtract.ExtractStart(); i_ptr <= m_FormatExtract.ExtractEnd(); i_ptr++ )
       {
          switch ( *i_ptr )
          {
