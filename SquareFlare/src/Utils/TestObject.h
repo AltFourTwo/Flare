@@ -1,9 +1,10 @@
 #pragma once
 
+#include <string>
+
 #include "SquareFlare/Core.h"
 #include "StringComp/Composition.h"
 #include "StringComp/IFormattable.h"
-#include <string>
 
 
 class TestObject : public Compose::IFormattable

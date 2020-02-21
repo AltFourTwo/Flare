@@ -21,14 +21,14 @@ namespace Compose
       {
          switch ( *i_ptr )
          {
-            case Composition::OPENING_BRACE:
+            case OPENING_BRACE:
                if ( i_ptr == a_FormatString.ExtractStart() )
                   x_SectionStart = a_FormatString.ExtractStart() + 1;
                else if ( !x_ReadingStringLitteral )
                   throw; // TODO Exception Unexpected { in format string.
                break;
 
-            case Composition::CLOSING_BRACE:
+            case CLOSING_BRACE:
                if ( i_ptr == a_FormatString.ExtractEnd() )
                {
                   if ( x_ReadingStringLitteral )
@@ -45,7 +45,7 @@ namespace Compose
                   throw; // TODO Exception Unexpected } in format string.
                break;
 
-            case Composition::ALIGNMENT_SEPARATOR:
+            case ALIGNMENT_SEPARATOR:
                if ( x_ReadingStringLitteral )
                   break;
                else if ( m_Aligned && !x_ReadingStringLitteral )
@@ -61,7 +61,7 @@ namespace Compose
                x_SectionStart = i_ptr + 1;
                break;
 
-            case Composition::FORMAT_SPERATOR:
+            case FORMAT_SPERATOR:
                if ( x_ReadingStringLitteral )
                   break;
                else if ( m_Formatted && !x_ReadingStringLitteral )
@@ -77,7 +77,7 @@ namespace Compose
                x_SectionStart = i_ptr + 1;
                break;
 
-            case Composition::STRING_LITERAL_DELIMITER:
+            case STRING_LITERAL_DELIMITER:
                if ( x_Section != FORMAT )
                   throw; // TODO Exception String litteral found outside format section.
                x_ReadingStringLitteral = x_ReadingStringLitteral ? false : true;
@@ -114,7 +114,7 @@ namespace Compose
       {
          switch ( *i_ptr )
          {
-            case Composition::STRING_LITERAL_DELIMITER:
+            case STRING_LITERAL_DELIMITER:
                if ( x_ReadingStringLiteral )
                   x_ReadingStringLiteral = false;
                else

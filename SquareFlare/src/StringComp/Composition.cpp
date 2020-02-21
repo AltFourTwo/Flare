@@ -4,16 +4,8 @@
 namespace Compose
 {
 
-   Composition::Composition()
-   {
-
-   }
-
-   Composition::~Composition()
-   {
-
-   }
-
+   /********************************\
+   \*****   PUBLIC-FUNCTIONS   *****/
    std::string Format( const char* a_Message, std::initializer_list<Formattable> a_FormattableObjects )
    {
       std::vector<Utils::StringExtract> x_Extracts;
@@ -55,7 +47,7 @@ namespace Compose
       {
          switch ( *i_ptr )
          {
-            case Composition::OPENING_BRACE:
+            case OPENING_BRACE:
                if ( i_ptr == itr_Extracts->ExtractStart() )
                {
                   x_ReplacingFormatEnclosure = true;
@@ -64,7 +56,7 @@ namespace Compose
                }
                break;
 
-            case Composition::CLOSING_BRACE:
+            case CLOSING_BRACE:
                if ( i_ptr == itr_Extracts->ExtractEnd() )
                {
                   x_ReplacingFormatEnclosure = false;
@@ -83,6 +75,8 @@ namespace Compose
       return x_Message;
    }
 
+   /*********************************\
+   \*****   PRIVATE-FUNCTIONS   *****/
    void ExtractFormatStrings( const char* a_Text, std::vector<Utils::StringExtract>& a_Extracts )
    {
       bool x_ReadingFormatEnclosure = false;
@@ -94,7 +88,7 @@ namespace Compose
       {
          switch ( *i_ptr )
          {
-            case Composition::OPENING_BRACE:
+            case OPENING_BRACE:
                if ( !x_ReadingFormatEnclosure )
                {
                   x_ReadingFormatEnclosure = true;
@@ -102,7 +96,7 @@ namespace Compose
                }
                break;
 
-            case Composition::CLOSING_BRACE:
+            case CLOSING_BRACE:
                if ( x_ReadingFormatEnclosure && !x_Ignore )
                {
                   x_ReadingFormatEnclosure = false;
@@ -110,7 +104,7 @@ namespace Compose
                }
                break;
 
-            case Composition::STRING_LITERAL_DELIMITER:
+            case STRING_LITERAL_DELIMITER:
                if ( x_ReadingFormatEnclosure )
                   x_Ignore = !x_Ignore;
                break;

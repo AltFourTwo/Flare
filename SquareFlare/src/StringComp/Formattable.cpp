@@ -35,14 +35,4 @@ namespace Compose
    {
       return m_Data->ToString( a_FormatString );
    }
-
-   /**********************\
-   \*****   NESTED   *****/
-   /*
-   template<typename T>
-   const char* ToString( T& a_Value )
-   {
-      return (char*)a_Value;
-   }
-   */
 }
