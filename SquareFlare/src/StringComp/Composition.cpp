@@ -3,9 +3,6 @@
 
 namespace Compose
 {
-
-   /********************************\
-   \*****   PUBLIC-FUNCTIONS   *****/
    std::string Format( const char* a_Message, std::initializer_list<Formattable> a_FormattableObjects )
    {
       std::vector<Utils::StringExtract> x_Extracts;
@@ -75,8 +72,6 @@ namespace Compose
       return x_Message;
    }
 
-   /*********************************\
-   \*****   PRIVATE-FUNCTIONS   *****/
    void ExtractFormatStrings( const char* a_Text, std::vector<Utils::StringExtract>& a_Extracts )
    {
       bool x_ReadingFormatEnclosure = false;

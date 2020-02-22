@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "Formatter.h"
 
 namespace Compose
@@ -101,47 +103,89 @@ namespace Compose
    \*****   PUBLIC-FUNCTIONS   *****/
    std::string Formatter::FormatObject( const Formattable& a_Object ) const
    {
-      if ( !m_Formatted )
+      if ( !m_Aligned && !m_Formatted )
          return a_Object.ToString();
 
-      std::string x_Format;
-      x_Format.reserve( m_FormatExtract.Length() );
       std::string x_FormattedObject;
-      bool x_ReadingStringLiteral = false;
 
-
-      for ( const char* i_ptr = m_FormatExtract.ExtractStart(); i_ptr <= m_FormatExtract.ExtractEnd(); i_ptr++ )
+      if ( m_Formatted )
       {
-         switch ( *i_ptr )
-         {
-            case STRING_LITERAL_DELIMITER:
-               if ( x_ReadingStringLiteral )
-                  x_ReadingStringLiteral = false;
-               else
-               {
-                  x_ReadingStringLiteral = true;
-                  if ( x_Format.length() > 0 )
-                  {
-                     const char* x_Cstr = x_Format.c_str();
-                     x_FormattedObject += a_Object.ToString( x_Cstr );
-                     x_Format.clear();
-                  }
-               }
-               break;
+         std::string x_Format;
+         x_Format.reserve( m_FormatExtract.Length() );
+         bool x_ReadingStringLiteral = false;
 
-            default:
-               if ( x_ReadingStringLiteral )
-                  x_FormattedObject += *i_ptr;
-               else
-                  x_Format += *i_ptr;
-               break;
+         for ( const char* i_ptr = m_FormatExtract.ExtractStart(); i_ptr <= m_FormatExtract.ExtractEnd(); i_ptr++ )
+         {
+            switch ( *i_ptr )
+            {
+               case STRING_LITERAL_DELIMITER:
+                  if ( x_ReadingStringLiteral )
+                     x_ReadingStringLiteral = false;
+                  else
+                  {
+                     x_ReadingStringLiteral = true;
+                     if ( x_Format.length() > 0 )
+                     {
+                        const char* x_Cstr = x_Format.c_str();
+                        x_FormattedObject += a_Object.ToString( x_Cstr );
+                        x_Format.clear();
+                     }
+                  }
+                  break;
+
+               default:
+                  if ( x_ReadingStringLiteral )
+                     x_FormattedObject += *i_ptr;
+                  else
+                     x_Format += *i_ptr;
+                  break;
+            }
+         }
+
+         if ( x_Format.length() > 0 )
+         {
+            const char* x_Cstr = x_Format.c_str();
+            x_FormattedObject += a_Object.ToString( x_Cstr );
          }
       }
+      else
+         x_FormattedObject = a_Object.ToString();
 
-      if ( x_Format.length() > 0 )
+      if ( m_Aligned )
       {
-         const char* x_Cstr = x_Format.c_str();
-         x_FormattedObject += a_Object.ToString( x_Cstr );
+         std::string x_AlignedFormattedObject;
+         x_AlignedFormattedObject.reserve( abs( m_Alignment ) );
+
+         if ( m_Alignment > 0 )
+         {
+            int x_CharDiff = m_Alignment - x_FormattedObject.length();
+            if ( x_CharDiff == 0 )
+               return x_FormattedObject;
+
+            if ( x_CharDiff > 0 )
+            {
+               x_AlignedFormattedObject.append( x_CharDiff, ' ' );
+               x_AlignedFormattedObject.append( x_FormattedObject );
+            }
+            else
+               x_AlignedFormattedObject.append( x_FormattedObject, abs( x_CharDiff ), m_Alignment );
+         }
+         else if ( m_Alignment < 0 )
+         {
+            int x_CharDiff = abs( m_Alignment ) - x_FormattedObject.length();
+            if ( x_CharDiff == 0 )
+               return x_FormattedObject;
+
+            if ( x_CharDiff > 0 )
+            {
+               x_AlignedFormattedObject.append( x_FormattedObject );
+               x_AlignedFormattedObject.append( x_CharDiff, ' ' );
+            }
+            else
+               x_AlignedFormattedObject.append( x_FormattedObject, 0, abs( m_Alignment ) );
+         }
+
+         x_FormattedObject.swap( x_AlignedFormattedObject );
       }
 
       return x_FormattedObject;
