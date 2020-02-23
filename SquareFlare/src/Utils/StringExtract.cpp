@@ -12,7 +12,7 @@ namespace Utils
          throw; // TODO Exception Pointers out of order. 
    }
 
-   StringExtract::StringExtract( const char* a_ExtractStart, PTRSIZE & a_Length ) :
+   StringExtract::StringExtract( const char* a_ExtractStart, size_t & a_Length ) :
       m_ExtractStart( a_ExtractStart ),
       m_ExtractEnd( a_ExtractStart + a_Length )
    {
@@ -35,7 +35,7 @@ namespace Utils
       return m_ExtractEnd;
    }
 
-   const PTRSIZE StringExtract::Length() const
+   const size_t StringExtract::Length() const
    {
       return m_ExtractEnd - m_ExtractStart;
    }

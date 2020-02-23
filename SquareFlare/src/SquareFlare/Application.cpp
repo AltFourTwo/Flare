@@ -28,7 +28,9 @@ namespace SquareFlare
       int z = 4;
       int az = 4;
       int pbg = 6;
+      int oup = 1234567890;
 
+      /*
       std::cout << Compose::Format( "This is a message from : {0}.", { hi } ).c_str() << "\n";
 
       std::cout << Compose::Format( "This is a message from : {0,-1}.", { hi } ).c_str() << "\n";
@@ -39,8 +41,13 @@ namespace SquareFlare
 
       std::cout << Compose::Format( "This is a message from : {0,15:'{'format'}'}.", { hi } ).c_str() << "\n";
 
-      std::cout << Compose::Format( "This is a message from : {0,15:'{'format'}'} and {1,15:X}.", { hi, hi }  ).c_str() << "\n";
+      std::cout << Compose::Format( "This is a message from : {0,15:'{'format'}'} and {1,15:X}.", { hi, hi } ).c_str() << "\n";
 
       std::cout << Compose::Format( "Maybe {0,10:'[ 'hey' , 'there' ]'},{1},{2},{3}.", { y, z, az, pbg } ).c_str() << "\n";
+      */
+
+      std::cout << Compose::Format( "Try to format this -> {0,15:B36P10}.", { oup } );
+
+      std::cout << Compose::Format( "Try to format this -> {0:X}.", { oup } );
    }
 }

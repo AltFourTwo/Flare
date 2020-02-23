@@ -15,8 +15,8 @@ namespace Compose
       std::vector<std::string> x_FormattedElements;
       x_FormattedElements.reserve( a_FormattableObjects.size() );
       bool x_ReplacingFormatEnclosure = false;
-      int x_ExtractsSize = 0;
-      int x_StringSize = 0;
+      size_t x_ExtractsSize = 0;
+      size_t x_StringSize = 0;
 
       const Formattable* x_ObjectsPtr = a_FormattableObjects.begin();
 

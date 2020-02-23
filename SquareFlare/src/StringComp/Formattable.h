@@ -26,16 +26,6 @@ namespace Compose
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
       std::string ToString() const;
-      std::string ToString( const char*& a_FormatString) const;
+      std::string ToString( const char*& a_FormatString ) const;
    };
-
-   /**********************\
-   \*****   NESTED   *****/
-   /*
-   template<typename T>
-   const char* ToString( T& a_Value )
-   {
-      return (char*)a_Value;
-   }
-   */
 }

@@ -158,6 +158,7 @@
     <ClInclude Include="src\StringComp\Formatter.h" />
     <ClInclude Include="src\StringComp\Formattable.h" />
     <ClInclude Include="src\StringComp\IFormattable.h" />
+    <ClInclude Include="src\Utils\NumberUtils.h" />
     <ClInclude Include="src\Utils\StringExtract.h" />
     <ClInclude Include="src\Utils\TestObject.h" />
   </ItemGroup>
@@ -165,6 +166,7 @@
     <ClCompile Include="src\SquareFlare\Application.cpp" />
     <ClCompile Include="src\StringComp\Composition.cpp" />
     <ClCompile Include="src\StringComp\Formatter.cpp" />
+    <ClCompile Include="src\Utils\NumberUtils.cpp" />
     <ClCompile Include="src\Utils\StringExtract.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -16,7 +16,7 @@ namespace Utils
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
       StringExtract( const char* a_ExtractStart, const char* a_ExtractEnd );
-      StringExtract( const char* a_ExtractStart, PTRSIZE & a_Length );
+      StringExtract( const char* a_ExtractStart, size_t & a_Length );
       ~StringExtract();
 
       /********************************\
@@ -24,6 +24,6 @@ namespace Utils
       public:
       const char* const& ExtractStart() const;
       const char* const& ExtractEnd() const;
-      const PTRSIZE Length() const;
+      const size_t Length() const;
    };
 }

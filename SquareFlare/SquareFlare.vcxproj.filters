@@ -40,6 +40,7 @@
     </ClInclude>
     <ClInclude Include="src\StringComp\Formattable.h" />
     <ClInclude Include="src\StringComp\Formattables\FInteger.h" />
+    <ClInclude Include="src\Utils\NumberUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SquareFlare\Application.cpp">
@@ -56,5 +57,6 @@
     </ClCompile>
     <ClCompile Include="src\StringComp\Formattables\FInteger.cpp" />
     <ClCompile Include="src\StringComp\Formattable.cpp" />
+    <ClCompile Include="src\Utils\NumberUtils.cpp" />
   </ItemGroup>
 </Project>
