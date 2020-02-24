@@ -6,17 +6,17 @@
 
 namespace Composing::Formattables
 {
-   class FInteger : public IFormattable
+   class FChar : public IFormattable
    {
       /*******************************\
       \*****   PRIVATE-MEMBERS   *****/
       private:
-      const int& m_Int;
+      const char& m_Char;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      FInteger( const int& a_Int );
+      FChar( const char& a_Char );
 
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/

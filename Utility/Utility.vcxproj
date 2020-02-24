@@ -137,6 +137,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Composing\Formattables\FBoolean.h" />
+    <ClInclude Include="src\Composing\Formattables\FChar.h" />
     <ClInclude Include="src\Composing\Composition.h" />
     <ClInclude Include="src\Composing\Formattable.h" />
     <ClInclude Include="src\Composing\Formattables\FInteger.h" />
@@ -147,6 +149,8 @@
     <ClInclude Include="src\Utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Composing\Formattables\FBoolean.cpp" />
+    <ClCompile Include="src\Composing\Formattables\FChar.cpp" />
     <ClCompile Include="src\Composing\Composition.cpp" />
     <ClCompile Include="src\Composing\Formattable.cpp" />
     <ClCompile Include="src\Composing\Formattables\FInteger.cpp" />

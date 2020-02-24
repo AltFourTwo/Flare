@@ -6,17 +6,31 @@
 
 namespace Composing::Formattables
 {
-   class FInteger : public IFormattable
+   class FBoolean : public IFormattable
    {
+      /*************************\
+      \*****   CONSTANTS   *****/
+      private:
+      const char* TEXT_TRUE = "True";
+      const char* TEXT_FALSE = "False";
+      const char* TEXT_YES = "Yes";
+      const char* TEXT_NO = "No";
+      const char CHAR_T = 'T';
+      const char CHAR_F = 'F';
+      const char CHAR_Y = 'Y';
+      const char CHAR_N = 'N';
+      const char CHAR_O = 'O';
+      const char CHAR_X = 'X';
+
       /*******************************\
       \*****   PRIVATE-MEMBERS   *****/
       private:
-      const int& m_Int;
+      const bool& m_Bool;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      FInteger( const int& a_Int );
+      FBoolean( const bool& a_Bool );
 
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/

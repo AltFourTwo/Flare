@@ -6,7 +6,7 @@ namespace Composing::Formattables
 {
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/
-   FInteger::FInteger( int& a_Int ) :
+   FInteger::FInteger( const int& a_Int ) :
       m_Int( a_Int )
    {}
 

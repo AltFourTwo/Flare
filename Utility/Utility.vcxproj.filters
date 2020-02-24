@@ -37,6 +37,8 @@
       <Filter>Strings</Filter>
     </ClInclude>
     <ClInclude Include="src\Utility.h" />
+    <ClInclude Include="src\Composing\Formattables\FChar.h" />
+    <ClInclude Include="src\Composing\Formattables\FBoolean.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Composing\Composition.cpp">
@@ -57,5 +59,7 @@
     <ClCompile Include="src\Strings\StringExtract.cpp">
       <Filter>Strings</Filter>
     </ClCompile>
+    <ClCompile Include="src\Composing\Formattables\FChar.cpp" />
+    <ClCompile Include="src\Composing\Formattables\FBoolean.cpp" />
   </ItemGroup>
 </Project>
