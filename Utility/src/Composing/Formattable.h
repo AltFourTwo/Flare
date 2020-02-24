@@ -2,10 +2,9 @@
 
 #include <string>
 
-#include "SquareFlare/Core.h"
-#include "IFormattable.h"
+#include "Formattables/IFormattable.h"
 
-namespace Compose
+namespace Composing
 {
    class Formattable : public IFormattable
    {

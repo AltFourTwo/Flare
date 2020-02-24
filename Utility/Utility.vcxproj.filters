@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Composing">
+      <UniqueIdentifier>{D48C20B3-40F7-D429-8935-86CFF5DEB27E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Composing\Formattables">
+      <UniqueIdentifier>{67DAB3A1-53D4-DCF3-3C41-730428DA4260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Numbers">
+      <UniqueIdentifier>{A19AD590-0D7A-542C-1692-DF0282F0BA8D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Strings">
+      <UniqueIdentifier>{CF17C20F-3BF7-40AB-440F-CC81B06DA70C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Composing\Composition.h">
+      <Filter>Composing</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Composing\Formattable.h">
+      <Filter>Composing</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Composing\Formattables\FInteger.h">
+      <Filter>Composing\Formattables</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Composing\Formattables\IFormattable.h">
+      <Filter>Composing\Formattables</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Composing\Formatter.h">
+      <Filter>Composing</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Numbers\NumberUtils.h">
+      <Filter>Numbers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Strings\StringExtract.h">
+      <Filter>Strings</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Composing\Composition.cpp">
+      <Filter>Composing</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Composing\Formattable.cpp">
+      <Filter>Composing</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Composing\Formattables\FInteger.cpp">
+      <Filter>Composing\Formattables</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Composing\Formatter.cpp">
+      <Filter>Composing</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Numbers\NumberUtils.cpp">
+      <Filter>Numbers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Strings\StringExtract.cpp">
+      <Filter>Strings</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

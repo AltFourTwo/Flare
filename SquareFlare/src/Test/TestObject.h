@@ -3,11 +3,10 @@
 #include <string>
 
 #include "SquareFlare/Core.h"
-#include "StringComp/Composition.h"
-#include "StringComp/IFormattable.h"
+#include "Composing/Composition.h"
+#include "Composing/Formattables/IFormattable.h"
 
-
-class TestObject : public Compose::IFormattable
+class TestObject : public Composing::IFormattable
 {
    public:
 
@@ -16,21 +15,17 @@ class TestObject : public Compose::IFormattable
 
    TestObject() :
       x( 0 ), y( 0 )
-   {
-
-   }
+   {}
 
    ~TestObject()
-   {
+   {}
 
-   }
-
-   std::string Compose::IFormattable::ToString() const
+   std::string IFormattable::ToString() const
    {
       return "TestObject";
    }
 
-   std::string Compose::IFormattable::ToString( const char*& ptr ) const
+   std::string IFormattable::ToString( const char*& ptr ) const
    {
       std::string strange = ptr;
       strange += "x: ";

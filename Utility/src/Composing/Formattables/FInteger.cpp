@@ -1,10 +1,8 @@
 
-#include "SquareFlare/Core.h"
 #include "FInteger.h"
-#include "StringComp/Formattable.h"
-#include "Utils/NumberUtils.h"
+#include "../../Numbers/NumberUtils.h"
 
-namespace Compose::Formattables
+namespace Composing::Formattables
 {
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/
@@ -31,7 +29,7 @@ namespace Compose::Formattables
             case 'B':
             case 'b':
             {
-               x_Base = Utils::Numbers::ConvertTwoCharsToInt( *( i_ptr + 1 ), *( i_ptr + 2 ) );
+               x_Base = Utility::Numbers::ConvertTwoCharsToInt( *( i_ptr + 1 ), *( i_ptr + 2 ) );
                break;
             }
 
@@ -46,7 +44,7 @@ namespace Compose::Formattables
             case 'P':
             case 'p':
             {
-               x_Padding = Utils::Numbers::ConvertTwoCharsToInt( *( i_ptr + 1 ), *( i_ptr + 2 ) );
+               x_Padding = Utility::Numbers::ConvertTwoCharsToInt( *( i_ptr + 1 ), *( i_ptr + 2 ) );
                break;
             }
 
@@ -58,7 +56,7 @@ namespace Compose::Formattables
       if ( x_Base < 2 )
          x_Base = 2;
 
-      std::string x_Out( Utils::Numbers::ConvertToBase( x_Base, m_Int ));
+      std::string x_Out( Utility::Numbers::ConvertToBase( x_Base, m_Int ));
 
       if ( x_Padding > 0 )
       {

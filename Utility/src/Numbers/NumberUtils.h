@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace Utils::Numbers
+namespace Utility::Numbers
 {
    const char DIGITS[] =
    {

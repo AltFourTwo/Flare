@@ -1,8 +1,6 @@
 #pragma once
 
-#include "SquareFlare/Core.h"
-
-namespace Utils
+namespace Utility::Strings
 {
    class StringExtract
    {

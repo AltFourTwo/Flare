@@ -2,11 +2,9 @@
 
 #include <string>
 
-#include "SquareFlare/Core.h"
-
-namespace Compose
+namespace Composing
 {
-   class SQFL_API IFormattable
+   class IFormattable
    {
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/

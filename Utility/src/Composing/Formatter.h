@@ -2,12 +2,9 @@
 
 #include <string>
 
-#include "SquareFlare/Core.h"
-#include "Composition.h"
-#include "Utils/StringExtract.h"
-#include "Formattable.h"
+#include "../Strings/StringExtract.h"
 
-namespace Compose
+namespace Composing
 {
    class Formatter
    {
@@ -28,15 +25,15 @@ namespace Compose
       int m_Alignment;
       bool m_Aligned = false;
       bool m_Formatted = false;
-      Utils::StringExtract m_WholeString;
-      Utils::StringExtract m_IndexExtract;
-      Utils::StringExtract m_AlignmentExtract;
-      Utils::StringExtract m_FormatExtract;
+      Utility::Strings::StringExtract m_WholeString;
+      Utility::Strings::StringExtract m_IndexExtract;
+      Utility::Strings::StringExtract m_AlignmentExtract;
+      Utility::Strings::StringExtract m_FormatExtract;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      Formatter( Utils::StringExtract& a_FormatString );
+      Formatter( Utility::Strings::StringExtract& a_FormatString );
       ~Formatter();
 
       /********************************\

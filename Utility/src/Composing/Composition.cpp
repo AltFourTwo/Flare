@@ -1,11 +1,11 @@
 #include "Composition.h"
 #include "Formatter.h"
 
-namespace Compose
+namespace Composing
 {
    std::string Format( const char* a_Message, std::initializer_list<Formattable> a_FormattableObjects )
    {
-      std::vector<Utils::StringExtract> x_Extracts;
+      std::vector<Utility::Strings::StringExtract> x_Extracts;
       ExtractFormatStrings( a_Message, x_Extracts );
 
       if ( x_Extracts.size() == 0 )
@@ -20,7 +20,7 @@ namespace Compose
 
       const Formattable* x_ObjectsPtr = a_FormattableObjects.begin();
 
-      for ( Utils::StringExtract x_Extract : x_Extracts )
+      for ( Utility::Strings::StringExtract x_Extract : x_Extracts )
       {
          const Formatter x_Formatter( x_Extract );
 
@@ -37,7 +37,7 @@ namespace Compose
 
       x_Message.reserve( strlen( a_Message ) - x_ExtractsSize + x_StringSize );
 
-      std::vector<Utils::StringExtract>::iterator itr_Extracts = x_Extracts.begin();
+      std::vector<Utility::Strings::StringExtract>::iterator itr_Extracts = x_Extracts.begin();
       std::vector<std::string>::iterator itr_FormattedElements = x_FormattedElements.begin();
       const char* i_ptr = a_Message;
       while ( *i_ptr != 0 )
@@ -72,7 +72,7 @@ namespace Compose
       return x_Message;
    }
 
-   void ExtractFormatStrings( const char* a_Text, std::vector<Utils::StringExtract>& a_Extracts )
+   void ExtractFormatStrings( const char* a_Text, std::vector<Utility::Strings::StringExtract>& a_Extracts )
    {
       bool x_ReadingFormatEnclosure = false;
       bool x_Ignore = false;

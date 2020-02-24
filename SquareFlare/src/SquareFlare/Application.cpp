@@ -1,8 +1,8 @@
 #include <iostream>
 
 #include "Application.h"
-#include "Utils/TestObject.h"
-#include "StringComp/Composition.h"
+#include "Test/TestObject.h"
+#include "Composing/Composition.h"
 
 namespace SquareFlare
 {
@@ -31,23 +31,23 @@ namespace SquareFlare
       int oup = 1234567890;
 
       /*
-      std::cout << Compose::Format( "This is a message from : {0}.", { hi } ).c_str() << "\n";
+      std::cout << Composing::Format( "This is a message from : {0}.", { hi } ).c_str() << "\n";
 
-      std::cout << Compose::Format( "This is a message from : {0,-1}.", { hi } ).c_str() << "\n";
+      std::cout << Composing::Format( "This is a message from : {0,-1}.", { hi } ).c_str() << "\n";
 
-      std::cout << Compose::Format( "This is a message from : {0:'{'format'}'}.", { hi } ).c_str() << "\n";
+      std::cout << Composing::Format( "This is a message from : {0:'{'format'}'}.", { hi } ).c_str() << "\n";
 
-      std::cout << Compose::Format( "This is a message from : {0:'{'format'}',-15}.", { hi } ).c_str() << "\n";
+      std::cout << Composing::Format( "This is a message from : {0:'{'format'}',-15}.", { hi } ).c_str() << "\n";
 
-      std::cout << Compose::Format( "This is a message from : {0,15:'{'format'}'}.", { hi } ).c_str() << "\n";
+      std::cout << Composing::Format( "This is a message from : {0,15:'{'format'}'}.", { hi } ).c_str() << "\n";
 
-      std::cout << Compose::Format( "This is a message from : {0,15:'{'format'}'} and {1,15:X}.", { hi, hi } ).c_str() << "\n";
+      std::cout << Composing::Format( "This is a message from : {0,15:'{'format'}'} and {1,15:X}.", { hi, hi } ).c_str() << "\n";
 
-      std::cout << Compose::Format( "Maybe {0,10:'[ 'hey' , 'there' ]'},{1},{2},{3}.", { y, z, az, pbg } ).c_str() << "\n";
+      std::cout << Composing::Format( "Maybe {0,10:'[ 'hey' , 'there' ]'},{1},{2},{3}.", { y, z, az, pbg } ).c_str() << "\n";
       */
 
-      std::cout << Compose::Format( "Try to format this -> {0,15:B36P10}.", { oup } );
+      std::cout << Composing::Format( "Try to format this -> {0,15:B36P10}.", { oup } );
 
-      std::cout << Compose::Format( "Try to format this -> {0:X}.", { oup } );
+      std::cout << Composing::Format( "Try to format this -> {0:X}.", { oup } );
    }
 }

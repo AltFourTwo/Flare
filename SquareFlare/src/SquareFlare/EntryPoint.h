@@ -2,8 +2,7 @@
 
 #include <iostream>
 
-#include "Utils/TestObject.h"
-#include "StringComp/IFormattable.h"
+#include "Test/TestObject.h"
 
 #ifdef SQFL_FOR_WINDOWS
 

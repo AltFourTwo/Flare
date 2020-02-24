@@ -1,12 +1,13 @@
 #include <cmath>
 
+#include "Composition.h"
 #include "Formatter.h"
 
-namespace Compose
+namespace Composing
 {
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/
-   Formatter::Formatter( Utils::StringExtract& a_FormatString ) :
+   Formatter::Formatter( Utility::Strings::StringExtract& a_FormatString ) :
       m_WholeString( a_FormatString ),
       m_IndexExtract( 0, 0 ),
       m_AlignmentExtract( 0, 0 ),
@@ -37,11 +38,11 @@ namespace Compose
                      throw; // TODO Exception String litteral not closed.
 
                   if ( x_Section == INDEX )
-                     m_IndexExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
+                     m_IndexExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
                   else if ( x_Section == ALIGNMENT )
-                     m_AlignmentExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
+                     m_AlignmentExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
                   else
-                     m_FormatExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
+                     m_FormatExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
                }
                else if ( !x_ReadingStringLitteral )
                   throw; // TODO Exception Unexpected } in format string.
@@ -54,9 +55,9 @@ namespace Compose
                   throw; // TODO Exception Unexpected , after alignment has been defined.
 
                if ( x_Section == INDEX )
-                  m_IndexExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
+                  m_IndexExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
                else if ( x_Section == FORMAT )
-                  m_FormatExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
+                  m_FormatExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
 
                m_Aligned = true;
                x_Section = ALIGNMENT;
@@ -70,9 +71,9 @@ namespace Compose
                   throw; // TODO Exception Unexpected : in format string.
 
                if ( x_Section == INDEX )
-                  m_IndexExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
+                  m_IndexExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
                else if ( x_Section == ALIGNMENT )
-                  m_AlignmentExtract = Utils::StringExtract( x_SectionStart, i_ptr - 1 );
+                  m_AlignmentExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
 
                m_Formatted = true;
                x_Section = FORMAT;

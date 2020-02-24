@@ -2,10 +2,9 @@
 
 #include <string>
 
-#include "SquareFlare/Core.h"
-#include "StringComp/IFormattable.h"
+#include "IFormattable.h"
 
-namespace Compose::Formattables
+namespace Composing::Formattables
 {
    class FInteger : public IFormattable
    {

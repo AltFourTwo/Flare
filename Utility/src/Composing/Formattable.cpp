@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Formattable.h"
-#include "IFormattable.h"
+#include "Formattables/IFormattable.h"
 #include "Formattables/FInteger.h"
 
-namespace Compose
+namespace Composing
 {
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <cstdint>
-
 #ifdef SQFL_FOR_WINDOWS
    #ifdef SQFL_DLL
       #define SQFL_API __declspec(dllexport)

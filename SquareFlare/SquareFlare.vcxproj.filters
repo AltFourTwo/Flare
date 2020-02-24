@@ -4,11 +4,8 @@
     <Filter Include="SquareFlare">
       <UniqueIdentifier>{A0972BEB-0C4D-A4E0-9541-9EB701F69AE4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="StringComp">
-      <UniqueIdentifier>{EBCD771D-D785-B96A-408D-92C62C64545B}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utils">
-      <UniqueIdentifier>{F68B420E-62A0-6ABF-2B22-0E1F97F566F0}</UniqueIdentifier>
+    <Filter Include="Test">
+      <UniqueIdentifier>{45DC8C7C-3113-8E0D-DAFF-7310C6150A0F}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -23,40 +20,13 @@
     <ClInclude Include="src\SquareFlare\EntryPoint.h">
       <Filter>SquareFlare</Filter>
     </ClInclude>
-    <ClInclude Include="src\StringComp\Composition.h">
-      <Filter>StringComp</Filter>
+    <ClInclude Include="src\Test\TestObject.h">
+      <Filter>Test</Filter>
     </ClInclude>
-    <ClInclude Include="src\StringComp\Formatter.h">
-      <Filter>StringComp</Filter>
-    </ClInclude>
-    <ClInclude Include="src\StringComp\IFormattable.h">
-      <Filter>StringComp</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utils\StringExtract.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utils\TestObject.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\StringComp\Formattable.h" />
-    <ClInclude Include="src\StringComp\Formattables\FInteger.h" />
-    <ClInclude Include="src\Utils\NumberUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SquareFlare\Application.cpp">
       <Filter>SquareFlare</Filter>
     </ClCompile>
-    <ClCompile Include="src\StringComp\Composition.cpp">
-      <Filter>StringComp</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StringComp\Formatter.cpp">
-      <Filter>StringComp</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utils\StringExtract.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StringComp\Formattables\FInteger.cpp" />
-    <ClCompile Include="src\StringComp\Formattable.cpp" />
-    <ClCompile Include="src\Utils\NumberUtils.cpp" />
   </ItemGroup>
 </Project>

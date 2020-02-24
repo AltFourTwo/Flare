@@ -1,7 +1,7 @@
 
 #include "NumberUtils.h"
 
-namespace Utils::Numbers
+namespace Utility::Numbers
 {
    int ConvertTwoCharsToInt( const char& a_Char1, const char& a_Char2 )
    {

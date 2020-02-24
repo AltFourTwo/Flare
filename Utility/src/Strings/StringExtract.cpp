@@ -1,6 +1,6 @@
 #include "StringExtract.h"
 
-namespace Utils
+namespace Utility::Strings
 {
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/
