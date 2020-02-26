@@ -141,22 +141,27 @@
     <ClInclude Include="src\Composing\Formattables\FChar.h" />
     <ClInclude Include="src\Composing\Composition.h" />
     <ClInclude Include="src\Composing\Formattable.h" />
+    <ClInclude Include="src\Composing\Formattables\FFloatingPoint.h" />
     <ClInclude Include="src\Composing\Formattables\FInteger.h" />
+    <ClInclude Include="src\Composing\Formattables\FString.h" />
     <ClInclude Include="src\Composing\Formattables\IFormattable.h" />
     <ClInclude Include="src\Composing\Formatter.h" />
     <ClInclude Include="src\Numbers\NumberUtils.h" />
     <ClInclude Include="src\Strings\StringExtract.h" />
-    <ClInclude Include="src\Utility.h" />
+    <ClInclude Include="src\UtilityPCH.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Composing\Formattables\FBoolean.cpp" />
     <ClCompile Include="src\Composing\Formattables\FChar.cpp" />
     <ClCompile Include="src\Composing\Composition.cpp" />
     <ClCompile Include="src\Composing\Formattable.cpp" />
+    <ClCompile Include="src\Composing\Formattables\FFloatingPoint.cpp" />
     <ClCompile Include="src\Composing\Formattables\FInteger.cpp" />
+    <ClCompile Include="src\Composing\Formattables\FString.cpp" />
     <ClCompile Include="src\Composing\Formatter.cpp" />
     <ClCompile Include="src\Numbers\NumberUtils.cpp" />
     <ClCompile Include="src\Strings\StringExtract.cpp" />
+    <ClCompile Include="src\UtilityPCH.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

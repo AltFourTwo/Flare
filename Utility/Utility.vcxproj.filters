@@ -36,9 +36,11 @@
     <ClInclude Include="src\Strings\StringExtract.h">
       <Filter>Strings</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utility.h" />
     <ClInclude Include="src\Composing\Formattables\FChar.h" />
     <ClInclude Include="src\Composing\Formattables\FBoolean.h" />
+    <ClInclude Include="src\UtilityPCH.h" />
+    <ClInclude Include="src\Composing\Formattables\FString.h" />
+    <ClInclude Include="src\Composing\Formattables\FFloatingPoint.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Composing\Composition.cpp">
@@ -61,5 +63,8 @@
     </ClCompile>
     <ClCompile Include="src\Composing\Formattables\FChar.cpp" />
     <ClCompile Include="src\Composing\Formattables\FBoolean.cpp" />
+    <ClCompile Include="src\UtilityPCH.cpp" />
+    <ClCompile Include="src\Composing\Formattables\FString.cpp" />
+    <ClCompile Include="src\Composing\Formattables\FFloatingPoint.cpp" />
   </ItemGroup>
 </Project>
