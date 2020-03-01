@@ -30,6 +30,9 @@ project "SquareFlare"
 	targetdir ( "bin/" .. outputdir .. "/%{prj.name}" )
 	objdir ( "b-int/" .. outputdir .. "/%{prj.name}" )
 	
+	pchheader "SquareFlarePCH.h"
+	pchsource "SquareFlare/src/SquareFlarePCH.cpp"
+
 	files 
 	{
 		"%{prj.name}/src/**.h",
@@ -87,10 +90,18 @@ project "Utility"
 	targetdir ( "bin/" .. outputdir .. "/%{prj.name}" )
 	objdir ( "b-int/" .. outputdir .. "/%{prj.name}" )
 	
+	pchheader "UtilityPCH.h"
+	pchsource "Utility/src/UtilityPCH.cpp"
+
 	files 
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
+	}
+	
+	includedirs
+	{
+		"%{prj.name}/src"
 	}
 
 	libdirs

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 #include "SquareFlare/Core.h"
 #include "Composing/Composition.h"
 #include "Composing/Formattables/IFormattable.h"

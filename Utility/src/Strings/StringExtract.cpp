@@ -1,3 +1,5 @@
+#include "UtilityPCH.h"
+
 #include "StringExtract.h"
 
 namespace Utility::Strings

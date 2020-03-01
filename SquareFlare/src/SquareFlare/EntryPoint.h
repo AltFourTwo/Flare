@@ -1,7 +1,5 @@
 #pragma once
 
-#include <iostream>
-
 #include "Test/TestObject.h"
 
 #ifdef SQFL_FOR_WINDOWS

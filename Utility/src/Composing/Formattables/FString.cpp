@@ -1,3 +1,5 @@
+#include "UtilityPCH.h"
+
 #include "FString.h"
 
 namespace Composing::Formattables
@@ -17,7 +19,7 @@ namespace Composing::Formattables
 
    std::string FString::ToString( const char*& a_FormatString ) const
    {
-
+      // TODO Finish implementing this.
       for ( const char* i_ptr = a_FormatString; *i_ptr != 0; i_ptr++ )
       {
          switch ( *i_ptr )

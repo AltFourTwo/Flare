@@ -1,8 +1,6 @@
 #pragma once
 
-#include <string>
-
-#include "../Strings/StringExtract.h"
+#include "Strings/StringExtract.h"
 
 namespace Composing
 {

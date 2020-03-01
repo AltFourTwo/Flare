@@ -1,4 +1,4 @@
-#pragma once
+#include "UtilityPCH.h"
 
 #include "Formattable.h"
 #include "Formattables/IFormattable.h"

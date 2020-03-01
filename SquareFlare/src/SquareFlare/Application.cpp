@@ -1,4 +1,4 @@
-#include <iostream>
+#include "SquareFlarePCH.h"
 
 #include "Application.h"
 #include "Test/TestObject.h"

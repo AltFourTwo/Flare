@@ -1,3 +1,5 @@
+#include "UtilityPCH.h"
+
 #include "FFloatingPoint.h"
 
 namespace Composing::Formattables
@@ -17,6 +19,7 @@ namespace Composing::Formattables
 
    std::string FFloatingPoint::ToString( const char*& a_FormatString ) const
    {
+      // TODO Finish implementing this.
       return "123.456";
    }
 }

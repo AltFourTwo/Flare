@@ -1,3 +1,5 @@
+#include "UtilityPCH.h"
+
 #include "Composition.h"
 #include "Formatter.h"
 

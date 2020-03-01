@@ -6,7 +6,6 @@
 
 #include <stdio.h>
 #include <string>
-#include <cstdarg>
 #include <vector>
 
 #include "SquareFlare/Application.h"

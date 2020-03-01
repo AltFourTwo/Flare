@@ -1,9 +1,6 @@
 #pragma once
 
-#include <string>
-#include <vector>
-
-#include "../Strings/StringExtract.h"
+#include "Strings/StringExtract.h"
 #include "Formattable.h"
 
 namespace Composing

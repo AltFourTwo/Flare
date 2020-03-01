@@ -1,3 +1,5 @@
+#include "UtilityPCH.h"
+
 #include "FBoolean.h"
 
 namespace Composing::Formattables

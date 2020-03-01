@@ -20,6 +20,7 @@
     <ClInclude Include="src\SquareFlare\EntryPoint.h">
       <Filter>SquareFlare</Filter>
     </ClInclude>
+    <ClInclude Include="src\SquareFlarePCH.h" />
     <ClInclude Include="src\Test\TestObject.h">
       <Filter>Test</Filter>
     </ClInclude>
@@ -28,5 +29,6 @@
     <ClCompile Include="src\SquareFlare\Application.cpp">
       <Filter>SquareFlare</Filter>
     </ClCompile>
+    <ClCompile Include="src\SquareFlarePCH.cpp" />
   </ItemGroup>
 </Project>

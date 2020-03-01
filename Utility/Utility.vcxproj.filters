@@ -21,7 +21,19 @@
     <ClInclude Include="src\Composing\Formattable.h">
       <Filter>Composing</Filter>
     </ClInclude>
+    <ClInclude Include="src\Composing\Formattables\FBoolean.h">
+      <Filter>Composing\Formattables</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Composing\Formattables\FChar.h">
+      <Filter>Composing\Formattables</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Composing\Formattables\FFloatingPoint.h">
+      <Filter>Composing\Formattables</Filter>
+    </ClInclude>
     <ClInclude Include="src\Composing\Formattables\FInteger.h">
+      <Filter>Composing\Formattables</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Composing\Formattables\FString.h">
       <Filter>Composing\Formattables</Filter>
     </ClInclude>
     <ClInclude Include="src\Composing\Formattables\IFormattable.h">
@@ -36,11 +48,7 @@
     <ClInclude Include="src\Strings\StringExtract.h">
       <Filter>Strings</Filter>
     </ClInclude>
-    <ClInclude Include="src\Composing\Formattables\FChar.h" />
-    <ClInclude Include="src\Composing\Formattables\FBoolean.h" />
     <ClInclude Include="src\UtilityPCH.h" />
-    <ClInclude Include="src\Composing\Formattables\FString.h" />
-    <ClInclude Include="src\Composing\Formattables\FFloatingPoint.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Composing\Composition.cpp">
@@ -49,7 +57,19 @@
     <ClCompile Include="src\Composing\Formattable.cpp">
       <Filter>Composing</Filter>
     </ClCompile>
+    <ClCompile Include="src\Composing\Formattables\FBoolean.cpp">
+      <Filter>Composing\Formattables</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Composing\Formattables\FChar.cpp">
+      <Filter>Composing\Formattables</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Composing\Formattables\FFloatingPoint.cpp">
+      <Filter>Composing\Formattables</Filter>
+    </ClCompile>
     <ClCompile Include="src\Composing\Formattables\FInteger.cpp">
+      <Filter>Composing\Formattables</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Composing\Formattables\FString.cpp">
       <Filter>Composing\Formattables</Filter>
     </ClCompile>
     <ClCompile Include="src\Composing\Formatter.cpp">
@@ -61,10 +81,6 @@
     <ClCompile Include="src\Strings\StringExtract.cpp">
       <Filter>Strings</Filter>
     </ClCompile>
-    <ClCompile Include="src\Composing\Formattables\FChar.cpp" />
-    <ClCompile Include="src\Composing\Formattables\FBoolean.cpp" />
     <ClCompile Include="src\UtilityPCH.cpp" />
-    <ClCompile Include="src\Composing\Formattables\FString.cpp" />
-    <ClCompile Include="src\Composing\Formattables\FFloatingPoint.cpp" />
   </ItemGroup>
 </Project>
