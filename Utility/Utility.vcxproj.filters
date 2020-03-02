@@ -49,6 +49,7 @@
       <Filter>Strings</Filter>
     </ClInclude>
     <ClInclude Include="src\UtilityPCH.h" />
+    <ClInclude Include="src\Logging\Logger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Composing\Composition.cpp">
@@ -82,5 +83,6 @@
       <Filter>Strings</Filter>
     </ClCompile>
     <ClCompile Include="src\UtilityPCH.cpp" />
+    <ClCompile Include="src\Logging\Logger.cpp" />
   </ItemGroup>
 </Project>

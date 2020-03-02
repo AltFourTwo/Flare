@@ -152,6 +152,7 @@
     <ClInclude Include="src\Composing\Formattables\FString.h" />
     <ClInclude Include="src\Composing\Formattables\IFormattable.h" />
     <ClInclude Include="src\Composing\Formatter.h" />
+    <ClInclude Include="src\Logging\Logger.h" />
     <ClInclude Include="src\Numbers\NumberUtils.h" />
     <ClInclude Include="src\Strings\StringExtract.h" />
     <ClInclude Include="src\UtilityPCH.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="src\Composing\Formattables\FInteger.cpp" />
     <ClCompile Include="src\Composing\Formattables\FString.cpp" />
     <ClCompile Include="src\Composing\Formatter.cpp" />
+    <ClCompile Include="src\Logging\Logger.cpp" />
     <ClCompile Include="src\Numbers\NumberUtils.cpp" />
     <ClCompile Include="src\Strings\StringExtract.cpp" />
     <ClCompile Include="src\UtilityPCH.cpp">
