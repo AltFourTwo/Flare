@@ -1,11 +1,13 @@
 #include "UtilityPCH.h"
 
 #include "Logger.h"
+#include "Console.h"
 
 namespace Logging
 {
-   
-   Logger::Logger( const char*& a_LoggerName = DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = Logger::TRACE, const int& a_TextColor = DEFAULT_TEXT_COLOR, const int& a_BGColor = DEFAULT_BG_COLOR, const std::string& a_LoggingFormat = Logging::DEFAULT_FORMAT) :
+   /**************************************\
+   \*****   CONSTRUCTOR-DESTRUCTOR   *****/
+   Logger::Logger( const char*& a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const std::string& a_LoggingFormat ) :
       m_LoggerName( a_LoggerName ),
       m_BaseLoggingLevel( a_BaseLoggingLevel ),
       m_TextColor( a_TextColor ),
@@ -15,9 +17,8 @@ namespace Logging
       // This->Log("Logger Created!");
    }
 
-   Logger::~Logger()
-   {}
-
+   /********************************\
+   \*****   PUBLIC-FUNCTIONS   *****/
    void Logger::Trace( const char*& a_Message, std::initializer_list<Composing::Formattable> a_Formattables )
    {
       if ( m_BaseLoggingLevel >= TRACE )
@@ -54,8 +55,10 @@ namespace Logging
          Logger::Log( a_Message, a_Formattables );
    }
 
+   /*********************************\
+   \*****   PRIVATE-FUNCTIONS   *****/
    void Logger::Log( const char*& a_Message, std::initializer_list<Composing::Formattable> a_Formattables )
    {
-      
+      Console::Get().Log( *this, a_Message, a_Formattables );
    }
 }

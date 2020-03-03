@@ -5,26 +5,10 @@
 
 namespace Logging
 {
-   static const char* DEFAULT_LOGGER_NAME = "Unnamed Logger";
-   static const std::string DEFAULT_FORMAT = "";
-   static const int DEFAULT_BG_COLOR = 0;
-   static const int DEFAULT_TEXT_COLOR = 0;
-
+   /****************************\
+   \*****   CLASS LOGGER   *****/
    class Logger
    {
-      /***************************\
-      \*****   ENUMERATORS   *****/
-      enum LogLevel
-      {
-         TRACE = 1,
-         DEBUG = 2,
-         INFO = 3,
-         WARNING = 4,
-         ERROR = 5,
-         FATAL = 6,
-         OFF = 7
-      };
-
       /*******************************\
       \*****   PRIVATE-MEMBERS   *****/
       private:
@@ -38,7 +22,6 @@ namespace Logging
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
       Logger( const char*& a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const std::string& a_LoggingFormat );
-      ~Logger();
 
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/

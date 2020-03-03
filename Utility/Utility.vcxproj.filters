@@ -50,6 +50,8 @@
     </ClInclude>
     <ClInclude Include="src\UtilityPCH.h" />
     <ClInclude Include="src\Logging\Logger.h" />
+    <ClInclude Include="src\Logging\Console.h" />
+    <ClInclude Include="src\Logging\Logging.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Composing\Composition.cpp">
@@ -84,5 +86,6 @@
     </ClCompile>
     <ClCompile Include="src\UtilityPCH.cpp" />
     <ClCompile Include="src\Logging\Logger.cpp" />
+    <ClCompile Include="src\Logging\Console.cpp" />
   </ItemGroup>
 </Project>
