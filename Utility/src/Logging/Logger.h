@@ -26,6 +26,12 @@ namespace Logging
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
+      void Trace( const char*& a_Message );
+      void Debug( const char*& a_Message );
+      void Info( const char*& a_Message );
+      void Warn( const char*& a_Message );
+      void Error( const char*& a_Message );
+      void Fatal( const char*& a_Message );
       void Trace( const char*& a_Message, std::initializer_list<Composing::Formattable> a_Formattables );
       void Debug( const char*& a_Message, std::initializer_list<Composing::Formattable> a_Formattables );
       void Info( const char*& a_Message, std::initializer_list<Composing::Formattable> a_Formattables );
@@ -36,6 +42,7 @@ namespace Logging
       /*********************************\
       \*****   PRIVATE-FUNCTIONS   *****/
       private:
-      void Log( const char*& a_Message, std::initializer_list<Composing::Formattable> a_Formattables );
+      void Log( LogLevel a_LogLevel, const char*& a_Message );
+      void Log( LogLevel a_LogLevel, const char*& a_Message, std::initializer_list<Composing::Formattable> a_Formattables );
    };
 }
