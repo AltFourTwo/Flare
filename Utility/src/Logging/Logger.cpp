@@ -5,22 +5,6 @@
 
 namespace Logging
 {
-   /**********************\
-   \*****   NESTED   *****/
-   Logger::FormatAction::FormatAction( const FormatAction::ReturnType& a_ReturnType, const char& a_FormatChar ) :
-      m_FormatChar(a_FormatChar),
-      m_ReturnType(a_ReturnType),
-      m_ReturnText()
-   {
-      m_ReturnText.reserve( 25 );
-   }
-
-   Logger::FormatAction::FormatAction( const std::string& a_Text ) :
-      m_FormatChar( 0 ),
-      m_ReturnType( JUST_TEXT ),
-      m_ReturnText( a_Text )
-   {}
-
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/
    Logger::Logger( const char*& a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const std::string& a_LoggingFormat ) :
@@ -132,6 +116,13 @@ namespace Logging
       CompileFormat( m_ExecutionQueue, a_Format );
    }
 
+   /***********************\
+   \*****   GETTERS   *****/
+   const std::string& Logger::GetName() const
+   {
+      return m_LoggerName;
+   }
+
    /*********************************\
    \*****   PRIVATE-FUNCTIONS   *****/
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message )
@@ -144,15 +135,110 @@ namespace Logging
       Console::Get().Log( *this, a_LogLevel, a_Message, a_Formattables );
    }
 
-   void Logger::CompileFormat( std::queue<FormatAction, class queue>& a_ExecutionQueue, const std::string& a_FormatString )
+   void Logger::CompileFormat( std::deque<FormatAction>& a_ExecutionQueue, const std::string& a_FormatString )
    {
       a_ExecutionQueue.empty();
 
-      // TODO Finish Implementing This
+      // TODO Finish Implementing This.
 
       /* Examples */
-      a_ExecutionQueue.emplace( FormatAction::ReturnType::FORMATTED_DATE, '!' );
-      a_ExecutionQueue.emplace( FormatAction::ReturnType::LOGGER_INFO, '!' );
-      a_ExecutionQueue.emplace( "Oh no!" );
+      a_ExecutionQueue.emplace_back( "Oh no!" ); // SIMPLE_TEXT
+      a_ExecutionQueue.emplace_back( FormatAction::ActionType::FORMAT_DATE, '!' );
+      a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_NAME, LCC_LOGGER_NAME );
+      a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_LEVEL, LCC_LOG_LEVEL );
+      a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_MESSAGE, LCC_MESSAGE );
+      a_ExecutionQueue.emplace_back( FormatAction::ActionType::AMPERSAND, LCC_AMPERSAND );
+   }
+
+   std::string Logger::ExecuteQueue( const LogLevel& a_LogLevel, const char*& a_Message ) const
+   {
+      std::string x_ConsoleMessage;
+      x_ConsoleMessage.reserve( strlen( a_Message ) + 250 ); // TWEAK
+
+      for ( FormatAction itr : m_ExecutionQueue )
+      {
+         x_ConsoleMessage += itr.ExecuteAction( *this, a_LogLevel, a_Message );
+      }
+
+      return x_ConsoleMessage;
+   }
+
+   /**********************\
+   \*****   NESTED   *****/
+   Logger::FormatAction::FormatAction( const FormatAction::ActionType& a_ActionType, const char& a_FormatChar ) :
+      m_FormatChar( a_FormatChar ),
+      m_ActionType( a_ActionType ),
+      m_ReturnText()
+   {}
+
+   Logger::FormatAction::FormatAction( const std::string& a_Text ) :
+      m_FormatChar( 0 ),
+      m_ActionType( SIMPLE_TEXT ),
+      m_ReturnText( a_Text )
+   {}
+
+   std::string Logger::FormatAction::ExecuteAction( const Logger& a_Logger, const LogLevel& a_LogLevel, const char*& a_Message )
+   {
+      switch ( m_ActionType )
+      {
+         case ( SIMPLE_TEXT ):
+            return m_ReturnText;
+
+         case ( FORMAT_DATE ):
+         {
+            char x_Buffer[40]; // TWEAK
+            const char x_Format[] = { '%', m_FormatChar, 0 };
+            const time_t x_RawTime = std::chrono::system_clock::to_time_t( std::chrono::system_clock::now() );
+            struct tm * x_TimeNow = localtime( &x_RawTime );
+            int x_TimeStringLength = strftime( x_Buffer, 40, x_Format, x_TimeNow ); // TWEAK
+
+            m_ReturnText = std::string( x_Buffer, x_TimeStringLength );
+
+            return m_ReturnText;
+         }
+
+         case ( LOGGER_NAME ):
+            return a_Logger.GetName();
+
+         case ( LOG_LEVEL ):
+         {
+            switch ( a_LogLevel )
+            {
+               case ( TRACE ):
+                  return "TRACE";
+
+               case( DEBUG ):
+                  return "DEBUG";
+
+               case( INFO ):
+                  return "INFO";
+
+               case( WARNING ):
+                  return "WARNING";
+
+               case( ERROR ):
+                  return "ERROR";
+
+               case( FATAL ):
+                  return "FATAL";
+
+               default:
+                  throw; // TODO Exception Unknown Logging::LogLevel
+            }
+         }
+
+         case ( LOG_MESSAGE ):
+            return a_Message;
+
+         case ( TIME_DIFFERENCE ):
+            // TODO Implement This.
+            break;
+
+         case ( AMPERSAND ):
+            return "%";
+
+         default:
+            throw; // TODO Exception Unknown FormatAction::ActionType
+      }
    }
 }

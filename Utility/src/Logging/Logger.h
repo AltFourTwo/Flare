@@ -14,18 +14,24 @@ namespace Logging
       private:
       struct FormatAction
       {
-         enum ReturnType
+         enum ActionType
          {
-            FORMATTED_DATE = 1,
-            LOGGER_INFO = 2,
-            JUST_TEXT = 3
+            SIMPLE_TEXT = 1,
+            FORMAT_DATE = 2,
+            LOGGER_NAME = 3,
+            LOG_LEVEL = 4,
+            LOG_MESSAGE = 5,
+            TIME_DIFFERENCE = 6,
+            AMPERSAND = 7
          };
          char m_FormatChar;
-         ReturnType m_ReturnType;
+         ActionType m_ActionType;
          std::string m_ReturnText;
 
-         FormatAction( const ReturnType& a_ReturnType, const char& a_FormatChar );
+         FormatAction( const ActionType& a_ActionType, const char& a_FormatChar );
          FormatAction( const std::string& a_Text );
+
+         std::string ExecuteAction( const Logger& a_Logger, const LogLevel& a_LogLevel, const char*& a_Message );
       };
 
       /*******************************\
@@ -35,7 +41,7 @@ namespace Logging
       LogLevel m_BaseLoggingLevel;
       int m_TextColor; // TODO Find a better type for color properties, int is a placeholder type.
       int m_BGColor;
-      std::queue<FormatAction, class queue> m_ExecutionQueue;
+      std::deque<FormatAction> m_ExecutionQueue;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
@@ -59,6 +65,8 @@ namespace Logging
       void Error( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
       void Fatal( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
 
+      std::string ExecuteQueue( const LogLevel& a_LogLevel, const char*& a_Message ) const;
+
       /***********************\
       \*****   SETTERS   *****/
       public:
@@ -67,11 +75,15 @@ namespace Logging
       void SetBackgroundColor( const int& a_BGColor );
       void SetFormat( const std::string& a_Format );
 
+      /***********************\
+      \*****   GETTERS   *****/
+      const std::string& GetName() const;
+
       /*********************************\
       \*****   PRIVATE-FUNCTIONS   *****/
       private:
       void Log( const LogLevel& a_LogLevel, const char*& a_Message );
       void Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void CompileFormat( std::queue<FormatAction, class queue>& a_ExecutionQueue, const std::string& a_LoggingFormat );
+      void CompileFormat( std::deque<FormatAction>& a_ExecutionQueue, const std::string& a_LoggingFormat );
    };
 }

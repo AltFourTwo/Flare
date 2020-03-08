@@ -38,17 +38,14 @@ namespace Logging
    // Log message using a logger's information.
    void Console::Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message )
    {
-      std::string x_ConsoleFormattedMessage;
-      // Finish Implementing This
+      std::string x_ConsoleFormattedMessage = a_Logger.ExecuteQueue( a_LogLevel, a_Message );
       printf( x_ConsoleFormattedMessage.c_str() );
    }
 
    void Console::Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Composing::Formattable> a_Formattables )
    {
       std::string x_ComposedMessage = Composing::Format( a_Message, a_Formattables );
-      std::string x_ConsoleFormattedMessage;
-      // Finish Implementing This
-      printf( x_ConsoleFormattedMessage.c_str() );
+      Log( a_Logger, a_LogLevel, x_ComposedMessage.c_str() );
    }
 
    // Returns the first logger for core logging.
@@ -70,7 +67,7 @@ namespace Logging
       if ( !m_IsInitialized )
          throw; // TODO Exception Logging System Was Not Initialized.
 
-      if ( m_Loggers.size() >= 16 )
+      if ( m_Loggers.size() >= MAX_LOGGERS )
          throw; // TODO Exception Maximum number of loggers hit.
 
       m_Loggers.emplace_back( a_LoggerName, a_BaseLoggingLevel, a_TextColor, a_BGColor, a_LoggingFormat );
