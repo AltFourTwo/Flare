@@ -21,15 +21,20 @@ namespace Logging
             LOGGER_NAME = 3,
             LOG_LEVEL = 4,
             LOG_MESSAGE = 5,
-            TIME_DIFFERENCE = 6,
-            AMPERSAND = 7
+            LOG_TIME_DIFFERENCE = 6,
+            LOG_PROCESS_ID = 7,
+            LOG_THREAD_ID = 8,
+            AMPERSAND = 9,
+            DATE_COMPILE_ERROR = 10,
+            LOGGER_COMPILE_ERROR = 11
          };
          char m_FormatChar;
          ActionType m_ActionType;
          std::string m_ReturnText;
 
+         FormatAction( const ActionType& a_ActionType );
          FormatAction( const ActionType& a_ActionType, const char& a_FormatChar );
-         FormatAction( const std::string& a_Text );
+         FormatAction( const char*& a_TextStart, const size_t a_Length );
 
          std::string ExecuteAction( const Logger& a_Logger, const LogLevel& a_LogLevel, const char*& a_Message );
       };
@@ -46,7 +51,7 @@ namespace Logging
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      Logger( const char*& a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const std::string& a_LoggingFormat );
+      Logger( const char*& a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char*& a_LoggingFormat );
 
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
@@ -73,17 +78,17 @@ namespace Logging
       void SetBaseLoggingLevel( const LogLevel& a_LoggingLevel );
       void SetTextColor( const int& a_TextColor );
       void SetBackgroundColor( const int& a_BGColor );
-      void SetFormat( const std::string& a_Format );
+      void SetFormat( const char*& a_Format );
 
       /***********************\
       \*****   GETTERS   *****/
-      const std::string& GetName() const;
+      const std::string GetName() const;
 
       /*********************************\
       \*****   PRIVATE-FUNCTIONS   *****/
       private:
       void Log( const LogLevel& a_LogLevel, const char*& a_Message );
       void Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void CompileFormat( std::deque<FormatAction>& a_ExecutionQueue, const std::string& a_LoggingFormat );
+      void CompileFormat( std::deque<FormatAction>& a_ExecutionQueue, const char*& a_LoggingFormat );
    };
 }
