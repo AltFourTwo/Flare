@@ -46,29 +46,29 @@ namespace Logging
       LogLevel m_BaseLoggingLevel;
       int m_TextColor; // TODO Find a better type for color properties, int is a placeholder type.
       int m_BGColor;
-      std::deque<FormatAction> m_ExecutionQueue;
+      std::vector<FormatAction> m_ExecutionQueue;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      Logger( const char*& a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char*& a_LoggingFormat );
+      Logger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char* a_LoggingFormat );
 
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
       // Log Functions
-      void Trace( const char*& a_Message );
-      void Debug( const char*& a_Message );
-      void Info( const char*& a_Message );
-      void Warn( const char*& a_Message );
-      void Error( const char*& a_Message );
-      void Fatal( const char*& a_Message );
-      void Trace( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void Debug( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void Info( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void Warn( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void Error( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void Fatal( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
+      void Trace( const char* a_Message );
+      void Debug( const char* a_Message );
+      void Info( const char* a_Message );
+      void Warn( const char* a_Message );
+      void Error( const char* a_Message );
+      void Fatal( const char* a_Message );
+      void Trace( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
+      void Debug( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
+      void Info( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
+      void Warn( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
+      void Error( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
+      void Fatal( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
 
       std::string ExecuteQueue( const LogLevel& a_LogLevel, const char*& a_Message ) const;
 
@@ -78,7 +78,7 @@ namespace Logging
       void SetBaseLoggingLevel( const LogLevel& a_LoggingLevel );
       void SetTextColor( const int& a_TextColor );
       void SetBackgroundColor( const int& a_BGColor );
-      void SetFormat( const char*& a_Format );
+      void SetFormat( const char* a_Format );
 
       /***********************\
       \*****   GETTERS   *****/
@@ -89,6 +89,6 @@ namespace Logging
       private:
       void Log( const LogLevel& a_LogLevel, const char*& a_Message );
       void Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void CompileFormat( std::deque<FormatAction>& a_ExecutionQueue, const char*& a_LoggingFormat );
+      void CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_LoggingFormat );
    };
 }

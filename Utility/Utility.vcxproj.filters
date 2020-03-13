@@ -87,5 +87,6 @@
     <ClCompile Include="src\UtilityPCH.cpp" />
     <ClCompile Include="src\Logging\Logger.cpp" />
     <ClCompile Include="src\Logging\Console.cpp" />
+    <ClCompile Include="src\Logging\Logging.cpp" />
   </ItemGroup>
 </Project>

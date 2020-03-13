@@ -63,7 +63,7 @@ namespace Composing::Formattables
       {
          std::string x_Padded;
          x_Padded.reserve( x_Padding );
-         int x_CharDiff = x_Padding - x_Out.length();
+         long long x_CharDiff = x_Padding - x_Out.length();
 
          if ( x_CharDiff > 0 )
          {

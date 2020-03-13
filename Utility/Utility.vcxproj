@@ -170,6 +170,7 @@
     <ClCompile Include="src\Composing\Formatter.cpp" />
     <ClCompile Include="src\Logging\Console.cpp" />
     <ClCompile Include="src\Logging\Logger.cpp" />
+    <ClCompile Include="src\Logging\Logging.cpp" />
     <ClCompile Include="src\Numbers\NumberUtils.cpp" />
     <ClCompile Include="src\Strings\StringExtract.cpp" />
     <ClCompile Include="src\UtilityPCH.cpp">

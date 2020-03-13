@@ -7,7 +7,7 @@ namespace Logging
 {
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/
-   Logger::Logger( const char*& a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char*& a_LoggingFormat ) :
+   Logger::Logger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char* a_LoggingFormat ) :
       m_LoggerName( a_LoggerName ),
       m_BaseLoggingLevel( a_BaseLoggingLevel ),
       m_TextColor( a_TextColor ),
@@ -21,74 +21,74 @@ namespace Logging
    /********************************\
    \*****   PUBLIC-FUNCTIONS   *****/
    // Log Without Formattables
-   void Logger::Trace( const char*& a_Message )
+   void Logger::Trace( const char* a_Message )
    {
       if ( m_BaseLoggingLevel <= TRACE )
          Logger::Log( TRACE, a_Message );
    }
 
-   void Logger::Debug( const char*& a_Message )
+   void Logger::Debug( const char* a_Message )
    {
       if ( m_BaseLoggingLevel <= DEBUG )
          Logger::Log( DEBUG, a_Message );
    }
 
-   void Logger::Info( const char*& a_Message )
+   void Logger::Info( const char* a_Message )
    {
       if ( m_BaseLoggingLevel <= INFO )
          Logger::Log( INFO, a_Message );
    }
 
-   void Logger::Warn( const char*& a_Message )
+   void Logger::Warn( const char* a_Message )
    {
       if ( m_BaseLoggingLevel <= WARNING )
          Logger::Log( WARNING, a_Message );
    }
 
-   void Logger::Error( const char*& a_Message )
+   void Logger::Error( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= ERROR )
-         Logger::Log( ERROR, a_Message );
+      if ( m_BaseLoggingLevel <= ERR_OR )
+         Logger::Log( ERR_OR, a_Message );
    }
 
-   void Logger::Fatal( const char*& a_Message )
+   void Logger::Fatal( const char* a_Message )
    {
       if ( m_BaseLoggingLevel <= FATAL )
          Logger::Log( FATAL, a_Message );
    }
 
    // Log With Formattables
-   void Logger::Trace( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Trace( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
    {
       if ( m_BaseLoggingLevel <= TRACE )
          Logger::Log( TRACE, a_Message, a_Formattables );
    }
 
-   void Logger::Debug( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Debug( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
    {
       if ( m_BaseLoggingLevel <= DEBUG )
          Logger::Log( DEBUG, a_Message, a_Formattables );
    }
 
-   void Logger::Info( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Info( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
    {
       if ( m_BaseLoggingLevel <= INFO )
          Logger::Log( INFO, a_Message, a_Formattables );
    }
 
-   void Logger::Warn( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Warn( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
    {
       if ( m_BaseLoggingLevel <= WARNING )
          Logger::Log( WARNING, a_Message, a_Formattables );
    }
 
-   void Logger::Error( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Error( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= ERROR )
-         Logger::Log( ERROR, a_Message, a_Formattables );
+      if ( m_BaseLoggingLevel <= ERR_OR )
+         Logger::Log( ERR_OR, a_Message, a_Formattables );
    }
 
-   void Logger::Fatal( const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Fatal( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
    {
       if ( m_BaseLoggingLevel <= FATAL )
          Logger::Log( FATAL, a_Message, a_Formattables );
@@ -111,7 +111,7 @@ namespace Logging
       m_BGColor = a_BGColor;
    }
 
-   void Logger::SetFormat( const char*& a_Format )
+   void Logger::SetFormat( const char* a_Format )
    {
       CompileFormat( m_ExecutionQueue, a_Format );
    }
@@ -135,7 +135,7 @@ namespace Logging
       Console::Get().Log( *this, a_LogLevel, a_Message, a_Formattables );
    }
 
-   void Logger::CompileFormat( std::deque<FormatAction>& a_ExecutionQueue, const char*& a_FormatString )
+   void Logger::CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_FormatString )
    {
       a_ExecutionQueue.clear();
       const char* x_TextStart = a_FormatString;
@@ -158,6 +158,7 @@ namespace Logging
                      a_ExecutionQueue.emplace_back( FormatAction::ActionType::DATE_COMPILE_ERROR, *( i_ptr + 1 ) );
 
                   x_TextStart = i_ptr + 2;
+                  i_ptr++;
                }
                else
                {
@@ -212,6 +213,7 @@ namespace Logging
                   }
 
                   x_TextStart = i_ptr + 2;
+                  i_ptr++;
                }
                else
                {
@@ -279,6 +281,14 @@ namespace Logging
             struct tm * x_TimeNow = localtime( &x_RawTime );
             size_t x_TimeStringLength = strftime( x_Buffer, 40, x_Format, x_TimeNow ); // TWEAK
 
+
+            //time_t x_RawTime;
+            //struct tm * x_TimeNow;
+            //
+            //time( &x_RawTime );
+            //x_TimeNow = localtime( &x_RawTime );
+            //size_t x_TimeStringLength = strftime( x_Buffer, 40, x_Format, x_TimeNow ); // TWEAK
+
             m_ReturnText = std::string( x_Buffer, x_TimeStringLength );
 
             return m_ReturnText;
@@ -303,7 +313,7 @@ namespace Logging
                case WARNING:
                   return "WARNING";
 
-               case ERROR:
+               case ERR_OR:
                   return "ERROR";
 
                case FATAL:

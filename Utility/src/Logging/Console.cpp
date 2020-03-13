@@ -49,7 +49,7 @@ namespace Logging
    }
 
    // Returns the first logger for core logging.
-   Logger& Console::Initialize( const char*& a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char*& a_LoggingFormat )
+   Logger& Console::Initialize( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char* a_LoggingFormat )
    {
       if ( m_IsInitialized )
          throw; // TODO Exception Logging System Already Initialized.
@@ -62,7 +62,7 @@ namespace Logging
       return m_Loggers.back();
    }
 
-   Logger& Console::CreaterLogger( const char*& a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char*& a_LoggingFormat )
+   Logger& Console::CreaterLogger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char* a_LoggingFormat )
    {
       if ( !m_IsInitialized )
          throw; // TODO Exception Logging System Was Not Initialized.

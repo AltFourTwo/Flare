@@ -159,7 +159,7 @@ namespace Composing
 
          if ( m_Alignment > 0 )
          {
-            int x_CharDiff = m_Alignment - x_FormattedObject.length();
+            long long x_CharDiff = m_Alignment - x_FormattedObject.length();
             if ( x_CharDiff == 0 )
                return x_FormattedObject;
 
@@ -173,7 +173,7 @@ namespace Composing
          }
          else if ( m_Alignment < 0 )
          {
-            int x_CharDiff = abs( m_Alignment ) - x_FormattedObject.length();
+            size_t x_CharDiff = abs( m_Alignment ) - x_FormattedObject.length();
             if ( x_CharDiff == 0 )
                return x_FormattedObject;
 
