@@ -52,6 +52,7 @@
     <ClInclude Include="src\Logging\Logger.h" />
     <ClInclude Include="src\Logging\Console.h" />
     <ClInclude Include="src\Logging\Logging.h" />
+    <ClInclude Include="UtilityException.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Composing\Composition.cpp">
@@ -88,5 +89,6 @@
     <ClCompile Include="src\Logging\Logger.cpp" />
     <ClCompile Include="src\Logging\Console.cpp" />
     <ClCompile Include="src\Logging\Logging.cpp" />
+    <ClCompile Include="UtilityException.cpp" />
   </ItemGroup>
 </Project>

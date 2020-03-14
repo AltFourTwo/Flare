@@ -73,12 +73,13 @@ namespace Logging
       LCC_LOG_LEVEL = 'L',       // The log level the message is issued as.
       LCC_LOGGER_NAME = 'N',     // The logger that is used to log the message.
       LCC_AMPERSAND = '&',       // The ampersand symbol '&'.
-      LCC_SECONDS = 's',         // The number of seconds since the last message from this logger. 
-      LCC_MILLISECONDS = 'm',    // The number of milliseconds since the last message from this logger.
-      LCC_MICROSECONDS = 'u',    // The number of microseconds since the last message from this logger.
-      LCC_NANOSECONDS = 'n',     // The number of nanoseconds since the last message from this logger.
-      LCC_THREAD_ID = 't',       // The thread ID used by ? Where ? Leaving unimplemented for now.
-      LCC_PROCESS_ID = 'p'       // The process ID used by ? Where ? Leaving unimplemented for now.
+      LCC_SMARTTIME = 't',       // Displays the time since the last message from the logger in it's most significant unit.
+      LCC_SECONDS = 's',         // The number of seconds since the last message from the logger. 
+      LCC_MILLISECONDS = 'm',    // The number of milliseconds since the last message from the logger.
+      LCC_MICROSECONDS = 'u',    // The number of microseconds since the last message from the logger.
+      LCC_NANOSECONDS = 'n',     // The number of nanoseconds since the last message from the logger.
+      LCC_THREAD_ID = 'T',       // The thread ID used by ? Where ? Leaving unimplemented for now.
+      LCC_PROCESS_ID = 'P'       // The process ID used by ? Where ? Leaving unimplemented for now.
    };
 
    bool IsDateControlCharacter( const char a_Char );

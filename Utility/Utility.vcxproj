@@ -158,6 +158,7 @@
     <ClInclude Include="src\Numbers\NumberUtils.h" />
     <ClInclude Include="src\Strings\StringExtract.h" />
     <ClInclude Include="src\UtilityPCH.h" />
+    <ClInclude Include="UtilityException.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Composing\Composition.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="src\UtilityPCH.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="UtilityException.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

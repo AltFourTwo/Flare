@@ -1,5 +1,9 @@
 #pragma once
 
+#include <chrono>
+#include <string>
+#include <vector>
+
 #include "Composing/Formattable.h"
 #include "Logging.h"
 
@@ -47,6 +51,7 @@ namespace Logging
       int m_TextColor; // TODO Find a better type for color properties, int is a placeholder type.
       int m_BGColor;
       std::vector<FormatAction> m_ExecutionQueue;
+      mutable std::chrono::time_point<std::chrono::steady_clock> m_LastMessageTimeStamp;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/

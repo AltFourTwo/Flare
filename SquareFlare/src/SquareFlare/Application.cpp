@@ -5,6 +5,8 @@
 #include "Composing/Composition.h"
 #include "Logging/Console.h"
 
+#include <thread>
+
 namespace SquareFlare
 {
    Application::Application()
@@ -69,14 +71,38 @@ namespace SquareFlare
       */
 
       Logging::Console& console = Logging::Console::Get();
-      Logging::Logger help = console.Initialize( "Console", Logging::LogLevel::INFO, 1, 1, "[%R][&N][&L] &M && %% &^ \n" );
+      Logging::Logger x_Test = console.Initialize( "Console", Logging::LogLevel::INFO, 1, 1, "[%R][&N][&L] &M && %% &^ \n" );
 
       printf( "\n" );
-      help.Trace( "TraceMsg" );
-      help.Debug( "DebugMsg" );
-      help.Info( "InfoMsg" );
-      help.Warn( "WarnMsg" );
-      help.Error( "ErrorMsg" );
-      help.Fatal( "FatalMsg" );
+      x_Test.Trace( "TraceMsg" );
+      x_Test.Debug( "DebugMsg" );
+      x_Test.Info( "InfoMsg" );
+      x_Test.Warn( "WarnMsg" );
+      x_Test.Error( "ErrorMsg" );
+      x_Test.Fatal( "FatalMsg" );
+
+      Logging::Logger x_TimeDiffLog = console.CreaterLogger("TimeDiffTest", Logging::TRACE, 1, 1, "[&N] Testing Time Control Characters\n - Seconds &s\n - Milliseconds &m\n - Microseconds &u\n - Nanoseconds &n\n&M Done.\n" );
+      
+      x_TimeDiffLog.Trace("Test 1");
+      x_TimeDiffLog.Trace("Test 2");
+      x_TimeDiffLog.Trace("Test 3");
+      x_TimeDiffLog.Trace("Test 4");
+      x_TimeDiffLog.Trace("Test 5");
+
+      x_TimeDiffLog.SetFormat( "[&N] Testing Smart Time Control Option\n - Smart &t\n&M Done.\n" );
+
+      using namespace std::literals::chrono_literals;
+
+      x_TimeDiffLog.Trace( "Test Smart Begin" );
+
+      std::this_thread::sleep_for( 150us );
+      x_TimeDiffLog.Trace( "Test Smart > Microseconds" );
+
+      std::this_thread::sleep_for( 150ms );
+      x_TimeDiffLog.Trace( "Test Smart > Milliseconds" );
+
+      std::this_thread::sleep_for( 2s );
+      x_TimeDiffLog.Trace( "Test Smart > Seconds" );
+
    }
 }

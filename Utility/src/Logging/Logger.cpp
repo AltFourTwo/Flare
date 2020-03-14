@@ -12,7 +12,8 @@ namespace Logging
       m_BaseLoggingLevel( a_BaseLoggingLevel ),
       m_TextColor( a_TextColor ),
       m_BGColor( a_BGColor ),
-      m_ExecutionQueue()
+      m_ExecutionQueue(),
+      m_LastMessageTimeStamp( std::chrono::steady_clock::now() )
    {
       CompileFormat( m_ExecutionQueue, a_LoggingFormat );
       // This->Log("Logger Created!");
@@ -189,6 +190,9 @@ namespace Logging
                      case LCC_AMPERSAND:
                         a_ExecutionQueue.emplace_back( FormatAction::ActionType::AMPERSAND, LCC_AMPERSAND );
                         break;
+                     case LCC_SMARTTIME:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LCC_SMARTTIME );
+                        break;
                      case LCC_SECONDS:
                         a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LCC_SECONDS );
                         break;
@@ -242,6 +246,7 @@ namespace Logging
       {
          x_ConsoleMessage += itr.ExecuteAction( *this, a_LogLevel, a_Message );
       }
+      m_LastMessageTimeStamp = std::chrono::steady_clock::now();
 
       return x_ConsoleMessage;
    }
@@ -278,16 +283,8 @@ namespace Logging
             char x_Buffer[40]; // TWEAK
             const char x_Format[] = { '%', m_FormatChar, 0 };
             const time_t x_RawTime = std::chrono::system_clock::to_time_t( std::chrono::system_clock::now() );
-            struct tm * x_TimeNow = localtime( &x_RawTime );
+            struct tm* x_TimeNow = localtime( &x_RawTime );
             size_t x_TimeStringLength = strftime( x_Buffer, 40, x_Format, x_TimeNow ); // TWEAK
-
-
-            //time_t x_RawTime;
-            //struct tm * x_TimeNow;
-            //
-            //time( &x_RawTime );
-            //x_TimeNow = localtime( &x_RawTime );
-            //size_t x_TimeStringLength = strftime( x_Buffer, 40, x_Format, x_TimeNow ); // TWEAK
 
             m_ReturnText = std::string( x_Buffer, x_TimeStringLength );
 
@@ -328,8 +325,42 @@ namespace Logging
             return a_Message;
 
          case LOG_TIME_DIFFERENCE:
-            // TODO Implement This.
+         {
+            std::chrono::duration<float> x_TimeDiff = std::chrono::steady_clock::now() - a_Logger.m_LastMessageTimeStamp;
+            float x_Ticks = x_TimeDiff.count();
+            const char* x_TimeSymbols[] = { "s", "ms", "us", "ns" };
+
+            switch ( m_FormatChar )
+            {
+               case LCC_SMARTTIME:
+               {
+                  for ( int i = 0; i < 4; i++ )
+                  {
+                     if ( x_Ticks < 1 )
+                        x_Ticks *= 1000.0f;
+                     else
+                        return std::to_string( x_Ticks ) + x_TimeSymbols[i];
+                  }
+                  return std::to_string( x_Ticks ) + x_TimeSymbols[3];
+               }
+
+               case LCC_SECONDS:
+                  return std::to_string( x_Ticks ) + x_TimeSymbols[0];
+
+               case LCC_MILLISECONDS:
+                  return std::to_string( x_Ticks * 1000.0f ) + x_TimeSymbols[1];
+
+               case LCC_MICROSECONDS:
+                  return std::to_string( x_Ticks * 1000000.0f ) + x_TimeSymbols[2];
+
+               case LCC_NANOSECONDS:
+                  return std::to_string( x_Ticks * 1000000000.0f ) + x_TimeSymbols[3];
+
+               default:
+                  throw; // TODO Exception Unknown Time Difference Control Character
+            }
             break;
+         }
 
          case LOG_THREAD_ID:
             // TODO Implement This.
@@ -343,18 +374,22 @@ namespace Logging
             return "&";
 
          case DATE_COMPILE_ERROR:
+         {
             m_ReturnText.reserve( 4 );
             m_ReturnText += "?%";
             m_ReturnText += m_FormatChar;
             m_ReturnText += '?';
             return m_ReturnText;
+         }
 
          case LOGGER_COMPILE_ERROR:
+         {
             m_ReturnText.reserve( 4 );
             m_ReturnText += "?&";
             m_ReturnText += m_FormatChar;
             m_ReturnText += '?';
             return m_ReturnText;
+         }
 
          default:
             throw; // TODO Exception Unknown FormatAction::ActionType
