@@ -1,5 +1,6 @@
 #pragma once
 
+#include <exception>
 #include <time.h>
 #include <ctime>
 #include <chrono>

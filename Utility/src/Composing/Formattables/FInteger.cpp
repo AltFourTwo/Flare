@@ -1,5 +1,8 @@
 #include "UtilityPCH.h"
 
+#include <string>
+#include <cmath>
+
 #include "FInteger.h"
 #include "Numbers/NumberUtils.h"
 

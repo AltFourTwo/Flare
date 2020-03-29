@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -19,26 +19,26 @@
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Utility</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -152,13 +152,13 @@
     <ClInclude Include="src\Composing\Formattables\FString.h" />
     <ClInclude Include="src\Composing\Formattables\IFormattable.h" />
     <ClInclude Include="src\Composing\Formatter.h" />
-    <ClInclude Include="src\Logging\Logger.h" />
+    <ClInclude Include="src\Exceptions\BaseException.h" />
     <ClInclude Include="src\Logging\Console.h" />
+    <ClInclude Include="src\Logging\Logger.h" />
     <ClInclude Include="src\Logging\Logging.h" />
     <ClInclude Include="src\Numbers\NumberUtils.h" />
     <ClInclude Include="src\Strings\StringExtract.h" />
     <ClInclude Include="src\UtilityPCH.h" />
-    <ClInclude Include="UtilityException.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Composing\Composition.cpp" />
@@ -169,6 +169,7 @@
     <ClCompile Include="src\Composing\Formattables\FInteger.cpp" />
     <ClCompile Include="src\Composing\Formattables\FString.cpp" />
     <ClCompile Include="src\Composing\Formatter.cpp" />
+    <ClCompile Include="src\Exceptions\BaseException.cpp" />
     <ClCompile Include="src\Logging\Console.cpp" />
     <ClCompile Include="src\Logging\Logger.cpp" />
     <ClCompile Include="src\Logging\Logging.cpp" />
@@ -177,7 +178,6 @@
     <ClCompile Include="src\UtilityPCH.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="UtilityException.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

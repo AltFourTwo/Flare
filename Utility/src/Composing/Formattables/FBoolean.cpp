@@ -1,5 +1,7 @@
 #include "UtilityPCH.h"
 
+#include <string>
+
 #include "FBoolean.h"
 
 namespace Composing::Formattables

@@ -1,8 +1,6 @@
 #pragma once
 
 #include <chrono>
-#include <string>
-#include <vector>
 
 #include "Composing/Formattable.h"
 #include "Logging.h"
@@ -36,9 +34,8 @@ namespace Logging
          ActionType m_ActionType;
          std::string m_ReturnText;
 
-         FormatAction( const ActionType& a_ActionType );
-         FormatAction( const ActionType& a_ActionType, const char& a_FormatChar );
-         FormatAction( const char*& a_TextStart, const size_t a_Length );
+         FormatAction( const ActionType& a_ActionType, const char& a_FormatChar = 0 );
+         FormatAction( const char*& a_TextStart, const size_t a_Length, const char& a_FormatChar = 0 );
 
          std::string ExecuteAction( const Logger& a_Logger, const LogLevel& a_LogLevel, const char*& a_Message );
       };

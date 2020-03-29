@@ -81,7 +81,7 @@ namespace SquareFlare
       x_Test.Error( "ErrorMsg" );
       x_Test.Fatal( "FatalMsg" );
 
-      Logging::Logger x_TimeDiffLog = console.CreaterLogger("TimeDiffTest", Logging::TRACE, 1, 1, "[&N] Testing Time Control Characters\n - Seconds &s\n - Milliseconds &m\n - Microseconds &u\n - Nanoseconds &n\n&M Done.\n" );
+      Logging::Logger x_TimeDiffLog = console.CreaterLogger("TimeDiffTest", Logging::LogLevel::TRACE, 1, 1, "[&N] Testing Time Control Characters\n - Seconds &s\n - Milliseconds &m\n - Microseconds &u\n - Nanoseconds &n\n&M Done.\n" );
       
       x_TimeDiffLog.Trace("Test 1");
       x_TimeDiffLog.Trace("Test 2");

@@ -1,5 +1,8 @@
 #include "UtilityPCH.h"
 
+#include <string>
+#include <cmath>
+
 #include "Composition.h"
 #include "Formatter.h"
 
@@ -16,9 +19,9 @@ namespace Composing
       if ( a_FormatString.ExtractStart() + 1 == a_FormatString.ExtractEnd() )
          throw; // TODO Exception Empty format string.
 
-      StringFormatSection x_Section = INDEX;
+      StringFormatSection x_Section = Formatter::StringFormatSection::INDEX;
       bool x_ReadingStringLitteral = false;
-      const char* x_SectionStart;
+      const char* x_SectionStart = a_FormatString.ExtractStart();
 
       for ( const char* i_ptr = a_FormatString.ExtractStart(); i_ptr <= a_FormatString.ExtractEnd(); i_ptr++ )
       {
@@ -37,9 +40,9 @@ namespace Composing
                   if ( x_ReadingStringLitteral )
                      throw; // TODO Exception String litteral not closed.
 
-                  if ( x_Section == INDEX )
+                  if ( x_Section == Formatter::StringFormatSection::INDEX )
                      m_IndexExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
-                  else if ( x_Section == ALIGNMENT )
+                  else if ( x_Section == Formatter::StringFormatSection::ALIGNMENT )
                      m_AlignmentExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
                   else
                      m_FormatExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
@@ -54,13 +57,13 @@ namespace Composing
                else if ( m_Aligned && !x_ReadingStringLitteral )
                   throw; // TODO Exception Unexpected , after alignment has been defined.
 
-               if ( x_Section == INDEX )
+               if ( x_Section == Formatter::StringFormatSection::INDEX )
                   m_IndexExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
-               else if ( x_Section == FORMAT )
+               else if ( x_Section == Formatter::StringFormatSection::FORMAT )
                   m_FormatExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
 
                m_Aligned = true;
-               x_Section = ALIGNMENT;
+               x_Section = Formatter::StringFormatSection::ALIGNMENT;
                x_SectionStart = i_ptr + 1;
                break;
 
@@ -70,18 +73,18 @@ namespace Composing
                else if ( m_Formatted && !x_ReadingStringLitteral )
                   throw; // TODO Exception Unexpected : in format string.
 
-               if ( x_Section == INDEX )
+               if ( x_Section == Formatter::StringFormatSection::INDEX )
                   m_IndexExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
-               else if ( x_Section == ALIGNMENT )
+               else if ( x_Section == Formatter::StringFormatSection::ALIGNMENT )
                   m_AlignmentExtract = Utility::Strings::StringExtract( x_SectionStart, i_ptr - 1 );
 
                m_Formatted = true;
-               x_Section = FORMAT;
+               x_Section = Formatter::StringFormatSection::FORMAT;
                x_SectionStart = i_ptr + 1;
                break;
 
             case STRING_LITERAL_DELIMITER:
-               if ( x_Section != FORMAT )
+               if ( x_Section != Formatter::StringFormatSection::FORMAT )
                   throw; // TODO Exception String litteral found outside format section.
                x_ReadingStringLitteral = x_ReadingStringLitteral ? false : true;
                break;

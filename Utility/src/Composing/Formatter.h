@@ -9,7 +9,7 @@ namespace Composing
       /***************************\
       \*****   ENUMERATORS   *****/
       private:
-      enum StringFormatSection
+      enum class StringFormatSection
       {
          INDEX = 1,
          ALIGNMENT = 2,

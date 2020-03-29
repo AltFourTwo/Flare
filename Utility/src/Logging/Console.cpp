@@ -1,5 +1,9 @@
 #include "UtilityPCH.h"
 
+#include <string>
+#include <vector>
+#include <initializer_list>
+
 #include "Composing/Composition.h"
 #include "Console.h"
 #include "Logger.h"

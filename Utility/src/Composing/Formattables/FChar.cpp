@@ -1,5 +1,7 @@
 #include "UtilityPCH.h"
 
+#include <string>
+
 #include "FChar.h"
 
 namespace Composing::Formattables

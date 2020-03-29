@@ -1,10 +1,14 @@
 #include "UtilityPCH.h"
 
+#include <string>
+
 #include "Formattable.h"
 #include "Formattables/IFormattable.h"
 #include "Formattables/FBoolean.h"
 #include "Formattables/FChar.h"
 #include "Formattables/FInteger.h"
+#include "Formattables/FFloatingPoint.h"
+#include "Formattables/FString.h"
 
 namespace Composing
 {
@@ -23,6 +27,16 @@ namespace Composing
    Formattable::Formattable( const int& a_Int )
    {
       m_Data = new Formattables::FInteger( a_Int );
+   }
+
+   Formattable::Formattable( const double& a_FloatingPoint )
+   {
+      m_Data = new Formattables::FFloatingPoint( a_FloatingPoint );
+   }
+
+   Formattable::Formattable( const std::string& a_String )
+   {
+      m_Data = new Formattables::FString( a_String );
    }
 
    Formattable::Formattable( IFormattable& a_IFormattable ) :

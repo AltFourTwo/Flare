@@ -9,12 +9,12 @@ namespace Composing::Formattables
       /*******************************\
       \*****   PRIVATE-MEMBERS   *****/
       private:
-      const double& m_Double;
+      const double& m_FloatingPoint;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      FFloatingPoint( const double& a_String );
+      FFloatingPoint( const double& a_FloatingPoint );
 
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/

@@ -1,5 +1,10 @@
 #include "UtilityPCH.h"
 
+#include <string>
+#include <chrono>
+#include <vector>
+#include <initializer_list>
+
 #include "Logger.h"
 #include "Console.h"
 
@@ -253,20 +258,14 @@ namespace Logging
 
    /**********************\
    \*****   NESTED   *****/
-   Logger::FormatAction::FormatAction( const FormatAction::ActionType& a_ActionType ) :
-      m_FormatChar(),
-      m_ActionType( a_ActionType ),
-      m_ReturnText()
-   {}
-
    Logger::FormatAction::FormatAction( const FormatAction::ActionType& a_ActionType, const char& a_FormatChar ) :
       m_FormatChar( a_FormatChar ),
       m_ActionType( a_ActionType ),
       m_ReturnText()
    {}
 
-   Logger::FormatAction::FormatAction( const char*& a_TextStart, const size_t a_Length ) :
-      m_FormatChar( 0 ),
+   Logger::FormatAction::FormatAction( const char*& a_TextStart, const size_t a_Length, const char& a_FormatChar ) :
+      m_FormatChar( a_FormatChar ),
       m_ActionType( SIMPLE_TEXT ),
       m_ReturnText( a_TextStart, a_Length )
    {}
@@ -298,7 +297,7 @@ namespace Logging
          {
             switch ( a_LogLevel )
             {
-               case  TRACE:
+               case TRACE:
                   return "TRACE";
 
                case DEBUG:
@@ -363,11 +362,11 @@ namespace Logging
          }
 
          case LOG_THREAD_ID:
-            // TODO Implement This.
+            throw "Not Implemented."; // TODO Implement This.
             break;
 
          case LOG_PROCESS_ID:
-            // TODO Implement This.
+            throw "Not Implemented."; // TODO Implement This.
             break;
 
          case AMPERSAND:
@@ -390,9 +389,6 @@ namespace Logging
             m_ReturnText += '?';
             return m_ReturnText;
          }
-
-         default:
-            throw; // TODO Exception Unknown FormatAction::ActionType
       }
       throw; // TODO Exception Unknown FormatAction::ActionType
    }

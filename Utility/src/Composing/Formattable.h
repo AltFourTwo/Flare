@@ -15,9 +15,11 @@ namespace Composing
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      Formattable( const bool& a_Int );
-      Formattable( const char& a_Int );
+      Formattable( const bool& a_Bool );
+      Formattable( const char& a_Char );
       Formattable( const int& a_Int );
+      Formattable( const double& a_FloatingPoint );
+      Formattable( const std::string& a_String );
       Formattable( IFormattable& a_IFormattable );
       ~Formattable();
 

@@ -10,6 +10,8 @@ namespace Utility::Numbers
       'U', 'V', 'W', 'X', 'Y', 'Z'                       // 30~35
    };
 
+   const char NEGATIVE = '-';
+
    int ConvertTwoCharsToInt( const char& a_Char1, const char& a_Char2 );
    std::string ConvertToBase( int& a_Base, const int64_t& a_IntegralValue );
 }
