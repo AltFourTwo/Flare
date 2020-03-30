@@ -30,12 +30,13 @@ namespace Logging
             DATE_COMPILE_ERROR = 10,
             LOGGER_COMPILE_ERROR = 11
          };
+
          char m_FormatChar;
          ActionType m_ActionType;
          std::string m_ReturnText;
 
-         FormatAction( const ActionType& a_ActionType, const char& a_FormatChar = 0 );
-         FormatAction( const char*& a_TextStart, const size_t a_Length, const char& a_FormatChar = 0 );
+         FormatAction( const ActionType& a_ActionType, const char& a_FormatChar = '\0' );
+         FormatAction( const char*& a_TextStart, const size_t a_Length, const char& a_FormatChar = '\0' );
 
          std::string ExecuteAction( const Logger& a_Logger, const LogLevel& a_LogLevel, const char*& a_Message );
       };

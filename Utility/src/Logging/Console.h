@@ -16,7 +16,7 @@ namespace Logging
       static const int DEFAULT_BG_COLOR = 0;
       static const int DEFAULT_TEXT_COLOR = 0;
       static const int MAX_LOGGERS = 16;
-      static const LogLevel DEFAULT_LOG_LEVEL = TRACE;
+      static const Logging::LogLevel DEFAULT_LOG_LEVEL = Logging::LogLevel::TRACE;
 
       /*******************************\
       \*****   PRIVATE-MEMBERS   *****/

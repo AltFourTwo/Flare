@@ -29,75 +29,75 @@ namespace Logging
    // Log Without Formattables
    void Logger::Trace( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= TRACE )
-         Logger::Log( TRACE, a_Message );
+      if ( m_BaseLoggingLevel <= LogLevel::TRACE )
+         Logger::Log( LogLevel::TRACE, a_Message );
    }
 
    void Logger::Debug( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= DEBUG )
-         Logger::Log( DEBUG, a_Message );
+      if ( m_BaseLoggingLevel <= LogLevel::DEBUG )
+         Logger::Log( LogLevel::DEBUG, a_Message );
    }
 
    void Logger::Info( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= INFO )
-         Logger::Log( INFO, a_Message );
+      if ( m_BaseLoggingLevel <= LogLevel::INFO )
+         Logger::Log( LogLevel::INFO, a_Message );
    }
 
    void Logger::Warn( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= WARNING )
-         Logger::Log( WARNING, a_Message );
+      if ( m_BaseLoggingLevel <= LogLevel::WARNING )
+         Logger::Log( LogLevel::WARNING, a_Message );
    }
 
    void Logger::Error( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= ERR_OR )
-         Logger::Log( ERR_OR, a_Message );
+      if ( m_BaseLoggingLevel <= LogLevel::ERR_OR )
+         Logger::Log( LogLevel::ERR_OR, a_Message );
    }
 
    void Logger::Fatal( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= FATAL )
-         Logger::Log( FATAL, a_Message );
+      if ( m_BaseLoggingLevel <= LogLevel::FATAL )
+         Logger::Log( LogLevel::FATAL, a_Message );
    }
 
    // Log With Formattables
    void Logger::Trace( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= TRACE )
-         Logger::Log( TRACE, a_Message, a_Formattables );
+      if ( m_BaseLoggingLevel <= LogLevel::TRACE )
+         Logger::Log( LogLevel::TRACE, a_Message, a_Formattables );
    }
 
    void Logger::Debug( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= DEBUG )
-         Logger::Log( DEBUG, a_Message, a_Formattables );
+      if ( m_BaseLoggingLevel <= LogLevel::DEBUG )
+         Logger::Log( LogLevel::DEBUG, a_Message, a_Formattables );
    }
 
    void Logger::Info( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= INFO )
-         Logger::Log( INFO, a_Message, a_Formattables );
+      if ( m_BaseLoggingLevel <= LogLevel::INFO )
+         Logger::Log( LogLevel::INFO, a_Message, a_Formattables );
    }
 
    void Logger::Warn( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= WARNING )
-         Logger::Log( WARNING, a_Message, a_Formattables );
+      if ( m_BaseLoggingLevel <= LogLevel::WARNING )
+         Logger::Log( LogLevel::WARNING, a_Message, a_Formattables );
    }
 
    void Logger::Error( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= ERR_OR )
-         Logger::Log( ERR_OR, a_Message, a_Formattables );
+      if ( m_BaseLoggingLevel <= LogLevel::ERR_OR )
+         Logger::Log( LogLevel::ERR_OR, a_Message, a_Formattables );
    }
 
    void Logger::Fatal( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= FATAL )
-         Logger::Log( FATAL, a_Message, a_Formattables );
+      if ( m_BaseLoggingLevel <= LogLevel::FATAL )
+         Logger::Log( LogLevel::FATAL, a_Message, a_Formattables );
    }
 
    /***********************\
@@ -146,12 +146,13 @@ namespace Logging
       a_ExecutionQueue.clear();
       const char* x_TextStart = a_FormatString;
       const char* i_ptr = a_FormatString;
+      FormatControlCharacter testt = (FormatControlCharacter)*i_ptr;
 
       while ( *i_ptr != 0 )
       {
-         switch ( *i_ptr )
+         switch ( testt )
          {
-            case FCC_DATE:
+            case FormatControlCharacter::FCC_DATE:
             {
                if ( i_ptr - x_TextStart > 0 )
                   a_ExecutionQueue.emplace_back( x_TextStart, i_ptr - x_TextStart );
@@ -174,47 +175,49 @@ namespace Logging
                break;
             }
 
-            case FCC_LOGGER:
+            case FormatControlCharacter::FCC_LOGGER:
             {
                if ( i_ptr - x_TextStart > 0 )
                   a_ExecutionQueue.emplace_back( x_TextStart, i_ptr - x_TextStart );
 
                if ( *( i_ptr + 1 ) != 0 )
                {
-                  switch ( *( i_ptr + 1 ) )
+                  LoggingControlCharacter test2 = (LoggingControlCharacter)(*( i_ptr + 1 ));
+
+                  switch ( test2 )
                   {
-                     case LCC_MESSAGE:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_MESSAGE, LCC_MESSAGE );
+                     case LoggingControlCharacter::LCC_MESSAGE:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_MESSAGE, LoggingControlCharacter::LCC_MESSAGE );
                         break;
-                     case LCC_LOG_LEVEL:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_LEVEL, LCC_LOG_LEVEL );
+                     case LoggingControlCharacter::LCC_LOG_LEVEL:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_LEVEL, LoggingControlCharacter::LCC_LOG_LEVEL );
                         break;
-                     case LCC_LOGGER_NAME:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_NAME, LCC_LOGGER_NAME );
+                     case LoggingControlCharacter::LCC_LOGGER_NAME:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_NAME, LoggingControlCharacter::LCC_LOGGER_NAME );
                         break;
-                     case LCC_AMPERSAND:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::AMPERSAND, LCC_AMPERSAND );
+                     case LoggingControlCharacter::LCC_AMPERSAND:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::AMPERSAND, LoggingControlCharacter::LCC_AMPERSAND );
                         break;
-                     case LCC_SMARTTIME:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LCC_SMARTTIME );
+                     case LoggingControlCharacter::LCC_SMARTTIME:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::LCC_SMARTTIME );
                         break;
-                     case LCC_SECONDS:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LCC_SECONDS );
+                     case LoggingControlCharacter::LCC_SECONDS:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::LCC_SECONDS );
                         break;
-                     case LCC_MILLISECONDS:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LCC_MILLISECONDS );
+                     case LoggingControlCharacter::LCC_MILLISECONDS:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::LCC_MILLISECONDS );
                         break;
-                     case LCC_MICROSECONDS:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LCC_MICROSECONDS );
+                     case LoggingControlCharacter::LCC_MICROSECONDS:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::LCC_MICROSECONDS );
                         break;
-                     case LCC_NANOSECONDS:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LCC_NANOSECONDS );
+                     case LoggingControlCharacter::LCC_NANOSECONDS:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::LCC_NANOSECONDS );
                         break;
-                     case LCC_THREAD_ID:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_THREAD_ID, LCC_THREAD_ID );
+                     case LoggingControlCharacter::LCC_THREAD_ID:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_THREAD_ID, LoggingControlCharacter::LCC_THREAD_ID );
                         break;
-                     case LCC_PROCESS_ID:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_PROCESS_ID, LCC_PROCESS_ID );
+                     case LoggingControlCharacter::LCC_PROCESS_ID:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_PROCESS_ID, LoggingControlCharacter::LCC_PROCESS_ID );
                         break;
                      default:
                         a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_COMPILE_ERROR, '?' );
@@ -297,22 +300,22 @@ namespace Logging
          {
             switch ( a_LogLevel )
             {
-               case TRACE:
+               case LogLevel::TRACE:
                   return "TRACE";
 
-               case DEBUG:
+               case LogLevel::DEBUG:
                   return "DEBUG";
 
-               case INFO:
+               case LogLevel::INFO:
                   return "INFO";
 
-               case WARNING:
+               case LogLevel::WARNING:
                   return "WARNING";
 
-               case ERR_OR:
+               case LogLevel::ERR_OR:
                   return "ERROR";
 
-               case FATAL:
+               case LogLevel::FATAL:
                   return "FATAL";
 
                default:
@@ -329,9 +332,11 @@ namespace Logging
             float x_Ticks = x_TimeDiff.count();
             const char* x_TimeSymbols[] = { "s", "ms", "us", "ns" };
 
-            switch ( m_FormatChar )
+            LoggingControlCharacter test3 = (LoggingControlCharacter)m_FormatChar;
+
+            switch ( test3 )
             {
-               case LCC_SMARTTIME:
+               case LoggingControlCharacter::LCC_SMARTTIME:
                {
                   for ( int i = 0; i < 4; i++ )
                   {
@@ -343,16 +348,16 @@ namespace Logging
                   return std::to_string( x_Ticks ) + x_TimeSymbols[3];
                }
 
-               case LCC_SECONDS:
+               case LoggingControlCharacter::LCC_SECONDS:
                   return std::to_string( x_Ticks ) + x_TimeSymbols[0];
 
-               case LCC_MILLISECONDS:
+               case LoggingControlCharacter::LCC_MILLISECONDS:
                   return std::to_string( x_Ticks * 1000.0f ) + x_TimeSymbols[1];
 
-               case LCC_MICROSECONDS:
+               case LoggingControlCharacter::LCC_MICROSECONDS:
                   return std::to_string( x_Ticks * 1000000.0f ) + x_TimeSymbols[2];
 
-               case LCC_NANOSECONDS:
+               case LoggingControlCharacter::LCC_NANOSECONDS:
                   return std::to_string( x_Ticks * 1000000000.0f ) + x_TimeSymbols[3];
 
                default:

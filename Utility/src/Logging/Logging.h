@@ -4,7 +4,7 @@ namespace Logging
 {
    /***************************\
    \*****   ENUMERATORS   *****/
-   enum LogLevel
+   enum class LogLevel : int
    {
       TRACE = 1,
       DEBUG = 2,
@@ -15,7 +15,7 @@ namespace Logging
       OFF = 7
    };
 
-   enum FormatControlCharacter
+   enum class FormatControlCharacter : int
    {
       FCC_DATE = '%',
       FCC_LOGGER = '&'
@@ -25,7 +25,7 @@ namespace Logging
    // www.cpluscplus.com/reference/ctime/strftime/
    //
    // Spanned as an enum for more user facing control.
-   enum DateControlCharacter
+   enum class DateControlCharacter : int
    {
       DCC_ABBREVIATED_WEEKDAY_NAME = 'a',                                            //  %a  // Abbreviated weekday name *
       DCC_FULL_WEEKDAY_NAME = 'A',                                                   //  %A  // Full weekday name *
@@ -67,7 +67,7 @@ namespace Logging
    };
 
    // TODO Implement Thread ID and Process ID in logging.
-   enum LoggingControlCharacter
+   enum class LoggingControlCharacter : int
    {
       LCC_MESSAGE = 'M',         // The actual message to log.
       LCC_LOG_LEVEL = 'L',       // The log level the message is issued as.
