@@ -146,11 +146,12 @@ namespace Logging
       a_ExecutionQueue.clear();
       const char* x_TextStart = a_FormatString;
       const char* i_ptr = a_FormatString;
-      FormatControlCharacter testt = (FormatControlCharacter)*i_ptr;
 
       while ( *i_ptr != 0 )
       {
-         switch ( testt )
+         FormatControlCharacter x_Char = (FormatControlCharacter)*i_ptr;
+
+         switch ( x_Char )
          {
             case FormatControlCharacter::FCC_DATE:
             {
@@ -182,45 +183,45 @@ namespace Logging
 
                if ( *( i_ptr + 1 ) != 0 )
                {
-                  LoggingControlCharacter test2 = (LoggingControlCharacter)(*( i_ptr + 1 ));
+                  LoggingControlCharacter x_NextChar = (LoggingControlCharacter)(*( i_ptr + 1 ));
 
-                  switch ( test2 )
+                  switch ( x_NextChar )
                   {
-                     case LoggingControlCharacter::LCC_MESSAGE:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_MESSAGE, LoggingControlCharacter::LCC_MESSAGE );
+                     case LoggingControlCharacter::MESSAGE:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_MESSAGE, LoggingControlCharacter::MESSAGE );
                         break;
-                     case LoggingControlCharacter::LCC_LOG_LEVEL:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_LEVEL, LoggingControlCharacter::LCC_LOG_LEVEL );
+                     case LoggingControlCharacter::LOG_LEVEL:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_LEVEL, LoggingControlCharacter::LOG_LEVEL );
                         break;
-                     case LoggingControlCharacter::LCC_LOGGER_NAME:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_NAME, LoggingControlCharacter::LCC_LOGGER_NAME );
+                     case LoggingControlCharacter::LOGGER_NAME:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_NAME, LoggingControlCharacter::LOGGER_NAME );
                         break;
-                     case LoggingControlCharacter::LCC_AMPERSAND:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::AMPERSAND, LoggingControlCharacter::LCC_AMPERSAND );
+                     case LoggingControlCharacter::AMPERSAND:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::AMPERSAND, LoggingControlCharacter::AMPERSAND );
                         break;
-                     case LoggingControlCharacter::LCC_SMARTTIME:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::LCC_SMARTTIME );
+                     case LoggingControlCharacter::SMARTTIME:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::SMARTTIME );
                         break;
-                     case LoggingControlCharacter::LCC_SECONDS:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::LCC_SECONDS );
+                     case LoggingControlCharacter::SECONDS:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::SECONDS );
                         break;
-                     case LoggingControlCharacter::LCC_MILLISECONDS:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::LCC_MILLISECONDS );
+                     case LoggingControlCharacter::MILLISECONDS:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::MILLISECONDS );
                         break;
-                     case LoggingControlCharacter::LCC_MICROSECONDS:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::LCC_MICROSECONDS );
+                     case LoggingControlCharacter::MICROSECONDS:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::MICROSECONDS );
                         break;
-                     case LoggingControlCharacter::LCC_NANOSECONDS:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::LCC_NANOSECONDS );
+                     case LoggingControlCharacter::NANOSECONDS:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::NANOSECONDS );
                         break;
-                     case LoggingControlCharacter::LCC_THREAD_ID:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_THREAD_ID, LoggingControlCharacter::LCC_THREAD_ID );
+                     case LoggingControlCharacter::THREAD_ID:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_THREAD_ID, LoggingControlCharacter::THREAD_ID );
                         break;
-                     case LoggingControlCharacter::LCC_PROCESS_ID:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_PROCESS_ID, LoggingControlCharacter::LCC_PROCESS_ID );
+                     case LoggingControlCharacter::PROCESS_ID:
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_PROCESS_ID, LoggingControlCharacter::PROCESS_ID );
                         break;
                      default:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_COMPILE_ERROR, '?' );
+                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_COMPILE_ERROR, LoggingControlCharacter::ERROR_LCC );
                         break;
                   }
 
@@ -229,7 +230,7 @@ namespace Logging
                }
                else
                {
-                  a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_COMPILE_ERROR, '?' );
+                  a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_COMPILE_ERROR, LoggingControlCharacter::ERROR_LCC );
                   x_TextStart = i_ptr + 1;
                }
                break;
@@ -261,15 +262,21 @@ namespace Logging
 
    /**********************\
    \*****   NESTED   *****/
-   Logger::FormatAction::FormatAction( const FormatAction::ActionType& a_ActionType, const char& a_FormatChar ) :
+   Logger::FormatAction::FormatAction( const FormatAction::ActionType&& a_ActionType, const char& a_FormatChar ) :
       m_FormatChar( a_FormatChar ),
       m_ActionType( a_ActionType ),
       m_ReturnText()
    {}
 
-   Logger::FormatAction::FormatAction( const char*& a_TextStart, const size_t a_Length, const char& a_FormatChar ) :
-      m_FormatChar( a_FormatChar ),
-      m_ActionType( SIMPLE_TEXT ),
+   Logger::FormatAction::FormatAction( const FormatAction::ActionType&& a_ActionType, LoggingControlCharacter&& a_FormatChar ) :
+      m_FormatChar( (char)a_FormatChar ),
+      m_ActionType( a_ActionType ),
+      m_ReturnText()
+   {}
+
+   Logger::FormatAction::FormatAction( const char*& a_TextStart, const size_t a_Length ) :
+      m_FormatChar( 0 ),
+      m_ActionType( FormatAction::ActionType::SIMPLE_TEXT ),
       m_ReturnText( a_TextStart, a_Length )
    {}
 
@@ -277,10 +284,10 @@ namespace Logging
    {
       switch ( m_ActionType )
       {
-         case SIMPLE_TEXT:
+         case FormatAction::ActionType::SIMPLE_TEXT:
             return m_ReturnText;
 
-         case FORMAT_DATE:
+         case FormatAction::ActionType::FORMAT_DATE:
          {
             char x_Buffer[40]; // TWEAK
             const char x_Format[] = { '%', m_FormatChar, 0 };
@@ -293,10 +300,10 @@ namespace Logging
             return m_ReturnText;
          }
 
-         case LOGGER_NAME:
+         case FormatAction::ActionType::LOGGER_NAME:
             return a_Logger.GetName();
 
-         case LOG_LEVEL:
+         case FormatAction::ActionType::LOG_LEVEL:
          {
             switch ( a_LogLevel )
             {
@@ -323,20 +330,20 @@ namespace Logging
             }
          }
 
-         case LOG_MESSAGE:
+         case FormatAction::ActionType::LOG_MESSAGE:
             return a_Message;
 
-         case LOG_TIME_DIFFERENCE:
+         case FormatAction::ActionType::LOG_TIME_DIFFERENCE:
          {
             std::chrono::duration<float> x_TimeDiff = std::chrono::steady_clock::now() - a_Logger.m_LastMessageTimeStamp;
             float x_Ticks = x_TimeDiff.count();
             const char* x_TimeSymbols[] = { "s", "ms", "us", "ns" };
 
-            LoggingControlCharacter test3 = (LoggingControlCharacter)m_FormatChar;
+            LoggingControlCharacter x_TDChar = (LoggingControlCharacter)m_FormatChar;
 
-            switch ( test3 )
+            switch ( x_TDChar )
             {
-               case LoggingControlCharacter::LCC_SMARTTIME:
+               case LoggingControlCharacter::SMARTTIME:
                {
                   for ( int i = 0; i < 4; i++ )
                   {
@@ -348,16 +355,16 @@ namespace Logging
                   return std::to_string( x_Ticks ) + x_TimeSymbols[3];
                }
 
-               case LoggingControlCharacter::LCC_SECONDS:
+               case LoggingControlCharacter::SECONDS:
                   return std::to_string( x_Ticks ) + x_TimeSymbols[0];
 
-               case LoggingControlCharacter::LCC_MILLISECONDS:
+               case LoggingControlCharacter::MILLISECONDS:
                   return std::to_string( x_Ticks * 1000.0f ) + x_TimeSymbols[1];
 
-               case LoggingControlCharacter::LCC_MICROSECONDS:
+               case LoggingControlCharacter::MICROSECONDS:
                   return std::to_string( x_Ticks * 1000000.0f ) + x_TimeSymbols[2];
 
-               case LoggingControlCharacter::LCC_NANOSECONDS:
+               case LoggingControlCharacter::NANOSECONDS:
                   return std::to_string( x_Ticks * 1000000000.0f ) + x_TimeSymbols[3];
 
                default:
@@ -366,18 +373,18 @@ namespace Logging
             break;
          }
 
-         case LOG_THREAD_ID:
+         case FormatAction::ActionType::LOG_THREAD_ID:
             throw "Not Implemented."; // TODO Implement This.
             break;
 
-         case LOG_PROCESS_ID:
+         case FormatAction::ActionType::LOG_PROCESS_ID:
             throw "Not Implemented."; // TODO Implement This.
             break;
 
-         case AMPERSAND:
+         case FormatAction::ActionType::AMPERSAND:
             return "&";
 
-         case DATE_COMPILE_ERROR:
+         case FormatAction::ActionType::DATE_COMPILE_ERROR:
          {
             m_ReturnText.reserve( 4 );
             m_ReturnText += "?%";
@@ -386,7 +393,7 @@ namespace Logging
             return m_ReturnText;
          }
 
-         case LOGGER_COMPILE_ERROR:
+         case FormatAction::ActionType::LOGGER_COMPILE_ERROR:
          {
             m_ReturnText.reserve( 4 );
             m_ReturnText += "?&";

@@ -16,7 +16,7 @@ namespace Logging
       private:
       struct FormatAction
       {
-         enum ActionType
+         enum class ActionType : int
          {
             SIMPLE_TEXT = 1,
             FORMAT_DATE = 2,
@@ -31,12 +31,13 @@ namespace Logging
             LOGGER_COMPILE_ERROR = 11
          };
 
-         char m_FormatChar;
+         const char m_FormatChar;
          ActionType m_ActionType;
          std::string m_ReturnText;
 
-         FormatAction( const ActionType& a_ActionType, const char& a_FormatChar = '\0' );
-         FormatAction( const char*& a_TextStart, const size_t a_Length, const char& a_FormatChar = '\0' );
+         FormatAction( const ActionType&& a_ActionType, const char& a_FormatChar );
+         FormatAction( const ActionType&& a_ActionType, LoggingControlCharacter&& a_FormatChar );
+         FormatAction( const char*& a_TextStart, const size_t a_Length );
 
          std::string ExecuteAction( const Logger& a_Logger, const LogLevel& a_LogLevel, const char*& a_Message );
       };
@@ -48,7 +49,7 @@ namespace Logging
       LogLevel m_BaseLoggingLevel;
       int m_TextColor; // TODO Find a better type for color properties, int is a placeholder type.
       int m_BGColor;
-      std::vector<FormatAction> m_ExecutionQueue;
+      mutable std::vector<FormatAction> m_ExecutionQueue;
       mutable std::chrono::time_point<std::chrono::steady_clock> m_LastMessageTimeStamp;
 
       /**************************************\
