@@ -1,5 +1,6 @@
 #include "UtilityPCH.h"
 
+#include <iostream>
 #include <string>
 #include <vector>
 #include <initializer_list>
@@ -43,7 +44,7 @@ namespace Logging
    void Console::Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message )
    {
       std::string x_ConsoleFormattedMessage = a_Logger.ExecuteQueue( a_LogLevel, a_Message );
-      printf( x_ConsoleFormattedMessage.c_str() );
+      std::cout << x_ConsoleFormattedMessage;
    }
 
    void Console::Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Composing::Formattable> a_Formattables )
