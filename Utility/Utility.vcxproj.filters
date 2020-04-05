@@ -67,6 +67,7 @@
       <Filter>Strings</Filter>
     </ClInclude>
     <ClInclude Include="src\UtilityPCH.h" />
+    <ClInclude Include="src\UtilityErrorCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Composing\Composition.cpp">

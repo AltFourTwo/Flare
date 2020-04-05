@@ -153,6 +153,7 @@
     <ClInclude Include="src\Composing\Formattables\IFormattable.h" />
     <ClInclude Include="src\Composing\Formatter.h" />
     <ClInclude Include="src\Exceptions\BaseException.h" />
+    <ClInclude Include="src\UtilityErrorCodes.h" />
     <ClInclude Include="src\Logging\Console.h" />
     <ClInclude Include="src\Logging\Logger.h" />
     <ClInclude Include="src\Logging\Logging.h" />
