@@ -5,7 +5,10 @@
 #include "Composing/Composition.h"
 #include "Logging/Console.h"
 
+#include <Exceptions\UtilityException.h>
+
 #include <thread>
+#include <exception>
 
 namespace SquareFlare
 {
@@ -70,6 +73,7 @@ namespace SquareFlare
       std::cout << Composing::Format( "Try to format this char -> {0:DummyFormatReturnsTheChar}.", { somechar } ) << "\n";
       */
 
+      /*
       Logging::Console& console = Logging::Console::Get();
       Logging::Logger x_Test = console.Initialize( "Console", Logging::LogLevel::INFO, 1, 1, "[%R][&N][&L] &M && %% &^ \n" );
 
@@ -103,6 +107,15 @@ namespace SquareFlare
 
       std::this_thread::sleep_for( 2s );
       x_TimeDiffLog.Trace( "Test Smart > Seconds" );
+      */
 
+      try
+      {
+         std::cout << Composing::Format( "Fail at this {5}.", { 1 } ) << "\n";
+      }
+      catch ( Utility::Exceptions::UtilityException& e )
+      {
+         std::cout << e.what() << "\n";
+      }
    }
 }

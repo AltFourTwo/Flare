@@ -7,18 +7,18 @@ namespace Utility::Exceptions
       /******************************\
       \*****   PUBLIC-MEMBERS   *****/
       public:
-      const std::string& m_ErrorCode;
-      const exception& m_InnerException;
+      std::string m_Message;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
-      BaseException( std::string& a_ErrorCode, exception& a_InnerException );
+      BaseException( const char*& a_ErrorCode, const char* a_Message );
+      BaseException( exception& a_InnerException, const char*& a_ErrorCode, const char* a_Message );
 
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
-      virtual const char* what();
+      virtual const char* what() const;
    };
 
 }

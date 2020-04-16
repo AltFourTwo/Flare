@@ -48,7 +48,11 @@
     <ClInclude Include="src\Composing\Formatter.h">
       <Filter>Composing</Filter>
     </ClInclude>
+    <ClInclude Include="src\ErrorCodes.h" />
     <ClInclude Include="src\Exceptions\BaseException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Exceptions\UtilityException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="src\Logging\Console.h">
@@ -67,7 +71,6 @@
       <Filter>Strings</Filter>
     </ClInclude>
     <ClInclude Include="src\UtilityPCH.h" />
-    <ClInclude Include="src\UtilityErrorCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Composing\Composition.cpp">
@@ -95,6 +98,9 @@
       <Filter>Composing</Filter>
     </ClCompile>
     <ClCompile Include="src\Exceptions\BaseException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Exceptions\UtilityException.cpp">
       <Filter>Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="src\Logging\Console.cpp">

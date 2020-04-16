@@ -6,6 +6,8 @@
 
 #include "Composition.h"
 #include "Formatter.h"
+#include "ErrorCodes.h"
+#include "Exceptions/UtilityException.h"
 
 namespace Composing
 {
@@ -31,7 +33,7 @@ namespace Composing
          const Formatter x_Formatter( x_Extract );
 
          if ( x_Formatter.Index() > a_FormattableObjects.size() )
-            throw; // TODO Exception Index does not point to any of the passed parameter(s).
+            throw Utility::Exceptions::UtilityException(ErrorCodes::Composing::INDEX_OUT_OF_RANGE, "Index does not point to any of the passed parameter(s).");
 
          std::string& x_FormattedObject = x_Formatter.FormatObject( *( x_ObjectsPtr + x_Formatter.Index() ) );
 
