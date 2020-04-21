@@ -1,52 +1,28 @@
 
-/***************************\
-\*****   ENUMERATORS   *****/
+// This is the order the comment headers should appear
 
-/*************************\
-\*****   CONSTANTS   *****/
+/*****   NAMESPACE   CONSTANTS   *****/
 
+/*****   NAMESPACE   VARIABLES   *****/
 
-/******************************\
-\*****   PUBLIC-MEMBERS   *****/
+/*****   NAMESPACE   FUNCTIONS   *****/
 
-/*********************************\
-\*****   PROTECTED-MEMBERS   *****/
+/*****   NESTED  CLASSES      *****/
 
-/*******************************\
-\*****   PRIVATE-MEMBERS   *****/
+/*****   CLASS   CONSTANTS    *****/
 
+/*****   CLASS   VARIABLES    *****/
 
-/**************************************\
-\*****   CONSTRUCTOR-DESTRUCTOR   *****/
+/*****   CLASS   C-TOR D-TOR  *****/
 
+/*****   CLASS   FUNCTIONS    *****/
 
-/********************************\
-\*****   PUBLIC-FUNCTIONS   *****/
+/*****   CLASS   OPERATORS    *****/
 
-/***********************************\
-\*****   PROTECTED-FUNCTIONS   *****/
+/*****   CLASS   FRIENDS      *****/
 
-/*********************************\
-\*****   PRIVATE-FUNCTIONS   *****/
+/*****   PROPERTIES   *****/
 
+/*****   GETTERS   *****/
 
-/***********************\
-\*****   FRIENDS   *****/
-
-
-/**************************\
-\*****   PROPERTIES   *****/
-
-/***********************\
-\*****   GETTERS   *****/
-
-/***********************\
-\*****   SETTERS   *****/
-
-
-/*********************************\
-\*****   OPERATOR-OVERLOAD   *****/
-
-
-/**********************\
-\*****   NESTED   *****/
+/*****   SETTERS   *****/

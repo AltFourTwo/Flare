@@ -24,6 +24,7 @@
     <ClInclude Include="src\Test\TestObject.h">
       <Filter>Test</Filter>
     </ClInclude>
+    <ClInclude Include="src\SquareFlare\Events\Event.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SquareFlare\Application.cpp">

@@ -71,6 +71,8 @@
       <Filter>Strings</Filter>
     </ClInclude>
     <ClInclude Include="src\UtilityPCH.h" />
+    <ClInclude Include="src\BitFlags\BitFlags.h" />
+    <ClInclude Include="src\Macros.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Composing\Composition.cpp">
@@ -119,5 +121,6 @@
       <Filter>Strings</Filter>
     </ClCompile>
     <ClCompile Include="src\UtilityPCH.cpp" />
+    <ClCompile Include="src\BitFlags\BitFlags.cpp" />
   </ItemGroup>
 </Project>
