@@ -168,7 +168,8 @@ project "UnitTest"
 	links
 	{
 		"SquareFlare",
-		"Utility"
+		"Utility",
+		"GoogleTest"
 	}
 
 	filter "system:windows"
