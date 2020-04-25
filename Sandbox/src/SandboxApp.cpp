@@ -1,3 +1,5 @@
+#include "SandboxPCH.h"
+
 #include <SquareFlare.h>
 
 class Sandbox : public SquareFlare::Application
