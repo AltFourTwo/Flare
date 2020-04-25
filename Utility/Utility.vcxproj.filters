@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="BitFlags">
+      <UniqueIdentifier>{B116150B-9DE3-6F16-C6FC-5DBEB228A5A4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Composing">
       <UniqueIdentifier>{D48C20B3-40F7-D429-8935-86CFF5DEB27E}</UniqueIdentifier>
     </Filter>
@@ -21,6 +24,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\BitFlags\BitFlags.h">
+      <Filter>BitFlags</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BitFlags\BitMasks.h">
+      <Filter>BitFlags</Filter>
+    </ClInclude>
     <ClInclude Include="src\Composing\Composition.h">
       <Filter>Composing</Filter>
     </ClInclude>
@@ -64,6 +73,7 @@
     <ClInclude Include="src\Logging\Logging.h">
       <Filter>Logging</Filter>
     </ClInclude>
+    <ClInclude Include="src\Macros.h" />
     <ClInclude Include="src\Numbers\NumberUtils.h">
       <Filter>Numbers</Filter>
     </ClInclude>
@@ -71,10 +81,11 @@
       <Filter>Strings</Filter>
     </ClInclude>
     <ClInclude Include="src\UtilityPCH.h" />
-    <ClInclude Include="src\BitFlags\BitFlags.h" />
-    <ClInclude Include="src\Macros.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BitFlags\BitFlags.cpp">
+      <Filter>BitFlags</Filter>
+    </ClCompile>
     <ClCompile Include="src\Composing\Composition.cpp">
       <Filter>Composing</Filter>
     </ClCompile>
@@ -121,6 +132,5 @@
       <Filter>Strings</Filter>
     </ClCompile>
     <ClCompile Include="src\UtilityPCH.cpp" />
-    <ClCompile Include="src\BitFlags\BitFlags.cpp" />
   </ItemGroup>
 </Project>

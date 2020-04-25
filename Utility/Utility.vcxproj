@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\BitFlags\BitFlags.h" />
+    <ClInclude Include="src\BitFlags\BitMasks.h" />
     <ClInclude Include="src\Composing\Composition.h" />
     <ClInclude Include="src\Composing\Formattable.h" />
     <ClInclude Include="src\Composing\Formattables\FBoolean.h" />
