@@ -66,36 +66,36 @@ namespace BitFlags
       BitReference<T> BitRef( const int& a_Pos );
    };
 
-   class SingleByteFlags : public ByteFlags<int8_t>
+   class SingleByteFlags : public ByteFlags<uint8_t>
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
       SingleByteFlags() : ByteFlags() EMPTY_SCOPE;
-      SingleByteFlags( uint8_t a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
+      SingleByteFlags( const uint8_t& a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
    };
 
-   class DoubleByteFlags : public ByteFlags<int16_t>
+   class DoubleByteFlags : public ByteFlags<uint16_t>
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
       DoubleByteFlags() : ByteFlags() EMPTY_SCOPE;
-      DoubleByteFlags( uint16_t a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
+      DoubleByteFlags( const uint16_t& a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
    };
 
-   class QuadByteFlags : public ByteFlags<int32_t>
+   class QuadByteFlags : public ByteFlags<uint32_t>
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
       QuadByteFlags() : ByteFlags() EMPTY_SCOPE;
-      QuadByteFlags( uint32_t a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
+      QuadByteFlags( const uint32_t& a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
    };
 
-   class OctaByteFlags : public ByteFlags<int64_t>
+   class OctaByteFlags : public ByteFlags<uint64_t>
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
       OctaByteFlags() : ByteFlags() EMPTY_SCOPE;
-      OctaByteFlags( uint64_t a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
+      OctaByteFlags( const uint64_t& a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
    };
 }
 

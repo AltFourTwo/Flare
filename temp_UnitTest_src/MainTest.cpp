@@ -1,5 +1,5 @@
 #include "UnitTestPCH.h"
-#include "CppUnitTest.h"
+#include "gtest/gtest.h"
 
 int main( int argc, char** argv )
 {
