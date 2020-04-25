@@ -4,6 +4,9 @@
     <Filter Include="SquareFlare">
       <UniqueIdentifier>{A0972BEB-0C4D-A4E0-9541-9EB701F69AE4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SquareFlare\Events">
+      <UniqueIdentifier>{846FF695-7053-B7EB-D9B3-B13EC5B6A16D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Test">
       <UniqueIdentifier>{45DC8C7C-3113-8E0D-DAFF-7310C6150A0F}</UniqueIdentifier>
     </Filter>
@@ -20,11 +23,13 @@
     <ClInclude Include="src\SquareFlare\EntryPoint.h">
       <Filter>SquareFlare</Filter>
     </ClInclude>
+    <ClInclude Include="src\SquareFlare\Events\Event.h">
+      <Filter>SquareFlare\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\SquareFlarePCH.h" />
     <ClInclude Include="src\Test\TestObject.h">
       <Filter>Test</Filter>
     </ClInclude>
-    <ClInclude Include="src\SquareFlare\Events\Event.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SquareFlare\Application.cpp">

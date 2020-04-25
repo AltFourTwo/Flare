@@ -7,8 +7,8 @@
 
 #include <Exceptions\UtilityException.h>
 
-#include <thread>
-#include <exception>
+// Temporary Includes
+#include <cstdint>
 
 namespace SquareFlare
 {
@@ -25,6 +25,8 @@ namespace SquareFlare
 
    void Application::Test()
    {
+
+
       /*
       TestObject hi;
       hi.x = 5;
@@ -109,6 +111,7 @@ namespace SquareFlare
       x_TimeDiffLog.Trace( "Test Smart > Seconds" );
       */
 
+      /*
       try
       {
          std::cout << Composing::Format( "Fail at this {5}.", { 1 } ) << "\n";
@@ -117,5 +120,11 @@ namespace SquareFlare
       {
          std::cout << e.what() << "\n";
       }
+      */
+
+      uint8_t integer8 = 0xF4;
+      uint64_t integer64 = 0xFFFF'0104'0280'00F4;
+
+      std::cout << (integer8 & integer64) << std::endl;
    }
 }

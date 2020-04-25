@@ -154,8 +154,8 @@
     <ClInclude Include="src\SquareFlare\Application.h" />
     <ClInclude Include="src\SquareFlare\Core.h" />
     <ClInclude Include="src\SquareFlare\EntryPoint.h" />
-    <ClInclude Include="src\SquareFlarePCH.h" />
     <ClInclude Include="src\SquareFlare\Events\Event.h" />
+    <ClInclude Include="src\SquareFlarePCH.h" />
     <ClInclude Include="src\Test\TestObject.h" />
   </ItemGroup>
   <ItemGroup>

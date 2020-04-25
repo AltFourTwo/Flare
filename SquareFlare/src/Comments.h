@@ -7,6 +7,8 @@
 
 /*****   NAMESPACE   FUNCTIONS   *****/
 
+/*****   CLASS   FRIENDS      *****/
+
 /*****   NESTED  CLASSES      *****/
 
 /*****   CLASS   CONSTANTS    *****/
@@ -18,8 +20,6 @@
 /*****   CLASS   FUNCTIONS    *****/
 
 /*****   CLASS   OPERATORS    *****/
-
-/*****   CLASS   FRIENDS      *****/
 
 /*****   PROPERTIES   *****/
 
