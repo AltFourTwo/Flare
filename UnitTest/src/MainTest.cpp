@@ -1,9 +1,9 @@
 #include "UnitTestPCH.h"
 #include "CppUnitTest.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-
 int main( int argc, char** argv )
 {
+   testing::InitGoogleTest(&argc, argv);
 
+   return RUN_ALL_TESTS();
 }

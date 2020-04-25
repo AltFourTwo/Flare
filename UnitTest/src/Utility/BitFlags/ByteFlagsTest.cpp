@@ -3,20 +3,12 @@
 
 #include "BitFlags/BitFlags.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-
-namespace UnitTest
+namespace UnitTest::Utility::ByteFlags
 {
-   TEST_CLASS( ByteFlags )
+   TEST( ByteFlagsTest, DefaultConstructor )
    {
-      public:
+      BitFlags::SingleByteFlags x_Flags;
 
-      TEST_METHOD( GetBitMask )
-      {
-         int abc = 1;
-         int cba = 1;
-
-         Assert::AreEqual(abc, cba, L"Test ABC CBA");
-      }
-   };
+      EXPECT_EQ(0, x_Flags.Value());
+   }
 }

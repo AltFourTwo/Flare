@@ -69,6 +69,7 @@ namespace BitFlags
    class SingleByteFlags : public ByteFlags<int8_t>
    {
       /*****   CLASS   C-TOR D-TOR  *****/
+      public:
       SingleByteFlags() : ByteFlags() EMPTY_SCOPE;
       SingleByteFlags( uint8_t a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
    };
@@ -76,6 +77,7 @@ namespace BitFlags
    class DoubleByteFlags : public ByteFlags<int16_t>
    {
       /*****   CLASS   C-TOR D-TOR  *****/
+      public:
       DoubleByteFlags() : ByteFlags() EMPTY_SCOPE;
       DoubleByteFlags( uint16_t a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
    };
@@ -83,6 +85,7 @@ namespace BitFlags
    class QuadByteFlags : public ByteFlags<int32_t>
    {
       /*****   CLASS   C-TOR D-TOR  *****/
+      public:
       QuadByteFlags() : ByteFlags() EMPTY_SCOPE;
       QuadByteFlags( uint32_t a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
    };
@@ -90,6 +93,7 @@ namespace BitFlags
    class OctaByteFlags : public ByteFlags<int64_t>
    {
       /*****   CLASS   C-TOR D-TOR  *****/
+      public:
       OctaByteFlags() : ByteFlags() EMPTY_SCOPE;
       OctaByteFlags( uint64_t a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
    };

@@ -142,7 +142,6 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Utility\BitFlags\ByteFlagsTest.cpp" />
-    <ClCompile Include="src\Utility\BitFlags\GoogleTestTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SquareFlare\SquareFlare.vcxproj">
