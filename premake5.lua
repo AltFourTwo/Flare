@@ -227,7 +227,8 @@ project "Sandbox"
 	links
 	{
 		"SquareFlare",
-		"Utility"
+		"Utility",
+		"GoogleTest"
 	}
 
 	filter "system:windows"
