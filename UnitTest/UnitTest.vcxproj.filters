@@ -17,8 +17,5 @@
     <ClCompile Include="src\Utility\BitFlags\ByteFlagsTest.cpp">
       <Filter>Utility\BitFlags</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utility\BitFlags\GoogleTestTest.cpp">
-      <Filter>Utility\BitFlags</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

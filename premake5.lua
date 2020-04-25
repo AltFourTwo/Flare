@@ -146,7 +146,7 @@ project "UnitTest"
 
 	targetdir ( "bin/" .. outputdir .. "/%{prj.name}" )
 	objdir ( "b-int/" .. outputdir .. "/%{prj.name}" )
-	
+
 	pchheader "UnitTestPCH.h"
 	pchsource "UnitTest/src/UnitTestPCH.cpp"
 
@@ -193,6 +193,47 @@ project "UnitTest"
 		
 	filter "configurations:Dist"
 		defines "SQFL_DIST"
+		buildoptions "/MD"
+		optimize "On"
+
+----- GOOGLETEST -----
+project "GoogleTest"
+	location "UnitTest/vendor/GoogleTest"
+	kind "SharedLib"
+	language "C++"
+
+	targetdir ( "bin/" .. outputdir .. "/%{prj.name}" )
+	objdir ( "b-int/" .. outputdir .. "/%{prj.name}" )
+
+	files 
+	{
+		"%{prj.location}/googletest/src/gtest-all.cc",
+		"%{prj.location}/googlemock/src/gmock-all.cc"
+	}
+
+	includedirs
+	{
+		"%{prj.location}/googletest",
+		"%{prj.location}/googlemock",
+		"%{IncludeDir.GoogleTest}",
+		"%{IncludeDir.GoogleMock}",
+	}
+
+	filter "system:windows"
+		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
+
+	filter "configurations:Debug"
+		defines "GTEST_ENABLE_CATCH_EXCEPTIONS_"
+		buildoptions "/MDd /bigobj"
+		symbols "On"
+
+	filter "configurations:Release"
+		buildoptions "/MD"
+		optimize "On"
+		
+	filter "configurations:Dist"
 		buildoptions "/MD"
 		optimize "On"
 
