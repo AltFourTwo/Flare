@@ -8,50 +8,90 @@
 namespace BitFlags
 {
    template<typename T>
-   using as_integral_t = typename std::enable_if<std::is_integral<T>::value>::type;
+   class BitReference
+   {
+      /*****   CLASS   VARIABLES    *****/
+      private:
+      const T& m_Flags;
+      const T& m_Mask;
+
+      private:
+      BitReference( const T& a_Flags, const T&& a_Mask );
+      BitReference( const T& a_Flags, const T a_Mask );
+
+      /*****   CLASS   FUNCTIONS    *****/
+      void Set();
+      void Set( const bool a_Value );
+      void Reset();
+      void Flip();
+      bool Value() const;
+
+      //void operator= // Basically Set
+      //void operator~ // Basically Flip
+
+      // Find a way to return Value() when called
+   };
 
    template<typename T>
    class ByteFlags
    {
+      /*****   CLASS   FRIENDS      *****/
+      friend class BitReference<T>;
+
       /*****   CLASS   VARIABLES    *****/
-      private:
+      protected:
       T m_Flags;
 
       /*****   CLASS   C-TOR D-TOR  *****/
-      public:
-      ByteFlags( T a_IntegralValue, typename as_integral_t<T>* = nullptr );
+      protected:
+      ByteFlags();
+      ByteFlags( T a_IntegralValue );
 
       /*****   CLASS   FUNCTIONS    *****/
+      private:
+      static const T&& GetBitMask( const uint8_t& a_Pos);
+
       public:
-      void SetAllFalse();
-      void SetAllTrue();
-      void SetFlags( T a_Flags, typename as_integral_t<T>* = nullptr );
-      size_t FlagsSize();
-      T MaxIntegralValue();
+      void Set();
+      void Set( const uint8_t& a_Pos );
+      void Set( const uint8_t& a_Pos, const bool& a_Value );
+      void Reset();
+      void Reset( const uint8_t& a_Pos );
+      void Flip();
+      void Flip( const uint8_t& a_Pos );
+      bool AreAllOn();
+      bool AreAllOff();
+      T Value();
+      bool Value( const uint8_t& a_Pos );
+      BitReference<T> BitRef( const int& a_Pos );
    };
 
-   template<typename T>
-   class SingleByteFlags : public ByteFlags<uint8_t>
+   class SingleByteFlags : public ByteFlags<int8_t>
    {
-      SingleByteFlags( T a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE
+      /*****   CLASS   C-TOR D-TOR  *****/
+      SingleByteFlags() : ByteFlags() EMPTY_SCOPE;
+      SingleByteFlags( uint8_t a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
    };
 
-   template<typename T>
-   class DoubleByteFlags : public ByteFlags<uint16_t>
+   class DoubleByteFlags : public ByteFlags<int16_t>
    {
-      DoubleByteFlags( T a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE
+      /*****   CLASS   C-TOR D-TOR  *****/
+      DoubleByteFlags() : ByteFlags() EMPTY_SCOPE;
+      DoubleByteFlags( uint16_t a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
    };
 
-   template<typename T>
-   class QuadByteFlags : public ByteFlags<uint32_t>
+   class QuadByteFlags : public ByteFlags<int32_t>
    {
-      QuadByteFlags( T a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE
+      /*****   CLASS   C-TOR D-TOR  *****/
+      QuadByteFlags() : ByteFlags() EMPTY_SCOPE;
+      QuadByteFlags( uint32_t a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
    };
 
-   template<typename T>
-   class OctaByteFlags : public ByteFlags<uint64_t>
+   class OctaByteFlags : public ByteFlags<int64_t>
    {
-      OctaByteFlags( T a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE
+      /*****   CLASS   C-TOR D-TOR  *****/
+      OctaByteFlags() : ByteFlags() EMPTY_SCOPE;
+      OctaByteFlags( uint64_t a_IntegralValue ) : ByteFlags( a_IntegralValue ) EMPTY_SCOPE;
    };
 }
 
