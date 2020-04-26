@@ -126,5 +126,6 @@
       <Filter>Strings</Filter>
     </ClCompile>
     <ClCompile Include="src\UtilityPCH.cpp" />
+    <ClCompile Include="src\BitFlags\BitFlags.cpp" />
   </ItemGroup>
 </Project>

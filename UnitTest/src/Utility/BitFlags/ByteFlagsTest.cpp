@@ -1,4 +1,3 @@
-#include "UnitTestPCH.h"
 #include "gtest/gtest.h"
 
 #include "BitFlags/BitFlags.h"
