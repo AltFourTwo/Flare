@@ -134,46 +134,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Utility\src\BitFlags\BitFlags.h" />
-    <ClInclude Include="..\Utility\src\BitFlags\BitMasks.h" />
-    <ClInclude Include="..\Utility\src\Composing\Composition.h" />
-    <ClInclude Include="..\Utility\src\Composing\Formattable.h" />
-    <ClInclude Include="..\Utility\src\Composing\Formattables\FBoolean.h" />
-    <ClInclude Include="..\Utility\src\Composing\Formattables\FChar.h" />
-    <ClInclude Include="..\Utility\src\Composing\Formattables\FFloatingPoint.h" />
-    <ClInclude Include="..\Utility\src\Composing\Formattables\FInteger.h" />
-    <ClInclude Include="..\Utility\src\Composing\Formattables\FString.h" />
-    <ClInclude Include="..\Utility\src\Composing\Formattables\IFormattable.h" />
-    <ClInclude Include="..\Utility\src\Composing\Formatter.h" />
-    <ClInclude Include="..\Utility\src\ErrorCodes.h" />
-    <ClInclude Include="..\Utility\src\Exceptions\BaseException.h" />
-    <ClInclude Include="..\Utility\src\Exceptions\UtilityException.h" />
-    <ClInclude Include="..\Utility\src\Logging\Console.h" />
-    <ClInclude Include="..\Utility\src\Logging\Logger.h" />
-    <ClInclude Include="..\Utility\src\Logging\Logging.h" />
-    <ClInclude Include="..\Utility\src\Macros.h" />
-    <ClInclude Include="..\Utility\src\Numbers\NumberUtils.h" />
-    <ClInclude Include="..\Utility\src\Strings\StringExtract.h" />
-    <ClInclude Include="..\Utility\src\UtilityPCH.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\Utility\src\BitFlags\BitFlags.cpp" />
-    <ClCompile Include="..\Utility\src\Composing\Composition.cpp" />
-    <ClCompile Include="..\Utility\src\Composing\Formattable.cpp" />
-    <ClCompile Include="..\Utility\src\Composing\Formattables\FBoolean.cpp" />
-    <ClCompile Include="..\Utility\src\Composing\Formattables\FChar.cpp" />
-    <ClCompile Include="..\Utility\src\Composing\Formattables\FFloatingPoint.cpp" />
-    <ClCompile Include="..\Utility\src\Composing\Formattables\FInteger.cpp" />
-    <ClCompile Include="..\Utility\src\Composing\Formattables\FString.cpp" />
-    <ClCompile Include="..\Utility\src\Composing\Formatter.cpp" />
-    <ClCompile Include="..\Utility\src\Exceptions\BaseException.cpp" />
-    <ClCompile Include="..\Utility\src\Exceptions\UtilityException.cpp" />
-    <ClCompile Include="..\Utility\src\Logging\Console.cpp" />
-    <ClCompile Include="..\Utility\src\Logging\Logger.cpp" />
-    <ClCompile Include="..\Utility\src\Logging\Logging.cpp" />
-    <ClCompile Include="..\Utility\src\Numbers\NumberUtils.cpp" />
-    <ClCompile Include="..\Utility\src\Strings\StringExtract.cpp" />
-    <ClCompile Include="..\Utility\src\UtilityPCH.cpp" />
     <ClCompile Include="src\MainTest.cpp" />
     <ClCompile Include="src\Utility\BitFlags\ByteFlagsTest.cpp" />
     <ClCompile Include="vendor\GoogleTest\googlemock\src\gmock-all.cc" />
