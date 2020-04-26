@@ -3,7 +3,7 @@
 #include "Strings/StringExtract.h"
 #include "Formattable.h"
 
-namespace Composing
+namespace Utility::Composing
 {
    enum ControlCharacters
    {

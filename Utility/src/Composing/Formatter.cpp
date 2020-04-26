@@ -6,7 +6,7 @@
 #include "Composition.h"
 #include "Formatter.h"
 
-namespace Composing
+namespace Utility::Composing
 {
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/

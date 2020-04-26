@@ -2,7 +2,7 @@
 
 #include "Formattables/IFormattable.h"
 
-namespace Composing
+namespace Utility::Composing
 {
    class Formattable : public IFormattable
    {

@@ -10,7 +10,7 @@
 #include "Formattables/FFloatingPoint.h"
 #include "Formattables/FString.h"
 
-namespace Composing
+namespace Utility::Composing
 {
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Composing
+namespace Utility::Composing
 {
    class IFormattable
    {
