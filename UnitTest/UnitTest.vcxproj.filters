@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{594615A9-C525-9444-CE3D-1F1B3A9CFAA5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\src">
+      <UniqueIdentifier>{F088AE24-5C3E-271A-E532-21F151E71D1E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\src\BitFlags">
+      <UniqueIdentifier>{CB22AAA1-B7B1-336B-60D0-47664C3E4411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\src\Composing">
+      <UniqueIdentifier>{2E1C571C-9A88-1217-637C-AA74CFA7347F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\src\Composing\Formattables">
+      <UniqueIdentifier>{010C6F87-ED47-72F1-565A-8AE842B51A0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\src\Exceptions">
+      <UniqueIdentifier>{E116C440-CD10-ED92-B67D-83A3A21653FF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\src\Logging">
+      <UniqueIdentifier>{86592F88-F2BA-0C96-7B28-5348E7884355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\src\Numbers">
+      <UniqueIdentifier>{7B8B8C30-E7EC-693E-705A-B0F0DCBAA0FD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\src\Strings">
+      <UniqueIdentifier>{A90879AF-156A-56BD-9ED7-9C6F0A388D7C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility">
+      <UniqueIdentifier>{70464FB2-DCFB-C7A7-65F0-C17ED1A4BEAB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\BitFlags">
+      <UniqueIdentifier>{4B10B855-379F-411F-E0BD-551ACC2B52C5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\GoogleTest">
+      <UniqueIdentifier>{1FBF6006-8BD5-5E9C-D44C-EABD40A22F24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\GoogleTest\googlemock">
+      <UniqueIdentifier>{159146D5-014C-3681-AA03-AFCB969D8011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\GoogleTest\googlemock\src">
+      <UniqueIdentifier>{ACD1BE49-9822-AA8B-C186-984DAD363DF5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\GoogleTest\googletest">
+      <UniqueIdentifier>{4B3F4AD5-37FA-3981-E0B1-B2CBCC4B8411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\GoogleTest\googletest\src">
+      <UniqueIdentifier>{E2AABAE3-CEFB-A525-F75F-94E7E30F398F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Utility\src\BitFlags\BitFlags.h">
+      <Filter>Utility\src\BitFlags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\BitFlags\BitMasks.h">
+      <Filter>Utility\src\BitFlags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Composing\Composition.h">
+      <Filter>Utility\src\Composing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Composing\Formattable.h">
+      <Filter>Utility\src\Composing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Composing\Formattables\FBoolean.h">
+      <Filter>Utility\src\Composing\Formattables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Composing\Formattables\FChar.h">
+      <Filter>Utility\src\Composing\Formattables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Composing\Formattables\FFloatingPoint.h">
+      <Filter>Utility\src\Composing\Formattables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Composing\Formattables\FInteger.h">
+      <Filter>Utility\src\Composing\Formattables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Composing\Formattables\FString.h">
+      <Filter>Utility\src\Composing\Formattables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Composing\Formattables\IFormattable.h">
+      <Filter>Utility\src\Composing\Formattables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Composing\Formatter.h">
+      <Filter>Utility\src\Composing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\ErrorCodes.h">
+      <Filter>Utility\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Exceptions\BaseException.h">
+      <Filter>Utility\src\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Exceptions\UtilityException.h">
+      <Filter>Utility\src\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Logging\Console.h">
+      <Filter>Utility\src\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Logging\Logger.h">
+      <Filter>Utility\src\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Logging\Logging.h">
+      <Filter>Utility\src\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Macros.h">
+      <Filter>Utility\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Numbers\NumberUtils.h">
+      <Filter>Utility\src\Numbers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\Strings\StringExtract.h">
+      <Filter>Utility\src\Strings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Utility\src\UtilityPCH.h">
+      <Filter>Utility\src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Utility\src\BitFlags\BitFlags.cpp">
+      <Filter>Utility\src\BitFlags</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Composing\Composition.cpp">
+      <Filter>Utility\src\Composing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Composing\Formattable.cpp">
+      <Filter>Utility\src\Composing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Composing\Formattables\FBoolean.cpp">
+      <Filter>Utility\src\Composing\Formattables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Composing\Formattables\FChar.cpp">
+      <Filter>Utility\src\Composing\Formattables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Composing\Formattables\FFloatingPoint.cpp">
+      <Filter>Utility\src\Composing\Formattables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Composing\Formattables\FInteger.cpp">
+      <Filter>Utility\src\Composing\Formattables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Composing\Formattables\FString.cpp">
+      <Filter>Utility\src\Composing\Formattables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Composing\Formatter.cpp">
+      <Filter>Utility\src\Composing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Exceptions\BaseException.cpp">
+      <Filter>Utility\src\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Exceptions\UtilityException.cpp">
+      <Filter>Utility\src\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Logging\Console.cpp">
+      <Filter>Utility\src\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Logging\Logger.cpp">
+      <Filter>Utility\src\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Logging\Logging.cpp">
+      <Filter>Utility\src\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Numbers\NumberUtils.cpp">
+      <Filter>Utility\src\Numbers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\Strings\StringExtract.cpp">
+      <Filter>Utility\src\Strings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Utility\src\UtilityPCH.cpp">
+      <Filter>Utility\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MainTest.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility\BitFlags\ByteFlagsTest.cpp">
+      <Filter>src\Utility\BitFlags</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\GoogleTest\googlemock\src\gmock-all.cc">
+      <Filter>vendor\GoogleTest\googlemock\src</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\GoogleTest\googletest\src\gtest-all.cc">
+      <Filter>vendor\GoogleTest\googletest\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

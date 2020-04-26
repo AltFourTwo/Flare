@@ -137,6 +137,66 @@ project "Utility"
 		defines "SQFL_DIST"
 		buildoptions "/MD"
 		optimize "On"
+
+
+----- UNITTEST -----
+project "UnitTest"
+location "UnitTest"
+kind "ConsoleApp"
+language "C++"
+
+targetdir ( "bin/" .. outputdir .. "/%{prj.name}" )
+objdir ( "b-int/" .. outputdir .. "/%{prj.name}" )
+
+files 
+{
+	"%{prj.name}/src/**.h",
+	"%{prj.name}/src/**.cpp",
+	"%{prj.name}/vendor/GoogleTest/googletest/src/gtest-all.cc",
+	"%{prj.name}/vendor/GoogleTest/googlemock/src/gmock-all.cc"
+}
+
+includedirs
+{
+	"%{prj.name}/src",
+	"SquareFlare/src",
+	"%{IncludeDir.Utility}",
+	"%{IncludeDir.GoogleTest}",
+	"%{IncludeDir.GoogleTest}/..",
+	"%{IncludeDir.GoogleMock}",
+	"%{IncludeDir.GoogleMock}/.."
+}
+
+links
+{
+	"SquareFlare",
+	"Utility"
+}
+
+filter "system:windows"
+	cppdialect "C++17"
+	staticruntime "On"
+	systemversion "latest"
+
+	defines
+	{
+		"SQFL_FOR_WINDOWS"
+	}
+
+filter "configurations:Debug"
+	defines "SQFL_DEBUG"
+	buildoptions "/MDd"
+	symbols "On"
+
+filter "configurations:Release"
+	defines "SQFL_RELEASE"
+	buildoptions "/MD"
+	optimize "On"
+	
+filter "configurations:Dist"
+	defines "SQFL_DIST"
+	buildoptions "/MD"
+	optimize "On"
 	
 
 ----- SANDBOX -----

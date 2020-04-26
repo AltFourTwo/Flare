@@ -15,27 +15,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{594615A9-C525-9444-CE3D-1F1B3A9CFAA5}</ProjectGuid>
+    <ProjectGuid>{E5A465FE-D171-C009-FA8A-AEB1E6B6F597}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Utility</RootNamespace>
+    <RootNamespace>UnitTest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
@@ -54,30 +54,32 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\bin\Debug-windows-x86_64\Utility\</OutDir>
-    <IntDir>..\b-int\Debug-windows-x86_64\Utility\</IntDir>
-    <TargetName>Utility</TargetName>
-    <TargetExt>.lib</TargetExt>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\bin\Debug-windows-x86_64\UnitTest\</OutDir>
+    <IntDir>..\b-int\Debug-windows-x86_64\UnitTest\</IntDir>
+    <TargetName>UnitTest</TargetName>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\bin\Release-windows-x86_64\Utility\</OutDir>
-    <IntDir>..\b-int\Release-windows-x86_64\Utility\</IntDir>
-    <TargetName>Utility</TargetName>
-    <TargetExt>.lib</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\bin\Release-windows-x86_64\UnitTest\</OutDir>
+    <IntDir>..\b-int\Release-windows-x86_64\UnitTest\</IntDir>
+    <TargetName>UnitTest</TargetName>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <OutDir>..\bin\Dist-windows-x86_64\Utility\</OutDir>
-    <IntDir>..\b-int\Dist-windows-x86_64\Utility\</IntDir>
-    <TargetName>Utility</TargetName>
-    <TargetExt>.lib</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\bin\Dist-windows-x86_64\UnitTest\</OutDir>
+    <IntDir>..\b-int\Dist-windows-x86_64\UnitTest\</IntDir>
+    <TargetName>UnitTest</TargetName>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>UtilityPCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SQFL_X64;SQFL_FOR_WINDOWS;SQFL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\SquareFlare\src;..\Utility\src;vendor\GoogleTest\googletest\include;vendor\GoogleTest\googletest;vendor\GoogleTest\googlemock\include;vendor\GoogleTest\googlemock;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -85,20 +87,16 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <Lib>
-      <AdditionalLibraryDirectories>src;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>UtilityPCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SQFL_X64;SQFL_FOR_WINDOWS;SQFL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\SquareFlare\src;..\Utility\src;vendor\GoogleTest\googletest\include;vendor\GoogleTest\googletest;vendor\GoogleTest\googlemock\include;vendor\GoogleTest\googlemock;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -109,21 +107,17 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <Lib>
-      <AdditionalLibraryDirectories>src;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>UtilityPCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SQFL_X64;SQFL_FOR_WINDOWS;SQFL_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;..\SquareFlare\src;..\Utility\src;vendor\GoogleTest\googletest\include;vendor\GoogleTest\googletest;vendor\GoogleTest\googlemock\include;vendor\GoogleTest\googlemock;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -134,56 +128,64 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <Lib>
-      <AdditionalLibraryDirectories>src;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\BitFlags\BitFlags.h" />
-    <ClInclude Include="src\BitFlags\BitMasks.h" />
-    <ClInclude Include="src\Composing\Composition.h" />
-    <ClInclude Include="src\Composing\Formattable.h" />
-    <ClInclude Include="src\Composing\Formattables\FBoolean.h" />
-    <ClInclude Include="src\Composing\Formattables\FChar.h" />
-    <ClInclude Include="src\Composing\Formattables\FFloatingPoint.h" />
-    <ClInclude Include="src\Composing\Formattables\FInteger.h" />
-    <ClInclude Include="src\Composing\Formattables\FString.h" />
-    <ClInclude Include="src\Composing\Formattables\IFormattable.h" />
-    <ClInclude Include="src\Composing\Formatter.h" />
-    <ClInclude Include="src\ErrorCodes.h" />
-    <ClInclude Include="src\Exceptions\BaseException.h" />
-    <ClInclude Include="src\Exceptions\UtilityException.h" />
-    <ClInclude Include="src\Logging\Console.h" />
-    <ClInclude Include="src\Logging\Logger.h" />
-    <ClInclude Include="src\Logging\Logging.h" />
-    <ClInclude Include="src\Numbers\NumberUtils.h" />
-    <ClInclude Include="src\Strings\StringExtract.h" />
-    <ClInclude Include="src\UtilityPCH.h" />
+    <ClInclude Include="..\Utility\src\BitFlags\BitFlags.h" />
+    <ClInclude Include="..\Utility\src\BitFlags\BitMasks.h" />
+    <ClInclude Include="..\Utility\src\Composing\Composition.h" />
+    <ClInclude Include="..\Utility\src\Composing\Formattable.h" />
+    <ClInclude Include="..\Utility\src\Composing\Formattables\FBoolean.h" />
+    <ClInclude Include="..\Utility\src\Composing\Formattables\FChar.h" />
+    <ClInclude Include="..\Utility\src\Composing\Formattables\FFloatingPoint.h" />
+    <ClInclude Include="..\Utility\src\Composing\Formattables\FInteger.h" />
+    <ClInclude Include="..\Utility\src\Composing\Formattables\FString.h" />
+    <ClInclude Include="..\Utility\src\Composing\Formattables\IFormattable.h" />
+    <ClInclude Include="..\Utility\src\Composing\Formatter.h" />
+    <ClInclude Include="..\Utility\src\ErrorCodes.h" />
+    <ClInclude Include="..\Utility\src\Exceptions\BaseException.h" />
+    <ClInclude Include="..\Utility\src\Exceptions\UtilityException.h" />
+    <ClInclude Include="..\Utility\src\Logging\Console.h" />
+    <ClInclude Include="..\Utility\src\Logging\Logger.h" />
+    <ClInclude Include="..\Utility\src\Logging\Logging.h" />
+    <ClInclude Include="..\Utility\src\Macros.h" />
+    <ClInclude Include="..\Utility\src\Numbers\NumberUtils.h" />
+    <ClInclude Include="..\Utility\src\Strings\StringExtract.h" />
+    <ClInclude Include="..\Utility\src\UtilityPCH.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\BitFlags\BitFlags.cpp" />
-    <ClCompile Include="src\Composing\Composition.cpp" />
-    <ClCompile Include="src\Composing\Formattable.cpp" />
-    <ClCompile Include="src\Composing\Formattables\FBoolean.cpp" />
-    <ClCompile Include="src\Composing\Formattables\FChar.cpp" />
-    <ClCompile Include="src\Composing\Formattables\FFloatingPoint.cpp" />
-    <ClCompile Include="src\Composing\Formattables\FInteger.cpp" />
-    <ClCompile Include="src\Composing\Formattables\FString.cpp" />
-    <ClCompile Include="src\Composing\Formatter.cpp" />
-    <ClCompile Include="src\Exceptions\BaseException.cpp" />
-    <ClCompile Include="src\Exceptions\UtilityException.cpp" />
-    <ClCompile Include="src\Logging\Console.cpp" />
-    <ClCompile Include="src\Logging\Logger.cpp" />
-    <ClCompile Include="src\Logging\Logging.cpp" />
-    <ClCompile Include="src\Numbers\NumberUtils.cpp" />
-    <ClCompile Include="src\Strings\StringExtract.cpp" />
-    <ClCompile Include="src\UtilityPCH.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\Utility\src\BitFlags\BitFlags.cpp" />
+    <ClCompile Include="..\Utility\src\Composing\Composition.cpp" />
+    <ClCompile Include="..\Utility\src\Composing\Formattable.cpp" />
+    <ClCompile Include="..\Utility\src\Composing\Formattables\FBoolean.cpp" />
+    <ClCompile Include="..\Utility\src\Composing\Formattables\FChar.cpp" />
+    <ClCompile Include="..\Utility\src\Composing\Formattables\FFloatingPoint.cpp" />
+    <ClCompile Include="..\Utility\src\Composing\Formattables\FInteger.cpp" />
+    <ClCompile Include="..\Utility\src\Composing\Formattables\FString.cpp" />
+    <ClCompile Include="..\Utility\src\Composing\Formatter.cpp" />
+    <ClCompile Include="..\Utility\src\Exceptions\BaseException.cpp" />
+    <ClCompile Include="..\Utility\src\Exceptions\UtilityException.cpp" />
+    <ClCompile Include="..\Utility\src\Logging\Console.cpp" />
+    <ClCompile Include="..\Utility\src\Logging\Logger.cpp" />
+    <ClCompile Include="..\Utility\src\Logging\Logging.cpp" />
+    <ClCompile Include="..\Utility\src\Numbers\NumberUtils.cpp" />
+    <ClCompile Include="..\Utility\src\Strings\StringExtract.cpp" />
+    <ClCompile Include="..\Utility\src\UtilityPCH.cpp" />
+    <ClCompile Include="src\MainTest.cpp" />
+    <ClCompile Include="src\Utility\BitFlags\ByteFlagsTest.cpp" />
+    <ClCompile Include="vendor\GoogleTest\googlemock\src\gmock-all.cc" />
+    <ClCompile Include="vendor\GoogleTest\googletest\src\gtest-all.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SquareFlare\SquareFlare.vcxproj">
+      <Project>{A0972BEB-0C4D-A4E0-9541-9EB701F69AE4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.vcxproj">
+      <Project>{594615A9-C525-9444-CE3D-1F1B3A9CFAA5}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
