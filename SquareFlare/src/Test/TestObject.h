@@ -4,7 +4,7 @@
 #include "Composing/Composition.h"
 #include "Composing/Formattables/IFormattable.h"
 
-class TestObject : public Composing::IFormattable
+class TestObject : public Utility::Composing::IFormattable
 {
    public:
 

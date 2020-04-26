@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace BitFlags
+namespace Utility::BitFlags
 {
    template<typename T>
    class ByteFlags;

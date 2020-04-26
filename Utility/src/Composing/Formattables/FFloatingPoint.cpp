@@ -4,7 +4,7 @@
 
 #include "FFloatingPoint.h"
 
-namespace Composing::Formattables
+namespace Utility::Composing::Formattables
 {
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/

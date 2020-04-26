@@ -9,7 +9,7 @@
 #include "ErrorCodes.h"
 #include "Exceptions/UtilityException.h"
 
-namespace Composing
+namespace Utility::Composing
 {
    std::string Format( const char* a_Message, std::initializer_list<Formattable> a_FormattableObjects )
    {

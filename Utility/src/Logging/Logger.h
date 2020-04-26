@@ -7,6 +7,8 @@
 
 namespace Logging
 {
+   using Formattable = Utility::Composing::Formattable;
+
    /****************************\
    \*****   CLASS LOGGER   *****/
    class Logger
@@ -67,12 +69,12 @@ namespace Logging
       void Warn( const char* a_Message );
       void Error( const char* a_Message );
       void Fatal( const char* a_Message );
-      void Trace( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void Debug( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void Info( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void Warn( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void Error( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
-      void Fatal( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
+      void Trace( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
+      void Debug( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
+      void Info( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
+      void Warn( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
+      void Error( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
+      void Fatal( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
 
       std::string ExecuteQueue( const LogLevel& a_LogLevel, const char*& a_Message ) const;
 
@@ -92,7 +94,7 @@ namespace Logging
       \*****   PRIVATE-FUNCTIONS   *****/
       private:
       void Log( const LogLevel& a_LogLevel, const char*& a_Message );
-      void Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables );
+      void Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Formattable>& a_Formattables );
       void CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_LoggingFormat );
    };
 }

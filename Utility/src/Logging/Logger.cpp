@@ -64,37 +64,37 @@ namespace Logging
    }
 
    // Log With Formattables
-   void Logger::Trace( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Trace( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
       if ( m_BaseLoggingLevel <= LogLevel::TRACE )
          Logger::Log( LogLevel::TRACE, a_Message, a_Formattables );
    }
 
-   void Logger::Debug( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Debug( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
       if ( m_BaseLoggingLevel <= LogLevel::DEBUG )
          Logger::Log( LogLevel::DEBUG, a_Message, a_Formattables );
    }
 
-   void Logger::Info( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Info( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
       if ( m_BaseLoggingLevel <= LogLevel::INFO )
          Logger::Log( LogLevel::INFO, a_Message, a_Formattables );
    }
 
-   void Logger::Warn( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Warn( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
       if ( m_BaseLoggingLevel <= LogLevel::WARNING )
          Logger::Log( LogLevel::WARNING, a_Message, a_Formattables );
    }
 
-   void Logger::Error( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Error( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
       if ( m_BaseLoggingLevel <= LogLevel::ERR_OR )
          Logger::Log( LogLevel::ERR_OR, a_Message, a_Formattables );
    }
 
-   void Logger::Fatal( const char* a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Fatal( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
       if ( m_BaseLoggingLevel <= LogLevel::FATAL )
          Logger::Log( LogLevel::FATAL, a_Message, a_Formattables );
@@ -136,7 +136,7 @@ namespace Logging
       Console::Get().Log( *this, a_LogLevel, a_Message );
    }
 
-   void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Composing::Formattable>& a_Formattables )
+   void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
       Console::Get().Log( *this, a_LogLevel, a_Message, a_Formattables );
    }

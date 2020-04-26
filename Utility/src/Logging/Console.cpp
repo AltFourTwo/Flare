@@ -11,6 +11,8 @@
 
 namespace Logging
 {
+   using Formattable = Utility::Composing::Formattable;
+
    /*************************\
    \*****   CONSTANTS   *****/
    const char* Console::DEFAULT_LOGGER_NAME = "Unnamed Logger";
@@ -35,7 +37,7 @@ namespace Logging
       Log( Get().m_Loggers.front(), a_LogLevel, a_Message );
    }
 
-   void Console::Log( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Composing::Formattable> a_Formattables )
+   void Console::Log( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables )
    {
       Log( Get().m_Loggers.front(), a_LogLevel, a_Message, a_Formattables );
    }
@@ -47,9 +49,9 @@ namespace Logging
       std::cout << x_ConsoleFormattedMessage;
    }
 
-   void Console::Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Composing::Formattable> a_Formattables )
+   void Console::Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables )
    {
-      std::string x_ComposedMessage = Composing::Format( a_Message, a_Formattables );
+      std::string x_ComposedMessage = Format( a_Message, a_Formattables );
       Log( a_Logger, a_LogLevel, x_ComposedMessage.c_str() );
    }
 

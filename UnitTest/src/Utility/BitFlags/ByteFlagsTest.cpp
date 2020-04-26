@@ -2,11 +2,24 @@
 
 #include "BitFlags/BitFlags.h"
 
-namespace UnitTest::Utility::ByteFlags
+namespace UnitTest::Utility::BitFlags::SingleByteFlags
 {
-   TEST( ByteFlagsTest, DefaultConstructor )
+   using SingleByteFlags = ::Utility::BitFlags::SingleByteFlags;
+
+   class SingleByteFlagsTest : public ::testing::Test
    {
-      BitFlags::SingleByteFlags x_Flags;
+      protected:
+      SingleByteFlags x_Flags;
+
+      void SetUp() override {
+
+      }
+   };
+
+
+   TEST_F(SingleByteFlagsTest, DefaultConstructor )
+   {
+      SingleByteFlags x_Flags;
 
       EXPECT_EQ(0, x_Flags.Value());
    }

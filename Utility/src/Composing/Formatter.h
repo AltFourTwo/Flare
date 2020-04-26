@@ -2,7 +2,7 @@
 
 #include "Strings/StringExtract.h"
 
-namespace Composing
+namespace Utility::Composing
 {
    class Formatter
    {
