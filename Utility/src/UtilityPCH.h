@@ -10,5 +10,3 @@
 #include <functional>
 #include <exception>
 #include <type_traits>
-
-#include "Macros.h"
