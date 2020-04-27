@@ -135,7 +135,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\MainTest.cpp" />
-    <ClCompile Include="src\Utility\BitFlags\ByteFlagsTest.cpp" />
+    <ClCompile Include="src\Utility\BitFlags\DoubleByteFlagsTest.cpp" />
+    <ClCompile Include="src\Utility\BitFlags\OctaByteFlagsTest.cpp" />
+    <ClCompile Include="src\Utility\BitFlags\QuadByteFlagsTest.cpp" />
+    <ClCompile Include="src\Utility\BitFlags\SingleByteFlagsTest.cpp" />
     <ClCompile Include="vendor\GoogleTest\googlemock\src\gmock-all.cc" />
     <ClCompile Include="vendor\GoogleTest\googletest\src\gtest-all.cc" />
   </ItemGroup>
