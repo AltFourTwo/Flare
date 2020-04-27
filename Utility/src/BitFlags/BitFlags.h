@@ -5,39 +5,8 @@
 namespace Utility::BitFlags
 {
    template<typename T>
-   class ByteFlags;
-
-   template<typename T>
-   class BitReference
-   {
-      /*****   CLASS   FRIENDS      *****/
-      friend class ByteFlags<T>;
-
-      /*****   CLASS   VARIABLES    *****/
-      private:
-      const T& m_Flags;
-      const T m_Mask;
-
-      private:
-      BitReference( const T& a_Flags, const T a_Mask );
-
-      /*****   CLASS   FUNCTIONS    *****/
-      void Set();
-      void Set( const bool a_Value );
-      void Reset();
-      void Flip();
-      bool Value() const;
-
-      //void operator= // Basically Set
-      //void operator~ // Basically Flip
-
-      // Find a way to return Value() when called
-   };
-
-   template<typename T>
    class ByteFlags
    {
-
       /*****   CLASS   VARIABLES    *****/
       protected:
       T m_Flags;
@@ -49,7 +18,7 @@ namespace Utility::BitFlags
 
       /*****   CLASS   FUNCTIONS    *****/
       private:
-      static const T&& GetBitMask( const uint8_t& a_Pos );
+      static T GetBitMask( const uint8_t& a_Pos );
 
       public:
       void Set();
@@ -61,9 +30,8 @@ namespace Utility::BitFlags
       void Flip( const uint8_t& a_Pos );
       bool AreAllOn();
       bool AreAllOff();
-      T Value();
-      bool Value( const uint8_t& a_Pos );
-      BitReference<T> BitRef( const int& a_Pos );
+      const T& Value();
+      const bool Value( const uint8_t& a_Pos );
    };
 
    class SingleByteFlags : public ByteFlags<uint8_t>
@@ -98,49 +66,6 @@ namespace Utility::BitFlags
       OctaByteFlags( const uint64_t& a_IntegralValue ) : ByteFlags( a_IntegralValue ) {}
    };
 
-   /***** BitReference *****/
-   /*****   CLASS   C-TOR D-TOR  *****/
-   template<typename T>
-   BitReference<T>::BitReference( const T& a_Flags, const T a_Mask ) :
-      m_Flags( a_Flags ),
-      m_Mask( a_Mask )
-      EMPTY_SCOPE;
-
-   /*****   CLASS   FUNCTIONS    *****/
-   template<typename T>
-   void BitReference<T>::Set()
-   {
-      m_Flags |= m_Mask;
-   }
-
-   template<typename T>
-   void BitReference<T>::Set( const bool a_Value )
-   {
-      if ( a_Value )
-         Set();
-      else
-         Reset();
-   }
-
-   template<typename T>
-   void BitReference<T>::Reset()
-   {
-      m_Flags &= ~m_Mask;
-   }
-
-   template<typename T>
-   void BitReference<T>::Flip()
-   {
-      Set( !Value() );
-   }
-
-   template<typename T>
-   bool BitReference<T>::Value() const
-   {
-      return m_Flags & m_Mask;
-   }
-
-   /***** ByteFlags *****/
    /*****   CLASS   C-TOR D-TOR  *****/
    template<typename T>
    ByteFlags<T>::ByteFlags() :
@@ -152,20 +77,24 @@ namespace Utility::BitFlags
       m_Flags( a_IntegralValue )
    {}
 
-
    /*****   CLASS   FUNCTIONS    *****/
    template<typename T>
-   const T&& ByteFlags<T>::GetBitMask( const uint8_t& a_Pos )
+   T ByteFlags<T>::GetBitMask( const uint8_t& a_Pos )
    {
-      T x_Bit = 1;
+      T x_Mask = 1;
+      x_Mask <<= a_Pos;
 
-      return ( x_Bit << a_Pos );
+      if ( !x_Mask )
+         return x_Mask;
+         // TODO Log a warning when result mask is 0. (Left shift overflow.)
+
+      return x_Mask;
    }
 
    template<typename T>
    void ByteFlags<T>::Set()
    {
-      m_Flags = UINT64_MAX;
+      memset( &m_Flags, 0xFF, sizeof( m_Flags ) );
    }
 
    template<typename T>
@@ -198,7 +127,7 @@ namespace Utility::BitFlags
    template<typename T>
    void ByteFlags<T>::Flip()
    {
-      m_Flags ~= m_Flags;
+      m_Flags = ~m_Flags;
    }
 
    template<typename T>
@@ -210,7 +139,10 @@ namespace Utility::BitFlags
    template<typename T>
    bool ByteFlags<T>::AreAllOn()
    {
-      return m_Flags == UINT64_MAX;
+      T x_MaxValue;
+      memset( &x_MaxValue, 0xFF, sizeof( x_MaxValue ) );
+
+      return m_Flags == x_MaxValue;
    }
 
    template<typename T>
@@ -220,23 +152,15 @@ namespace Utility::BitFlags
    }
 
    template<typename T>
-   T ByteFlags<T>::Value()
+   const T& ByteFlags<T>::Value()
    {
       return m_Flags;
    }
 
    template<typename T>
-   bool ByteFlags<T>::Value( const uint8_t& a_Pos )
+   const bool ByteFlags<T>::Value( const uint8_t& a_Pos )
    {
-      T x_Mask = GetBitMask( a_Pos );
-
-      return m_Flags & x_Mask;
-   }
-
-   template<typename T>
-   BitReference<T> ByteFlags<T>::BitRef( const int& a_Pos )
-   {
-      return BitReference<T>::BitReference( ByteFlags::m_Flags, GetBitMask( a_Pos ) );
+      return m_Flags & GetBitMask( a_Pos );
    }
 }
 
