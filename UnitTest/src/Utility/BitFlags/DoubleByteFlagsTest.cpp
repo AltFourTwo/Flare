@@ -16,8 +16,8 @@ namespace UnitTest::Utility::BitFlags::DoubleByteFlags
 
    TEST( DoubleByteFlagsTest, InitializeValueConstructor )
    {
-      DoubleByteFlags x_Flags( Masks::S_BIT03 );
-      EXPECT_EQ( Masks::S_BIT03, x_Flags.Value() );
+      DoubleByteFlags x_Flags( Masks::BIT03 );
+      EXPECT_EQ( Masks::BIT03, x_Flags.Value() );
    }
 
    TEST( DoubleByteFlagsTest, SetAll )
@@ -31,14 +31,14 @@ namespace UnitTest::Utility::BitFlags::DoubleByteFlags
    {
       DoubleByteFlags x_Flags;
       x_Flags.Set( 15 );
-      EXPECT_EQ( Masks::S_BIT15, x_Flags.Value() );
+      EXPECT_EQ( Masks::BIT15, x_Flags.Value() );
    }
 
    TEST( DoubleByteFlagsTest, SetWithTrue )
    {
       DoubleByteFlags x_Flags;
       x_Flags.Set( 14, true );
-      EXPECT_EQ( Masks::S_BIT14, x_Flags.Value() );
+      EXPECT_EQ( Masks::BIT14, x_Flags.Value() );
    }
 
    TEST( DoubleByteFlagsTest, SetWithFalse )
@@ -86,26 +86,36 @@ namespace UnitTest::Utility::BitFlags::DoubleByteFlags
    TEST( DoubleByteFlagsTest, AreAllOn )
    {
       DoubleByteFlags x_Flags( UINT16_MAX );
-      EXPECT_EQ( true, x_Flags.AreAllOn() );
+      EXPECT_TRUE( x_Flags.AreAllOn() );
       x_Flags.Reset( 13 );
-      EXPECT_EQ( false, x_Flags.AreAllOn() );
+      EXPECT_FALSE( x_Flags.AreAllOn() );
    }
 
    TEST( DoubleByteFlagsTest, AreAllOff )
    {
       DoubleByteFlags x_Flags;
-      EXPECT_EQ( true, x_Flags.AreAllOff() );
+      EXPECT_TRUE( x_Flags.AreAllOff() );
       x_Flags.Set( 13 );
-      EXPECT_EQ( false, x_Flags.AreAllOff() );
+      EXPECT_FALSE( x_Flags.AreAllOff() );
+   }
+
+   TEST( DoubleByteFlagsTest, AnyOn )
+   {
+      DoubleByteFlags x_Flags( 0xFFFF );
+      EXPECT_TRUE( x_Flags.AnyOn() );
+      x_Flags.Reset( 10 );
+      EXPECT_TRUE( x_Flags.AnyOn() );
+      x_Flags.Reset();
+      EXPECT_FALSE( x_Flags.AnyOn() );
    }
 
    TEST( DoubleByteFlagsTest, ValueIndividual )
    {
       DoubleByteFlags x_Flags;
-      EXPECT_EQ( false, x_Flags.Value( 12 ) );
+      EXPECT_FALSE( x_Flags.Value( 12 ) );
       x_Flags.Set( 12 );
-      EXPECT_EQ( true, x_Flags.Value( 12 ) );
+      EXPECT_TRUE( x_Flags.Value( 12 ) );
       x_Flags.Reset( 12 );
-      EXPECT_EQ( false, x_Flags.Value( 12 ) );
+      EXPECT_FALSE( x_Flags.Value( 12 ) );
    }
 }
