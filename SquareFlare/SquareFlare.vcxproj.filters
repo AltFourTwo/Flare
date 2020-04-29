@@ -23,12 +23,21 @@
     <ClInclude Include="src\SquareFlare\EntryPoint.h">
       <Filter>SquareFlare</Filter>
     </ClInclude>
-    <ClInclude Include="src\SquareFlare\Events\Event.h">
-      <Filter>SquareFlare\Events</Filter>
-    </ClInclude>
     <ClInclude Include="src\SquareFlarePCH.h" />
     <ClInclude Include="src\Test\TestObject.h">
       <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SquareFlare\Events\Events.h">
+      <Filter>SquareFlare\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SquareFlare\Events\Event.h">
+      <Filter>SquareFlare\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SquareFlare\Events\EventDispatcher.h">
+      <Filter>SquareFlare\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SquareFlare\Events\KeyEvent.h">
+      <Filter>SquareFlare\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

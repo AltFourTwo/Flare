@@ -30,6 +30,7 @@ namespace Utility::BitFlags
       void Flip( const uint8_t& a_Pos );
       bool AreAllOn();
       bool AreAllOff();
+      bool AnyOn();
       const T& Value();
       const bool Value( const uint8_t& a_Pos );
    };
@@ -149,6 +150,12 @@ namespace Utility::BitFlags
    bool ByteFlags<T>::AreAllOff()
    {
       return m_Flags == 0;
+   }
+
+   template<typename T>
+   bool ByteFlags<T>::AnyOn()
+   {
+      return m_Flags;
    }
 
    template<typename T>

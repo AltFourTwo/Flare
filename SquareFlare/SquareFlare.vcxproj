@@ -152,12 +152,15 @@ IF EXIST ..\bin\Dist-windows-x86_64\SquareFlare\SquareFlare.dll\ (xcopy /Q /E /Y
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\SquareFlare\Events\Event.h" />
+    <ClInclude Include="src\SquareFlare\Events\EventDispatcher.h" />
+    <ClInclude Include="src\SquareFlare\Events\KeyEvent.h" />
     <ClInclude Include="src\Comments.h" />
     <ClInclude Include="src\SquareFlare.h" />
     <ClInclude Include="src\SquareFlare\Application.h" />
     <ClInclude Include="src\SquareFlare\Core.h" />
     <ClInclude Include="src\SquareFlare\EntryPoint.h" />
-    <ClInclude Include="src\SquareFlare\Events\Event.h" />
+    <ClInclude Include="src\SquareFlare\Events\Events.h" />
     <ClInclude Include="src\SquareFlarePCH.h" />
     <ClInclude Include="src\Test\TestObject.h" />
   </ItemGroup>

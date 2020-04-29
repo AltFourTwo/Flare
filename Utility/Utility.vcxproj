@@ -165,7 +165,6 @@
     <ClInclude Include="src\UtilityPCH.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\BitFlags\BitFlags.cpp" />
     <ClCompile Include="src\Composing\Composition.cpp" />
     <ClCompile Include="src\Composing\Formattable.cpp" />
     <ClCompile Include="src\Composing\Formattables\FBoolean.cpp" />
