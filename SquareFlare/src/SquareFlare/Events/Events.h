@@ -3,8 +3,6 @@
 #include "BitFlags/BitMasks.h"
 #include "SquareFlare/Core.h"
 
-#include <string>
-
 namespace SquareFlare::Events
 {
    namespace Bits = ::Utility::BitFlags::BitMasks;
@@ -24,7 +22,7 @@ namespace SquareFlare::Events
 
       KeyPressed,
       KeyRepeat,
-      KeyRelease,
+      KeyReleased,
 
       MouseButtonPressed,
       MouseButtonReapeat,

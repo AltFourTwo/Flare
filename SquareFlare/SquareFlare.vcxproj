@@ -162,6 +162,7 @@ IF EXIST ..\bin\Dist-windows-x86_64\SquareFlare\SquareFlare.dll\ (xcopy /Q /E /Y
     <ClInclude Include="src\SquareFlare\EntryPoint.h" />
     <ClInclude Include="src\SquareFlare\Events\Events.h" />
     <ClInclude Include="src\SquareFlarePCH.h" />
+    <ClInclude Include="src\SquareFlare\Events\MouseEvent.h" />
     <ClInclude Include="src\Test\TestObject.h" />
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,9 @@
 
 #include "Events.h"
 
+#include <string>
+#include <sstream>
+
 namespace SquareFlare::Events
 {
    class SQFL_API Event
@@ -16,10 +19,8 @@ namespace SquareFlare::Events
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      virtual EventType GetEventType() const = 0;
-      virtual const char* GetName() const = 0;
-      virtual int GetCategoryFlags() const = 0;
-      virtual std::string ToString() const {
+      virtual std::string ToString() const 
+      {
          return GetName();
       }
 
@@ -27,5 +28,18 @@ namespace SquareFlare::Events
       {
          return GetCategoryFlags() & a_Category;
       }
+
+      /*****   GETTERS   *****/
+      public:
+      virtual EventType GetEventType() const = 0;
+      virtual const char* GetName() const = 0;
+      virtual int GetCategoryFlags() const = 0;
    };
+
+   // These macros are used as quick definitions of the pure virtual methods in the abstract event class above.
+#define SQFL_EVENT_TYPE(a_Type) static EventType GetStaticType() { return EventType::##a_Type; }\
+                                virtual EventType GetEventType() const override { return GetStaticType(); }\
+                                virtual const char* GetName() const override { return #a_Type; }
+
+#define SQFL_EVENT_CATEGORY(a_Category) virtual int GetCategoryFlags() const override { return a_Category; }
 }
