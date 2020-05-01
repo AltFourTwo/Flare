@@ -16,12 +16,10 @@ namespace SquareFlare::Events
          m_KeyCode( a_KeyCode )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   GETTERS   *****/
       public:
       SQFL_EVENT_CATEGORY( EventCategory::Keyboard | EventCategory::Input );
 
-      /*****   GETTERS   *****/
-      public:
       inline int GetKeyCode() const
       {
          return m_KeyCode;
@@ -53,6 +51,7 @@ namespace SquareFlare::Events
       /*****   GETTERS   *****/
       public:
       SQFL_EVENT_TYPE( KeyPressed );
+
       inline int GetRepeatCount() const
       {
          return m_RepeatCount;

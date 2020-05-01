@@ -17,19 +17,21 @@ namespace SquareFlare::Events
       WindowMoved,
 
       AppTick,
+      AppBeforeUpdate,
       AppUpdate,
+      AppAfterUpdate,
+      AppBeforeRender,
       AppRender,
+      AppAfterRender,
 
       KeyPressed,
-      KeyRepeat,
+      KeyRepeated,
       KeyReleased,
 
       MouseButtonPressed,
-      MouseButtonReapeat,
       MouseButtonReleased,
       MouseMoved,
       MouseScrolled,
-
    };
 
    struct EVENT_CATEGORY_SCOPE
@@ -38,12 +40,20 @@ namespace SquareFlare::Events
       {
          None = 0,
          Application = Bits::BIT00,
-         Input = Bits::BIT01,
-         Keyboard = Bits::BIT02,
-         Mouse = Bits::BIT03,
-         MouseButton = Bits::BIT04,
+         Window = Bits::BIT01,
+         Input = Bits::BIT02,
+         Keyboard = Bits::BIT03,
+         Mouse = Bits::BIT04,
+         MouseButton = Bits::BIT05,
       };
    };
 
    using EventCategory = EVENT_CATEGORY_SCOPE::EventCategory;
 }
+
+#include "Event.h"
+#include "ApplicationEvent.h"
+#include "WindowEvent.h"
+#include "KeyEvent.h"
+#include "MouseEvent.h"
+#include "EventDispatcher.h"
