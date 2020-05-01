@@ -11,6 +11,7 @@ namespace SquareFlare::Events
       float m_MouseX, m_MouseY;
 
       /*****   CLASS   C-TOR D-TOR  *****/
+      public:
       MouseMovedEvent( float a_XPos, float a_YPos ) :
          m_MouseX( a_XPos ),
          m_MouseY( a_YPos )
@@ -48,6 +49,7 @@ namespace SquareFlare::Events
       float m_XOffset, m_YOffset;
 
       /*****   CLASS   C-TOR D-TOR  *****/
+      public:
       MouseScrolledEvent( float a_XOffset, float a_YOffset ) :
          m_XOffset( a_XOffset ),
          m_YOffset( a_YOffset )
@@ -90,12 +92,10 @@ namespace SquareFlare::Events
          m_Button( a_Button )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
-      public:
-      SQFL_EVENT_CATEGORY( EventCategory::Mouse | EventCategory::Input );
-
       /*****   GETTERS   *****/
       public:
+      SQFL_EVENT_CATEGORY( EventCategory::MouseButton | EventCategory::Mouse | EventCategory::Input );
+
       inline int GetMouseButton() const
       {
          return m_Button;
@@ -120,6 +120,7 @@ namespace SquareFlare::Events
       }
 
       /*****   GETTERS   *****/
+      public:
       SQFL_EVENT_TYPE( KeyPressed );
    };
 

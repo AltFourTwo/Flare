@@ -1,13 +1,14 @@
 #include "SquareFlarePCH.h"
 
 #include "Application.h"
+
+// Temporary Includes
 #include "Test/TestObject.h"
 #include "Composing/Composition.h"
 #include "Logging/Console.h"
+#include "Exceptions/UtilityException.h"
+#include "Events/Events.h"
 
-#include <Exceptions\UtilityException.h>
-
-// Temporary Includes
 #include <cstdint>
 
 namespace SquareFlare
@@ -25,7 +26,7 @@ namespace SquareFlare
 
    void Application::Test()
    {
-
+      std::cout << std::endl;
 
       /*
       TestObject hi;
@@ -122,9 +123,13 @@ namespace SquareFlare
       }
       */
 
+      /*
       uint8_t integer8 = 0xF4;
       uint64_t integer64 = 0xFFFF'0104'0280'00F4;
-
       std::cout << (integer8 & integer64) << std::endl;
+      */
+
+      SquareFlare::Events::MouseButtonPressedEvent x_LMBclick = SquareFlare::Events::MouseButtonPressedEvent(1);
+      std::cout << x_LMBclick << std::endl;
    }
 }

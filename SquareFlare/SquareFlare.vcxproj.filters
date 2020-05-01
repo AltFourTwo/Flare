@@ -40,6 +40,8 @@
       <Filter>SquareFlare\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\SquareFlare\Events\MouseEvent.h" />
+    <ClInclude Include="src\SquareFlare\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\SquareFlare\Events\WindowEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SquareFlare\Application.cpp">
