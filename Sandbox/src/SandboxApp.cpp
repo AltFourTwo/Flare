@@ -1,8 +1,8 @@
 #include "SandboxPCH.h"
 
-#include <SquareFlare.h>
+#include <Flare.h>
 
-class Sandbox : public SquareFlare::Application
+class Sandbox : public Flare::Application
 {
 public:
    Sandbox()
@@ -18,7 +18,7 @@ public:
 };
 
 
-SquareFlare::Application* SquareFlare::Initialize()
+Flare::Application* Flare::Initialize()
 {
    return new Sandbox();
 }

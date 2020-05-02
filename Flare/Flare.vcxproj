@@ -15,10 +15,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A0972BEB-0C4D-A4E0-9541-9EB701F69AE4}</ProjectGuid>
+    <ProjectGuid>{0F982E0D-7BAC-56BE-442E-FA1DB00153EF}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>SquareFlare</RootNamespace>
+    <RootNamespace>Flare</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -55,31 +55,31 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Debug-windows-x86_64\SquareFlare\</OutDir>
-    <IntDir>..\b-int\Debug-windows-x86_64\SquareFlare\</IntDir>
-    <TargetName>SquareFlare</TargetName>
+    <OutDir>..\bin\Debug-windows-x86_64\Flare\</OutDir>
+    <IntDir>..\b-int\Debug-windows-x86_64\Flare\</IntDir>
+    <TargetName>Flare</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Release-windows-x86_64\SquareFlare\</OutDir>
-    <IntDir>..\b-int\Release-windows-x86_64\SquareFlare\</IntDir>
-    <TargetName>SquareFlare</TargetName>
+    <OutDir>..\bin\Release-windows-x86_64\Flare\</OutDir>
+    <IntDir>..\b-int\Release-windows-x86_64\Flare\</IntDir>
+    <TargetName>Flare</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Dist-windows-x86_64\SquareFlare\</OutDir>
-    <IntDir>..\b-int\Dist-windows-x86_64\SquareFlare\</IntDir>
-    <TargetName>SquareFlare</TargetName>
+    <OutDir>..\bin\Dist-windows-x86_64\Flare\</OutDir>
+    <IntDir>..\b-int\Dist-windows-x86_64\Flare\</IntDir>
+    <TargetName>Flare</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>SquareFlarePCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>FlarePCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SQFL_X64;SQFL_FOR_WINDOWS;SQFL_DLL;SQFL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FLARE_X64;FLARE_FOR_WINDOWS;FLARE_DLL;FLARE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;..\Utility\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -90,19 +90,19 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\SquareFlare\SquareFlare.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Debug-windows-x86_64\Flare\Flare.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>IF NOT EXIST ..\bin\Debug-windows-x86_64\Sandbox (mkdir ..\bin\Debug-windows-x86_64\Sandbox)
-IF EXIST ..\bin\Debug-windows-x86_64\SquareFlare\SquareFlare.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\SquareFlare\SquareFlare.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\SquareFlare\SquareFlare.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
+IF EXIST ..\bin\Debug-windows-x86_64\Flare\Flare.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Flare\Flare.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Flare\Flare.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>SquareFlarePCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>FlarePCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SQFL_X64;SQFL_FOR_WINDOWS;SQFL_DLL;SQFL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FLARE_X64;FLARE_FOR_WINDOWS;FLARE_DLL;FLARE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;..\Utility\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -117,19 +117,19 @@ IF EXIST ..\bin\Debug-windows-x86_64\SquareFlare\SquareFlare.dll\ (xcopy /Q /E /
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ImportLibrary>..\bin\Release-windows-x86_64\SquareFlare\SquareFlare.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Release-windows-x86_64\Flare\Flare.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>IF NOT EXIST ..\bin\Release-windows-x86_64\Sandbox (mkdir ..\bin\Release-windows-x86_64\Sandbox)
-IF EXIST ..\bin\Release-windows-x86_64\SquareFlare\SquareFlare.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\SquareFlare\SquareFlare.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\SquareFlare\SquareFlare.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)</Command>
+IF EXIST ..\bin\Release-windows-x86_64\Flare\Flare.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Flare\Flare.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Flare\Flare.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>SquareFlarePCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>FlarePCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SQFL_X64;SQFL_FOR_WINDOWS;SQFL_DLL;SQFL_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FLARE_X64;FLARE_FOR_WINDOWS;FLARE_DLL;FLARE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;..\Utility\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -144,32 +144,32 @@ IF EXIST ..\bin\Release-windows-x86_64\SquareFlare\SquareFlare.dll\ (xcopy /Q /E
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ImportLibrary>..\bin\Dist-windows-x86_64\SquareFlare\SquareFlare.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Dist-windows-x86_64\Flare\Flare.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>IF NOT EXIST ..\bin\Dist-windows-x86_64\Sandbox (mkdir ..\bin\Dist-windows-x86_64\Sandbox)
-IF EXIST ..\bin\Dist-windows-x86_64\SquareFlare\SquareFlare.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\SquareFlare\SquareFlare.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\SquareFlare\SquareFlare.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul)</Command>
+IF EXIST ..\bin\Dist-windows-x86_64\Flare\Flare.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Flare\Flare.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Flare\Flare.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\SquareFlare\Events\ApplicationEvent.h" />
-    <ClInclude Include="src\SquareFlare\Events\Event.h" />
-    <ClInclude Include="src\SquareFlare\Events\EventDispatcher.h" />
-    <ClInclude Include="src\SquareFlare\Events\KeyEvent.h" />
     <ClInclude Include="src\Comments.h" />
-    <ClInclude Include="src\SquareFlare.h" />
-    <ClInclude Include="src\SquareFlare\Application.h" />
-    <ClInclude Include="src\SquareFlare\Core.h" />
-    <ClInclude Include="src\SquareFlare\EntryPoint.h" />
-    <ClInclude Include="src\SquareFlare\Events\Events.h" />
-    <ClInclude Include="src\SquareFlarePCH.h" />
-    <ClInclude Include="src\SquareFlare\Events\MouseEvent.h" />
-    <ClInclude Include="src\SquareFlare\Events\WindowEvent.h" />
+    <ClInclude Include="src\Flare.h" />
+    <ClInclude Include="src\Flare\Application.h" />
+    <ClInclude Include="src\Flare\Core.h" />
+    <ClInclude Include="src\Flare\EntryPoint.h" />
+    <ClInclude Include="src\Flare\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Flare\Events\Event.h" />
+    <ClInclude Include="src\Flare\Events\EventDispatcher.h" />
+    <ClInclude Include="src\Flare\Events\Events.h" />
+    <ClInclude Include="src\Flare\Events\KeyEvent.h" />
+    <ClInclude Include="src\Flare\Events\MouseEvent.h" />
+    <ClInclude Include="src\Flare\Events\WindowEvent.h" />
+    <ClInclude Include="src\FlarePCH.h" />
     <ClInclude Include="src\Test\TestObject.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\SquareFlare\Application.cpp" />
-    <ClCompile Include="src\SquareFlarePCH.cpp">
+    <ClCompile Include="src\Flare\Application.cpp" />
+    <ClCompile Include="src\FlarePCH.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>

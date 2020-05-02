@@ -5,9 +5,9 @@
 #include <string>
 #include <sstream>
 
-namespace SquareFlare::Events
+namespace Flare::Events
 {
-   class SQFL_API Event
+   class FLARE_API Event
    {
       /*****   CLASS   FRIENDS      *****/
       friend class EventDispatcher;
@@ -44,9 +44,9 @@ namespace SquareFlare::Events
 
 
    // These macros are used as quick definitions of the pure virtual methods in the abstract event class above.
-#define SQFL_EVENT_TYPE(a_Type) static EventType GetStaticType() { return EventType::##a_Type; }\
+#define FLARE_EVENT_TYPE(a_Type) static EventType GetStaticType() { return EventType::##a_Type; }\
                                 virtual EventType GetEventType() const override { return GetStaticType(); }\
                                 virtual const char* GetName() const override { return #a_Type; }
 
-#define SQFL_EVENT_CATEGORY(a_Category) virtual int GetCategoryFlags() const override { return a_Category; }
+#define FLARE_EVENT_CATEGORY(a_Category) virtual int GetCategoryFlags() const override { return a_Category; }
 }

@@ -1,4 +1,4 @@
-# SquareFlare
-SquareFlare 2D Engine
+# Flare
+Flare Game Engine
 
 It begins.

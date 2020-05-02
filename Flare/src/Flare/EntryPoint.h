@@ -2,15 +2,15 @@
 
 #include "Test/TestObject.h"
 
-#ifdef SQFL_FOR_WINDOWS
+#ifdef FLARE_FOR_WINDOWS
 
-extern SquareFlare::Application* SquareFlare::Initialize();
+extern Flare::Application* Flare::Initialize();
 
 int main( int argc, char** argv )
 {
    printf( "It begins!" );
 
-   SquareFlare::Application* app = SquareFlare::Initialize();
+   Flare::Application* app = Flare::Initialize();
    app->Test();
    app->Run();
    delete app;

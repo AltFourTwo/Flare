@@ -1,15 +1,15 @@
 #pragma once
 
-// For use by SquareFlare applications!
+// For use by Flare applications!
 
-//#include "SquareFlare/Core.h"
+//#include "Flare/Core.h"
 
 #include <stdio.h>
 #include <string>
 #include <vector>
 
-#include "SquareFlare/Application.h"
+#include "Flare/Application.h"
 
 // ---------- Entry Point ----------
-#include "SquareFlare/EntryPoint.h"
+#include "Flare/EntryPoint.h"
 // ---------------------------------
