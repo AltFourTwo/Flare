@@ -2,10 +2,10 @@
 
 #include "Event.h"
 
-namespace Flare::Events
+namespace SquareFlare::Events
 {
 
-   class FLARE_API WindowCloseEvent : public Event
+   class SQFL_API WindowCloseEvent : public Event
    {
       /*****   CLASS   FUNCTIONS    *****/
       std::string ToString() const override
@@ -16,11 +16,11 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( WindowClose );
-      FLARE_EVENT_CATEGORY( EventCategory::Window );
+      SQFL_EVENT_TYPE( WindowClose );
+      SQFL_EVENT_CATEGORY( EventCategory::Window );
    };
 
-   class FLARE_API WindowResizeEvent : public Event
+   class SQFL_API WindowResizeEvent : public Event
    {
       /*****   CLASS   VARIABLES    *****/
       private:
@@ -42,8 +42,8 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( WindowResize );
-      FLARE_EVENT_CATEGORY( EventCategory::Window );
+      SQFL_EVENT_TYPE( WindowResize );
+      SQFL_EVENT_CATEGORY( EventCategory::Window );
 
       inline unsigned int GetWidth() const
       {
@@ -56,7 +56,7 @@ namespace Flare::Events
       }
    };
 
-   class FLARE_API WindowFocusEvent : public Event
+   class SQFL_API WindowFocusEvent : public Event
    {
       /*****   CLASS   FUNCTIONS    *****/
       std::string ToString() const override
@@ -67,11 +67,11 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( WindowFocus );
-      FLARE_EVENT_CATEGORY( EventCategory::Window );
+      SQFL_EVENT_TYPE( WindowFocus );
+      SQFL_EVENT_CATEGORY( EventCategory::Window );
    };
 
-   class FLARE_API WindowLostFocusEvent : public Event
+   class SQFL_API WindowLostFocusEvent : public Event
    {
       /*****   CLASS   FUNCTIONS    *****/
       std::string ToString() const override
@@ -82,10 +82,10 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( WindowLostFocus );
+      SQFL_EVENT_TYPE( WindowLostFocus );
    };
 
-   class FLARE_API WindowMovedEvent : public Event
+   class SQFL_API WindowMovedEvent : public Event
    {
       /*****   CLASS   VARIABLES    *****/
       unsigned int m_XPos, m_YPos;
@@ -103,6 +103,6 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( WindowMoved );
+      SQFL_EVENT_TYPE( WindowMoved );
    };
 }

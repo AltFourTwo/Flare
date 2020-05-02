@@ -1,9 +1,9 @@
 #pragma once
 
 #include "BitFlags/BitMasks.h"
-#include "Flare/Core.h"
+#include "SquareFlare/Core.h"
 
-namespace Flare::Events
+namespace SquareFlare::Events
 {
    namespace Bits = ::Utility::BitFlags::BitMasks;
 

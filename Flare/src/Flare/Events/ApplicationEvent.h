@@ -2,19 +2,19 @@
 
 #include "Event.h"
 
-namespace Flare::Events
+namespace SquareFlare::Events
 {
-   class FLARE_API ApplicationEvent : public Event
+   class SQFL_API ApplicationEvent : public Event
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       protected:
       ApplicationEvent() {}
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_CATEGORY( EventCategory::Application );
+      SQFL_EVENT_CATEGORY( EventCategory::Application );
    };
 
-   class FLARE_API AppTickEvent : public ApplicationEvent
+   class SQFL_API AppTickEvent : public ApplicationEvent
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -29,10 +29,10 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppTick );
+      SQFL_EVENT_TYPE( AppTick );
    };
 
-   class FLARE_API AppBeforeUpdateEvent : public ApplicationEvent
+   class SQFL_API AppBeforeUpdateEvent : public ApplicationEvent
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -47,10 +47,10 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppBeforeUpdate );
+      SQFL_EVENT_TYPE( AppBeforeUpdate );
    };
 
-   class FLARE_API AppUpdateEvent : public ApplicationEvent
+   class SQFL_API AppUpdateEvent : public ApplicationEvent
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -65,10 +65,10 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppUpdate );
+      SQFL_EVENT_TYPE( AppUpdate );
    };
 
-   class FLARE_API AppAfterUpdateEvent : public ApplicationEvent
+   class SQFL_API AppAfterUpdateEvent : public ApplicationEvent
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -83,10 +83,10 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppAfterUpdate );
+      SQFL_EVENT_TYPE( AppAfterUpdate );
    };
 
-   class FLARE_API AppBeforeRenderEvent : public ApplicationEvent
+   class SQFL_API AppBeforeRenderEvent : public ApplicationEvent
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -101,10 +101,10 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppBeforeRender );
+      SQFL_EVENT_TYPE( AppBeforeRender );
    };
 
-   class FLARE_API AppRenderEvent : public ApplicationEvent
+   class SQFL_API AppRenderEvent : public ApplicationEvent
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -119,10 +119,10 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppRender );
+      SQFL_EVENT_TYPE( AppRender );
    };
 
-   class FLARE_API AppAfterRenderEvent : public ApplicationEvent
+   class SQFL_API AppAfterRenderEvent : public ApplicationEvent
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -137,6 +137,6 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppAfterRender );
+      SQFL_EVENT_TYPE( AppAfterRender );
    };
 }

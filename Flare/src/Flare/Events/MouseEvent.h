@@ -2,9 +2,9 @@
 
 #include "Event.h"
 
-namespace Flare::Events
+namespace SquareFlare::Events
 {
-   class FLARE_API MouseMovedEvent : public Event
+   class SQFL_API MouseMovedEvent : public Event
    {
       /*****   CLASS   VARIABLES    *****/
       private:
@@ -28,8 +28,8 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( MouseMoved );
-      FLARE_EVENT_CATEGORY( EventCategory::Mouse | EventCategory::Input );
+      SQFL_EVENT_TYPE( MouseMoved );
+      SQFL_EVENT_CATEGORY( EventCategory::Mouse | EventCategory::Input );
 
       inline float GetX() const
       {
@@ -42,7 +42,7 @@ namespace Flare::Events
       }
    };
 
-   class FLARE_API MouseScrolledEvent : public Event
+   class SQFL_API MouseScrolledEvent : public Event
    {
       /*****   CLASS   VARIABLES    *****/
       private:
@@ -66,8 +66,8 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( MouseScrolled );
-      FLARE_EVENT_CATEGORY( EventCategory::Mouse | EventCategory::Input );
+      SQFL_EVENT_TYPE( MouseScrolled );
+      SQFL_EVENT_CATEGORY( EventCategory::Mouse | EventCategory::Input );
 
       inline float GetXOffSet() const
       {
@@ -80,7 +80,7 @@ namespace Flare::Events
       }
    };
 
-   class FLARE_API MouseButtonEvent : public Event
+   class SQFL_API MouseButtonEvent : public Event
    {
       /*****   CLASS   VARIABLES    *****/
       protected:
@@ -94,7 +94,7 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_CATEGORY( EventCategory::MouseButton | EventCategory::Mouse | EventCategory::Input );
+      SQFL_EVENT_CATEGORY( EventCategory::MouseButton | EventCategory::Mouse | EventCategory::Input );
 
       inline int GetMouseButton() const
       {
@@ -102,7 +102,7 @@ namespace Flare::Events
       }
    };
 
-   class FLARE_API MouseButtonPressedEvent : public MouseButtonEvent
+   class SQFL_API MouseButtonPressedEvent : public MouseButtonEvent
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -121,10 +121,10 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( KeyPressed );
+      SQFL_EVENT_TYPE( KeyPressed );
    };
 
-   class FLARE_API MouseButtonReleasedEvent : public MouseButtonEvent
+   class SQFL_API MouseButtonReleasedEvent : public MouseButtonEvent
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -143,6 +143,6 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( KeyReleased );
+      SQFL_EVENT_TYPE( KeyReleased );
    };
 }
