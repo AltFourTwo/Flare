@@ -14,10 +14,10 @@
 #include "WindowEvent.h"
 #include "MouseEvent.h"
 #include "KeyEvent.h"
-namespace _Ev = ::SquareFlare::Events;
+namespace _Ev = ::Flare::Events;
 #endif // INTELLISENSE_TEMPLATE_HELPER
 
-namespace SquareFlare::Events
+namespace Flare::Events
 {
    class EventDispatcher
    {

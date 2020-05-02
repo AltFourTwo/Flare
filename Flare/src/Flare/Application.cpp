@@ -1,4 +1,4 @@
-#include "SquareFlarePCH.h"
+#include "FlarePCH.h"
 
 #include "Application.h"
 
@@ -11,7 +11,7 @@
 
 #include <cstdint>
 
-namespace SquareFlare
+namespace Flare
 {
    Application::Application()
    {}
@@ -129,7 +129,7 @@ namespace SquareFlare
       std::cout << (integer8 & integer64) << std::endl;
       */
 
-      SquareFlare::Events::MouseButtonPressedEvent x_LMBclick = SquareFlare::Events::MouseButtonPressedEvent(1);
+      Flare::Events::MouseButtonPressedEvent x_LMBclick = Flare::Events::MouseButtonPressedEvent(1);
       std::cout << x_LMBclick << std::endl;
    }
 }

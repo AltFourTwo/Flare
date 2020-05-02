@@ -2,9 +2,9 @@
 
 #include "Event.h"
 
-namespace SquareFlare::Events
+namespace Flare::Events
 {
-   class SQFL_API KeyEvent : public Event
+   class FLARE_API KeyEvent : public Event
    {
       /*****   CLASS   VARIABLES    *****/
       protected:
@@ -18,7 +18,7 @@ namespace SquareFlare::Events
 
       /*****   GETTERS   *****/
       public:
-      SQFL_EVENT_CATEGORY( EventCategory::Keyboard | EventCategory::Input );
+      FLARE_EVENT_CATEGORY( EventCategory::Keyboard | EventCategory::Input );
 
       inline int GetKeyCode() const
       {
@@ -26,7 +26,7 @@ namespace SquareFlare::Events
       }
    };
 
-   class SQFL_API KeyPressedEvent : public KeyEvent
+   class FLARE_API KeyPressedEvent : public KeyEvent
    {
       /*****   CLASS   VARIABLES    *****/
       private:
@@ -50,7 +50,7 @@ namespace SquareFlare::Events
 
       /*****   GETTERS   *****/
       public:
-      SQFL_EVENT_TYPE( KeyPressed );
+      FLARE_EVENT_TYPE( KeyPressed );
 
       inline int GetRepeatCount() const
       {
@@ -58,7 +58,7 @@ namespace SquareFlare::Events
       }
    };
 
-   class SQFL_API KeyReleasedEvent : public KeyEvent
+   class FLARE_API KeyReleasedEvent : public KeyEvent
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -77,6 +77,6 @@ namespace SquareFlare::Events
 
       /*****   GETTERS   *****/
       public:
-      SQFL_EVENT_TYPE( KeyReleased );
+      FLARE_EVENT_TYPE( KeyReleased );
    };
 }

@@ -78,8 +78,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SQFL_X64;SQFL_FOR_WINDOWS;SQFL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\SquareFlare\src;..\Utility\src;vendor\GoogleTest\googletest\include;vendor\GoogleTest\googletest;vendor\GoogleTest\googlemock\include;vendor\GoogleTest\googlemock;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FLARE_X64;FLARE_FOR_WINDOWS;FLARE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;..\Flare\src;..\Utility\src;vendor\GoogleTest\googletest\include;vendor\GoogleTest\googletest;vendor\GoogleTest\googlemock\include;vendor\GoogleTest\googlemock;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -95,8 +95,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SQFL_X64;SQFL_FOR_WINDOWS;SQFL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\SquareFlare\src;..\Utility\src;vendor\GoogleTest\googletest\include;vendor\GoogleTest\googletest;vendor\GoogleTest\googlemock\include;vendor\GoogleTest\googlemock;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FLARE_X64;FLARE_FOR_WINDOWS;FLARE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;..\Flare\src;..\Utility\src;vendor\GoogleTest\googletest\include;vendor\GoogleTest\googletest;vendor\GoogleTest\googlemock\include;vendor\GoogleTest\googlemock;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -116,8 +116,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SQFL_X64;SQFL_FOR_WINDOWS;SQFL_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;..\SquareFlare\src;..\Utility\src;vendor\GoogleTest\googletest\include;vendor\GoogleTest\googletest;vendor\GoogleTest\googlemock\include;vendor\GoogleTest\googlemock;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FLARE_X64;FLARE_FOR_WINDOWS;FLARE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;..\Flare\src;..\Utility\src;vendor\GoogleTest\googletest\include;vendor\GoogleTest\googletest;vendor\GoogleTest\googlemock\include;vendor\GoogleTest\googlemock;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -143,8 +143,8 @@
     <ClCompile Include="vendor\GoogleTest\googletest\src\gtest-all.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SquareFlare\SquareFlare.vcxproj">
-      <Project>{A0972BEB-0C4D-A4E0-9541-9EB701F69AE4}</Project>
+    <ProjectReference Include="..\Flare\Flare.vcxproj">
+      <Project>{0F982E0D-7BAC-56BE-442E-FA1DB00153EF}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.vcxproj">
       <Project>{594615A9-C525-9444-CE3D-1F1B3A9CFAA5}</Project>
