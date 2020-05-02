@@ -33,17 +33,23 @@
     <ClCompile Include="src\MainTest.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utility\BitFlags\DoubleByteFlagsTest.cpp">
+      <Filter>src\Utility\BitFlags</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility\BitFlags\OctaByteFlagsTest.cpp">
+      <Filter>src\Utility\BitFlags</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility\BitFlags\QuadByteFlagsTest.cpp">
+      <Filter>src\Utility\BitFlags</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility\BitFlags\SingleByteFlagsTest.cpp">
+      <Filter>src\Utility\BitFlags</Filter>
+    </ClCompile>
     <ClCompile Include="vendor\GoogleTest\googlemock\src\gmock-all.cc">
       <Filter>vendor\GoogleTest\googlemock\src</Filter>
     </ClCompile>
     <ClCompile Include="vendor\GoogleTest\googletest\src\gtest-all.cc">
       <Filter>vendor\GoogleTest\googletest\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utility\BitFlags\SingleByteFlagsTest.cpp">
-      <Filter>src\Utility\BitFlags</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utility\BitFlags\DoubleByteFlagsTest.cpp" />
-    <ClCompile Include="src\Utility\BitFlags\OctaByteFlagsTest.cpp" />
-    <ClCompile Include="src\Utility\BitFlags\QuadByteFlagsTest.cpp" />
   </ItemGroup>
 </Project>

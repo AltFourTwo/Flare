@@ -2,9 +2,9 @@
 
 #include "Core.h"
 
-namespace SquareFlare {
+namespace Flare {
 
-	class SQFL_API Application
+	class FLARE_API Application
 	{
 	
 	public:

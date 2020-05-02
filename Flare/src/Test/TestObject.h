@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SquareFlare/Core.h"
+#include "Flare/Core.h"
 #include "Composing/Composition.h"
 #include "Composing/Formattables/IFormattable.h"
 

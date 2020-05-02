@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Flare">
+      <UniqueIdentifier>{0F982E0D-7BAC-56BE-442E-FA1DB00153EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Flare\Events">
+      <UniqueIdentifier>{13BD2467-FF1F-B40B-A8A5-ECC194E77F8E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{45DC8C7C-3113-8E0D-DAFF-7310C6150A0F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Comments.h" />
+    <ClInclude Include="src\Flare.h" />
+    <ClInclude Include="src\Flare\Application.h">
+      <Filter>Flare</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flare\Core.h">
+      <Filter>Flare</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flare\EntryPoint.h">
+      <Filter>Flare</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flare\Events\ApplicationEvent.h">
+      <Filter>Flare\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flare\Events\Event.h">
+      <Filter>Flare\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flare\Events\EventDispatcher.h">
+      <Filter>Flare\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flare\Events\Events.h">
+      <Filter>Flare\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flare\Events\KeyEvent.h">
+      <Filter>Flare\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flare\Events\MouseEvent.h">
+      <Filter>Flare\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flare\Events\WindowEvent.h">
+      <Filter>Flare\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FlarePCH.h" />
+    <ClInclude Include="src\Test\TestObject.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Flare\Application.cpp">
+      <Filter>Flare</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FlarePCH.cpp" />
+  </ItemGroup>
+</Project>

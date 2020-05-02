@@ -15,6 +15,6 @@
 #include <unordered_set>
 
 
-#ifdef SQFL_FOR_WINDOWS
+#ifdef FLARE_FOR_WINDOWS
    #include <Windows.h>
 #endif
