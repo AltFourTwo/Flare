@@ -11,6 +11,9 @@
 
 #include <cstdint>
 
+#include <thread>
+#include <exception>
+
 namespace Flare
 {
    Application::Application()

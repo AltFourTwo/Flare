@@ -1,4 +1,4 @@
-workspace "SquareFlare"
+workspace "Flare"
 	architecture "x64"
 
 	configurations
@@ -10,7 +10,7 @@ workspace "SquareFlare"
 
 	defines
 	{
-		"SQFL_X64"
+		"FLARE_X64"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
@@ -20,21 +20,21 @@ IncludeDir = {}
 IncludeDir["Utility"] = "Utility/src/"
 IncludeDir["GoogleTest"] = "UnitTest/vendor/GoogleTest/googletest/include";
 IncludeDir["GoogleMock"] = "UnitTest/vendor/GoogleTest/googlemock/include";
---IncludeDir["GLFW"] = "SquareFlare/vendor/GLFW/include"
+--IncludeDir["GLFW"] = "Flare/vendor/GLFW/include"
 
---include "SquareFlare/vendor/GLFW"
+--include "Flare/vendor/GLFW"
 
------ SQUAREFLARE -----
-project "SquareFlare"
-	location "SquareFlare"
+----- FLARE -----
+project "Flare"
+	location "Flare"
 	kind "SharedLib"
 	language "C++"
 
 	targetdir ( "bin/" .. outputdir .. "/%{prj.name}" )
 	objdir ( "b-int/" .. outputdir .. "/%{prj.name}" )
 	
-	pchheader "SquareFlarePCH.h"
-	pchsource "SquareFlare/src/SquareFlarePCH.cpp"
+	pchheader "FlarePCH.h"
+	pchsource "Flare/src/FlarePCH.cpp"
 
 	files 
 	{
@@ -60,8 +60,8 @@ project "SquareFlare"
 
 		defines
 		{
-			"SQFL_FOR_WINDOWS",
-			"SQFL_DLL"
+			"FLARE_FOR_WINDOWS",
+			"FLARE_DLL"
 		}
 
 		postbuildcommands
@@ -71,17 +71,17 @@ project "SquareFlare"
 		}
 
 	filter "configurations:Debug"
-		defines "SQFL_DEBUG"
+		defines "FLARE_DEBUG"
 		buildoptions "/MDd"
 		symbols "On"
 		
 	filter "configurations:Release"
-		defines "SQFL_RELEASE"
+		defines "FLARE_RELEASE"
 		buildoptions "/MD"
 		optimize "On"
 		
 	filter "configurations:Dist"
-		defines "SQFL_DIST"
+		defines "FLARE_DIST"
 		buildoptions "/MD"
 		optimize "On"
 
@@ -120,21 +120,21 @@ project "Utility"
 
 		defines
 		{
-			"SQFL_FOR_WINDOWS"
+			"FLARE_FOR_WINDOWS"
 		}
 
 	filter "configurations:Debug"
-		defines "SQFL_DEBUG"
+		defines "FLARE_DEBUG"
 		buildoptions "/MDd"
 		symbols "On"
 		
 	filter "configurations:Release"
-		defines "SQFL_RELEASE"
+		defines "FLARE_RELEASE"
 		buildoptions "/MD"
 		optimize "On"
 		
 	filter "configurations:Dist"
-		defines "SQFL_DIST"
+		defines "FLARE_DIST"
 		buildoptions "/MD"
 		optimize "On"
 
@@ -159,7 +159,7 @@ files
 includedirs
 {
 	"%{prj.name}/src",
-	"SquareFlare/src",
+	"Flare/src",
 	"%{IncludeDir.Utility}",
 	"%{IncludeDir.GoogleTest}",
 	"%{IncludeDir.GoogleTest}/..",
@@ -169,7 +169,7 @@ includedirs
 
 links
 {
-	"SquareFlare",
+	"Flare",
 	"Utility"
 }
 
@@ -180,21 +180,21 @@ filter "system:windows"
 
 	defines
 	{
-		"SQFL_FOR_WINDOWS"
+		"FLARE_FOR_WINDOWS"
 	}
 
 filter "configurations:Debug"
-	defines "SQFL_DEBUG"
+	defines "FLARE_DEBUG"
 	buildoptions "/MDd"
 	symbols "On"
 
 filter "configurations:Release"
-	defines "SQFL_RELEASE"
+	defines "FLARE_RELEASE"
 	buildoptions "/MD"
 	optimize "On"
 	
 filter "configurations:Dist"
-	defines "SQFL_DIST"
+	defines "FLARE_DIST"
 	buildoptions "/MD"
 	optimize "On"
 	
@@ -220,15 +220,14 @@ project "Sandbox"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"SquareFlare/src",
+		"Flare/src",
 		"%{IncludeDir.Utility}"
 	}
 
 	links
 	{
-		"SquareFlare",
-		"Utility",
-		"GoogleTest"
+		"Flare",
+		"Utility"
 	}
 
 	filter "system:windows"
@@ -238,20 +237,20 @@ project "Sandbox"
 
 		defines
 		{
-			"SQFL_FOR_WINDOWS"
+			"FLARE_FOR_WINDOWS"
 		}
 
 	filter "configurations:Debug"
-		defines "SQFL_DEBUG"
+		defines "FLARE_DEBUG"
 		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "SQFL_RELEASE"
+		defines "FLARE_RELEASE"
 		buildoptions "/MD"
 		optimize "On"
 		
 	filter "configurations:Dist"
-		defines "SQFL_DIST"
+		defines "FLARE_DIST"
 		buildoptions "/MD"
 		optimize "On"
