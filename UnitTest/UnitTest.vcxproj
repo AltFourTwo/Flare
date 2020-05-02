@@ -139,8 +139,6 @@
     <ClCompile Include="src\Utility\BitFlags\OctaByteFlagsTest.cpp" />
     <ClCompile Include="src\Utility\BitFlags\QuadByteFlagsTest.cpp" />
     <ClCompile Include="src\Utility\BitFlags\SingleByteFlagsTest.cpp" />
-    <ClCompile Include="vendor\GoogleTest\googlemock\src\gmock-all.cc" />
-    <ClCompile Include="vendor\GoogleTest\googletest\src\gtest-all.cc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Flare\Flare.vcxproj">
@@ -148,6 +146,9 @@
     </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.vcxproj">
       <Project>{594615A9-C525-9444-CE3D-1F1B3A9CFAA5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\GoogleTest\GoogleTest.vcxproj">
+      <Project>{A2790B43-8E31-4D90-F738-26ECE30FE880}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

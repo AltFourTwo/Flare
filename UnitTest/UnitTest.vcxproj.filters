@@ -1,55 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="src">
-      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{594615A9-C525-9444-CE3D-1F1B3A9CFAA5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Utility">
-      <UniqueIdentifier>{70464FB2-DCFB-C7A7-65F0-C17ED1A4BEAB}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Utility\BitFlags">
-      <UniqueIdentifier>{4B10B855-379F-411F-E0BD-551ACC2B52C5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor">
-      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\GoogleTest">
-      <UniqueIdentifier>{1FBF6006-8BD5-5E9C-D44C-EABD40A22F24}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\GoogleTest\googlemock">
-      <UniqueIdentifier>{159146D5-014C-3681-AA03-AFCB969D8011}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\GoogleTest\googlemock\src">
-      <UniqueIdentifier>{ACD1BE49-9822-AA8B-C186-984DAD363DF5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\GoogleTest\googletest">
-      <UniqueIdentifier>{4B3F4AD5-37FA-3981-E0B1-B2CBCC4B8411}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\GoogleTest\googletest\src">
-      <UniqueIdentifier>{E2AABAE3-CEFB-A525-F75F-94E7E30F398F}</UniqueIdentifier>
+    <Filter Include="Utility\BitFlags">
+      <UniqueIdentifier>{54064BEE-40FF-6940-6931-4FC55589494C}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\MainTest.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
+    <ClCompile Include="src\MainTest.cpp" />
     <ClCompile Include="src\Utility\BitFlags\DoubleByteFlagsTest.cpp">
-      <Filter>src\Utility\BitFlags</Filter>
+      <Filter>Utility\BitFlags</Filter>
     </ClCompile>
     <ClCompile Include="src\Utility\BitFlags\OctaByteFlagsTest.cpp">
-      <Filter>src\Utility\BitFlags</Filter>
+      <Filter>Utility\BitFlags</Filter>
     </ClCompile>
     <ClCompile Include="src\Utility\BitFlags\QuadByteFlagsTest.cpp">
-      <Filter>src\Utility\BitFlags</Filter>
+      <Filter>Utility\BitFlags</Filter>
     </ClCompile>
     <ClCompile Include="src\Utility\BitFlags\SingleByteFlagsTest.cpp">
-      <Filter>src\Utility\BitFlags</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\GoogleTest\googlemock\src\gmock-all.cc">
-      <Filter>vendor\GoogleTest\googlemock\src</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\GoogleTest\googletest\src\gtest-all.cc">
-      <Filter>vendor\GoogleTest\googletest\src</Filter>
+      <Filter>Utility\BitFlags</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

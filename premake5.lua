@@ -152,8 +152,6 @@ files
 {
 	"%{prj.name}/src/**.h",
 	"%{prj.name}/src/**.cpp",
-	"%{prj.name}/vendor/GoogleTest/googletest/src/gtest-all.cc",
-	"%{prj.name}/vendor/GoogleTest/googlemock/src/gmock-all.cc"
 }
 
 includedirs
@@ -170,7 +168,8 @@ includedirs
 links
 {
 	"Flare",
-	"Utility"
+	"Utility",
+	"GoogleTest"
 }
 
 filter "system:windows"
@@ -198,6 +197,61 @@ filter "configurations:Dist"
 	buildoptions "/MD"
 	optimize "On"
 	
+
+----- GOOGLETEST -----
+project "GoogleTest"
+location "UnitTest/vendor/GoogleTest"
+kind "StaticLib"
+language "C++"
+
+targetdir ( "bin/" .. outputdir .. "/%{prj.name}" )
+objdir ( "b-int/" .. outputdir .. "/%{prj.name}" )
+
+files 
+{
+	"%{prj.location}/googletest/src/gtest-all.cc",
+	"%{prj.location}/googlemock/src/gmock-all.cc"
+}
+
+includedirs
+{
+	"%{IncludeDir.GoogleTest}",
+	"%{IncludeDir.GoogleTest}/..",
+	"%{IncludeDir.GoogleMock}",
+	"%{IncludeDir.GoogleMock}/.."
+}
+
+libdirs
+{
+	"%{prj.location}/googletest/src",
+	"%{prj.location}/googlemock/src"
+}
+
+filter "system:windows"
+	cppdialect "C++17"
+	staticruntime "On"
+	systemversion "latest"
+
+	defines
+	{
+		"FLARE_FOR_WINDOWS"
+	}
+
+filter "configurations:Debug"
+	defines "FLARE_DEBUG"
+	buildoptions "/MDd"
+	symbols "On"
+
+filter "configurations:Release"
+	defines "FLARE_RELEASE"
+	buildoptions "/MD"
+	optimize "On"
+	
+filter "configurations:Dist"
+	defines "FLARE_DIST"
+	buildoptions "/MD"
+	optimize "On"
+
 
 ----- SANDBOX -----
 project "Sandbox"
