@@ -20,9 +20,10 @@ IncludeDir = {}
 IncludeDir["Utility"] = "Utility/src/"
 IncludeDir["GoogleTest"] = "UnitTest/vendor/GoogleTest/googletest/include";
 IncludeDir["GoogleMock"] = "UnitTest/vendor/GoogleTest/googlemock/include";
---IncludeDir["GLFW"] = "Flare/vendor/GLFW/include"
+IncludeDir["GLFW"] = "Flare/vendor/GLFW/include"
 
---include "Flare/vendor/GLFW"
+include "UnitTest/vendor/GoogleTest"
+include "Flare/vendor/GLFW"
 
 ----- FLARE -----
 project "Flare"
@@ -170,61 +171,6 @@ links
 	"Flare",
 	"Utility",
 	"GoogleTest"
-}
-
-filter "system:windows"
-	cppdialect "C++17"
-	staticruntime "On"
-	systemversion "latest"
-
-	defines
-	{
-		"FLARE_FOR_WINDOWS"
-	}
-
-filter "configurations:Debug"
-	defines "FLARE_DEBUG"
-	buildoptions "/MDd"
-	symbols "On"
-
-filter "configurations:Release"
-	defines "FLARE_RELEASE"
-	buildoptions "/MD"
-	optimize "On"
-	
-filter "configurations:Dist"
-	defines "FLARE_DIST"
-	buildoptions "/MD"
-	optimize "On"
-	
-
------ GOOGLETEST -----
-project "GoogleTest"
-location "UnitTest/vendor/GoogleTest"
-kind "StaticLib"
-language "C++"
-
-targetdir ( "bin/" .. outputdir .. "/%{prj.name}" )
-objdir ( "b-int/" .. outputdir .. "/%{prj.name}" )
-
-files 
-{
-	"%{prj.location}/googletest/src/gtest-all.cc",
-	"%{prj.location}/googlemock/src/gmock-all.cc"
-}
-
-includedirs
-{
-	"%{IncludeDir.GoogleTest}",
-	"%{IncludeDir.GoogleTest}/..",
-	"%{IncludeDir.GoogleMock}",
-	"%{IncludeDir.GoogleMock}/.."
-}
-
-libdirs
-{
-	"%{prj.location}/googletest/src",
-	"%{prj.location}/googlemock/src"
 }
 
 filter "system:windows"
