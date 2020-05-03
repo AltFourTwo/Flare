@@ -3,4 +3,4 @@
 	url = https://github.com/AltFourTwo/GoogleTest.git
 [submodule "Flare/vendor/GLFW"]
 	path = Flare/vendor/GLFW
-	url = https://github.com/AltFourTwo/GLFW
+	url = https://github.com/AltFourTwo/GLFW.git
