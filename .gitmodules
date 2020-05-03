@@ -1,3 +1,6 @@
 [submodule "UnitTest/vendor/GoogleTest"]
 	path = UnitTest/vendor/GoogleTest
-	url = https://github.com/AltFourTwo/googletest.git
+	url = https://github.com/AltFourTwo/GoogleTest.git
+[submodule "Flare/vendor/GLFW"]
+	path = Flare/vendor/GLFW
+	url = https://github.com/AltFourTwo/GLFW.git

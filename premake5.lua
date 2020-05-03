@@ -20,9 +20,10 @@ IncludeDir = {}
 IncludeDir["Utility"] = "Utility/src/"
 IncludeDir["GoogleTest"] = "UnitTest/vendor/GoogleTest/googletest/include";
 IncludeDir["GoogleMock"] = "UnitTest/vendor/GoogleTest/googlemock/include";
---IncludeDir["GLFW"] = "Flare/vendor/GLFW/include"
+IncludeDir["GLFW"] = "Flare/vendor/GLFW/include"
 
---include "Flare/vendor/GLFW"
+include "UnitTest/vendor/GoogleTest"
+include "Flare/vendor/GLFW"
 
 ----- FLARE -----
 project "Flare"
@@ -152,8 +153,6 @@ files
 {
 	"%{prj.name}/src/**.h",
 	"%{prj.name}/src/**.cpp",
-	"%{prj.name}/vendor/GoogleTest/googletest/src/gtest-all.cc",
-	"%{prj.name}/vendor/GoogleTest/googlemock/src/gmock-all.cc"
 }
 
 includedirs
@@ -170,7 +169,8 @@ includedirs
 links
 {
 	"Flare",
-	"Utility"
+	"Utility",
+	"GoogleTest"
 }
 
 filter "system:windows"
@@ -197,7 +197,7 @@ filter "configurations:Dist"
 	defines "FLARE_DIST"
 	buildoptions "/MD"
 	optimize "On"
-	
+
 
 ----- SANDBOX -----
 project "Sandbox"
