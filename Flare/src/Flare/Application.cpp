@@ -7,7 +7,9 @@
 #include "Composing/Composition.h"
 #include "Logging/Console.h"
 #include "Exceptions/UtilityException.h"
-#include "Events/Events.h"
+#include "Events/MouseEvent.h"
+#include <GLFW/glfw3.h>
+#include <random>
 
 #include <cstdint>
 
@@ -17,14 +19,30 @@
 namespace Flare
 {
    Application::Application()
-   {}
+   {
+      m_Window = std::unique_ptr<UserInterface::Window>(UserInterface::Window::Create());
+   }
 
    Application::~Application()
    {}
 
    void Application::Run()
    {
-      while ( true );
+      //float r = 0.0f, g = 0.0f, b = 0.0f;
+
+      while ( m_Running )
+      {
+         // This is evil ouch.
+         //r = std::rand() % 1000 / 1000.0f;
+         //g = std::rand() % 1000 / 1000.0f;
+         //b = std::rand() % 1000 / 1000.0f;
+         //glClearColor(r,g,b,1);
+
+         glClearColor(0.5f,0.25f,0,1);
+         glClear(GL_COLOR_BUFFER_BIT);
+
+         m_Window->OnUpdate();
+      }
    }
 
    void Application::Test()

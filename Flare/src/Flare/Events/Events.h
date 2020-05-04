@@ -50,10 +50,3 @@ namespace Flare::Events
 
    using EventCategory = EVENT_CATEGORY_SCOPE::EventCategory;
 }
-
-#include "Event.h"
-#include "ApplicationEvent.h"
-#include "WindowEvent.h"
-#include "KeyEvent.h"
-#include "MouseEvent.h"
-#include "EventDispatcher.h"

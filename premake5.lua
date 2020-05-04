@@ -47,12 +47,15 @@ project "Flare"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{IncludeDir.Utility}"
+		"%{IncludeDir.Utility}",
+		"%{IncludeDir.GLFW}"
 	}
 
 	links
 	{
-		"Utility"
+		"Utility",
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -73,9 +76,14 @@ project "Flare"
 		}
 
 	filter "configurations:Debug"
-		defines "FLARE_DEBUG"
 		buildoptions "/MDd"
 		symbols "On"
+
+		defines 
+		{ 
+			"FLARE_DEBUG",
+			"FLARE_ENABLE_ASSERTS"
+		}
 		
 	filter "configurations:Release"
 		defines "FLARE_RELEASE"

@@ -9,3 +9,11 @@
 #else
    #error Flare is windows only!
 #endif
+
+#ifdef FLARE_ENABLE_ASSERTS
+   #define FLARE_ASSERT(x) { if(!(x)) { __debugbreak(); } }
+   #define FLARE_CORE_ASSERT(x) { if(!(x)) { __debugbreak(); } }
+#else
+   #define FLARE_ASSERT(x)
+   #define FLARE_CORE_ASSERT(x)
+#endif

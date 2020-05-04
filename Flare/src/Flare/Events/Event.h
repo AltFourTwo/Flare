@@ -42,7 +42,6 @@ namespace Flare::Events
       return os << e.ToString();
    }
 
-
    // These macros are used as quick definitions of the pure virtual methods in the abstract event class above.
 #define FLARE_EVENT_TYPE(a_Type) static EventType GetStaticType() { return EventType::##a_Type; }\
                                 virtual EventType GetEventType() const override { return GetStaticType(); }\
