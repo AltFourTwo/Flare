@@ -7,3 +7,4 @@ b-int/
 *.user
 *.vcxproj*
 *.sln
+Metrics.*
