@@ -23,8 +23,8 @@ namespace Logging
       /*******************************\
       \*****   PRIVATE-MEMBERS   *****/
       private:
-      bool m_IsInitialized = false;
-      std::vector<Logger> m_Loggers = std::vector<Logger>();
+      static bool s_IsInitialized;
+      static std::vector<Logger> s_Loggers;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
@@ -40,7 +40,7 @@ namespace Logging
       static void Log( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
       static void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message );
       static void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
-      Logger& Initialize( const char* a_LoggerName = DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = DEFAULT_LOG_LEVEL, const int& a_TextColor = DEFAULT_TEXT_COLOR, const int& a_BGColor = DEFAULT_BG_COLOR, const char* a_LoggingFormat = DEFAULT_FORMAT );
-      Logger& CreaterLogger( const char* a_LoggerName = DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = DEFAULT_LOG_LEVEL, const int& a_TextColor = DEFAULT_TEXT_COLOR, const int& a_BGColor = DEFAULT_BG_COLOR, const char* a_LoggingFormat = DEFAULT_FORMAT );
+      static Logger& Initialize( const char* a_LoggerName = DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = DEFAULT_LOG_LEVEL, const int& a_TextColor = DEFAULT_TEXT_COLOR, const int& a_BGColor = DEFAULT_BG_COLOR, const char* a_LoggingFormat = DEFAULT_FORMAT );
+      static Logger& CreateLogger( const char* a_LoggerName = DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = DEFAULT_LOG_LEVEL, const int& a_TextColor = DEFAULT_TEXT_COLOR, const int& a_BGColor = DEFAULT_BG_COLOR, const char* a_LoggingFormat = DEFAULT_FORMAT );
    };
 }

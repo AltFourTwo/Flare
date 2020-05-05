@@ -38,13 +38,13 @@ namespace Flare::UserInterface
 
       /*****   SETTERS   *****/
       public:
-      inline void SetEventCallback( const EventCallback& a_Callback ) override {}
+      inline void SetEventCallback( const EventCallback& a_Callback ) override { m_WindowData.Callback = a_Callback; }
       void SetVSync(bool a_value) override;
 
       /*****   GETTERS   *****/
       public:
-      inline unsigned int GetWidth() const override { return 0; }
-      inline unsigned int GetHeight() const override { return 0; }
+      inline unsigned int GetWidth() const override { return m_WindowData.Width; }
+      inline unsigned int GetHeight() const override { return m_WindowData.Height; }
       bool IsVSync() const override;
    };
 

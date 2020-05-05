@@ -12,6 +12,10 @@ namespace Utility::Composing::Formattables
       m_String( a_String )
    {}
 
+   FString::FString( const char* a_CString ) :
+      m_String( a_CString )
+   {}
+
    /********************************\
    \*****   PUBLIC-FUNCTIONS   *****/
    std::string FString::ToString() const

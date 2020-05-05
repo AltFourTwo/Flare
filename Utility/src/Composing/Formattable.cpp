@@ -34,6 +34,11 @@ namespace Utility::Composing
       m_Data = new Formattables::FFloatingPoint( a_FloatingPoint );
    }
 
+   Formattable::Formattable( const char* a_CString )
+   {
+      m_Data = new Formattables::FString( a_CString );
+   }
+
    Formattable::Formattable( const std::string& a_String )
    {
       m_Data = new Formattables::FString( a_String );

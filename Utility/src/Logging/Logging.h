@@ -4,16 +4,21 @@ namespace Logging
 {
    /***************************\
    \*****   ENUMERATORS   *****/
-   enum class LogLevel : int
+   struct LOG_LEVEL_SCOPE
    {
-      TRACE = 1,
-      DEBUG = 2,
-      INFO = 3,
-      WARNING = 4,
-      ERR_OR = 5,
-      FATAL = 6,
-      OFF = 7
+      enum LogLevel
+      {
+         TRACE = 1,
+         DEBUG = 2,
+         INFO = 3,
+         WARNING = 4,
+         ERR_OR = 5,
+         FATAL = 6,
+         OFF = 7
+      };
    };
+
+   using LogLevel = LOG_LEVEL_SCOPE::LogLevel;
 
    enum class FormatControlCharacter : char
    {

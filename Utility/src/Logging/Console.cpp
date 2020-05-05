@@ -18,6 +18,10 @@ namespace Logging
    const char* Console::DEFAULT_LOGGER_NAME = "Unnamed Logger";
    const char* Console::DEFAULT_FORMAT = "";
 
+   /*****   CLASS   VARIABLES    *****/
+   bool Console::s_IsInitialized = false;
+   std::vector<Logger> Console::s_Loggers = std::vector<Logger>();
+
    /**************************************\
    \*****   CONSTRUCTOR-DESTRUCTOR   *****/
    Console::Console()
@@ -34,19 +38,19 @@ namespace Logging
    // Not specifying a logger uses the first one in the list from initialization.
    void Console::Log( LogLevel a_LogLevel, const char* a_Message )
    {
-      Log( Get().m_Loggers.front(), a_LogLevel, a_Message );
+      Log( Get().s_Loggers.front(), a_LogLevel, a_Message );
    }
 
    void Console::Log( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables )
    {
-      Log( Get().m_Loggers.front(), a_LogLevel, a_Message, a_Formattables );
+      Log( Get().s_Loggers.front(), a_LogLevel, a_Message, a_Formattables );
    }
 
    // Log message using a logger's information.
    void Console::Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message )
    {
       std::string x_ConsoleFormattedMessage = a_Logger.ExecuteQueue( a_LogLevel, a_Message );
-      std::cout << x_ConsoleFormattedMessage;
+      std::cout << x_ConsoleFormattedMessage << "\n";
    }
 
    void Console::Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables )
@@ -58,27 +62,27 @@ namespace Logging
    // Returns the first logger for core logging.
    Logger& Console::Initialize( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char* a_LoggingFormat )
    {
-      if ( m_IsInitialized )
+      if ( s_IsInitialized )
          throw; // TODO Exception Logging System Already Initialized.
 
-      m_Loggers.reserve( MAX_LOGGERS );
-      m_Loggers.emplace_back( a_LoggerName, a_BaseLoggingLevel, a_TextColor, a_BGColor, a_LoggingFormat );
+      s_Loggers.reserve( MAX_LOGGERS );
+      s_Loggers.emplace_back( a_LoggerName, a_BaseLoggingLevel, a_TextColor, a_BGColor, a_LoggingFormat );
 
-      m_IsInitialized = true;
+      s_IsInitialized = true;
 
-      return m_Loggers.back();
+      return s_Loggers.back();
    }
 
-   Logger& Console::CreaterLogger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char* a_LoggingFormat )
+   Logger& Console::CreateLogger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char* a_LoggingFormat )
    {
-      if ( !m_IsInitialized )
+      if ( !s_IsInitialized )
          throw; // TODO Exception Logging System Was Not Initialized.
 
-      if ( m_Loggers.size() >= MAX_LOGGERS )
+      if ( s_Loggers.size() >= MAX_LOGGERS )
          throw; // TODO Exception Maximum number of loggers hit.
 
-      m_Loggers.emplace_back( a_LoggerName, a_BaseLoggingLevel, a_TextColor, a_BGColor, a_LoggingFormat );
+      s_Loggers.emplace_back( a_LoggerName, a_BaseLoggingLevel, a_TextColor, a_BGColor, a_LoggingFormat );
 
-      return m_Loggers.back();
+      return s_Loggers.back();
    }
 }

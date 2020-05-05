@@ -4,6 +4,7 @@
 
 #include "Flare/Core.h"
 #include "Flare/Events/Event.h"
+#include "Logging/Console.h"
 
 namespace Flare::UserInterface
 {
@@ -27,6 +28,10 @@ namespace Flare::UserInterface
    {
       public:
       using EventCallback = std::function<void( Flare::Events::Event& )>;
+
+      /*****   CLASS   VARIABLES    *****/
+      protected:
+      Logging::Logger* m_WindowLogger;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
