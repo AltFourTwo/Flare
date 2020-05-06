@@ -49,6 +49,7 @@ namespace Flare::UserInterface
 
       /*****   GETTERS   *****/
       public:
+      virtual void* GetNativeWindow() const = 0;
       virtual unsigned int GetWidth() const = 0;
       virtual unsigned int GetHeight() const = 0;
       virtual bool IsVSync() const = 0;

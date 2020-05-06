@@ -43,6 +43,7 @@ namespace Flare::UserInterface
 
       /*****   GETTERS   *****/
       public:
+      inline virtual void* GetNativeWindow() const { return m_Window; };
       inline unsigned int GetWidth() const override { return m_WindowData.Width; }
       inline unsigned int GetHeight() const override { return m_WindowData.Height; }
       bool IsVSync() const override;
