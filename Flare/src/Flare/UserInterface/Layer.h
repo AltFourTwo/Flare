@@ -3,8 +3,6 @@
 #include "Flare/Core.h"
 #include "Flare/Events/Event.h"
 
-#include <vector>
-
 namespace Flare::UserInterface
 {
    class FLARE_API Layer
@@ -23,7 +21,7 @@ namespace Flare::UserInterface
       virtual void OnAttach() = 0;
       virtual void OnDetach() = 0;
       virtual void OnEvent( Flare::Events::Event& e ) = 0;
-      virtual void Update() = 0;
-      virtual void Render() = 0;
+      virtual void OnUpdate() = 0;
+      virtual void OnRender() = 0;
    };
 }

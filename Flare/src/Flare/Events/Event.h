@@ -31,6 +31,8 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
+      bool IsHandled() { return m_Handled; }
+      bool IsIntercepted() { return m_Intercepted; }
       virtual EventType GetEventType() const = 0;
       virtual const char* GetName() const = 0;
       virtual int GetCategoryFlags() const = 0;

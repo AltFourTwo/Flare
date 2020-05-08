@@ -4,16 +4,8 @@
 #include "Events/EventDispatcher.h"
 
 // Temporary Includes
-#include "Test/TestObject.h"
 #include "Composing/Composition.h"
-#include "Exceptions/UtilityException.h"
 #include <GLFW/glfw3.h>
-#include <random>
-
-#include <cstdint>
-
-#include <thread>
-#include <exception>
 
 namespace Flare
 {
@@ -38,14 +30,44 @@ namespace Flare
          glClearColor( 0.5f, 0.25f, 0, 1 );
          glClear( GL_COLOR_BUFFER_BIT );
 
+         for (UserInterface::Layer* x_Layer : m_LayerStack )
+            x_Layer->OnUpdate();
+
          m_MainWindow->OnUpdate();
       }
+   }
+
+   void Application::PopLayer( UserInterface::Layer* a_Layer )
+   {
+      m_LayerStack.PopLayer( a_Layer );
+   }
+
+   void Application::PushLayer( UserInterface::Layer* a_Layer )
+   {
+      m_LayerStack.PushLayer( a_Layer );
+   }
+
+   void Application::PopOverlay( UserInterface::Layer* a_Overlay )
+   {
+      m_LayerStack.PopOverlay( a_Overlay );
+   }
+
+   void Application::PushOverlay( UserInterface::Layer* a_Overlay )
+   {
+      m_LayerStack.PushOverlay( a_Overlay );
    }
 
    /*****   EVENT   HANDLERS     *****/
    void Application::OnEvent( Events::Event& e )
    {
       m_Console->Trace( e.ToString().c_str() );
+
+      for ( UserInterface::LayerIterator_R itr = m_LayerStack.rend(); itr != m_LayerStack.rbegin(); )
+      {
+         (*itr++)->OnEvent(e);
+         if (e.IsHandled())
+            break;
+      }
 
       Events::EventDispatcher x_Dispatcher( e );
       x_Dispatcher.Dispatch<Events::WindowCloseEvent>( BIND_EVENT_CALLBACK( OnWindowClose ) );
