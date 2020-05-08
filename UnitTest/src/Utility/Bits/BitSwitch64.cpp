@@ -1,107 +1,107 @@
 #include "gtest/gtest.h"
 
-#include "BitFlags/BitMasks.h"
-#include "BitFlags/BitFlags.h"
+#include "Bits/Masks.h"
+#include "Bits/BitSwitch.h"
 
-namespace UnitTest::Utility::BitFlags::OctaByteFlags
+namespace UnitTest::Utility::Bits::BitSwitch64
 {
-   namespace Masks = ::Utility::BitFlags::BitMasks;
-   using OctaByteFlags = ::Utility::BitFlags::OctaByteFlags;
+   namespace Masks = ::Utility::Bits::Masks;
+   using BitSwitch64 = ::Utility::Bits::BitSwitch64;
 
-   TEST( OctaByteFlagsTest, DefaultConstructor )
+   TEST( BitSwitch64_Test, DefaultConstructor )
    {
-      OctaByteFlags x_Flags;
+      BitSwitch64 x_Flags;
       EXPECT_EQ( 0, x_Flags.Value() );
    }
 
-   TEST( OctaByteFlagsTest, InitializeValueConstructor )
+   TEST( BitSwitch64_Test, InitializeValueConstructor )
    {
-      OctaByteFlags x_Flags( Masks::BIT43 );
+      BitSwitch64 x_Flags( Masks::BIT43 );
       EXPECT_EQ( Masks::BIT43, x_Flags.Value() );
    }
 
-   TEST( OctaByteFlagsTest, SetAll )
+   TEST( BitSwitch64_Test, SetAll )
    {
-      OctaByteFlags x_Flags;
+      BitSwitch64 x_Flags;
       x_Flags.Set();
       EXPECT_EQ( UINT64_MAX, x_Flags.Value() );
    }
 
-   TEST( OctaByteFlagsTest, SetIndividually )
+   TEST( BitSwitch64_Test, SetIndividually )
    {
-      OctaByteFlags x_Flags;
+      BitSwitch64 x_Flags;
       x_Flags.Set( 45 );
       EXPECT_EQ( Masks::BIT45, x_Flags.Value() );
    }
 
-   TEST( OctaByteFlagsTest, SetWithTrue )
+   TEST( BitSwitch64_Test, SetWithTrue )
    {
-      OctaByteFlags x_Flags;
+      BitSwitch64 x_Flags;
       x_Flags.Set( 44, true );
       EXPECT_EQ( Masks::BIT44, x_Flags.Value() );
    }
 
-   TEST( OctaByteFlagsTest, SetWithFalse )
+   TEST( BitSwitch64_Test, SetWithFalse )
    {
       uint64_t x_ExpectedValue = 0xFFFF'EFFF'FFFF'FFFF;
-      OctaByteFlags x_Flags( UINT64_MAX );
+      BitSwitch64 x_Flags( UINT64_MAX );
       x_Flags.Set( 44, false );
       EXPECT_EQ( x_ExpectedValue, x_Flags.Value() );
    }
 
-   TEST( OctaByteFlagsTest, ResetAll )
+   TEST( BitSwitch64_Test, ResetAll )
    {
-      OctaByteFlags x_Flags( UINT64_MAX );
+      BitSwitch64 x_Flags( UINT64_MAX );
       x_Flags.Reset();
       EXPECT_EQ( 0, x_Flags.Value() );
    }
 
-   TEST( OctaByteFlagsTest, ResetIndividually )
+   TEST( BitSwitch64_Test, ResetIndividually )
    {
       uint64_t x_ExpectedValue = 0xFFFF'7FFF'FFFF'FFFF;
-      OctaByteFlags x_Flags( UINT64_MAX );
+      BitSwitch64 x_Flags( UINT64_MAX );
       x_Flags.Reset( 47 );
       EXPECT_EQ( x_ExpectedValue, x_Flags.Value() );
    }
 
-   TEST( OctaByteFlagsTest, FlipAll )
+   TEST( BitSwitch64_Test, FlipAll )
    {
       uint64_t x_ExpectedValue = 0xAAAA'AAAA'AAAA'AAAA;
-      OctaByteFlags x_Flags( 0x5555'5555'5555'5555 );
+      BitSwitch64 x_Flags( 0x5555'5555'5555'5555 );
       x_Flags.Flip();
       EXPECT_EQ( x_ExpectedValue, x_Flags.Value() );
    }
 
-   TEST( OctaByteFlagsTest, FlipIndividual )
+   TEST( BitSwitch64_Test, FlipIndividual )
    {
       uint64_t x_ExpectedValue1 = 0xAAAA'AAAA'AAAA'AAAA;
       uint64_t x_ExpectedValue2 = 0xAAA2'AAAA'AAAA'AAAA;
-      OctaByteFlags x_Flags( 0xAAA2'AAAA'AAAA'AAAA );
+      BitSwitch64 x_Flags( 0xAAA2'AAAA'AAAA'AAAA );
       x_Flags.Flip( 51 );
       EXPECT_EQ( x_ExpectedValue1, x_Flags.Value() );
       x_Flags.Flip( 51 );
       EXPECT_EQ( x_ExpectedValue2, x_Flags.Value() );
    }
 
-   TEST( OctaByteFlagsTest, AreAllOn )
+   TEST( BitSwitch64_Test, AreAllOn )
    {
-      OctaByteFlags x_Flags( UINT64_MAX );
+      BitSwitch64 x_Flags( UINT64_MAX );
       EXPECT_TRUE( x_Flags.AreAllOn() );
       x_Flags.Reset( 5 );
       EXPECT_FALSE( x_Flags.AreAllOn() );
    }
 
-   TEST( OctaByteFlagsTest, AreAllOff )
+   TEST( BitSwitch64_Test, AreAllOff )
    {
-      OctaByteFlags x_Flags( 0 );
+      BitSwitch64 x_Flags( 0 );
       EXPECT_TRUE( x_Flags.AreAllOff() );
       x_Flags.Set( 5 );
       EXPECT_FALSE( x_Flags.AreAllOff() );
    }
 
-   TEST( OctaByteFlagsTest, AnyOn )
+   TEST( BitSwitch64_Test, AnyOn )
    {
-      OctaByteFlags x_Flags( 0xFFFF'FFFF'FFFF'FFFF );
+      BitSwitch64 x_Flags( 0xFFFF'FFFF'FFFF'FFFF );
       EXPECT_TRUE( x_Flags.AnyOn() );
       x_Flags.Reset( 42 );
       EXPECT_TRUE( x_Flags.AnyOn() );
@@ -109,9 +109,9 @@ namespace UnitTest::Utility::BitFlags::OctaByteFlags
       EXPECT_FALSE( x_Flags.AnyOn() );
    }
 
-   TEST( OctaByteFlagsTest, ValueIndividual )
+   TEST( BitSwitch64_Test, ValueIndividual )
    {
-      OctaByteFlags x_Flags( 0 );
+      BitSwitch64 x_Flags( 0 );
       EXPECT_FALSE( x_Flags.Value( 55 ) );
       x_Flags.Set( 55 );
       EXPECT_TRUE( x_Flags.Value( 55 ) );

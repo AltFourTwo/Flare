@@ -9,7 +9,7 @@
 #include <vector>
 
 #include "Flare/Application.h"
-#include "Flare/UserInterface/Input.h"
+#include "Flare/UserInput/Input.h"
 
 // ---------- Entry Point ----------
 #include "Flare/EntryPoint.h"

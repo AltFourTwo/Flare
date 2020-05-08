@@ -1,107 +1,107 @@
 #include "gtest/gtest.h"
 
-#include "BitFlags/BitMasks.h"
-#include "BitFlags/BitFlags.h"
+#include "Bits/Masks.h"
+#include "Bits/BitSwitch.h"
 
-namespace UnitTest::Utility::BitFlags::SingleByteFlags
+namespace UnitTest::Utility::Bits::BitSwitch8
 {
-   namespace Masks = ::Utility::BitFlags::BitMasks;
-   using SingleByteFlags = ::Utility::BitFlags::SingleByteFlags;
+   namespace Masks = ::Utility::Bits::Masks;
+   using BitSwitch8 = ::Utility::Bits::BitSwitch8;
 
-   TEST( SingleByteFlagsTest, DefaultConstructorAndValue )
+   TEST( BitSwitch8_Test, DefaultConstructorAndValue )
    {
-      SingleByteFlags x_Flags;
+      BitSwitch8 x_Flags;
       EXPECT_EQ( 0, x_Flags.Value() );
    }
 
-   TEST( SingleByteFlagsTest, InitializeValueConstructor )
+   TEST( BitSwitch8_Test, InitializeValueConstructor )
    {
-      SingleByteFlags x_Flags( Masks::BIT03 );
+      BitSwitch8 x_Flags( Masks::BIT03 );
       EXPECT_EQ( Masks::BIT03, x_Flags.Value() );
    }
 
-   TEST( SingleByteFlagsTest, SetAll )
+   TEST( BitSwitch8_Test, SetAll )
    {
-      SingleByteFlags x_Flags;
+      BitSwitch8 x_Flags;
       x_Flags.Set();
       EXPECT_EQ( UINT8_MAX, x_Flags.Value() );
    }
 
-   TEST( SingleByteFlagsTest, SetIndividually )
+   TEST( BitSwitch8_Test, SetIndividually )
    {
-      SingleByteFlags x_Flags;
+      BitSwitch8 x_Flags;
       x_Flags.Set( 5 );
       EXPECT_EQ( Masks::BIT05, x_Flags.Value() );
    }
 
-   TEST( SingleByteFlagsTest, SetWithTrue )
+   TEST( BitSwitch8_Test, SetWithTrue )
    {
-      SingleByteFlags x_Flags;
+      BitSwitch8 x_Flags;
       x_Flags.Set( 4, true );
       EXPECT_EQ( Masks::BIT04, x_Flags.Value() );
    }
 
-   TEST( SingleByteFlagsTest, SetWithFalse )
+   TEST( BitSwitch8_Test, SetWithFalse )
    {
       uint8_t x_ExpectedValue = 0xEF;
-      SingleByteFlags x_Flags( 0xFF );
+      BitSwitch8 x_Flags( 0xFF );
       x_Flags.Set( 4, false );
       EXPECT_EQ( x_ExpectedValue, x_Flags.Value() );
    }
 
-   TEST( SingleByteFlagsTest, ResetAll )
+   TEST( BitSwitch8_Test, ResetAll )
    {
-      SingleByteFlags x_Flags( 0xFF );
+      BitSwitch8 x_Flags( 0xFF );
       x_Flags.Reset();
       EXPECT_EQ( 0, x_Flags.Value() );
    }
 
-   TEST( SingleByteFlagsTest, ResetIndividually )
+   TEST( BitSwitch8_Test, ResetIndividually )
    {
       uint8_t x_ExpectedValue = 0x7F;
-      SingleByteFlags x_Flags( 0xFF );
+      BitSwitch8 x_Flags( 0xFF );
       x_Flags.Reset( 7 );
       EXPECT_EQ( x_ExpectedValue, x_Flags.Value() );
    }
 
-   TEST( SingleByteFlagsTest, FlipAll )
+   TEST( BitSwitch8_Test, FlipAll )
    {
       uint8_t x_ExpectedValue = 0xAA;
-      SingleByteFlags x_Flags( 0x55 );
+      BitSwitch8 x_Flags( 0x55 );
       x_Flags.Flip();
       EXPECT_EQ( x_ExpectedValue, x_Flags.Value() );
    }
 
-   TEST( SingleByteFlagsTest, FlipIndividual )
+   TEST( BitSwitch8_Test, FlipIndividual )
    {
       uint8_t x_ExpectedValue1 = 0xA8;
       uint8_t x_ExpectedValue2 = 0xAA;
-      SingleByteFlags x_Flags( 0xAA );
+      BitSwitch8 x_Flags( 0xAA );
       x_Flags.Flip( 1 );
       EXPECT_EQ( x_ExpectedValue1, x_Flags.Value() );
       x_Flags.Flip( 1 );
       EXPECT_EQ( x_ExpectedValue2, x_Flags.Value() );
    }
 
-   TEST( SingleByteFlagsTest, AreAllOn )
+   TEST( BitSwitch8_Test, AreAllOn )
    {
-      SingleByteFlags x_Flags( 0xFF );
+      BitSwitch8 x_Flags( 0xFF );
       EXPECT_TRUE( x_Flags.AreAllOn() );
       x_Flags.Reset( 5 );
       EXPECT_FALSE( x_Flags.AreAllOn() );
    }
 
-   TEST( SingleByteFlagsTest, AreAllOff )
+   TEST( BitSwitch8_Test, AreAllOff )
    {
-      SingleByteFlags x_Flags( 0 );
+      BitSwitch8 x_Flags( 0 );
       EXPECT_TRUE( x_Flags.AreAllOff() );
       x_Flags.Set( 5 );
       EXPECT_FALSE( x_Flags.AreAllOff() );
    }
 
-   TEST( SingleByteFlagsTest, AnyOn )
+   TEST( BitSwitch8_Test, AnyOn )
    {
-      SingleByteFlags x_Flags( 0xFF );
+      BitSwitch8 x_Flags( 0xFF );
       EXPECT_TRUE(x_Flags.AnyOn());
       x_Flags.Reset( 4 );
       EXPECT_TRUE(x_Flags.AnyOn());
@@ -109,9 +109,9 @@ namespace UnitTest::Utility::BitFlags::SingleByteFlags
       EXPECT_FALSE(x_Flags.AnyOn());
    }
 
-   TEST( SingleByteFlagsTest, ValueIndividual )
+   TEST( BitSwitch8_Test, ValueIndividual )
    {
-      SingleByteFlags x_Flags( 0 );
+      BitSwitch8 x_Flags( 0 );
       EXPECT_FALSE( x_Flags.Value( 5 ) );
       x_Flags.Set( 5 );
       EXPECT_TRUE( x_Flags.Value( 5 ) );

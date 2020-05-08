@@ -1,15 +1,14 @@
 #pragma once
 
-#include "BitFlags/BitMasks.h"
+#include "Bits/Masks.h"
 #include "Flare/Core.h"
 
 namespace Flare::Events
 {
-   namespace Bits = ::Utility::BitFlags::BitMasks;
-
    enum class EventType
    {
       None = 0,
+
       WindowClose,
       WindowResize,
       WindowFocus,
@@ -39,12 +38,12 @@ namespace Flare::Events
       enum EventCategory
       {
          None = 0,
-         Application = Bits::BIT00,
-         Window = Bits::BIT01,
-         Input = Bits::BIT02,
-         Keyboard = Bits::BIT03,
-         Mouse = Bits::BIT04,
-         MouseButton = Bits::BIT05,
+         Application = Utility::Bits::Masks::BIT00,
+         Window = Utility::Bits::Masks::BIT01,
+         Input = Utility::Bits::Masks::BIT02,
+         Keyboard = Utility::Bits::Masks::BIT03,
+         Mouse = Utility::Bits::Masks::BIT04,
+         MouseButton = Utility::Bits::Masks::BIT05,
       };
    };
 

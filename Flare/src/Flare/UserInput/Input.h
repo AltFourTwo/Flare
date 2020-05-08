@@ -2,7 +2,7 @@
 
 #include "Flare/Core.h"
 
-namespace Flare::UserInterface
+namespace Flare::UserInput
 {
    class FLARE_API Input
    {

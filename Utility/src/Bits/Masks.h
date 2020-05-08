@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace Utility::BitFlags::BitMasks
+namespace Utility::Bits::Masks
 {
    static const uint8_t BIT00 = 0x0000'0000'0000'0001;
    static const uint8_t BIT01 = 0x0000'0000'0000'0002;

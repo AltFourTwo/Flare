@@ -1,108 +1,108 @@
 #include "gtest/gtest.h"
 
-#include "BitFlags/BitMasks.h"
-#include "BitFlags/BitFlags.h"
+#include "Bits/Masks.h"
+#include "Bits/BitSwitch.h"
 
-namespace UnitTest::Utility::BitFlags::QuadByteFlags
+namespace UnitTest::Utility::Bits::BitSwitch32
 {
-   namespace Masks = ::Utility::BitFlags::BitMasks;
-   using QuadByteFlags = ::Utility::BitFlags::QuadByteFlags;
+   namespace Masks = ::Utility::Bits::Masks;
+   using BitSwitch32 = ::Utility::Bits::BitSwitch32;
 
-   TEST( QuadByteFlagsTest, DefaultConstructorAndValue )
+   TEST( BitSwitch32_Test, DefaultConstructorAndValue )
    {
-      QuadByteFlags x_Flags;
+      BitSwitch32 x_Flags;
       EXPECT_EQ( 0, x_Flags.Value() );
    }
 
-   TEST( QuadByteFlagsTest, InitializeValueConstructor )
+   TEST( BitSwitch32_Test, InitializeValueConstructor )
    {
-      QuadByteFlags x_Flags( Masks::BIT23 );
+      BitSwitch32 x_Flags( Masks::BIT23 );
       EXPECT_EQ( Masks::BIT23, x_Flags.Value() );
    }
 
-   TEST( QuadByteFlagsTest, SetAll )
+   TEST( BitSwitch32_Test, SetAll )
    {
-      QuadByteFlags x_Flags;
+      BitSwitch32 x_Flags;
       x_Flags.Set();
       EXPECT_EQ( UINT32_MAX, x_Flags.Value() );
    }
 
-   TEST( QuadByteFlagsTest, SetIndividually )
+   TEST( BitSwitch32_Test, SetIndividually )
    {
-      QuadByteFlags x_Flags;
+      BitSwitch32 x_Flags;
       x_Flags.Set( 25 );
       EXPECT_EQ( Masks::BIT25, x_Flags.Value() );
    }
 
-   TEST( QuadByteFlagsTest, SetWithTrue )
+   TEST( BitSwitch32_Test, SetWithTrue )
    {
-      QuadByteFlags x_Flags;
+      BitSwitch32 x_Flags;
       x_Flags.Set( 24, true );
       EXPECT_EQ( Masks::BIT24, x_Flags.Value() );
    }
 
-   TEST( QuadByteFlagsTest, SetWithFalse )
+   TEST( BitSwitch32_Test, SetWithFalse )
    {
       uint64_t x_ExpectedValue = 0xFEFF'FFFF;
-      QuadByteFlags x_Flags( UINT32_MAX );
+      BitSwitch32 x_Flags( UINT32_MAX );
       x_Flags.Set( 24, false );
       EXPECT_EQ( x_ExpectedValue, x_Flags.Value() );
    }
 
-   TEST( QuadByteFlagsTest, ResetAll )
+   TEST( BitSwitch32_Test, ResetAll )
    {
-      QuadByteFlags x_Flags( UINT32_MAX );
+      BitSwitch32 x_Flags( UINT32_MAX );
       x_Flags.Reset();
       EXPECT_EQ( 0, x_Flags.Value() );
    }
 
-   TEST( QuadByteFlagsTest, ResetIndividually )
+   TEST( BitSwitch32_Test, ResetIndividually )
    {
       uint64_t x_ExpectedValue = 0xFFFD'FFFF;
-      QuadByteFlags x_Flags( UINT32_MAX );
+      BitSwitch32 x_Flags( UINT32_MAX );
       x_Flags.Reset( 17 );
       EXPECT_EQ( x_ExpectedValue, x_Flags.Value() );
    }
 
-   TEST( QuadByteFlagsTest, FlipAll )
+   TEST( BitSwitch32_Test, FlipAll )
    {
       uint64_t x_ExpectedValue = 0xAAAA'AAAA;
-      QuadByteFlags x_Flags( 0x5555'5555 );
+      BitSwitch32 x_Flags( 0x5555'5555 );
       x_Flags.Flip();
       EXPECT_EQ( x_ExpectedValue, x_Flags.Value() );
    }
 
-   TEST( QuadByteFlagsTest, FlipIndividual )
+   TEST( BitSwitch32_Test, FlipIndividual )
    {
 
       uint64_t x_ExpectedValue1 = 0xA2AA'AAAA;
       uint64_t x_ExpectedValue2 = 0xAAAA'AAAA;
-      QuadByteFlags x_Flags( 0xAAAA'AAAA );
+      BitSwitch32 x_Flags( 0xAAAA'AAAA );
       x_Flags.Flip( 27 );
       EXPECT_EQ( x_ExpectedValue1, x_Flags.Value() );
       x_Flags.Flip( 27 );
       EXPECT_EQ( x_ExpectedValue2, x_Flags.Value() );
    }
 
-   TEST( QuadByteFlagsTest, AreAllOn )
+   TEST( BitSwitch32_Test, AreAllOn )
    {
-      QuadByteFlags x_Flags( UINT32_MAX );
+      BitSwitch32 x_Flags( UINT32_MAX );
       EXPECT_TRUE( x_Flags.AreAllOn() );
       x_Flags.Reset( 26 );
       EXPECT_FALSE( x_Flags.AreAllOn() );
    }
 
-   TEST( QuadByteFlagsTest, AreAllOff )
+   TEST( BitSwitch32_Test, AreAllOff )
    {
-      QuadByteFlags x_Flags( 0 );
+      BitSwitch32 x_Flags( 0 );
       EXPECT_TRUE( x_Flags.AreAllOff() );
       x_Flags.Set( 26 );
       EXPECT_FALSE( x_Flags.AreAllOff() );
    }
 
-   TEST( QuadByteFlagsTest, AnyOn )
+   TEST( BitSwitch32_Test, AnyOn )
    {
-      QuadByteFlags x_Flags( 0xFFFF'FFFF );
+      BitSwitch32 x_Flags( 0xFFFF'FFFF );
       EXPECT_TRUE( x_Flags.AnyOn() );
       x_Flags.Reset( 19 );
       EXPECT_TRUE( x_Flags.AnyOn() );
@@ -110,9 +110,9 @@ namespace UnitTest::Utility::BitFlags::QuadByteFlags
       EXPECT_FALSE( x_Flags.AnyOn() );
    }
 
-   TEST( QuadByteFlagsTest, ValueIndividual )
+   TEST( BitSwitch32_Test, ValueIndividual )
    {
-      QuadByteFlags x_Flags( 0 );
+      BitSwitch32 x_Flags( 0 );
       EXPECT_FALSE( x_Flags.Value( 30 ) );
       x_Flags.Set( 30 );
       EXPECT_TRUE( x_Flags.Value( 30 ) );

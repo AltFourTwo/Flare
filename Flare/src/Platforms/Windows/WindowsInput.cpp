@@ -5,8 +5,10 @@
 
 #include <GLFW/glfw3.h>
 
-namespace Flare::UserInterface
+namespace Flare::UserInput
 {
+   Input* Input::s_Instance = new WindowsInput();
+
    bool WindowsInput::IsKeyPressed_I( int a_Keycode )
    {
       //auto& x_Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());

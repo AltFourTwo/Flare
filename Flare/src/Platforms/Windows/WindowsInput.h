@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Flare/UserInterface/Input.h"
+#include "Flare/UserInput/Input.h"
 
-namespace Flare::UserInterface
+namespace Flare::UserInput
 {
    class WindowsInput : public Input
    {
