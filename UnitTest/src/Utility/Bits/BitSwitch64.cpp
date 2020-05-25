@@ -34,21 +34,6 @@ namespace UnitTest::Utility::Bits::BitSwitch64
       EXPECT_EQ( Masks::BIT45, x_Flags.Value() );
    }
 
-   TEST( BitSwitch64_Test, SetWithTrue )
-   {
-      BitSwitch64 x_Flags;
-      x_Flags.Set( 44, true );
-      EXPECT_EQ( Masks::BIT44, x_Flags.Value() );
-   }
-
-   TEST( BitSwitch64_Test, SetWithFalse )
-   {
-      uint64_t x_ExpectedValue = 0xFFFF'EFFF'FFFF'FFFF;
-      BitSwitch64 x_Flags( UINT64_MAX );
-      x_Flags.Set( 44, false );
-      EXPECT_EQ( x_ExpectedValue, x_Flags.Value() );
-   }
-
    TEST( BitSwitch64_Test, ResetAll )
    {
       BitSwitch64 x_Flags( UINT64_MAX );

@@ -105,15 +105,6 @@ namespace Utility::Bits
    }
 
    template<typename T>
-   void BitSwitch<T>::Set( const uint8_t& a_Pos, const bool& a_Value )
-   {
-      if ( a_Value )
-         Set( a_Pos );
-      else
-         Reset( a_Pos );
-   }
-
-   template<typename T>
    void BitSwitch<T>::Reset()
    {
       m_Flags = 0;
@@ -134,7 +125,8 @@ namespace Utility::Bits
    template<typename T>
    void BitSwitch<T>::Flip( const uint8_t& a_Pos )
    {
-      Set( a_Pos, !Value( a_Pos ) );
+      m_Flags ^= GetBitMask( a_Pos );
+      //Set( a_Pos, !Value( a_Pos ) );
    }
 
    template<typename T>

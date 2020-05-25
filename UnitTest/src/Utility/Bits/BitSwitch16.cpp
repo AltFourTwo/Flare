@@ -34,21 +34,6 @@ namespace UnitTest::Utility::Bits::BitSwitch16
       EXPECT_EQ( Masks::BIT15, x_Flags.Value() );
    }
 
-   TEST( BitSwitch16_Test, SetWithTrue )
-   {
-      BitSwitch16 x_Flags;
-      x_Flags.Set( 14, true );
-      EXPECT_EQ( Masks::BIT14, x_Flags.Value() );
-   }
-
-   TEST( BitSwitch16_Test, SetWithFalse )
-   {
-      uint16_t x_ExpectedValue = 0xBFFF;
-      BitSwitch16 x_Flags( UINT16_MAX );
-      x_Flags.Set( 14, false );
-      EXPECT_EQ( x_ExpectedValue, x_Flags.Value() );
-   }
-
    TEST( BitSwitch16_Test, ResetAll )
    {
       BitSwitch16 x_Flags( UINT16_MAX );
