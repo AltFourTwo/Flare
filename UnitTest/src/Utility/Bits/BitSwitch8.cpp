@@ -34,6 +34,21 @@ namespace UnitTest::Utility::Bits::BitSwitch8
       EXPECT_EQ( Masks::BIT05, x_Flags.Value() );
    }
 
+   TEST( BitSwitch8_Test, SetWithTrue )
+   {
+      BitSwitch8 x_Flags;
+      x_Flags.Set( 4, true );
+      EXPECT_EQ( Masks::BIT04, x_Flags.Value() );
+   }
+
+   TEST( BitSwitch8_Test, SetWithFalse )
+   {
+      uint8_t x_ExpectedValue = 0xEF;
+      BitSwitch8 x_Flags( 0xFF );
+      x_Flags.Set( 4, false );
+      EXPECT_EQ( x_ExpectedValue, x_Flags.Value() );
+   }
+
    TEST( BitSwitch8_Test, ResetAll )
    {
       BitSwitch8 x_Flags( 0xFF );
