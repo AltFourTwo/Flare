@@ -16,6 +16,13 @@ namespace Flare::UserInterface
          unsigned int Width, Height;
          bool VSync;
          EventCallback Callback;
+
+         WindowData( const WindowModel& a_Model, bool a_VSync = false ) :
+            Title( a_Model.Title ),
+            Width( a_Model.Width ),
+            Height( a_Model.Height ),
+            VSync( a_VSync )
+         {}
       };
 
       /*****   CLASS   VARIABLES    *****/
@@ -25,12 +32,12 @@ namespace Flare::UserInterface
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
-      WindowsWindow(const WindowModel& a_Model);
+      WindowsWindow( const WindowModel& a_Model, const bool a_VSync = false );
       virtual ~WindowsWindow();
 
       /*****   CLASS   FUNCTIONS    *****/
       private:
-      virtual void Init(const WindowModel& a_Model);
+      virtual void Init( const WindowModel& a_Model );
       virtual void Shutdown();
 
       public:
@@ -39,7 +46,7 @@ namespace Flare::UserInterface
       /*****   SETTERS   *****/
       public:
       inline void SetEventCallback( const EventCallback& a_Callback ) override { m_WindowData.Callback = a_Callback; }
-      void SetVSync(bool a_value) override;
+      void SetVSync( bool a_value ) override;
 
       /*****   GETTERS   *****/
       public:

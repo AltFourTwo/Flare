@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Flare/Core.h"
+#include "Flare/Time/TimeStep.h"
 #include "Flare/Events/Event.h"
 
 namespace Flare::UserInterface
@@ -20,8 +21,8 @@ namespace Flare::UserInterface
       public:
       virtual void OnAttach() = 0;
       virtual void OnDetach() = 0;
-      virtual void OnEvent( Flare::Events::Event& e ) = 0;
-      virtual void OnUpdate() = 0;
+      virtual void OnEvent( Flare::Events::Event& a_Event ) = 0;
+      virtual void OnUpdate( Time::TimeStep a_TimeStep ) = 0;
       virtual void OnRender() = 0;
    };
 }

@@ -17,7 +17,9 @@ namespace Flare::UserInterface
    static bool s_GLFWInitialized = false;
 
    /*****   CLASS   C-TOR D-TOR  *****/
-   WindowsWindow::WindowsWindow( const WindowModel& a_Model )
+   WindowsWindow::WindowsWindow( const WindowModel& a_Model, const bool a_VSync ) :
+      Window( Logging::Console::CreateLogger( "Main Window Logger", Logging::LogLevel::TRACE, 0, 0, "%F at %T | &N says : &M" ) ),
+      m_WindowData( a_Model, a_VSync )
    {
       Init( a_Model );
    }
@@ -28,20 +30,10 @@ namespace Flare::UserInterface
    }
 
    /*****   CLASS   FUNCTIONS    *****/
-   Window* Window::Create( const WindowModel& a_Model )
-   {
-      return new WindowsWindow( a_Model );
-   }
+   Window* Window::Create( const bool a_VSync, const WindowModel& a_Model ) { return new WindowsWindow( a_Model, a_VSync ); }
 
    void WindowsWindow::Init( const WindowModel& a_Model )
    {
-      m_WindowData.Title = a_Model.Title;
-      m_WindowData.Width = a_Model.Width;
-      m_WindowData.Height = a_Model.Height;
-
-      m_WindowLogger = &Logging::Console::CreateLogger( "Main Window Logger" );
-      m_WindowLogger->SetFormat( "%F at %T | &N says : &M" );
-
       // LOG Window creation
 
       if ( !s_GLFWInitialized )
@@ -57,7 +49,7 @@ namespace Flare::UserInterface
       m_Window = glfwCreateWindow( (int)a_Model.Width, (int)a_Model.Height, a_Model.Title.c_str(), nullptr, nullptr );
       glfwMakeContextCurrent( m_Window );
       glfwSetWindowUserPointer( m_Window, &m_WindowData );
-      SetVSync( true );
+      SetVSync( m_WindowData.VSync );
 
       // GLFW Callbacks
       glfwSetWindowSizeCallback( m_Window, []( GLFWwindow* a_Window, int a_Width, int a_Height )
@@ -161,7 +153,7 @@ namespace Flare::UserInterface
 
    static void GLFWErrorCallback( int a_Error, const char* a_Desc )
    {
-      Logging::Console::Log(Logging::LogLevel::ERR_OR, "GLFW Error. Code [{0}] : {1}", { a_Error, a_Desc } );
+      Logging::Console::Log( Logging::LogLevel::ERR_OR, "GLFW Error. Code [{0}] : {1}", { a_Error, a_Desc } );
    }
 
    /*****   GETTERS   *****/

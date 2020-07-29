@@ -15,7 +15,7 @@ namespace Flare
    Application::Application()
    {
       m_Console = &Logging::Console::Get().Initialize( "Core", Logging::LogLevel::TRACE, 0, 0, "%F at %T | &N says : &M" );
-      m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create() );
+      m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( true ) );
       m_MainWindow->SetEventCallback( BIND_EVENT_CALLBACK( OnEvent ) );
    }
 
@@ -27,11 +27,17 @@ namespace Flare
    {
       while ( m_Running )
       {
+         float x_Time = (float)glfwGetTime(); // TODO : This should be abstracted in a platform class ( Platform::GetTime() )
+         Time::TimeStep x_TimeStep = x_Time - m_LastFrameTime;
+         m_LastFrameTime = x_Time;
+
+         m_Console->Info( "TimeStep is {0}s {1}ms", { x_TimeStep.GetSeconds(), x_TimeStep.GetMilliseconds() } );
+
          glClearColor( 0.5f, 0.25f, 0, 1 );
          glClear( GL_COLOR_BUFFER_BIT );
 
-         for (UserInterface::Layer* x_Layer : m_LayerStack )
-            x_Layer->OnUpdate();
+         for ( UserInterface::Layer* x_Layer : m_LayerStack )
+            x_Layer->OnUpdate( x_TimeStep );
 
          m_MainWindow->OnUpdate();
       }
@@ -64,8 +70,8 @@ namespace Flare
 
       for ( UserInterface::LayerIterator_R itr = m_LayerStack.rend(); itr != m_LayerStack.rbegin(); )
       {
-         (*itr++)->OnEvent(e);
-         if (e.IsHandled())
+         ( *itr++ )->OnEvent( e );
+         if ( e.IsHandled() )
             break;
       }
 

@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "Logging/Console.h"
 
+#include "Time/TimeStep.h"
+
 #include "UserInterface/Window.h"
 #include "UserInterface/LayerStack.h"
 
@@ -21,6 +23,7 @@ namespace Flare
       private:
       bool m_Running = true;
       Logging::Logger* m_Console;
+      float m_LastFrameTime = 0.0f;
       UserInterface::LayerStack m_LayerStack;
       std::unique_ptr<UserInterface::Window> m_MainWindow;
 
