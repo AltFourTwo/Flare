@@ -108,7 +108,7 @@ namespace Utility::Bits
    void BitSwitch<T>::Set( const uint8_t& a_Pos, const bool& a_Value )
    {
       if ( a_Value )
-         Set( a_Pos )
+         Set( a_Pos );
       else
          Reset( a_Pos );
    }
