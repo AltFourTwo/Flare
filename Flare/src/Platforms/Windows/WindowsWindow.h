@@ -42,6 +42,7 @@ namespace Flare::UserInterface
 
       public:
       void OnUpdate() override;
+      void OnRender() override;
 
       /*****   SETTERS   *****/
       public:

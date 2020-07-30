@@ -31,11 +31,11 @@ namespace Flare::UserInterface
 
       /*****   CLASS   VARIABLES    *****/
       protected:
-      Logging::Logger& m_WindowLogger;
+      Logging::Logger::SharedLogger m_WindowLogger;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
-      Window( Logging::Logger& a_WindowLogger ) :
+      Window( Logging::Logger::SharedLogger a_WindowLogger ) :
          m_WindowLogger( a_WindowLogger )
       {}
 
@@ -45,6 +45,7 @@ namespace Flare::UserInterface
       public:
       static Window* Create( const bool a_VSync = false, const WindowModel& a_Model = WindowModel() );
       virtual void OnUpdate() = 0;
+      virtual void OnRender() = 0;
 
       /*****   SETTERS   *****/
       public:

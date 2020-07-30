@@ -14,7 +14,7 @@ namespace Flare::UserInterface
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
-      Layer(const std::string& a_Name = "Layer");
+      Layer( const std::string& a_Name = "Layer" );
       virtual ~Layer();
 
       /*****   CLASS   FUNCTIONS    *****/
@@ -23,6 +23,10 @@ namespace Flare::UserInterface
       virtual void OnDetach() = 0;
       virtual void OnEvent( Flare::Events::Event& a_Event ) = 0;
       virtual void OnUpdate( Time::TimeStep a_TimeStep ) = 0;
-      virtual void OnRender() = 0;
+      virtual void OnRender( Time::TimeStep a_TimeStep ) = 0;
+
+      /*****   GETTERS   *****/
+      public:
+      inline const std::string& GetDebugName() const { return m_DebugName; }
    };
 }

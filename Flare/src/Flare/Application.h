@@ -22,7 +22,9 @@ namespace Flare
       /*****   CLASS   VARIABLES    *****/
       private:
       bool m_Running = true;
-      Logging::Logger* m_Console;
+      static Logging::Console& s_Console;
+      static Logging::Logger::SharedLogger s_CoreLogger;
+      static Logging::Logger::SharedLogger s_ClientLogger;
       float m_LastFrameTime = 0.0f;
       UserInterface::LayerStack m_LayerStack;
       std::unique_ptr<UserInterface::Window> m_MainWindow;
@@ -44,6 +46,9 @@ namespace Flare
       private:
       void OnEvent( Events::Event& e );
       bool OnWindowClose( Events::WindowCloseEvent& e );
+
+      /*****   GETTERS   *****/
+      // Loggers?
    };
 
    // To be defined in client

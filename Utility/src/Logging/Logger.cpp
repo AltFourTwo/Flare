@@ -133,12 +133,12 @@ namespace Logging
    \*****   PRIVATE-FUNCTIONS   *****/
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message )
    {
-      Console::Get().Log( *this, a_LogLevel, a_Message );
+      Console::Instance().Log( *this, a_LogLevel, a_Message );
    }
 
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      Console::Get().Log( *this, a_LogLevel, a_Message, a_Formattables );
+      Console::Instance().Log( *this, a_LogLevel, a_Message, a_Formattables );
    }
 
    void Logger::CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_FormatString )
@@ -183,7 +183,7 @@ namespace Logging
 
                if ( *( i_ptr + 1 ) != 0 )
                {
-                  LoggingControlCharacter x_NextChar = (LoggingControlCharacter)(*( i_ptr + 1 ));
+                  LoggingControlCharacter x_NextChar = (LoggingControlCharacter)( *( i_ptr + 1 ) );
 
                   switch ( x_NextChar )
                   {

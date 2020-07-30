@@ -11,16 +11,21 @@ namespace Flare
 {
 #define BIND_EVENT_CALLBACK(cb) std::bind(&Application::cb, this, std::placeholders::_1)
 
+   Logging::Console& Application::s_Console = Logging::Console::Instance();
+   Logging::Logger::SharedLogger Application::s_CoreLogger = s_Console.CreateLogger( "Core", Logging::LogLevel::TRACE, 0, 0, "%F at %T | &N says : &M" );
+   Logging::Logger::SharedLogger Application::s_ClientLogger = s_Console.CreateLogger( "Client", Logging::LogLevel::TRACE, 0, 0, "%F at %T | &N says : &M" );
+
    /*****   CLASS   C-TOR D-TOR  *****/
    Application::Application()
    {
-      m_Console = &Logging::Console::Get().Initialize( "Core", Logging::LogLevel::TRACE, 0, 0, "%F at %T | &N says : &M" );
       m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( true ) );
       m_MainWindow->SetEventCallback( BIND_EVENT_CALLBACK( OnEvent ) );
    }
 
    Application::~Application()
-   {}
+   {
+      s_Console.Dispose();
+   }
 
    /*****   CLASS   FUNCTIONS    *****/
    void Application::Run()
@@ -31,7 +36,7 @@ namespace Flare
          Time::TimeStep x_TimeStep = x_Time - m_LastFrameTime;
          m_LastFrameTime = x_Time;
 
-         m_Console->Info( "TimeStep is {0}s {1}ms", { x_TimeStep.GetSeconds(), x_TimeStep.GetMilliseconds() } );
+         s_CoreLogger->Info( "TimeStep is {0}s {1}ms", { x_TimeStep.GetSeconds(), x_TimeStep.GetMilliseconds() } );
 
          glClearColor( 0.5f, 0.25f, 0, 1 );
          glClear( GL_COLOR_BUFFER_BIT );
@@ -40,6 +45,11 @@ namespace Flare
             x_Layer->OnUpdate( x_TimeStep );
 
          m_MainWindow->OnUpdate();
+
+         for (UserInterface::Layer* x_Layer : m_LayerStack )
+            x_Layer->OnRender( x_TimeStep);
+
+         m_MainWindow->OnRender();
       }
    }
 
@@ -66,7 +76,7 @@ namespace Flare
    /*****   EVENT   HANDLERS     *****/
    void Application::OnEvent( Events::Event& e )
    {
-      m_Console->Trace( e.ToString().c_str() );
+      s_CoreLogger->Trace( e.ToString().c_str() );
 
       for ( UserInterface::LayerIterator_R itr = m_LayerStack.rend(); itr != m_LayerStack.rbegin(); )
       {

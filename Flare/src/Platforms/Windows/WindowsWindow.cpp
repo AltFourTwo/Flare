@@ -18,7 +18,7 @@ namespace Flare::UserInterface
 
    /*****   CLASS   C-TOR D-TOR  *****/
    WindowsWindow::WindowsWindow( const WindowModel& a_Model, const bool a_VSync ) :
-      Window( Logging::Console::CreateLogger( "Main Window Logger", Logging::LogLevel::TRACE, 0, 0, "%F at %T | &N says : &M" ) ),
+      Window( Logging::Console::Instance().CreateLogger( "Main Window Logger", Logging::LogLevel::TRACE, 0, 0, "%F at %T | &N says : &M" ) ),
       m_WindowData( a_Model, a_VSync )
    {
       Init( a_Model );
@@ -148,12 +148,16 @@ namespace Flare::UserInterface
    void WindowsWindow::OnUpdate()
    {
       glfwPollEvents();
+   }
+
+   void WindowsWindow::OnRender()
+   {
       glfwSwapBuffers( m_Window );
    }
 
    static void GLFWErrorCallback( int a_Error, const char* a_Desc )
    {
-      Logging::Console::Log( Logging::LogLevel::ERR_OR, "GLFW Error. Code [{0}] : {1}", { a_Error, a_Desc } );
+      Logging::Console::Instance().Log( Logging::LogLevel::ERR_OR, "GLFW Error. Code [{0}] : {1}", { a_Error, a_Desc } );
    }
 
    /*****   GETTERS   *****/

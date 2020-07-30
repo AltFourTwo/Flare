@@ -23,24 +23,25 @@ namespace Logging
       /*******************************\
       \*****   PRIVATE-MEMBERS   *****/
       private:
-      static bool s_IsInitialized;
-      static std::vector<Logger> s_Loggers;
+      std::vector<Logger::SharedLogger> s_Loggers;
 
       /**************************************\
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       private:
       Console();
+
+      public:
       Console( const Console& ) = delete;
+      void operator=( const Console& ) = delete;
 
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/
       public:
-      static Console& Get();
-      static void Log( LogLevel a_LogLevel, const char* a_Message );
-      static void Log( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
-      static void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message );
-      static void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
-      static Logger& Initialize( const char* a_LoggerName = DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = DEFAULT_LOG_LEVEL, const int& a_TextColor = DEFAULT_TEXT_COLOR, const int& a_BGColor = DEFAULT_BG_COLOR, const char* a_LoggingFormat = DEFAULT_FORMAT );
-      static Logger& CreateLogger( const char* a_LoggerName = DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = DEFAULT_LOG_LEVEL, const int& a_TextColor = DEFAULT_TEXT_COLOR, const int& a_BGColor = DEFAULT_BG_COLOR, const char* a_LoggingFormat = DEFAULT_FORMAT );
+      static Console& Instance();
+      void Log( LogLevel a_LogLevel, const char* a_Message );
+      void Log( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
+      void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message );
+      void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
+      Logger::SharedLogger CreateLogger( const char* a_LoggerName = DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = DEFAULT_LOG_LEVEL, const int& a_TextColor = DEFAULT_TEXT_COLOR, const int& a_BGColor = DEFAULT_BG_COLOR, const char* a_LoggingFormat = DEFAULT_FORMAT );
    };
 }

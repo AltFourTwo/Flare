@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <chrono>
 
 #include "Composing/Formattable.h"
@@ -13,6 +14,9 @@ namespace Logging
    \*****   CLASS LOGGER   *****/
    class Logger
    {
+      public:
+      using SharedLogger = std::shared_ptr<Logger>;
+
       /**********************\
       \*****   NESTED   *****/
       private:
