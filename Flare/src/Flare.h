@@ -8,7 +8,9 @@
 #include <string>
 #include <vector>
 
+#include "Flare/Time/TimeStep.h"
 #include "Flare/Application.h"
+#include "Flare/UserInput/Input.h"
 
 // ---------- Entry Point ----------
 #include "Flare/EntryPoint.h"

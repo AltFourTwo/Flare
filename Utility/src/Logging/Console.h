@@ -2,6 +2,7 @@
 
 #include "Logging.h"
 #include "Logger.h"
+#include "LoggerParameters.h"
 #include "Composing/Formattable.h"
 
 namespace Logging
@@ -10,37 +11,39 @@ namespace Logging
 
    class Console
    {
-      /*************************\
-      \*****   CONSTANTS   *****/
+      /*****   CLASS   FRIENDS      *****/
+      friend class Logger;
+
+      /*****   CLASS   CONSTANTS    *****/
       private:
-      static const char* DEFAULT_LOGGER_NAME;
-      static const char* DEFAULT_FORMAT;
-      static const int DEFAULT_BG_COLOR = 0;
-      static const int DEFAULT_TEXT_COLOR = 0;
       static const int MAX_LOGGERS = 16;
-      static const Logging::LogLevel DEFAULT_LOG_LEVEL = Logging::LogLevel::TRACE;
 
-      /*******************************\
-      \*****   PRIVATE-MEMBERS   *****/
+      /*****   CLASS   VARIABLES    *****/
       private:
-      bool m_IsInitialized = false;
-      std::vector<Logger> m_Loggers = std::vector<Logger>();
+      std::vector<Logger::SharedLogger> s_Loggers;
 
-      /**************************************\
-      \*****   CONSTRUCTOR-DESTRUCTOR   *****/
-      private:
-      Console();
+      /*****   CLASS   C-TOR D-TOR  *****/
+      public:
       Console( const Console& ) = delete;
 
-      /********************************\
-      \*****   PUBLIC-FUNCTIONS   *****/
+      private:
+      Console();
+
+      /*****   CLASS   FUNCTIONS    *****/
       public:
-      static Console& Get();
-      static void Log( LogLevel a_LogLevel, const char* a_Message );
-      static void Log( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
-      static void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message );
-      static void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
-      Logger& Initialize( const char* a_LoggerName = DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = DEFAULT_LOG_LEVEL, const int& a_TextColor = DEFAULT_TEXT_COLOR, const int& a_BGColor = DEFAULT_BG_COLOR, const char* a_LoggingFormat = DEFAULT_FORMAT );
-      Logger& CreaterLogger( const char* a_LoggerName = DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = DEFAULT_LOG_LEVEL, const int& a_TextColor = DEFAULT_TEXT_COLOR, const int& a_BGColor = DEFAULT_BG_COLOR, const char* a_LoggingFormat = DEFAULT_FORMAT );
+      static Console& Instance();
+      void Log( LogLevel a_LogLevel, const char* a_Message );
+      void Log( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
+      void Log( const Logger::SharedLogger a_Logger, LogLevel a_LogLevel, const char* a_Message );
+      void Log( const Logger::SharedLogger a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
+      Logger::SharedLogger CreateLogger( const LoggerParameters& a_Parameters ) noexcept;
+      Logger::SharedLogger CreateLogger( LoggerParameters&& a_Parameters ) noexcept;
+
+      private: // These are meant for friend class Logger.
+      void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message );
+      void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
+
+      /*****   CLASS   OPERATORS    *****/
+      void operator=( const Console& ) = delete;
    };
 }

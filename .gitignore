@@ -5,3 +5,6 @@ b-int/
 
 # Files
 *.user
+*.vcxproj*
+*.sln
+Metrics.*

@@ -2,10 +2,10 @@
 
 #include <cstdint>
 
-namespace Utility::BitFlags
+namespace Utility::Bits
 {
    template<typename T>
-   class ByteFlags
+   class BitSwitch
    {
       /*****   CLASS   VARIABLES    *****/
       protected:
@@ -13,8 +13,8 @@ namespace Utility::BitFlags
 
       /*****   CLASS   C-TOR D-TOR  *****/
       protected:
-      ByteFlags();
-      ByteFlags( T a_IntegralValue );
+      BitSwitch();
+      BitSwitch( T a_IntegralValue );
 
       /*****   CLASS   FUNCTIONS    *****/
       private:
@@ -35,52 +35,52 @@ namespace Utility::BitFlags
       const bool Value( const uint8_t& a_Pos );
    };
 
-   class SingleByteFlags : public ByteFlags<uint8_t>
+   class BitSwitch8 : public BitSwitch<uint8_t>
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
-      SingleByteFlags() : ByteFlags() {}
-      SingleByteFlags( const uint8_t& a_IntegralValue ) : ByteFlags( a_IntegralValue ) {}
+      BitSwitch8() : BitSwitch() {}
+      BitSwitch8( const uint8_t& a_IntegralValue ) : BitSwitch( a_IntegralValue ) {}
    };
 
-   class DoubleByteFlags : public ByteFlags<uint16_t>
+   class BitSwitch16 : public BitSwitch<uint16_t>
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
-      DoubleByteFlags() : ByteFlags() {}
-      DoubleByteFlags( const uint16_t& a_IntegralValue ) : ByteFlags( a_IntegralValue ) {}
+      BitSwitch16() : BitSwitch() {}
+      BitSwitch16( const uint16_t& a_IntegralValue ) : BitSwitch( a_IntegralValue ) {}
    };
 
-   class QuadByteFlags : public ByteFlags<uint32_t>
+   class BitSwitch32 : public BitSwitch<uint32_t>
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
-      QuadByteFlags() : ByteFlags() {}
-      QuadByteFlags( const uint32_t& a_IntegralValue ) : ByteFlags( a_IntegralValue ) {}
+      BitSwitch32() : BitSwitch() {}
+      BitSwitch32( const uint32_t& a_IntegralValue ) : BitSwitch( a_IntegralValue ) {}
    };
 
-   class OctaByteFlags : public ByteFlags<uint64_t>
+   class BitSwitch64 : public BitSwitch<uint64_t>
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
-      OctaByteFlags() : ByteFlags() {}
-      OctaByteFlags( const uint64_t& a_IntegralValue ) : ByteFlags( a_IntegralValue ) {}
+      BitSwitch64() : BitSwitch() {}
+      BitSwitch64( const uint64_t& a_IntegralValue ) : BitSwitch( a_IntegralValue ) {}
    };
 
    /*****   CLASS   C-TOR D-TOR  *****/
    template<typename T>
-   ByteFlags<T>::ByteFlags() :
+   BitSwitch<T>::BitSwitch() :
       m_Flags( 0 )
    {}
 
    template<typename T>
-   ByteFlags<T>::ByteFlags( T a_IntegralValue ) :
+   BitSwitch<T>::BitSwitch( T a_IntegralValue ) :
       m_Flags( a_IntegralValue )
    {}
 
    /*****   CLASS   FUNCTIONS    *****/
    template<typename T>
-   T ByteFlags<T>::GetBitMask( const uint8_t& a_Pos )
+   T BitSwitch<T>::GetBitMask( const uint8_t& a_Pos )
    {
       T x_Mask = 1;
       x_Mask <<= a_Pos;
@@ -93,19 +93,19 @@ namespace Utility::BitFlags
    }
 
    template<typename T>
-   void ByteFlags<T>::Set()
+   void BitSwitch<T>::Set()
    {
       memset( &m_Flags, 0xFF, sizeof( m_Flags ) );
    }
 
    template<typename T>
-   void ByteFlags<T>::Set( const uint8_t& a_Pos )
+   void BitSwitch<T>::Set( const uint8_t& a_Pos )
    {
       m_Flags |= GetBitMask( a_Pos );
    }
 
    template<typename T>
-   void ByteFlags<T>::Set( const uint8_t& a_Pos, const bool& a_Value )
+   void BitSwitch<T>::Set( const uint8_t& a_Pos, const bool& a_Value )
    {
       if ( a_Value )
          Set( a_Pos );
@@ -114,31 +114,31 @@ namespace Utility::BitFlags
    }
 
    template<typename T>
-   void ByteFlags<T>::Reset()
+   void BitSwitch<T>::Reset()
    {
       m_Flags = 0;
    }
 
    template<typename T>
-   void ByteFlags<T>::Reset( const uint8_t& a_Pos )
+   void BitSwitch<T>::Reset( const uint8_t& a_Pos )
    {
       m_Flags &= ~GetBitMask( a_Pos );
    }
 
    template<typename T>
-   void ByteFlags<T>::Flip()
+   void BitSwitch<T>::Flip()
    {
       m_Flags = ~m_Flags;
    }
 
    template<typename T>
-   void ByteFlags<T>::Flip( const uint8_t& a_Pos )
+   void BitSwitch<T>::Flip( const uint8_t& a_Pos )
    {
-      Set( a_Pos, !Value( a_Pos ) );
+      m_Flags ^= GetBitMask( a_Pos );
    }
 
    template<typename T>
-   bool ByteFlags<T>::AreAllOn()
+   bool BitSwitch<T>::AreAllOn()
    {
       T x_MaxValue;
       memset( &x_MaxValue, 0xFF, sizeof( x_MaxValue ) );
@@ -147,25 +147,25 @@ namespace Utility::BitFlags
    }
 
    template<typename T>
-   bool ByteFlags<T>::AreAllOff()
+   bool BitSwitch<T>::AreAllOff()
    {
       return m_Flags == 0;
    }
 
    template<typename T>
-   bool ByteFlags<T>::AnyOn()
+   bool BitSwitch<T>::AnyOn()
    {
       return m_Flags;
    }
 
    template<typename T>
-   const T& ByteFlags<T>::Value()
+   const T& BitSwitch<T>::Value()
    {
       return m_Flags;
    }
 
    template<typename T>
-   const bool ByteFlags<T>::Value( const uint8_t& a_Pos )
+   const bool BitSwitch<T>::Value( const uint8_t& a_Pos )
    {
       return m_Flags & GetBitMask( a_Pos );
    }

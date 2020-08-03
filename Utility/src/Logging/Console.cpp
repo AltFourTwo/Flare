@@ -13,40 +13,49 @@ namespace Logging
 {
    using Formattable = Utility::Composing::Formattable;
 
-   /*************************\
-   \*****   CONSTANTS   *****/
-   const char* Console::DEFAULT_LOGGER_NAME = "Unnamed Logger";
-   const char* Console::DEFAULT_FORMAT = "";
-
-   /**************************************\
-   \*****   CONSTRUCTOR-DESTRUCTOR   *****/
-   Console::Console()
-   {}
-
-   /********************************\
-   \*****   PUBLIC-FUNCTIONS   *****/
-   Console& Console::Get()
+   /*****   CLASS   C-TOR D-TOR  *****/
+   Console::Console() :
+      s_Loggers()
    {
-      static Console instance;
-      return instance;
+      s_Loggers.reserve( MAX_LOGGERS );
    }
 
-   // Not specifying a logger uses the first one in the list from initialization.
+   /*****   CLASS   FUNCTIONS    *****/
+   Console& Console::Instance()
+   {
+      static Console s_Instance;
+      return s_Instance;
+   }
+
+   // Not specifying a logger uses the first one in the list which should always be the core logger.
    void Console::Log( LogLevel a_LogLevel, const char* a_Message )
    {
-      Log( Get().m_Loggers.front(), a_LogLevel, a_Message );
+      Log( s_Loggers.front(), a_LogLevel, a_Message );
    }
 
    void Console::Log( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables )
    {
-      Log( Get().m_Loggers.front(), a_LogLevel, a_Message, a_Formattables );
+      Log( s_Loggers.front(), a_LogLevel, a_Message, a_Formattables );
    }
 
    // Log message using a logger's information.
+   void Console::Log( const Logger::SharedLogger a_Logger, LogLevel a_LogLevel, const char* a_Message )
+   {
+      std::string x_ConsoleFormattedMessage = a_Logger->ExecuteQueue( a_LogLevel, a_Message );
+      std::cout << x_ConsoleFormattedMessage << "\n";
+   }
+
+   void Console::Log( const Logger::SharedLogger a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables )
+   {
+      std::string x_ComposedMessage = Format( a_Message, a_Formattables );
+      Log( a_Logger, a_LogLevel, x_ComposedMessage.c_str() );
+   }
+
+   // These 2 log functions are meant for friend class Logger.
    void Console::Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message )
    {
       std::string x_ConsoleFormattedMessage = a_Logger.ExecuteQueue( a_LogLevel, a_Message );
-      std::cout << x_ConsoleFormattedMessage;
+      std::cout << x_ConsoleFormattedMessage << "\n";
    }
 
    void Console::Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables )
@@ -55,30 +64,17 @@ namespace Logging
       Log( a_Logger, a_LogLevel, x_ComposedMessage.c_str() );
    }
 
-   // Returns the first logger for core logging.
-   Logger& Console::Initialize( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char* a_LoggingFormat )
+   Logger::SharedLogger Console::CreateLogger( const LoggerParameters& a_Parameters ) noexcept
    {
-      if ( m_IsInitialized )
-         throw; // TODO Exception Logging System Already Initialized.
+      s_Loggers.emplace_back( std::make_shared<Logger>( a_Parameters ) );
 
-      m_Loggers.reserve( MAX_LOGGERS );
-      m_Loggers.emplace_back( a_LoggerName, a_BaseLoggingLevel, a_TextColor, a_BGColor, a_LoggingFormat );
-
-      m_IsInitialized = true;
-
-      return m_Loggers.back();
+      return s_Loggers.back();
    }
 
-   Logger& Console::CreaterLogger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char* a_LoggingFormat )
+   Logger::SharedLogger Console::CreateLogger( LoggerParameters&& a_Parameters ) noexcept
    {
-      if ( !m_IsInitialized )
-         throw; // TODO Exception Logging System Was Not Initialized.
+      s_Loggers.emplace_back( std::make_shared<Logger>( std::move( a_Parameters ) ) );
 
-      if ( m_Loggers.size() >= MAX_LOGGERS )
-         throw; // TODO Exception Maximum number of loggers hit.
-
-      m_Loggers.emplace_back( a_LoggerName, a_BaseLoggingLevel, a_TextColor, a_BGColor, a_LoggingFormat );
-
-      return m_Loggers.back();
+      return s_Loggers.back();
    }
 }

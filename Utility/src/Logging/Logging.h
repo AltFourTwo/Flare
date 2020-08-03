@@ -2,18 +2,22 @@
 
 namespace Logging
 {
-   /***************************\
-   \*****   ENUMERATORS   *****/
-   enum class LogLevel : int
+   /*****   NAMESPACE   CONSTANTS   *****/
+   struct LOG_LEVEL_SCOPE
    {
-      TRACE = 1,
-      DEBUG = 2,
-      INFO = 3,
-      WARNING = 4,
-      ERR_OR = 5,
-      FATAL = 6,
-      OFF = 7
+      enum LogLevel
+      {
+         TRACE = 1,
+         DEBUG = 2,
+         INFO = 3,
+         WARNING = 4,
+         ERR_OR = 5,
+         FATAL = 6,
+         OFF = 7
+      };
    };
+
+   using LogLevel = LOG_LEVEL_SCOPE::LogLevel;
 
    enum class FormatControlCharacter : char
    {
@@ -25,7 +29,7 @@ namespace Logging
    // www.cpluscplus.com/reference/ctime/strftime/
    //
    // Spanned as an enum for more user facing control.
-   enum class DateControlCharacter : char
+   enum class DateTimeControlCharacter : char
    {
       ABBREVIATED_WEEKDAY_NAME = 'a',                                            //  %a  // Abbreviated weekday name *
       FULL_WEEKDAY_NAME = 'A',                                                   //  %A  // Full weekday name *
@@ -83,6 +87,7 @@ namespace Logging
       ERROR_LCC = '?'            // Error Character.
    };
 
+   /*****   NAMESPACE   FUNCTIONS   *****/
    bool IsDateControlCharacter( const char a_Char );
    bool IsLoggingControlCharacter( const char a_Char );
 }

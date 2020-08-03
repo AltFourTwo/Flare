@@ -4,10 +4,10 @@
 
 namespace Flare::Events
 {
-
    class FLARE_API WindowCloseEvent : public Event
    {
       /*****   CLASS   FUNCTIONS    *****/
+      public:
       std::string ToString() const override
       {
          std::stringstream x_SS;
@@ -16,6 +16,7 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
+      public:
       FLARE_EVENT_TYPE( WindowClose );
       FLARE_EVENT_CATEGORY( EventCategory::Window );
    };
@@ -34,6 +35,7 @@ namespace Flare::Events
       {}
 
       /*****   CLASS   FUNCTIONS    *****/
+      public:
       std::string ToString() const override
       {
          std::stringstream x_SS;
@@ -42,6 +44,7 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
+      public:
       FLARE_EVENT_TYPE( WindowResize );
       FLARE_EVENT_CATEGORY( EventCategory::Window );
 
@@ -59,6 +62,7 @@ namespace Flare::Events
    class FLARE_API WindowFocusEvent : public Event
    {
       /*****   CLASS   FUNCTIONS    *****/
+      public:
       std::string ToString() const override
       {
          std::stringstream x_SS;
@@ -67,6 +71,7 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
+      public:
       FLARE_EVENT_TYPE( WindowFocus );
       FLARE_EVENT_CATEGORY( EventCategory::Window );
    };
@@ -74,6 +79,7 @@ namespace Flare::Events
    class FLARE_API WindowLostFocusEvent : public Event
    {
       /*****   CLASS   FUNCTIONS    *****/
+      public:
       std::string ToString() const override
       {
          std::stringstream x_SS;
@@ -82,19 +88,25 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
+      public:
       FLARE_EVENT_TYPE( WindowLostFocus );
    };
 
    class FLARE_API WindowMovedEvent : public Event
    {
       /*****   CLASS   VARIABLES    *****/
+      private:
       unsigned int m_XPos, m_YPos;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
-      WindowMovedEvent(int a_XPos, int a_YPos) {}
+      WindowMovedEvent(int a_XPos, int a_YPos) :
+         m_XPos(a_XPos),
+         m_YPos(a_YPos)
+      {}
 
       /*****   CLASS   FUNCTIONS    *****/
+      public:
       std::string ToString() const override
       {
          std::stringstream x_SS;
@@ -103,6 +115,7 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
+      public:
       FLARE_EVENT_TYPE( WindowMoved );
    };
 }

@@ -3,6 +3,7 @@
 #include <string>
 #include <chrono>
 #include <vector>
+#include <utility>
 #include <initializer_list>
 
 #include "Logger.h"
@@ -10,135 +11,125 @@
 
 namespace Logging
 {
-   /**************************************\
-   \*****   CONSTRUCTOR-DESTRUCTOR   *****/
-   Logger::Logger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char* a_LoggingFormat ) :
-      m_LoggerName( a_LoggerName ),
-      m_BaseLoggingLevel( a_BaseLoggingLevel ),
-      m_TextColor( a_TextColor ),
-      m_BGColor( a_BGColor ),
+   /*****   CLASS   C-TOR D-TOR  *****/
+   Logger::Logger( const LoggerParameters& a_Parameters ) noexcept :
+      m_Parameters( a_Parameters ),
       m_ExecutionQueue(),
       m_LastMessageTimeStamp( std::chrono::steady_clock::now() )
    {
-      CompileFormat( m_ExecutionQueue, a_LoggingFormat );
-      // This->Log("Logger Created!");
+      CompileFormat( m_ExecutionQueue, m_Parameters.m_FormatString );
    }
 
-   /********************************\
-   \*****   PUBLIC-FUNCTIONS   *****/
-   // Log Without Formattables
+   Logger::Logger( LoggerParameters&& a_Parameters ) noexcept :
+      m_Parameters( std::move( a_Parameters ) ),
+      m_ExecutionQueue(),
+      m_LastMessageTimeStamp( std::chrono::steady_clock::now() )
+   {
+      CompileFormat( m_ExecutionQueue, m_Parameters.m_FormatString );
+   }
+
+   // Nested Class FormatAction Constructors
+   Logger::FormatAction::FormatAction( const FormatAction::ActionType&& a_ActionType, const char& a_FormatChar ) :
+      m_FormatChar( a_FormatChar ),
+      m_ActionType( a_ActionType ),
+      m_ReturnText()
+   {}
+
+   Logger::FormatAction::FormatAction( const FormatAction::ActionType&& a_ActionType, LoggingControlCharacter&& a_FormatChar ) :
+      m_FormatChar( (char)a_FormatChar ),
+      m_ActionType( a_ActionType ),
+      m_ReturnText()
+   {}
+
+   Logger::FormatAction::FormatAction( const char*& a_TextStart, const size_t a_Length ) :
+      m_FormatChar( 0 ),
+      m_ActionType( FormatAction::ActionType::SIMPLE_TEXT ),
+      m_ReturnText( a_TextStart, a_Length )
+   {}
+
+   /*****   CLASS   FUNCTIONS    *****/
+   // Log Without Formattables.
    void Logger::Trace( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= LogLevel::TRACE )
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::TRACE )
          Logger::Log( LogLevel::TRACE, a_Message );
    }
 
    void Logger::Debug( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= LogLevel::DEBUG )
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::DEBUG )
          Logger::Log( LogLevel::DEBUG, a_Message );
    }
 
    void Logger::Info( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= LogLevel::INFO )
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::INFO )
          Logger::Log( LogLevel::INFO, a_Message );
    }
 
    void Logger::Warn( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= LogLevel::WARNING )
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::WARNING )
          Logger::Log( LogLevel::WARNING, a_Message );
    }
 
    void Logger::Error( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= LogLevel::ERR_OR )
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::ERR_OR )
          Logger::Log( LogLevel::ERR_OR, a_Message );
    }
 
    void Logger::Fatal( const char* a_Message )
    {
-      if ( m_BaseLoggingLevel <= LogLevel::FATAL )
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::FATAL )
          Logger::Log( LogLevel::FATAL, a_Message );
    }
 
-   // Log With Formattables
+   // Log With Formattables.
    void Logger::Trace( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= LogLevel::TRACE )
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::TRACE )
          Logger::Log( LogLevel::TRACE, a_Message, a_Formattables );
    }
 
    void Logger::Debug( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= LogLevel::DEBUG )
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::DEBUG )
          Logger::Log( LogLevel::DEBUG, a_Message, a_Formattables );
    }
 
    void Logger::Info( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= LogLevel::INFO )
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::INFO )
          Logger::Log( LogLevel::INFO, a_Message, a_Formattables );
    }
 
    void Logger::Warn( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= LogLevel::WARNING )
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::WARNING )
          Logger::Log( LogLevel::WARNING, a_Message, a_Formattables );
    }
 
    void Logger::Error( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= LogLevel::ERR_OR )
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::ERR_OR )
          Logger::Log( LogLevel::ERR_OR, a_Message, a_Formattables );
    }
 
    void Logger::Fatal( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_BaseLoggingLevel <= LogLevel::FATAL )
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::FATAL )
          Logger::Log( LogLevel::FATAL, a_Message, a_Formattables );
    }
 
-   /***********************\
-   \*****   SETTERS   *****/
-   void Logger::SetBaseLoggingLevel( const LogLevel& a_LoggingLevel )
-   {
-      m_BaseLoggingLevel = a_LoggingLevel;
-   }
-
-   void Logger::SetTextColor( const int& a_TextColor )
-   {
-      m_TextColor = a_TextColor;
-   }
-
-   void Logger::SetBackgroundColor( const int& a_BGColor )
-   {
-      m_BGColor = a_BGColor;
-   }
-
-   void Logger::SetFormat( const char* a_Format )
-   {
-      CompileFormat( m_ExecutionQueue, a_Format );
-   }
-
-   /***********************\
-   \*****   GETTERS   *****/
-   const std::string Logger::GetName() const
-   {
-      return m_LoggerName;
-   }
-
-   /*********************************\
-   \*****   PRIVATE-FUNCTIONS   *****/
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message )
    {
-      Console::Get().Log( *this, a_LogLevel, a_Message );
+      Console::Instance().Log( *this, a_LogLevel, a_Message );
    }
 
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      Console::Get().Log( *this, a_LogLevel, a_Message, a_Formattables );
+      Console::Instance().Log( *this, a_LogLevel, a_Message, a_Formattables );
    }
 
    void Logger::CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_FormatString )
@@ -183,7 +174,7 @@ namespace Logging
 
                if ( *( i_ptr + 1 ) != 0 )
                {
-                  LoggingControlCharacter x_NextChar = (LoggingControlCharacter)(*( i_ptr + 1 ));
+                  LoggingControlCharacter x_NextChar = (LoggingControlCharacter)( *( i_ptr + 1 ) );
 
                   switch ( x_NextChar )
                   {
@@ -260,26 +251,7 @@ namespace Logging
       return x_ConsoleMessage;
    }
 
-   /**********************\
-   \*****   NESTED   *****/
-   Logger::FormatAction::FormatAction( const FormatAction::ActionType&& a_ActionType, const char& a_FormatChar ) :
-      m_FormatChar( a_FormatChar ),
-      m_ActionType( a_ActionType ),
-      m_ReturnText()
-   {}
-
-   Logger::FormatAction::FormatAction( const FormatAction::ActionType&& a_ActionType, LoggingControlCharacter&& a_FormatChar ) :
-      m_FormatChar( (char)a_FormatChar ),
-      m_ActionType( a_ActionType ),
-      m_ReturnText()
-   {}
-
-   Logger::FormatAction::FormatAction( const char*& a_TextStart, const size_t a_Length ) :
-      m_FormatChar( 0 ),
-      m_ActionType( FormatAction::ActionType::SIMPLE_TEXT ),
-      m_ReturnText( a_TextStart, a_Length )
-   {}
-
+#pragma region Nested FormatAction Functions
    std::string Logger::FormatAction::ExecuteAction( const Logger& a_Logger, const LogLevel& a_LogLevel, const char*& a_Message )
    {
       switch ( m_ActionType )
@@ -301,7 +273,7 @@ namespace Logging
          }
 
          case FormatAction::ActionType::LOGGER_NAME:
-            return a_Logger.GetName();
+            return a_Logger.m_Parameters.m_LoggerName;
 
          case FormatAction::ActionType::LOG_LEVEL:
          {
@@ -403,5 +375,19 @@ namespace Logging
          }
       }
       throw; // TODO Exception Unknown FormatAction::ActionType
+   }
+#pragma endregion
+
+   /*****   SETTERS   *****/
+   void Logger::SetParameters( LoggerParameters&& a_Parameters )
+   {
+      CompileFormat( m_ExecutionQueue, a_Parameters.m_FormatString );
+      m_Parameters = std::move( a_Parameters );
+   }
+
+   /*****   GETTERS   *****/
+   const LoggerParameters& Logger::GetParameters() const
+   {
+      return m_Parameters;
    }
 }

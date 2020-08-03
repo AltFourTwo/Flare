@@ -15,6 +15,7 @@ namespace Utility::Composing::Formattables
       \*****   CONSTRUCTOR-DESTRUCTOR   *****/
       public:
       FString( const std::string& a_String );
+      FString( const char* a_CString );
 
       /********************************\
       \*****   PUBLIC-FUNCTIONS   *****/

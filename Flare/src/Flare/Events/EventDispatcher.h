@@ -26,11 +26,13 @@ namespace Flare::Events
       Event& m_Event;
 
       /*****   CLASS   C-TOR D-TOR  *****/
+      public:
       EventDispatcher( Event& a_Event ) :
          m_Event( a_Event )
       {}
 
       /*****   CLASS   FUNCTIONS    *****/
+      public:
       template<typename T, typename = std::enable_if_t<std::is_convertible_v<T*, Event*>>>
       bool Dispatch( std::function<bool( T& )> a_HandlerFunction )
       {

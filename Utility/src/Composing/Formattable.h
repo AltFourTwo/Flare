@@ -19,6 +19,7 @@ namespace Utility::Composing
       Formattable( const char& a_Char );
       Formattable( const int& a_Int );
       Formattable( const double& a_FloatingPoint );
+      Formattable( const char* a_CString );
       Formattable( const std::string& a_String );
       Formattable( IFormattable& a_IFormattable );
       ~Formattable();
