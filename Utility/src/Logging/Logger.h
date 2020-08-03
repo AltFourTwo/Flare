@@ -5,21 +5,20 @@
 
 #include "Composing/Formattable.h"
 #include "Logging.h"
+#include "LoggerParameters.h"
 
 namespace Logging
 {
    using Formattable = Utility::Composing::Formattable;
 
-   /****************************\
-   \*****   CLASS LOGGER   *****/
    class Logger
    {
       public:
       using SharedLogger = std::shared_ptr<Logger>;
 
-      /**********************\
-      \*****   NESTED   *****/
+      /*****   NESTED  CLASSES      *****/
       private:
+   #pragma region FormatAction Nested Struct
       struct FormatAction
       {
          enum class ActionType : int
@@ -47,26 +46,21 @@ namespace Logging
 
          std::string ExecuteAction( const Logger& a_Logger, const LogLevel& a_LogLevel, const char*& a_Message );
       };
+   #pragma endregion
 
-      /*******************************\
-      \*****   PRIVATE-MEMBERS   *****/
+      /*****   CLASS   VARIABLES    *****/
       private:
-      const char* m_LoggerName;
-      LogLevel m_BaseLoggingLevel;
-      int m_TextColor; // TODO Find a better type for color properties, int is a placeholder type.
-      int m_BGColor;
+      LoggerParameters m_Parameters;
       mutable std::vector<FormatAction> m_ExecutionQueue;
       mutable std::chrono::time_point<std::chrono::steady_clock> m_LastMessageTimeStamp;
 
-      /**************************************\
-      \*****   CONSTRUCTOR-DESTRUCTOR   *****/
+      /*****   CLASS   C-TOR D-TOR  *****/
       public:
-      Logger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const int& a_TextColor, const int& a_BGColor, const char* a_LoggingFormat );
+      Logger( const LoggerParameters& a_Parameters ) noexcept;
+      Logger( LoggerParameters&& a_Parameters ) noexcept;
 
-      /********************************\
-      \*****   PUBLIC-FUNCTIONS   *****/
+      /*****   CLASS   FUNCTIONS    *****/
       public:
-      // Log Functions
       void Trace( const char* a_Message );
       void Debug( const char* a_Message );
       void Info( const char* a_Message );
@@ -82,23 +76,15 @@ namespace Logging
 
       std::string ExecuteQueue( const LogLevel& a_LogLevel, const char*& a_Message ) const;
 
-      /***********************\
-      \*****   SETTERS   *****/
-      public:
-      void SetBaseLoggingLevel( const LogLevel& a_LoggingLevel );
-      void SetTextColor( const int& a_TextColor );
-      void SetBackgroundColor( const int& a_BGColor );
-      void SetFormat( const char* a_Format );
-
-      /***********************\
-      \*****   GETTERS   *****/
-      const std::string GetName() const;
-
-      /*********************************\
-      \*****   PRIVATE-FUNCTIONS   *****/
       private:
       void Log( const LogLevel& a_LogLevel, const char*& a_Message );
       void Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Formattable>& a_Formattables );
       void CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_LoggingFormat );
+
+      /*****   SETTERS   *****/
+      void SetParameters( LoggerParameters&& a_Parameters );
+
+      /*****   GETTERS   *****/
+      const LoggerParameters& GetParameters() const;
    };
 }

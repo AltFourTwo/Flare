@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Core.h"
-#include "Logging/Console.h"
+#include "Logging/ILogEmitter.h"
 
 #include "Time/TimeStep.h"
 
@@ -17,14 +17,11 @@
 
 namespace Flare
 {
-   class FLARE_API Application
+   class FLARE_API Application : private Logging::ILogEmitter
    {
       /*****   CLASS   VARIABLES    *****/
       private:
       bool m_Running = true;
-      static Logging::Console& s_Console;
-      static Logging::Logger::SharedLogger s_CoreLogger;
-      static Logging::Logger::SharedLogger s_ClientLogger;
       float m_LastFrameTime = 0.0f;
       UserInterface::LayerStack m_LayerStack;
       std::unique_ptr<UserInterface::Window> m_MainWindow;
@@ -53,5 +50,4 @@ namespace Flare
 
    // To be defined in client
    Application* Initialize();
-
 }

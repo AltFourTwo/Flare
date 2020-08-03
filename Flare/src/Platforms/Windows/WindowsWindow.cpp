@@ -2,6 +2,8 @@
 
 #include "WindowsWindow.h"
 
+#include "Logging/Console.h"
+
 #include "Flare/Events/ApplicationEvent.h"
 #include "Flare/Events/WindowEvent.h"
 #include "Flare/Events/KeyEvent.h"
@@ -18,7 +20,7 @@ namespace Flare::UserInterface
 
    /*****   CLASS   C-TOR D-TOR  *****/
    WindowsWindow::WindowsWindow( const WindowModel& a_Model, const bool a_VSync ) :
-      Window( Logging::Console::Instance().CreateLogger( "Main Window Logger", Logging::LogLevel::TRACE, 0, 0, "%F at %T | &N says : &M" ) ),
+      Window(),
       m_WindowData( a_Model, a_VSync )
    {
       Init( a_Model );

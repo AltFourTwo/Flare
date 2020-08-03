@@ -1,5 +1,5 @@
 
-// This is the order the comment headers should appear
+// Sections should appear in this order.
 
 /*****   NAMESPACE   CONSTANTS   *****/
 
