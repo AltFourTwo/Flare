@@ -1,4 +1,4 @@
-#pragma once
+#include "SandboxPCH.h"
 
 #include "Flare/UserInterface/Layer.h"
 
@@ -9,12 +9,12 @@ class ExampleLayer : public Flare::UserInterface::Layer
       Layer( "Test Layer" )
    {}
 
-   virtual void Layer::OnUpdate( Time::TimeStep a_TimeStep ) 
+   virtual void Layer::OnUpdate( Flare::Time::TimeStep a_TimeStep ) 
    {
       
    }
 
-   virtual void Layer::OnRender( Time::TimeStep a_TimeStep )
+   virtual void Layer::OnRender( Flare::Time::TimeStep a_TimeStep )
    {
 
    }

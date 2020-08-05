@@ -10,6 +10,8 @@
 #include "Flare/Events/MouseEvent.h"
 #include "Flare/Events/EventDispatcher.h"
 
+#include <glad/glad.h>
+
 namespace Flare::UserInterface
 {
    static void GLFWErrorCallback( int a_Error, const char* a_Desc );
@@ -50,6 +52,10 @@ namespace Flare::UserInterface
 
       m_Window = glfwCreateWindow( (int)a_Model.Width, (int)a_Model.Height, a_Model.Title.c_str(), nullptr, nullptr );
       glfwMakeContextCurrent( m_Window );
+
+      int x_Status = gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress );
+      FLARE_CORE_ASSERT( x_Status, "Failed to initialize Glad!");
+
       glfwSetWindowUserPointer( m_Window, &m_WindowData );
       SetVSync( m_WindowData.VSync );
 
