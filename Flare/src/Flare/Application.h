@@ -21,6 +21,7 @@ namespace Flare
    {
       /*****   CLASS   VARIABLES    *****/
       private:
+      static Application* s_Instance;
       bool m_Running = true;
       float m_LastFrameTime = 0.0f;
       UserInterface::LayerStack m_LayerStack;
@@ -33,6 +34,8 @@ namespace Flare
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
+      inline UserInterface::Window& GetWindow() { return *m_MainWindow; }
+      inline static Application& GetInstance() { return *s_Instance; }
       void Run();
       void PopLayer( UserInterface::Layer* a_Layer );
       void PushLayer( UserInterface::Layer* a_Layer );

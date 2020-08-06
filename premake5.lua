@@ -23,10 +23,12 @@ IncludeDir["GoogleTest"] = "UnitTest/vendor/GoogleTest/googletest/include";
 IncludeDir["GoogleMock"] = "UnitTest/vendor/GoogleTest/googlemock/include";
 IncludeDir["GLFW"] = "Flare/vendor/GLFW/include"
 IncludeDir["Glad"] = "Flare/vendor/Glad/include"
+IncludeDir["ImGui"] = "Flare/vendor/imgui/"
 
 include "UnitTest/vendor/GoogleTest"
 include "Flare/vendor/GLFW"
 include "Flare/vendor/Glad"
+include "Flare/vendor/imgui"
 
 ----- FLARE -----
 project "Flare"
@@ -51,7 +53,8 @@ project "Flare"
 		"%{prj.name}/src",
 		"%{IncludeDir.Utility}",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
@@ -59,6 +62,7 @@ project "Flare"
 		"Utility",
 		"GLFW",
 		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 

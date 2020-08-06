@@ -1,6 +1,6 @@
 #include "FlarePCH.h"
-
 #include "Application.h"
+
 #include "Events/EventDispatcher.h"
 
 // Temporary Includes
@@ -11,10 +11,15 @@ namespace Flare
 {
 #define BIND_EVENT_CALLBACK(cb) std::bind(&Application::cb, this, std::placeholders::_1)
 
+   Application* Application::s_Instance = nullptr;
+
    /*****   CLASS   C-TOR D-TOR  *****/
    Application::Application() :
       ILogEmitter( Logging::LoggerParameters( "Core", Logging::LogLevel::TRACE, "%F at %T | &N says : &M" ) )
    {
+      FLARE_CORE_ASSERT(!s_Instance, "An instance of this application aleadye exists!")
+      s_Instance = this;
+
       m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );
       m_MainWindow->SetEventCallback( BIND_EVENT_CALLBACK( OnEvent ) );
    }
@@ -73,7 +78,7 @@ namespace Flare
    {
       //FLARE_CORE_TRACE( e.ToString().c_str() );
 
-      for ( UserInterface::LayerIterator_R itr = m_LayerStack.rend(); itr != m_LayerStack.rbegin(); )
+      for ( UserInterface::LayerIterator_R itr = m_LayerStack.rbegin(); itr != m_LayerStack.rend(); )
       {
          ( *itr++ )->OnEvent( e );
          if ( e.IsHandled() )
