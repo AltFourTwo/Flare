@@ -54,7 +54,7 @@ namespace Flare::UserInterface
       glfwMakeContextCurrent( m_Window );
 
       int x_Status = gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress );
-      FLARE_CORE_ASSERT( x_Status, "Failed to initialize Glad!");
+      FLARE_CORE_ASSERT( x_Status, "Failed to initialize Glad!" );
 
       glfwSetWindowUserPointer( m_Window, &m_WindowData );
       SetVSync( m_WindowData.VSync );
@@ -105,6 +105,14 @@ namespace Flare::UserInterface
                break;
             }
          }
+      } );
+
+      glfwSetCharCallback( m_Window, []( GLFWwindow* a_Window, unsigned int a_Char )
+      {
+         WindowData& x_Data = *(WindowData*)glfwGetWindowUserPointer( a_Window );
+         Flare::Events::KeyTypedEvent x_Event( a_Char );
+
+         x_Data.Callback( x_Event );
       } );
 
       glfwSetMouseButtonCallback( m_Window, []( GLFWwindow* a_Window, int a_Button, int a_Action, int a_Mods )

@@ -21,6 +21,7 @@ namespace Flare::UserInterface
       LayerIterator_F x_Layer = std::find(m_Layers.begin(), m_Layers.end(), a_Layer);
       if ( x_Layer != m_Layers.end() )
       {
+         a_Layer->OnDetach();
          m_Layers.erase(x_Layer);
          m_LayerInsert--;
       }
@@ -29,17 +30,22 @@ namespace Flare::UserInterface
    void LayerStack::PushLayer( Layer* a_Layer )
    {
       m_LayerInsert = m_Layers.emplace(m_LayerInsert, a_Layer);
+      a_Layer->OnAttach();
    }
 
    void LayerStack::PopOverlay( Layer* a_Overlay )
    {
       LayerIterator_F x_Layer = std::find( m_Layers.begin(), m_Layers.end(), a_Overlay );
       if ( x_Layer != m_Layers.end() )
+      {
+         a_Overlay->OnDetach();
          m_Layers.erase( x_Layer );
+      }
    }
 
    void LayerStack::PushOverlay( Layer* a_Overlay )
    {
       m_Layers.emplace_back(a_Overlay);
+      a_Overlay->OnAttach();
    }
 }

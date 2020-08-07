@@ -1,16 +1,11 @@
 #pragma once
 
 // For use by Flare applications!
-
-//#include "Flare/Core.h"
-
-#include <stdio.h>
-#include <string>
-#include <vector>
-
-#include "Flare/Time/TimeStep.h"
 #include "Flare/Application.h"
+#include "Flare/Time/TimeStep.h"
 #include "Flare/UserInput/Input.h"
+#include "Flare/UserInterface/Layer.h"
+#include "Flare/ImGui/ImGuiLayer.h"
 
 // ---------- Entry Point ----------
 #include "Flare/EntryPoint.h"

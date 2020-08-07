@@ -4,3 +4,6 @@
 [submodule "Flare/vendor/GLFW"]
 	path = Flare/vendor/GLFW
 	url = https://github.com/AltFourTwo/GLFW.git
+[submodule "Flare/vendor/imgui"]
+	path = Flare/vendor/imgui
+	url = https://github.com/AltFourTwo/ImGui.git

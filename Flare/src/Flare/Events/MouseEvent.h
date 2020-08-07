@@ -28,18 +28,10 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
+      inline float GetX() const { return m_MouseX; }
+      inline float GetY() const { return m_MouseY; }
       FLARE_EVENT_TYPE( MouseMoved );
       FLARE_EVENT_CATEGORY( EventCategory::Mouse | EventCategory::Input );
-
-      inline float GetX() const
-      {
-         return m_MouseX;
-      }
-
-      inline float GetY() const
-      {
-         return m_MouseY;
-      }
    };
 
    class FLARE_API MouseScrolledEvent : public Event
@@ -66,18 +58,10 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
+      inline float GetXOffSet() const { return m_XOffset; }
+      inline float GetYOffSet() const { return m_YOffset; }
       FLARE_EVENT_TYPE( MouseScrolled );
       FLARE_EVENT_CATEGORY( EventCategory::Mouse | EventCategory::Input );
-
-      inline float GetXOffSet() const
-      {
-         return m_XOffset;
-      }
-
-      inline float GetYOffset() const
-      {
-         return m_YOffset;
-      }
    };
 
    class FLARE_API MouseButtonEvent : public Event
@@ -94,12 +78,8 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
+      inline int GetMouseButton() const { return m_Button; }
       FLARE_EVENT_CATEGORY( EventCategory::MouseButton | EventCategory::Mouse | EventCategory::Input );
-
-      inline int GetMouseButton() const
-      {
-         return m_Button;
-      }
    };
 
    class FLARE_API MouseButtonPressedEvent : public MouseButtonEvent
@@ -121,7 +101,7 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( KeyPressed );
+      FLARE_EVENT_TYPE( MouseButtonPressed );
    };
 
    class FLARE_API MouseButtonReleasedEvent : public MouseButtonEvent
@@ -143,6 +123,6 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( KeyReleased );
+      FLARE_EVENT_TYPE( MouseButtonReleased );
    };
 }

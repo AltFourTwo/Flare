@@ -45,18 +45,10 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
+      inline unsigned int GetWidth() const { return m_Width; }
+      inline unsigned int GetHeight() const { return m_Height; }
       FLARE_EVENT_TYPE( WindowResize );
       FLARE_EVENT_CATEGORY( EventCategory::Window );
-
-      inline unsigned int GetWidth() const
-      {
-         return m_Width;
-      }
-
-      inline unsigned int GetHeight() const
-      {
-         return m_Height;
-      }
    };
 
    class FLARE_API WindowFocusEvent : public Event
@@ -90,6 +82,7 @@ namespace Flare::Events
       /*****   GETTERS   *****/
       public:
       FLARE_EVENT_TYPE( WindowLostFocus );
+      FLARE_EVENT_CATEGORY( EventCategory::Window );
    };
 
    class FLARE_API WindowMovedEvent : public Event
@@ -116,6 +109,9 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
+      inline float GetX() const { return m_XPos; }
+      inline float GetY() const { return m_YPos; }
       FLARE_EVENT_TYPE( WindowMoved );
+      FLARE_EVENT_CATEGORY( EventCategory::Window );
    };
 }
