@@ -19,15 +19,8 @@ namespace Flare::Events
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      virtual std::string ToString() const
-      {
-         return GetName();
-      }
-
-      inline bool IsInCategory( EventCategory a_Category )
-      {
-         return GetCategoryFlags() & a_Category;
-      }
+      virtual std::string ToString() const { return GetName(); }
+      inline bool IsInCategory( EventCategory a_Category ) { return GetCategoryFlags() & a_Category; }
 
       /*****   GETTERS   *****/
       public:
@@ -39,10 +32,7 @@ namespace Flare::Events
    };
 
    /*****   CLASS   OPERATORS    *****/
-   inline std::ostream& operator<<( std::ostream& os, Event& e )
-   {
-      return os << e.ToString();
-   }
+   inline std::ostream& operator<<( std::ostream& os, Event& e ) { return os << e.ToString(); }
 
    // These macros are used as quick definitions of the pure virtual methods in the abstract event class above.
 #define FLARE_EVENT_TYPE(a_Type) static EventType GetStaticType() { return EventType::##a_Type; }\

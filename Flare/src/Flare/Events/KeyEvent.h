@@ -18,12 +18,8 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
+      inline int GetKeyCode() const { return m_KeyCode; }
       FLARE_EVENT_CATEGORY( EventCategory::Keyboard | EventCategory::Input );
-
-      inline int GetKeyCode() const
-      {
-         return m_KeyCode;
-      }
    };
 
    class FLARE_API KeyPressedEvent : public KeyEvent
@@ -50,12 +46,8 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
+      inline int GetRepeatCount() const { return m_RepeatCount; }
       FLARE_EVENT_TYPE( KeyPressed );
-
-      inline int GetRepeatCount() const
-      {
-         return m_RepeatCount;
-      }
    };
 
    class FLARE_API KeyReleasedEvent : public KeyEvent
@@ -78,5 +70,27 @@ namespace Flare::Events
       /*****   GETTERS   *****/
       public:
       FLARE_EVENT_TYPE( KeyReleased );
+   };
+
+   class FLARE_API KeyTypedEvent : public KeyEvent
+   {
+      /*****   CLASS   C-TOR D-TOR  *****/
+      public:
+      KeyTypedEvent( int a_KeyCode ) :
+         KeyEvent( a_KeyCode )
+      {}
+
+      /*****   CLASS   FUNCTIONS    *****/
+      public:
+      std::string ToString() const override
+      {
+         std::stringstream x_SS;
+         x_SS << "KeyTypedEvent: " << m_KeyCode;
+         return x_SS.str();
+      }
+
+      /*****   GETTERS   *****/
+      public:
+      FLARE_EVENT_TYPE( KeyTyped );
    };
 }

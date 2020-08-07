@@ -24,13 +24,18 @@ namespace Flare::Events
       AppAfterRender,
 
       KeyPressed,
-      KeyRepeated,
       KeyReleased,
+      KeyRepeated,
+      KeyTyped,
 
       MouseButtonPressed,
       MouseButtonReleased,
       MouseMoved,
       MouseScrolled,
+
+      ClipBoardCut,
+      ClipBoardCopy,
+      ClipBoardPaste,
    };
 
    struct EVENT_CATEGORY_SCOPE
@@ -44,6 +49,7 @@ namespace Flare::Events
          Keyboard = Utility::Bits::Masks::BIT03,
          Mouse = Utility::Bits::Masks::BIT04,
          MouseButton = Utility::Bits::Masks::BIT05,
+         ClipBoard = Utility::Bits::Masks::BIT06,
       };
    };
 

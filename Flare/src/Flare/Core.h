@@ -17,3 +17,5 @@
    #define FLARE_ASSERT(x)
    #define FLARE_CORE_ASSERT(x)
 #endif
+
+#define FLARE_BIND_EVENT_FN(x_Func) std::bind(&x_Func, this, std::placeholders::_1)
