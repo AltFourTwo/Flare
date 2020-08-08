@@ -8,3 +8,4 @@ b-int/
 *.vcxproj*
 *.sln
 Metrics.*
+*/imgui.ini
