@@ -1,5 +1,6 @@
 workspace "Flare"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -14,7 +15,7 @@ workspace "Flare"
 	}
 
 CommonTargetDir = "%{wks.location}/bin/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}/"
-CommonObjDir = "%{wks.location}/bin/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}/"
+CommonObjDir = "%{wks.location}/b-int/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}/"
 
 -- Include directories relative to root folder -> Solution Directory
 IncludeDir = {}
@@ -35,19 +36,20 @@ project "Flare"
 	location "Flare"
 	kind "SharedLib"
 	language "C++"
-
-	targetdir ( CommonTargetDir .. "%{prj.name}" )
-	objdir ( CommonObjDir .. "%{prj.name}" )
+	staticruntime "Off"
+	
+	targetdir ( CommonTargetDir .. "%{prj.name}/" )
+	objdir ( CommonObjDir .. "%{prj.name}/" )
 	
 	pchheader "FlarePCH.h"
 	pchsource "Flare/src/FlarePCH.cpp"
-
+	
 	files 
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
-
+	
 	includedirs
 	{
 		"%{prj.name}/src",
@@ -56,7 +58,7 @@ project "Flare"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}"
 	}
-
+	
 	links
 	{
 		"Utility",
@@ -65,12 +67,11 @@ project "Flare"
 		"ImGui",
 		"opengl32.lib"
 	}
-
+	
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
-
+	
 		defines
 		{
 			"FLARE_FOR_WINDOWS",
@@ -80,42 +81,41 @@ project "Flare"
 
 		postbuildcommands
 		{
-			("{MKDIR} " .. CommonTargetDir .. "Sandbox"),
-			("{COPY} %{cfg.buildtarget.relpath} " .. CommonTargetDir .. "Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"" .. CommonTargetDir .. "Sandbox/\"")
 		}
-
+	
 	filter "configurations:Debug"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 		defines 
 		{ 
 			"FLARE_DEBUG",
-			"FLARE_ENABLE_ASSERTS"
 		}
-		
+	
 	filter "configurations:Release"
 		defines "FLARE_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
-		
+	
 	filter "configurations:Dist"
 		defines "FLARE_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
-
------ UTILITY -----
+	
+	----- UTILITY -----
 project "Utility"
 	location "Utility"
 	kind "StaticLib"
 	language "C++"
-
+	staticruntime "Off"
+	
 	targetdir ( CommonTargetDir .. "%{prj.name}" )
 	objdir ( CommonObjDir .. "%{prj.name}" )
 	
 	pchheader "UtilityPCH.h"
 	pchsource "Utility/src/UtilityPCH.cpp"
-
+	
 	files 
 	{
 		"%{prj.name}/src/**.h",
@@ -126,53 +126,45 @@ project "Utility"
 	{
 		"%{prj.name}/src"
 	}
-
+	
 	libdirs
 	{
-		"%{prj.name}/src",
+		"%{prj.name}/src"
 	}
-
+	
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
-
-		defines
-		{
-			"FLARE_FOR_WINDOWS"
-		}
-
+	
 	filter "configurations:Debug"
-		defines "FLARE_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
-		
+	
 	filter "configurations:Release"
-		defines "FLARE_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
-		
+	
 	filter "configurations:Dist"
-		defines "FLARE_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
-
-
+	
+	
 ----- UNITTEST -----
 project "UnitTest"
 	location "UnitTest"
 	kind "ConsoleApp"
 	language "C++"
-
+	staticruntime "Off"
+	
 	targetdir ( CommonTargetDir .. "%{prj.name}" )
 	objdir ( CommonObjDir .. "%{prj.name}" )
-
+	
 	files 
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
 	}
-
+	
 	includedirs
 	{
 		"%{prj.name}/src",
@@ -183,65 +175,57 @@ project "UnitTest"
 		"%{IncludeDir.GoogleMock}",
 		"%{IncludeDir.GoogleMock}/.."
 	}
-
+	
 	links
 	{
 		"Flare",
 		"Utility",
 		"GoogleTest"
 	}
-
+	
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
-
-		defines
-		{
-			"FLARE_FOR_WINDOWS"
-		}
-
+	
 	filter "configurations:Debug"
-		defines "FLARE_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
-
+	
 	filter "configurations:Release"
-		defines "FLARE_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
-		
+	
 	filter "configurations:Dist"
-		defines "FLARE_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
-
-
------ SANDBOX -----
+	
+	
+	----- SANDBOX -----
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-
+	staticruntime "Off"
+	
 	targetdir ( CommonTargetDir .. "%{prj.name}" )
 	objdir ( CommonObjDir .. "%{prj.name}" )
 	
 	pchheader "SandboxPCH.h"
 	pchsource "Sandbox/src/SandboxPCH.cpp"
-
+	
 	files 
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
-
+	
 	includedirs
 	{
 		"%{prj.name}/src",
 		"Flare/src",
 		"%{IncludeDir.Utility}"
 	}
-
+	
 	links
 	{
 		"Flare",
@@ -250,7 +234,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -260,15 +243,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "FLARE_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
-
-	filter "configurations:Release"
+		
+		filter "configurations:Release"
 		defines "FLARE_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 		
-	filter "configurations:Dist"
+		filter "configurations:Dist"
 		defines "FLARE_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
