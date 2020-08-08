@@ -6,6 +6,9 @@ namespace Flare::UserInput
 {
    class FLARE_API Input
    {
+      public:
+      using MousePosition = std::pair<float ,float>;
+
       /*****   CLASS   VARIABLES    *****/
       private:
       static Input* s_Instance;
@@ -39,7 +42,7 @@ namespace Flare::UserInput
 
       protected:
       virtual bool IsKeyPressed_I( int a_Keycode ) = 0;
-      virtual std::pair<float, float> GetMousePosition_I() = 0;
+      virtual MousePosition GetMousePosition_I() = 0;
       virtual bool IsMouseButtonPressed_I( int a_Button ) = 0;
       virtual float GetMouseX_I() = 0;
       virtual float GetMouseY_I() = 0;
