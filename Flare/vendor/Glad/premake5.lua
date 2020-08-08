@@ -2,6 +2,7 @@
 project "Glad"
     kind "StaticLib"
     language "C"
+    staticruntime "Off"
 
 	targetdir ( CommonTargetDir .. "%{prj.name}" )
     objdir ( CommonObjDir .. "%{prj.name}" )
@@ -19,8 +20,7 @@ project "Glad"
     }
 
     filter "system:windows"
-        staticruntime "On"
         systemversion "latest"
 
     filter { "system:windows", "configurations:Release" }
-    buildoptions "/MT"
+        runtime "Release"

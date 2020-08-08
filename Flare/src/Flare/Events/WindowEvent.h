@@ -89,7 +89,7 @@ namespace Flare::Events
    {
       /*****   CLASS   VARIABLES    *****/
       private:
-      unsigned int m_XPos, m_YPos;
+      int m_XPos, m_YPos;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -109,8 +109,8 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      inline float GetX() const { return m_XPos; }
-      inline float GetY() const { return m_YPos; }
+      inline int GetX() const { return m_XPos; }
+      inline int GetY() const { return m_YPos; }
       FLARE_EVENT_TYPE( WindowMoved );
       FLARE_EVENT_CATEGORY( EventCategory::Window );
    };

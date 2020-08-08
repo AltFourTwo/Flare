@@ -1,7 +1,7 @@
 # Directories
 .vs/
 /bin/
-b-int/
+/b-int/
 
 # Files
 *.user
