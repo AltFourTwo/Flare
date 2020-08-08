@@ -39,13 +39,13 @@ namespace Logging
    }
 
    // Log message using a logger's information.
-   void Console::Log( const Logger::SharedLogger a_Logger, LogLevel a_LogLevel, const char* a_Message )
+   void Console::Log( const Logger::SharedLogger& a_Logger, LogLevel a_LogLevel, const char* a_Message )
    {
       std::string x_ConsoleFormattedMessage = a_Logger->ExecuteQueue( a_LogLevel, a_Message );
       std::cout << x_ConsoleFormattedMessage << "\n";
    }
 
-   void Console::Log( const Logger::SharedLogger a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables )
+   void Console::Log( const Logger::SharedLogger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables )
    {
       std::string x_ComposedMessage = Format( a_Message, a_Formattables );
       Log( a_Logger, a_LogLevel, x_ComposedMessage.c_str() );
@@ -64,14 +64,14 @@ namespace Logging
       Log( a_Logger, a_LogLevel, x_ComposedMessage.c_str() );
    }
 
-   Logger::SharedLogger Console::CreateLogger( const LoggerParameters& a_Parameters ) noexcept
+   Logger::SharedLogger& Console::CreateLogger( const LoggerParameters& a_Parameters ) noexcept
    {
       s_Loggers.emplace_back( std::make_shared<Logger>( a_Parameters ) );
 
       return s_Loggers.back();
    }
 
-   Logger::SharedLogger Console::CreateLogger( LoggerParameters&& a_Parameters ) noexcept
+   Logger::SharedLogger& Console::CreateLogger( LoggerParameters&& a_Parameters ) noexcept
    {
       s_Loggers.emplace_back( std::make_shared<Logger>( std::move( a_Parameters ) ) );
 

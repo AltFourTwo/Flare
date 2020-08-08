@@ -34,10 +34,10 @@ namespace Logging
       static Console& Instance();
       void Log( LogLevel a_LogLevel, const char* a_Message );
       void Log( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
-      void Log( const Logger::SharedLogger a_Logger, LogLevel a_LogLevel, const char* a_Message );
-      void Log( const Logger::SharedLogger a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
-      Logger::SharedLogger CreateLogger( const LoggerParameters& a_Parameters ) noexcept;
-      Logger::SharedLogger CreateLogger( LoggerParameters&& a_Parameters ) noexcept;
+      void Log( const Logger::SharedLogger& a_Logger, LogLevel a_LogLevel, const char* a_Message );
+      void Log( const Logger::SharedLogger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
+      Logger::SharedLogger& CreateLogger( const LoggerParameters& a_Parameters ) noexcept;
+      Logger::SharedLogger& CreateLogger( LoggerParameters&& a_Parameters ) noexcept;
 
       private: // These are meant for friend class Logger.
       void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message );

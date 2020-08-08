@@ -9,7 +9,7 @@ namespace Logging
    {
       /*****   CLASS   VARIABLES    *****/
       protected:
-      Logger::SharedLogger m_Logger;
+      Logger::SharedLogger& m_Logger;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       ILogEmitter( const LoggerParameters& a_Parameters ) noexcept;
