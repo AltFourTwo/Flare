@@ -1,23 +1,48 @@
 #pragma once
 
 #include "Flare/Core.h"
+#include "Templates/BaseTemplates.h"
+#include "KeyMap.h"
 
 namespace Flare::UserInput
 {
    class FLARE_API Input
    {
       public:
-      using MousePosition = std::pair<float ,float>;
+      using MousePosition = std::pair<float, float>;
 
       /*****   CLASS   VARIABLES    *****/
       private:
       static Input* s_Instance;
+      const KeyMap m_KeyMap;
+
+      /*****   CLASS   C-TOR D-TOR  *****/
+      protected:
+      Input( KeyMap&& a_KeyMap ) :
+         m_KeyMap( std::move( a_KeyMap ) )
+      {}
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      inline static bool IsKeyPressed( int a_Keycode )
+      template<typename T, typename U, typename = Utility::Templates::EnableByInheritance<T, Input>, typename = Utility::Templates::EnableByInheritance<U, KeyMap>>
+      inline static bool Initialize( U a_KeyMap ) 
       {
-         return s_Instance->IsKeyPressed_I( a_Keycode );
+         if ( s_Instance )
+            return false;
+
+         s_Instance = new T(std::move(a_KeyMap));
+         
+         return true;
+      }
+
+      inline static Input& Get()
+      {
+         return *s_Instance;
+      }
+
+      inline static bool IsKeyPressed( const int a_Keycode )
+      {
+         return s_Instance->IsKeyPressed_I( s_Instance->m_KeyMap[a_Keycode] );
       }
 
       inline static bool IsMouseButtonPressed( int a_Button )
@@ -41,10 +66,10 @@ namespace Flare::UserInput
       }
 
       protected:
-      virtual bool IsKeyPressed_I( int a_Keycode ) = 0;
-      virtual MousePosition GetMousePosition_I() = 0;
-      virtual bool IsMouseButtonPressed_I( int a_Button ) = 0;
-      virtual float GetMouseX_I() = 0;
-      virtual float GetMouseY_I() = 0;
+      virtual bool IsKeyPressed_I( int a_Keycode ) const = 0;
+      virtual MousePosition GetMousePosition_I() const = 0;
+      virtual bool IsMouseButtonPressed_I( int a_Button ) const = 0;
+      virtual float GetMouseX_I() const = 0;
+      virtual float GetMouseY_I() const = 0;
    };
 }

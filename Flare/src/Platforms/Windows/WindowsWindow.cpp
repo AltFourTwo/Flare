@@ -1,5 +1,6 @@
 #include "FlarePCH.h"
 
+#include "WindowsInput.h"
 #include "WindowsWindow.h"
 
 #include "Logging/Console.h"
@@ -9,6 +10,7 @@
 #include "Flare/Events/KeyEvent.h"
 #include "Flare/Events/MouseEvent.h"
 #include "Flare/Events/EventDispatcher.h"
+#include "Platforms/Configuration/Configuration.h"
 
 #include <glad/glad.h>
 
@@ -38,7 +40,7 @@ namespace Flare::UserInterface
 
    void WindowsWindow::Init( const WindowModel& a_Model )
    {
-      // LOG Window creation
+      FLARE_CORE_TRACE("WindowsWindow Init!");
 
       if ( !s_GLFWInitialized )
       {
@@ -48,6 +50,17 @@ namespace Flare::UserInterface
          glfwSetErrorCallback( GLFWErrorCallback );
 
          s_GLFWInitialized = true;
+      }
+
+      if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( Configuration::GetKeyMapForBackendAPI( Configuration::BackendAPI::OpenGL ) ) )
+      {
+         FLARE_CORE_TRACE("Input scheme initialized and tied to window!");
+         SetInputScheme(UserInput::WindowsInput::Get());
+      }
+      else
+      {
+         FLARE_CORE_TRACE("Input scheme already initialized! Tying existing scheme to window.");
+         SetInputScheme(UserInput::WindowsInput::Get());
       }
 
       m_Window = glfwCreateWindow( (int)a_Model.Width, (int)a_Model.Height, a_Model.Title.c_str(), nullptr, nullptr );
@@ -154,6 +167,8 @@ namespace Flare::UserInterface
          Flare::Events::MouseMovedEvent x_Event( (float)a_XPos, (float)a_YPos );
          x_Data.Callback( x_Event );
       } );
+
+      FLARE_CORE_TRACE( "WindowsWindow Init Completed!" );
    }
 
    void WindowsWindow::Shutdown()

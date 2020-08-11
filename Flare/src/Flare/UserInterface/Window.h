@@ -4,6 +4,7 @@
 
 #include "Flare/Core.h"
 #include "Flare/Events/Event.h"
+#include "Flare/UserInput/Input.h"
 #include "Logging/ILogEmitter.h"
 
 namespace Flare::UserInterface
@@ -29,6 +30,10 @@ namespace Flare::UserInterface
       public:
       using EventCallback = std::function<void( Flare::Events::Event& )>;
 
+      /*****   CLASS   VARIABLES    *****/
+      protected:
+      const UserInput::Input* m_InputScheme = nullptr;
+
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
       Window() :
@@ -45,6 +50,7 @@ namespace Flare::UserInterface
 
       /*****   SETTERS   *****/
       public:
+      virtual void SetInputScheme( const UserInput::Input& a_InputScheme ) { m_InputScheme = &a_InputScheme; }
       virtual void SetEventCallback( const EventCallback& a_Callback ) = 0;
       virtual void SetVSync( bool a_Value ) = 0;
 
