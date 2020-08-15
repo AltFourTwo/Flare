@@ -2,7 +2,7 @@
 
 #include "Flare/Core.h"
 #include "Templates/BaseTemplates.h"
-#include "KeyMap.h"
+#include "InputMaps.h"
 
 namespace Flare::UserInput
 {

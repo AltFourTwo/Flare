@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Flare/UserInput/KeyMap.h"
-#include "Platforms/OpenGL/OpenGLKeyMap.h"
+#include "Flare/UserInput/InputMaps.h"
+#include "Platforms/OpenGL/OpenGLInputMaps.h"
 
 namespace Flare::Configuration
 {
