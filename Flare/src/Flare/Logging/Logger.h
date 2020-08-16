@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Flare/Core.h"
 #include "Logging.h"
 #include "LoggerParameters.h"
 #include "Composing/Formattable.h"
@@ -10,12 +11,11 @@
 
 namespace Flare::Logging
 {
-   using Formattable = Utility::Composing::Formattable;
-
-   class Logger
+   class FLARE_API Logger
    {
       public:
       using SharedLogger = std::shared_ptr<Logger>;
+      using Formattable = Utility::Composing::Formattable;
 
       /*****   NESTED  CLASSES      *****/
       private:

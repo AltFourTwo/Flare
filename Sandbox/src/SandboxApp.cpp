@@ -4,6 +4,8 @@
 #include "Flare/UserInterface/Layer.h"
 #include "Flare/UserInput/Input.h"
 #include "Flare/UserInput/InputCodes.h"
+#include "Flare/Logging/LogEmitter.h"
+#include "Flare/Logging/LoggerParameters.h"
 
 class ExampleLayer : public Flare::UserInterface::Layer
 {
@@ -39,13 +41,15 @@ class ExampleLayer : public Flare::UserInterface::Layer
    }
 };
 
-class Sandbox : public Flare::Application
+class Sandbox : public Flare::Application, public Flare::Logging::LogEmitter
 {
 public:
-   Sandbox()
+   Sandbox() :
+      Sandbox::LogEmitter( Flare::Logging::LoggerParameters( "App", Flare::Logging::LogLevel::TRACE, "%F at %T | &N says : &M" ) )
    {
       PushLayer(new ExampleLayer());
       PushOverlay(new Flare::ProtoImGui::ImGuiLayer());
+      FLARE_TRACE( "Sandbox has pushed 2 layers!");
    }
 
    ~Sandbox()

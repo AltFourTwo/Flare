@@ -1,10 +1,11 @@
 #pragma once
 
+#include "Flare/Core.h"
 #include "Logging.h"
 
 namespace Flare::Logging
 {
-   struct LoggerParameters
+   struct FLARE_API LoggerParameters
    {
       /*****   CLASS   CONSTANTS    *****/
       static const char* DEFAULT_LOGGER_NAME;

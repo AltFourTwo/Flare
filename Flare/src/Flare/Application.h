@@ -23,7 +23,6 @@ namespace Flare
       /*****   CLASS   VARIABLES    *****/
       private:
       static Application* s_Instance;
-      static Logging::Logger::SharedLogger s_ClientLogger;
       bool m_Running = true;
       float m_LastFrameTime = 0.0f;
       UserInterface::LayerStack m_LayerStack;
