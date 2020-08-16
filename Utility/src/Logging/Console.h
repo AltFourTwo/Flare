@@ -16,7 +16,7 @@ namespace Logging
 
       /*****   CLASS   CONSTANTS    *****/
       private:
-      static const int MAX_LOGGERS = 16;
+      static const int MAX_LOGGERS = 16; // TWEAK/CONFIG
 
       /*****   CLASS   VARIABLES    *****/
       private:
@@ -30,18 +30,18 @@ namespace Logging
       Console();
 
       /*****   CLASS   FUNCTIONS    *****/
+      private:
+      void Log( const char* a_Message );
+      void Log( std::string& a_Message );
+
       public:
-      static Console& Instance();
       void Log( LogLevel a_LogLevel, const char* a_Message );
       void Log( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
       void Log( const Logger::SharedLogger& a_Logger, LogLevel a_LogLevel, const char* a_Message );
       void Log( const Logger::SharedLogger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
       Logger::SharedLogger& CreateLogger( const LoggerParameters& a_Parameters ) noexcept;
       Logger::SharedLogger& CreateLogger( LoggerParameters&& a_Parameters ) noexcept;
-
-      private: // These are meant for friend class Logger.
-      void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message );
-      void Log( const Logger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
+      static Console& Instance();
 
       /*****   CLASS   OPERATORS    *****/
       void operator=( const Console& ) = delete;

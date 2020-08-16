@@ -74,12 +74,13 @@ namespace Logging
       void Warn( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
       void Error( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
       void Fatal( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
-
-      std::string ExecuteQueue( const LogLevel& a_LogLevel, const char*& a_Message ) const;
+      std::string PrepareMessage( LogLevel a_LogLevel, const char* a_Message ) const;
+      std::string PrepareMessage( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables ) const;
 
       private:
       void Log( const LogLevel& a_LogLevel, const char*& a_Message );
       void Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Formattable>& a_Formattables );
+      std::string ExecuteQueue( const LogLevel& a_LogLevel, const char* a_Message ) const;
       void CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_LoggingFormat );
 
       /*****   SETTERS   *****/

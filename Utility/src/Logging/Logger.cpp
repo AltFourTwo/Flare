@@ -8,6 +8,7 @@
 
 #include "Logger.h"
 #include "Console.h"
+#include "Composing/Composition.h"
 
 namespace Logging
 {
@@ -124,12 +125,12 @@ namespace Logging
 
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message )
    {
-      Console::Instance().Log( *this, a_LogLevel, a_Message );
+      Console::Instance().Log( PrepareMessage( a_LogLevel, a_Message ) );
    }
 
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      Console::Instance().Log( *this, a_LogLevel, a_Message, a_Formattables );
+      Console::Instance().Log( PrepareMessage( a_LogLevel, a_Message, a_Formattables ) );
    }
 
    void Logger::CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_FormatString )
@@ -237,7 +238,7 @@ namespace Logging
          a_ExecutionQueue.emplace_back( x_TextStart, i_ptr - x_TextStart );
    }
 
-   std::string Logger::ExecuteQueue( const LogLevel& a_LogLevel, const char*& a_Message ) const
+   std::string Logger::ExecuteQueue( const LogLevel& a_LogLevel, const char* a_Message ) const
    {
       std::string x_ConsoleMessage;
       x_ConsoleMessage.reserve( strlen( a_Message ) + 250 ); // TWEAK
@@ -250,6 +251,17 @@ namespace Logging
 
       return x_ConsoleMessage;
    }
+
+   std::string Logger::PrepareMessage( LogLevel a_LogLevel, const char* a_Message ) const
+   {
+      return ExecuteQueue( a_LogLevel, a_Message );
+   };
+
+   std::string Logger::PrepareMessage( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables ) const
+   {
+      std::string x_ComposedMessage = Format( a_Message, a_Formattables );
+      return ExecuteQueue( a_LogLevel, x_ComposedMessage.c_str() );
+   };
 
 #pragma region Nested FormatAction Functions
    std::string Logger::FormatAction::ExecuteAction( const Logger& a_Logger, const LogLevel& a_LogLevel, const char*& a_Message )
