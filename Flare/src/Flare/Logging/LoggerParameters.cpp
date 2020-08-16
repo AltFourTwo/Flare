@@ -1,8 +1,7 @@
-#include "UtilityPCH.h"
-
+#include "FlarePCH.h"
 #include "LoggerParameters.h"
 
-namespace Logging
+namespace Flare::Logging
 {
    /*****   ClASS   CONSTANTS    *****/
    const char* LoggerParameters::DEFAULT_LOGGER_NAME = "Unnamed Logger";

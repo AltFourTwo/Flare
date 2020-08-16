@@ -1,8 +1,7 @@
-#include "UtilityPCH.h"
-
+#include "FlarePCH.h"
 #include "Logging.h"
 
-namespace Logging
+namespace Flare::Logging
 {
    /*****   NAMESPACE   FUNCTIONS   *****/
    bool IsDateControlCharacter( const char a_Char )

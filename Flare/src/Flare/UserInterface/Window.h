@@ -5,7 +5,7 @@
 #include "Flare/Core.h"
 #include "Flare/Events/Event.h"
 #include "Flare/UserInput/Input.h"
-#include "Logging/LogEmitter.h"
+#include "Flare/Logging/LogEmitter.h"
 
 namespace Flare::UserInterface
 {

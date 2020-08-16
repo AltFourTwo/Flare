@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Logging/Logger.h"
+#include "Logger.h"
 #include "LoggerParameters.h"
 
-namespace Logging
+namespace Flare::Logging
 {
    class LogEmitter
    {

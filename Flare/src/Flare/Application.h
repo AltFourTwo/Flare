@@ -50,7 +50,10 @@ namespace Flare
       bool OnWindowClose( Events::WindowCloseEvent& e );
 
       /*****   GETTERS   *****/
-      // Loggers?
+      //public ClientLogger
+
+      /*****   SETTERS   *****/
+
    };
 
    // To be defined in client

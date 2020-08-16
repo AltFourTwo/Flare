@@ -1,10 +1,8 @@
-#include "UtilityPCH.h"
-
+#include "FlarePCH.h"
 #include "LogEmitter.h"
+#include "Console.h"
 
-#include "Logging/Console.h"
-
-namespace Logging
+namespace Flare::Logging
 {
    /*****   CLASS   C-TOR D-TOR  *****/
    LogEmitter::LogEmitter( const LoggerParameters& a_Parameters ) noexcept :

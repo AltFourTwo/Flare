@@ -5,7 +5,7 @@
 #include "LoggerParameters.h"
 #include "Composing/Formattable.h"
 
-namespace Logging
+namespace Flare::Logging
 {
    using Formattable = Utility::Composing::Formattable;
 

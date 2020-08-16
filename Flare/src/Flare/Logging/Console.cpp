@@ -1,14 +1,13 @@
-#include "UtilityPCH.h"
+#include "FlarePCH.h"
+#include "Console.h"
+#include "Logger.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include <initializer_list>
 
-#include "Console.h"
-#include "Logger.h"
-
-namespace Logging
+namespace Flare::Logging
 {
    using Formattable = Utility::Composing::Formattable;
 

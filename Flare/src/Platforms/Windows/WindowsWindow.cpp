@@ -3,8 +3,7 @@
 #include "WindowsInput.h"
 #include "WindowsWindow.h"
 
-#include "Logging/Console.h"
-
+#include "Flare/Logging/Console.h"
 #include "Flare/Events/ApplicationEvent.h"
 #include "Flare/Events/WindowEvent.h"
 #include "Flare/Events/KeyEvent.h"

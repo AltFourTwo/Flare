@@ -1,14 +1,14 @@
 #pragma once
 
+#include "Logging.h"
+#include "LoggerParameters.h"
+#include "Composing/Formattable.h"
+
 #include <vector>
 #include <memory>
 #include <chrono>
 
-#include "Composing/Formattable.h"
-#include "Logging.h"
-#include "LoggerParameters.h"
-
-namespace Logging
+namespace Flare::Logging
 {
    using Formattable = Utility::Composing::Formattable;
 

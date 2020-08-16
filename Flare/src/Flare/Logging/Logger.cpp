@@ -1,4 +1,7 @@
-#include "UtilityPCH.h"
+#include "FlarePCH.h"
+#include "Logger.h"
+#include "Console.h"
+#include "Composing/Composition.h"
 
 #include <string>
 #include <chrono>
@@ -6,11 +9,7 @@
 #include <utility>
 #include <initializer_list>
 
-#include "Logger.h"
-#include "Console.h"
-#include "Composing/Composition.h"
-
-namespace Logging
+namespace Flare::Logging
 {
    /*****   CLASS   C-TOR D-TOR  *****/
    Logger::Logger( const LoggerParameters& a_Parameters ) noexcept :
