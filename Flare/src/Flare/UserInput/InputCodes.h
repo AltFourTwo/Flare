@@ -75,7 +75,9 @@ namespace Flare::UserInput
 #define FLARE_KEY_NUM_LOCK           66
 #define FLARE_KEY_PRINT_SCREEN       67
 #define FLARE_KEY_PAUSE              68
-#define FLARE_UNUSED_CODE_69         69
+
+// Unused
+#define FLARE_UNUSED_CODE_69         FLARE_CODE_UNDEFINED
 
 // Modifier keys
 #define FLARE_KEY_LEFT_SHIFT         70
@@ -89,7 +91,7 @@ namespace Flare::UserInput
 #define FLARE_KEY_MENU               78
 
 // Unused
-#define FLARE_UNUSED_CODE_79         79
+#define FLARE_UNUSED_CODE_79         FLARE_CODE_UNDEFINED
 
 // Keypad
 #define FLARE_KEY_KP_0               80
@@ -111,12 +113,12 @@ namespace Flare::UserInput
 #define FLARE_KEY_KP_EQUAL           96
 
 // Unused
-#define FLARE_UNUSED_CODE_97         97
-#define FLARE_UNUSED_CODE_98         98
-#define FLARE_UNUSED_CODE_99         99
-#define FLARE_UNUSED_CODE_100        100
+#define FLARE_UNUSED_CODE_97         FLARE_CODE_UNDEFINED
+#define FLARE_UNUSED_CODE_98         FLARE_CODE_UNDEFINED
+#define FLARE_UNUSED_CODE_99         FLARE_CODE_UNDEFINED
+#define FLARE_UNUSED_CODE_100        FLARE_CODE_UNDEFINED
 
-// F Keys
+// Function Keys
 #define FLARE_KEY_F1                 101
 #define FLARE_KEY_F2                 102
 #define FLARE_KEY_F3                 103
@@ -144,8 +146,8 @@ namespace Flare::UserInput
 #define FLARE_KEY_F25                125
 
 // Unused
-#define FLARE_UNUSED_CODE_126        126
-#define FLARE_UNUSED_CODE_127        127
+#define FLARE_UNUSED_CODE_126        FLARE_CODE_UNDEFINED
+#define FLARE_UNUSED_CODE_127        FLARE_CODE_UNDEFINED
 
 
 // Modifiers
@@ -206,6 +208,19 @@ namespace Flare::UserInput
 #define FLARE_GAMEPAD_BUTTON_DPAD_RIGHT      12
 #define FLARE_GAMEPAD_BUTTON_DPAD_DOWN       13
 #define FLARE_GAMEPAD_BUTTON_DPAD_LEFT       14
+
+// Unused
+#define FLARE_GAMEPAD_UNUSED_BUTTON_16       FLARE_CODE_UNDEFINED
+
+#define FLARE_GAMEPAD_BUTTON_CROSS           FLARE_GAMEPAD_BUTTON_1
+#define FLARE_GAMEPAD_BUTTON_CIRCLE          FLARE_GAMEPAD_BUTTON_2
+#define FLARE_GAMEPAD_BUTTON_SQUARE          FLARE_GAMEPAD_BUTTON_3
+#define FLARE_GAMEPAD_BUTTON_TRIANGLE        FLARE_GAMEPAD_BUTTON_4
+
+#define FLARE_GAMEPAD_BUTTON_A               FLARE_GAMEPAD_BUTTON_1
+#define FLARE_GAMEPAD_BUTTON_B               FLARE_GAMEPAD_BUTTON_2
+#define FLARE_GAMEPAD_BUTTON_X               FLARE_GAMEPAD_BUTTON_3
+#define FLARE_GAMEPAD_BUTTON_Y               FLARE_GAMEPAD_BUTTON_4
 
 // Gamepad axis
 #define GLFW_GAMEPAD_AXIS_LEFT_X        0

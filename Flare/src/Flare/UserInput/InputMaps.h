@@ -23,9 +23,9 @@ namespace Flare::UserInput
    };
 
    class KeyMap : public InputMaps<128>{};
-   class MouseMap : public InputMaps<16> {};
-   class ModifierMap : public InputMaps<8> {};
+   class ModifierMap : public InputMaps<6> {};
+   class MouseMap : public InputMaps<8> {};
    class JoystickMap : public InputMaps<16> {};
-   class GamePadMap : public InputMaps<32> {};
-   class GamePadAxisMap : public InputMaps<8> {};
+   class GamePadMap : public InputMaps<16> {};
+   class GamePadAxisMap : public InputMaps<6> {};
 }
