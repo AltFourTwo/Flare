@@ -1,31 +1,59 @@
 #pragma once
 
 #include "InputCodes.h"
+#include "Bits/Masks.h"
 
 #include <initializer_list>
 #include <utility>
 
 namespace Flare::UserInput
 {
-   template<int size_t>
-   class InputMaps
+   /*****   NAMESPACE   CONSTANTS   *****/
+   enum class InputMapType
+   {
+      Undefined = 0,
+
+      Keyboard = 1,
+      Modifier = 2,
+      Mouse = 3,
+      Joystick = 4,
+      GamePad = 5,
+      GamePadAxis = 6
+   };
+
+   template<InputMapType T_InputMapType, size_t T_Size>
+   class InputMap
    {
       /*****   CLASS   VARIABLES    *****/
       protected:
-      static const int s_InputCodes[size_t]; // TWEAK : Array size is not final.
+      static const int s_InputCodes[T_Size];
+
+      /*****   CLASS   FUNCTIONS    *****/
+      public:
+      virtual std::string ToString() const { return GetName(); }
 
       /*****   CLASS   OPERATORS    *****/
       public:
-      const int& operator[] ( const int a_Index ) const
-      {
-         return s_InputCodes[a_Index];
-      }
+      const int& operator[] ( const int a_Index ) const { return s_InputCodes[a_Index]; }
+
+      /*****   GETTERS   *****/
+      public:
+      InputMapType GetStaticType() { return T_InputMapType; }
+      InputMapType GetInputMapType() const { return GetStaticType(); };
+      virtual const char* GetName() const = 0;
    };
 
-   class KeyMap : public InputMaps<128>{};
-   class ModifierMap : public InputMaps<6> {};
-   class MouseMap : public InputMaps<8> {};
-   class JoystickMap : public InputMaps<16> {};
-   class GamePadMap : public InputMaps<16> {};
-   class GamePadAxisMap : public InputMaps<6> {};
+   // This macro is used as quick heritance of the abstract class above.
+#define FLARE_INPUT_MAP_DEF( a_ClassName, a_InputMapTypeName, a_Size ) class\
+   a_ClassName : public InputMap<InputMapType::##a_InputMapTypeName, a_Size>\
+   {\
+      virtual const char* GetName() const override { return #a_InputMapTypeName; }\
+   };\
+
+   FLARE_INPUT_MAP_DEF( KeyMap, Keyboard, 128 );
+   FLARE_INPUT_MAP_DEF( ModifierMap, Modifier, 6 );
+   FLARE_INPUT_MAP_DEF( MouseMap, Mouse, 8 );
+   FLARE_INPUT_MAP_DEF( JoystickMap, Joystick, 16 );
+   FLARE_INPUT_MAP_DEF( GamePadMap, GamePad, 16 );
+   FLARE_INPUT_MAP_DEF( GamePadAxisMap, GamePadAxis, 6 );
 }
