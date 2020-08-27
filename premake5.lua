@@ -24,6 +24,7 @@ IncludeDir["GoogleTest"] = "UnitTest/vendor/GoogleTest/googletest/include";
 IncludeDir["GoogleMock"] = "UnitTest/vendor/GoogleTest/googlemock/include";
 IncludeDir["GLFW"] = "Flare/vendor/GLFW/include"
 IncludeDir["Glad"] = "Flare/vendor/Glad/include"
+IncludeDir["GLM"] = "Flare/vendor/GLM/"
 IncludeDir["ImGui"] = "Flare/vendor/imgui/"
 
 include "UnitTest/vendor/GoogleTest"
@@ -47,7 +48,9 @@ project "Flare"
 	files 
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/GLM/glm/**.hpp",
+		"%{prj.name}/vendor/GLM/glm/**.inl"
 	}
 	
 	includedirs
@@ -56,7 +59,8 @@ project "Flare"
 		"%{IncludeDir.Utility}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.GLM}"
 	}
 	
 	links
@@ -124,7 +128,8 @@ project "Utility"
 	
 	includedirs
 	{
-		"%{prj.name}/src"
+		"%{prj.name}/src",
+		"%{IncludeDir.GLM}"
 	}
 	
 	libdirs
@@ -223,7 +228,8 @@ project "Sandbox"
 	{
 		"%{prj.name}/src",
 		"Flare/src",
-		"%{IncludeDir.Utility}"
+		"%{IncludeDir.Utility}",
+		"%{IncludeDir.GLM}"
 	}
 	
 	links
