@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Core.h"
-#include "Logging/ILogEmitter.h"
+#include "Logging/Console.h"
+#include "Logging/LogEmitter.h"
 
 #include "Time/TimeStep.h"
 
@@ -17,7 +18,7 @@
 
 namespace Flare
 {
-   class FLARE_API Application : private Logging::ILogEmitter
+   class FLARE_API Application : private Logging::LogEmitter
    {
       /*****   CLASS   VARIABLES    *****/
       private:
@@ -48,7 +49,10 @@ namespace Flare
       bool OnWindowClose( Events::WindowCloseEvent& e );
 
       /*****   GETTERS   *****/
-      // Loggers?
+      //public ClientLogger
+
+      /*****   SETTERS   *****/
+
    };
 
    // To be defined in client

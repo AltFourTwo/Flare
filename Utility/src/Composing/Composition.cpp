@@ -87,7 +87,7 @@ namespace Utility::Composing
       const char* x_FormatStringStart = 0;
 
       const char* i_ptr = a_Text;
-      while ( *i_ptr++ != 0 )
+      while ( *i_ptr != 0 )
       {
          switch ( *i_ptr )
          {
@@ -112,6 +112,8 @@ namespace Utility::Composing
                   x_Ignore = !x_Ignore;
                break;
          }
+
+         i_ptr++;
       }
 
       if ( x_ReadingFormatEnclosure )

@@ -7,3 +7,6 @@
 [submodule "Flare/vendor/imgui"]
 	path = Flare/vendor/imgui
 	url = https://github.com/AltFourTwo/ImGui.git
+[submodule "Flare/vendor/GLM"]
+	path = Flare/vendor/GLM
+	url = https://github.com/g-truc/glm

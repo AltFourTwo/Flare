@@ -7,45 +7,39 @@
 
 namespace Flare::UserInput
 {
-   Input* Input::s_Instance = new WindowsInput();
+   Input* Input::s_Instance = nullptr;
 
-   bool WindowsInput::IsKeyPressed_I( int a_Keycode )
+   bool WindowsInput::IsKeyPressed_I( int a_Keycode ) const
    {
-      //auto& x_Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-      //auto state = glfwGetKey( x_Window , a_Keycode );
-      //return state == GFLW_PRESS || state == GLFW_REPEAT;
-
-      return false;
+      GLFWwindow* x_Window = static_cast<GLFWwindow*>( Application::GetInstance().GetWindow().GetNativeWindow() );
+      int state = glfwGetKey( x_Window, a_Keycode );
+      return state == GLFW_PRESS || state == GLFW_REPEAT;
    }
 
-   bool WindowsInput::IsMouseButtonPressed_I( int a_Button )
+   bool WindowsInput::IsMouseButtonPressed_I( int a_Button ) const
    {
-      //auto& x_Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-      //auto state = glfwGetMouseButton( x_Window , a_Button );
-      //return state == GFLW_PRESS;
-
-      return false;
+      GLFWwindow* x_Window = static_cast<GLFWwindow*>( Application::GetInstance().GetWindow().GetNativeWindow() );
+      int state = glfwGetMouseButton( x_Window, a_Button );
+      return state == GLFW_PRESS;
    }
 
-   std::pair<float, float> WindowsInput::GetMousePosition_I() 
+   Input::MousePosition WindowsInput::GetMousePosition_I() const
    {
-      //auto& x_Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+      GLFWwindow* x_Window = static_cast<GLFWwindow*>( Application::GetInstance().GetWindow().GetNativeWindow() );
       double xPos, yPos;
-      //auto state = glfwGetCursorPos( x_Window , &xPos, &yPos );
-      //return state == GFLW_PRESS || state == GLFW_REPEAT;
-
+      glfwGetCursorPos( x_Window, &xPos, &yPos );
       return { (float)xPos, (float)yPos };
    }
 
-   float WindowsInput::GetMouseX_I()
+   float WindowsInput::GetMouseX_I() const
    {
-      auto[x, y] = GetMousePosition_I();
+      auto [x, y] = GetMousePosition_I();
       return x;
    }
 
-   float WindowsInput::GetMouseY_I()
+   float WindowsInput::GetMouseY_I() const
    {
-      auto[x, y] = GetMousePosition_I();
+      auto [x, y] = GetMousePosition_I();
       return y;
    }
 }

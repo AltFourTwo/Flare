@@ -56,5 +56,4 @@ namespace Flare::UserInterface
       inline unsigned int GetHeight() const override { return m_WindowData.Height; }
       bool IsVSync() const override;
    };
-
 }

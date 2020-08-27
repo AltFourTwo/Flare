@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Logging
+namespace Flare::Logging
 {
    /*****   NAMESPACE   CONSTANTS   *****/
    struct LOG_LEVEL_SCOPE

@@ -4,7 +4,8 @@
 
 #include "Flare/Core.h"
 #include "Flare/Events/Event.h"
-#include "Logging/ILogEmitter.h"
+#include "Flare/UserInput/Input.h"
+#include "Flare/Logging/LogEmitter.h"
 
 namespace Flare::UserInterface
 {
@@ -24,15 +25,19 @@ namespace Flare::UserInterface
       {}
    };
 
-   class FLARE_API Window : protected Logging::ILogEmitter
+   class FLARE_API Window : protected Logging::LogEmitter
    {
       public:
       using EventCallback = std::function<void( Flare::Events::Event& )>;
 
+      /*****   CLASS   VARIABLES    *****/
+      protected:
+      const UserInput::Input* m_InputScheme = nullptr;
+
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
       Window() :
-         ILogEmitter( Logging::LoggerParameters( "Main Window Logger", Logging::LogLevel::TRACE, "%F at %T | &N says : &M" ) )
+         LogEmitter( Logging::LoggerParameters( "Main Window Logger", Logging::LogLevel::TRACE, "%F at %T | &N says : &M" ) )
       {}
 
       virtual ~Window() {}
@@ -45,6 +50,7 @@ namespace Flare::UserInterface
 
       /*****   SETTERS   *****/
       public:
+      virtual void SetInputScheme( const UserInput::Input& a_InputScheme ) { m_InputScheme = &a_InputScheme; }
       virtual void SetEventCallback( const EventCallback& a_Callback ) = 0;
       virtual void SetVSync( bool a_Value ) = 0;
 

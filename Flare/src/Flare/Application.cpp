@@ -7,6 +7,8 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
+#include "UserInput/Input.h"
+
 namespace Flare
 {
 #define BIND_EVENT_CALLBACK(cb) std::bind(&Application::cb, this, std::placeholders::_1)
@@ -15,9 +17,9 @@ namespace Flare
 
    /*****   CLASS   C-TOR D-TOR  *****/
    Application::Application() :
-      ILogEmitter( Logging::LoggerParameters( "Core", Logging::LogLevel::TRACE, "%F at %T | &N says : &M" ) )
+      LogEmitter( Logging::LoggerParameters( "Core", Logging::LogLevel::TRACE, "%F at %T | &N says : &M" ) )
    {
-      FLARE_CORE_ASSERT(!s_Instance, "An instance of this application aleady exists!")
+      FLARE_CORE_ASSERT( !s_Instance, "An instance of this application aleady exists!" );
       s_Instance = this;
 
       m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );
@@ -36,7 +38,7 @@ namespace Flare
          Time::TimeStep x_TimeStep = x_Time - m_LastFrameTime;
          m_LastFrameTime = x_Time;
 
-         FLARE_CORE_INFO( "TimeStep is {0}s {1}ms", { x_TimeStep.GetSeconds(), x_TimeStep.GetMilliseconds() } );
+         //FLARE_CORE_INFO( "TimeStep is {0}s {1}ms", { x_TimeStep.GetSeconds(), x_TimeStep.GetMilliseconds() } );
 
          glClearColor( 0.5f, 0.25f, 0, 1 );
          glClear( GL_COLOR_BUFFER_BIT );
@@ -45,6 +47,9 @@ namespace Flare
             x_Layer->OnUpdate( x_TimeStep );
 
          m_MainWindow->OnUpdate();
+
+         //auto [x, y] = UserInput::Input::GetMousePosition();
+         //FLARE_CORE_TRACE( "{0}, {1}", { x, y } );
 
          for ( UserInterface::Layer* x_Layer : m_LayerStack )
             x_Layer->OnRender( x_TimeStep );

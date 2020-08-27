@@ -1,17 +1,18 @@
 #pragma once
 
-#include "Logging/Logging.h"
+#include "Flare/Core.h"
+#include "Logging.h"
 
-namespace Logging
+namespace Flare::Logging
 {
-   struct LoggerParameters
+   struct FLARE_API LoggerParameters
    {
       /*****   CLASS   CONSTANTS    *****/
       static const char* DEFAULT_LOGGER_NAME;
       static const char* DEFAULT_FORMAT;
       static const int DEFAULT_BG_COLOR = 0;
       static const int DEFAULT_TEXT_COLOR = 0;
-      static const LogLevel DEFAULT_LOG_LEVEL = Logging::LogLevel::TRACE;
+      static const LogLevel DEFAULT_LOG_LEVEL = LogLevel::TRACE;
 
       /*****   CLASS   VARIABLES    *****/
       const char* m_LoggerName;

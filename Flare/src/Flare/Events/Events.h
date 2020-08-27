@@ -7,7 +7,7 @@ namespace Flare::Events
 {
    enum class EventType
    {
-      None = 0,
+      Undefined = 0,
 
       WindowClose,
       WindowResize,
@@ -42,7 +42,7 @@ namespace Flare::Events
    {
       enum EventCategory
       {
-         None = 0,
+         Undefined = 0,
          Application = Utility::Bits::Masks::BIT00,
          Window = Utility::Bits::Masks::BIT01,
          Input = Utility::Bits::Masks::BIT02,

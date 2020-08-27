@@ -1,5 +1,10 @@
 #pragma once
 
+#include <time.h>
+#include <ctime>
+#include <chrono>
+#include <cmath>
+#include <cstdint>
 #include <exception>
 #include <iostream>
 #include <memory>
