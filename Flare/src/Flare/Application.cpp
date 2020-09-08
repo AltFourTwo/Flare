@@ -17,7 +17,7 @@ namespace Flare
 
    /*****   CLASS   C-TOR D-TOR  *****/
    Application::Application() :
-      LogEmitter( Logging::LoggerParameters( "Core", Logging::LogLevel::TRACE, "%F at %T | &N says : &M" ) )
+      CoreLogEmitter( std::move( Logging::LoggerParameters( "Core", Logging::LogLevel::TRACE, "%F at %T | &N says : &M" ) ) )
    {
       FLARE_CORE_ASSERT( !s_Instance, "An instance of this application aleady exists!" );
       s_Instance = this;

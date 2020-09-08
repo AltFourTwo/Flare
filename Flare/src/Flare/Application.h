@@ -18,7 +18,7 @@
 
 namespace Flare
 {
-   class FLARE_API Application : private Logging::LogEmitter
+   class FLARE_API Application : private Logging::CoreLogEmitter
    {
       /*****   CLASS   VARIABLES    *****/
       private:
@@ -49,10 +49,8 @@ namespace Flare
       bool OnWindowClose( Events::WindowCloseEvent& e );
 
       /*****   GETTERS   *****/
-      //public ClientLogger
 
       /*****   SETTERS   *****/
-
    };
 
    // To be defined in client

@@ -10,8 +10,6 @@
 #include "Flare/UserInterface/Layer.h"
 #include "Flare/ImGui/ImGuiLayer.h"
 
-
-
 // ---------- Entry Point ----------
 #include "Flare/EntryPoint.h"
 // ---------------------------------
