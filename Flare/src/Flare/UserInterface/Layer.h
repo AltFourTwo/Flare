@@ -19,11 +19,12 @@ namespace Flare::UserInterface
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      virtual void OnAttach() = 0;
-      virtual void OnDetach() = 0;
-      virtual void OnEvent( Flare::Events::Event& a_Event ) = 0;
-      virtual void OnUpdate( Time::TimeStep a_TimeStep ) = 0;
-      virtual void OnRender( Time::TimeStep a_TimeStep ) = 0;
+      virtual void OnAttach() {}
+      virtual void OnDetach() {}
+      virtual void OnEvent( Flare::Events::Event& a_Event ) {}
+      virtual void OnUpdate( Time::TimeStep a_TimeStep ) {}
+      virtual void OnRender( Time::TimeStep a_TimeStep ) {}
+      virtual void OnImGuiRender() {}
 
       /*****   GETTERS   *****/
       public:

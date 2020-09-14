@@ -1,20 +1,21 @@
 #pragma once
 
-#include "Core.h"
-#include "Logging/Console.h"
-#include "Logging/LogEmitter.h"
+#include "Flare/Core.h"
+#include "Flare/Logging/Console.h"
+#include "Flare/Logging/LogEmitter.h"
 
-#include "Time/TimeStep.h"
+#include "Flare/Time/TimeStep.h"
 
-#include "UserInterface/Window.h"
-#include "UserInterface/LayerStack.h"
+#include "Flare/UserInterface/Window.h"
+#include "Flare/UserInterface/LayerStack.h"
+#include "Flare/ImGui/ImGuiLayer.h"
 
-#include "Events/Event.h"
-#include "Events/ApplicationEvent.h"
-#include "Events/WindowEvent.h"
-#include "Events/KeyEvent.h"
-#include "Events/MouseEvent.h"
-#include "Events/EventDispatcher.h"
+#include "Flare/Events/Event.h"
+#include "Flare/Events/ApplicationEvent.h"
+#include "Flare/Events/WindowEvent.h"
+#include "Flare/Events/KeyEvent.h"
+#include "Flare/Events/MouseEvent.h"
+#include "Flare/Events/EventDispatcher.h"
 
 namespace Flare
 {
@@ -27,6 +28,7 @@ namespace Flare
       float m_LastFrameTime = 0.0f;
       UserInterface::LayerStack m_LayerStack;
       std::unique_ptr<UserInterface::Window> m_MainWindow;
+      ProtoImGui::ImGuiLayer* m_ImGuiLayer;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:

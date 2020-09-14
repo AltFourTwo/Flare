@@ -24,6 +24,9 @@ namespace Flare
 
       m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );
       m_MainWindow->SetEventCallback( BIND_EVENT_CALLBACK( OnEvent ) );
+
+      m_ImGuiLayer = new ProtoImGui::ImGuiLayer();
+      m_LayerStack.PushOverlay( m_ImGuiLayer );
    }
 
    Application::~Application()
@@ -51,8 +54,14 @@ namespace Flare
          //auto [x, y] = UserInput::Input::GetMousePosition();
          //FLARE_CORE_TRACE( "{0}, {1}", { x, y } );
 
+         // TODO : Should be in a render thread.
+         m_ImGuiLayer->Begin();
          for ( UserInterface::Layer* x_Layer : m_LayerStack )
+         {
             x_Layer->OnRender( x_TimeStep );
+            x_Layer->OnImGuiRender();
+         }
+         m_ImGuiLayer->End();
 
          m_MainWindow->OnRender();
       }

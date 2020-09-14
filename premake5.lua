@@ -228,6 +228,7 @@ project "Sandbox"
 	{
 		"%{prj.name}/src",
 		"Flare/src",
+		"Flare/vendor",
 		"%{IncludeDir.Utility}",
 		"%{IncludeDir.GLM}"
 	}
