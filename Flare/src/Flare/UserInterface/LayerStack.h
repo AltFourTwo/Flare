@@ -15,7 +15,7 @@ namespace Flare::UserInterface
       /*****   CLASS   VARIABLES    *****/
       private:
       std::vector<Layer*> m_Layers;
-      LayerIterator_F m_LayerInsert;
+      unsigned int m_LayerInsertIndex = 0;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
