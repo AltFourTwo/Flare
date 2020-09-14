@@ -1,0 +1,29 @@
+----- ImGui -----
+project "ImGui"
+    kind "StaticLib"
+    language "C++"
+    staticruntime "Off"
+
+	targetdir ( CommonTargetDir .. "%{prj.name}" )
+    objdir ( CommonObjDir .. "%{prj.name}" )
+    
+    files 
+    {
+        "imconfig.h",
+        "imgui.h",
+        "imgui.cpp",
+        "imgui_draw.cpp",
+        "imgui_internal.h",
+        "imgui_widgets.cpp",
+        "imstb_rectpack.h",
+        "imstb_textedit.h",
+        "imstb_truetype.h",
+        "imgui_demo.cpp"
+    }
+
+    filter "system:windows"
+        cppdialect "C++17"
+        systemversion "latest"
+
+    filter { "system:windows", "configurations:Release" }
+        runtime "Release"
