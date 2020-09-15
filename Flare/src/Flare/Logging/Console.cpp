@@ -19,7 +19,7 @@ namespace Flare::Logging
    }
 
    /*****   CLASS   FUNCTIONS    *****/
-   Console& Console::Instance()
+   Console& Console::GetInstance()
    {
       static Console s_Instance;
       return s_Instance;

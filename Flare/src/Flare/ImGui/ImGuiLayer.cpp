@@ -48,7 +48,7 @@ namespace Flare::ProtoImGui
 
       // Setup Platform/Renderer bindings.
       ImGui_ImplGlfw_InitForOpenGL( x_Window, true );
-      ImGui_ImplOpenGL3_Init( "version 430 core" );
+      ImGui_ImplOpenGL3_Init( "#version 430 core" );
    }
 
    void ImGuiLayer::OnDetach()
@@ -75,7 +75,7 @@ namespace Flare::ProtoImGui
    {
       ImGuiIO x_IO = ImGui::GetIO();
       Application& x_App = Application::GetInstance();
-      x_IO.DisplaySize = ImVec2( x_App.GetWindow().GetWidth(), x_App.GetWindow().GetHeight() );
+      x_IO.DisplaySize = ImVec2( (float)x_App.GetWindow().GetWidth(), (float)x_App.GetWindow().GetHeight() );
 
       // Rendering
       ImGui::Render();

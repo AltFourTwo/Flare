@@ -8,8 +8,7 @@ Sandbox::Sandbox() :
    LogEmitter( Flare::Logging::LoggerParameters( "Sandbox", Flare::Logging::LogLevel::TRACE, "%F at %T | &N says : &M" ) )
 {
    PushLayer( new ExampleLayer() );
-   PushOverlay( new Flare::ProtoImGui::ImGuiLayer() );
-   FLARE_TRACE( "Sandbox has pushed 2 layers!" );
+   FLARE_TRACE( "Sandbox has pushed 1 layers!" );
 }
 
 Sandbox::~Sandbox() {}

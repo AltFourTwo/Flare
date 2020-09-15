@@ -41,7 +41,7 @@ namespace Flare::Logging
       void Log( const Logger::SharedLogger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables );
       Logger::SharedLogger& CreateLogger( const LoggerParameters& a_Parameters ) noexcept;
       Logger::SharedLogger& CreateLogger( LoggerParameters&& a_Parameters ) noexcept;
-      static Console& Instance();
+      static Console& GetInstance();
 
       /*****   CLASS   OPERATORS    *****/
       void operator=( const Console& ) = delete;

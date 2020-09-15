@@ -7,11 +7,11 @@ namespace Flare::Logging
    /*****   CLASS   C-TOR D-TOR  *****/
    // Base
    LogEmitterBase::LogEmitterBase( const LoggerParameters& a_Parameters ) noexcept :
-      m_Logger( Console::Instance().CreateLogger( a_Parameters ) )
+      m_Logger( Console::GetInstance().CreateLogger( a_Parameters ) )
    {}
 
    LogEmitterBase::LogEmitterBase( LoggerParameters&& a_Parameters ) noexcept :
-      m_Logger( Console::Instance().CreateLogger( std::forward<LoggerParameters>( a_Parameters ) ) )
+      m_Logger( Console::GetInstance().CreateLogger( std::forward<LoggerParameters>( a_Parameters ) ) )
    {}
 
    LogEmitterBase::LogEmitterBase( const LogEmitterBase& a_Other ) noexcept :

@@ -19,7 +19,7 @@ namespace Flare
    Application::Application() :
       CoreLogEmitter( std::move( Logging::LoggerParameters( "Core", Logging::LogLevel::TRACE, "%F at %T | &N says : &M" ) ) )
    {
-      FLARE_CORE_ASSERT( !s_Instance, "An instance of this application aleady exists!" );
+      FLARE_CORE_ASSERT( !s_Instance, { "An instance of this application aleady exists!" } );
       s_Instance = this;
 
       m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );
