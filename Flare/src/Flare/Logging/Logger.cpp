@@ -124,12 +124,12 @@ namespace Flare::Logging
 
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message )
    {
-      Console::Instance().Log( PrepareMessage( a_LogLevel, a_Message ) );
+      Console::GetInstance().Log( PrepareMessage( a_LogLevel, a_Message ) );
    }
 
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      Console::Instance().Log( PrepareMessage( a_LogLevel, a_Message, a_Formattables ) );
+      Console::GetInstance().Log( PrepareMessage( a_LogLevel, a_Message, a_Formattables ) );
    }
 
    void Logger::CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_FormatString )
@@ -275,8 +275,9 @@ namespace Flare::Logging
             char x_Buffer[40]; // TWEAK
             const char x_Format[] = { '%', m_FormatChar, 0 };
             const time_t x_RawTime = std::chrono::system_clock::to_time_t( std::chrono::system_clock::now() );
-            struct tm* x_TimeNow = localtime( &x_RawTime );
-            size_t x_TimeStringLength = strftime( x_Buffer, 40, x_Format, x_TimeNow ); // TWEAK
+            struct tm x_TimeNow;
+            localtime_s( &x_TimeNow, &x_RawTime );
+            size_t x_TimeStringLength = strftime( x_Buffer, 40, x_Format, &x_TimeNow ); // TWEAK
 
             m_ReturnText = std::string( x_Buffer, x_TimeStringLength );
 

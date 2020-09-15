@@ -25,13 +25,13 @@ namespace Flare::UserInput
       /*****   CLASS   FUNCTIONS    *****/
       public:
       template<typename T, typename U, typename = Utility::Templates::EnableByInheritance<T, Input>, typename = Utility::Templates::EnableByInheritance<U, KeyMap>>
-      inline static bool Initialize( U a_KeyMap ) 
+      inline static bool Initialize( U&& a_KeyMap )
       {
          if ( s_Instance )
             return false;
 
-         s_Instance = new T(std::move(a_KeyMap));
-         
+         s_Instance = new T( std::forward<KeyMap>( a_KeyMap ) );
+
          return true;
       }
 

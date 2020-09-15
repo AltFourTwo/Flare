@@ -2,9 +2,9 @@
 project "Glad"
     kind "StaticLib"
     language "C"
-    staticruntime "Off"
+    staticruntime "on"
 
-	targetdir ( CommonTargetDir .. "%{prj.name}" )
+    targetdir ( CommonTargetDir .. "%{prj.name}" )
     objdir ( CommonObjDir .. "%{prj.name}" )
     
     files 
@@ -22,5 +22,10 @@ project "Glad"
     filter "system:windows"
         systemversion "latest"
 
-    filter { "system:windows", "configurations:Release" }
+    filter "configurations:Debug"
+        runtime "Debug"
+        symbols "on"
+
+    filter "configurations:Release"
         runtime "Release"
+        optimize "on"

@@ -21,7 +21,7 @@ namespace Flare::Configuration
       switch ( a_ConfigValue )
       {
          case BackendAPI::OpenGL:
-            return UserInput::OpenGLKeyMap();
+            return std::move( UserInput::OpenGLKeyMap() );
 
          default:
             throw; // TODO : When the time comes, more KeyMaps can be added here.

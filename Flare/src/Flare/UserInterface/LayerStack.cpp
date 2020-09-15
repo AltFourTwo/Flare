@@ -4,10 +4,7 @@
 namespace Flare::UserInterface
 {
    /*****   CLASS   C-TOR D-TOR  *****/
-   LayerStack::LayerStack()
-   {
-      m_LayerInsert = m_Layers.begin();
-   }
+   LayerStack::LayerStack() {}
 
    LayerStack::~LayerStack()
    {
@@ -23,13 +20,14 @@ namespace Flare::UserInterface
       {
          a_Layer->OnDetach();
          m_Layers.erase(x_Layer);
-         m_LayerInsert--;
+         m_LayerInsertIndex--;
       }
    }
 
    void LayerStack::PushLayer( Layer* a_Layer )
    {
-      m_LayerInsert = m_Layers.emplace(m_LayerInsert, a_Layer);
+      m_Layers.emplace( m_Layers.begin() + m_LayerInsertIndex, a_Layer);
+      m_LayerInsertIndex++;
       a_Layer->OnAttach();
    }
 

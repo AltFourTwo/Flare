@@ -51,7 +51,7 @@ namespace Flare::UserInterface
          s_GLFWInitialized = true;
       }
 
-      if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( Configuration::GetKeyMapForBackendAPI( Configuration::BackendAPI::OpenGL ) ) )
+      if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( std::forward<UserInput::KeyMap>(Configuration::GetKeyMapForBackendAPI( Configuration::BackendAPI::OpenGL ) ) ) )
       {
          FLARE_CORE_TRACE( "Input scheme initialized and tied to window!" );
          SetInputScheme( UserInput::WindowsInput::Get() );
@@ -66,7 +66,7 @@ namespace Flare::UserInterface
       glfwMakeContextCurrent( m_Window );
 
       int x_Status = gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress );
-      FLARE_CORE_ASSERT( x_Status, "Failed to initialize Glad!" );
+      FLARE_CORE_ASSERT( x_Status, { "Failed to initialize Glad!" } );
 
       glfwSetWindowUserPointer( m_Window, &m_WindowData );
       SetVSync( m_WindowData.VSync );
@@ -187,7 +187,7 @@ namespace Flare::UserInterface
 
    static void GLFWErrorCallback( int a_Error, const char* a_Desc )
    {
-      Logging::Console::Instance().Log( Logging::LogLevel::ERR_OR, "GLFW Error. Code [{0}] : {1}", { a_Error, a_Desc } );
+      Logging::Console::GetInstance().Log( Logging::LogLevel::ERR_OR, "GLFW Error. Code [{0}] : {1}", { a_Error, a_Desc } );
    }
 
    /*****   GETTERS   *****/
