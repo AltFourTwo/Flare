@@ -17,6 +17,9 @@
 #include "Flare/Events/MouseEvent.h"
 #include "Flare/Events/EventDispatcher.h"
 
+// Testing Only
+#include "Test/OpenGLTestLayer.h"
+
 namespace Flare
 {
    class FLARE_API Application : private Logging::CoreLogEmitter
@@ -29,6 +32,9 @@ namespace Flare
       UserInterface::LayerStack m_LayerStack;
       std::unique_ptr<UserInterface::Window> m_MainWindow;
       ProtoImGui::ImGuiLayer* m_ImGuiLayer;
+
+      // For OpenGL testing
+      Testing::OpenGLTestLayer* m_OpenGLLayer;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:

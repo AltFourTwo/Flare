@@ -8,18 +8,15 @@ namespace Flare::Testing
 {
    OpenGLTestLayer::OpenGLTestLayer() :
       Layer( "OpenGLTestLayer" )
+   {}
+
+   void OpenGLTestLayer::OnRender( Time::TimeStep a_TimeStep )
    {
       glBegin( GL_TRIANGLES );
       glVertex2f( -0.5f, -0.5f );
       glVertex2f( 0.0f, 0.5f );
-      glVertex2f( 0.5f, -0.5f);
+      glVertex2f( 0.5f, -0.5f );
       glEnd();
-
-   }
-
-   void OpenGLTestLayer::OnRender( Time::TimeStep a_TimeStep )
-   {
-
    }
 
 }

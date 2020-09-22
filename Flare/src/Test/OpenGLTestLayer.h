@@ -10,6 +10,5 @@ namespace Flare::Testing
       public:
       OpenGLTestLayer();
       virtual void OnRender( Time::TimeStep a_TimeStep ) override;
-
    };
 }

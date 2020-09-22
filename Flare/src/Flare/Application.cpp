@@ -27,6 +27,9 @@ namespace Flare
 
       m_ImGuiLayer = new ProtoImGui::ImGuiLayer();
       m_LayerStack.PushOverlay( m_ImGuiLayer );
+
+      m_OpenGLLayer = new Testing::OpenGLTestLayer();
+      m_LayerStack.PushLayer( m_OpenGLLayer );
    }
 
    Application::~Application()
