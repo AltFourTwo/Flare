@@ -35,7 +35,7 @@ namespace Flare::UserInput
          return true;
       }
 
-      inline static Input& Get()
+      inline static Input& GetInstance()
       {
          return *s_Instance;
       }
@@ -71,5 +71,9 @@ namespace Flare::UserInput
       virtual bool IsMouseButtonPressed_I( int a_Button ) const = 0;
       virtual float GetMouseX_I() const = 0;
       virtual float GetMouseY_I() const = 0;
+      
+      /*****   CLASS   OPERATORS    *****/
+      public:
+      const int& operator[] ( const int a_Index ) const { return m_KeyMap[a_Index]; }
    };
 }

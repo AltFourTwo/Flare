@@ -54,12 +54,12 @@ namespace Flare::UserInterface
       if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( std::forward<UserInput::KeyMap>(Configuration::GetKeyMapForBackendAPI( Configuration::BackendAPI::OpenGL ) ) ) )
       {
          FLARE_CORE_TRACE( "Input scheme initialized and tied to window!" );
-         SetInputScheme( UserInput::WindowsInput::Get() );
+         SetInputScheme( UserInput::WindowsInput::GetInstance() );
       }
       else
       {
          FLARE_CORE_TRACE( "Input scheme already initialized! Tying existing scheme to window." );
-         SetInputScheme( UserInput::WindowsInput::Get() );
+         SetInputScheme( UserInput::WindowsInput::GetInstance() );
       }
 
       m_Window = glfwCreateWindow( (int)a_Model.Width, (int)a_Model.Height, a_Model.Title.c_str(), nullptr, nullptr );
