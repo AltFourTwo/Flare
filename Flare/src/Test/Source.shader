@@ -1,2 +1,0 @@
-#Shader Vertex
-#Shader Fragment

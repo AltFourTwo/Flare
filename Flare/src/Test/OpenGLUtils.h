@@ -1,29 +1,61 @@
 #pragma once
 
 #include "Flare/Core.h"
-#include "iostream"
 
 #include "GLFW/glfw3.h"
 #include "glad/glad.h"
 
 #include <string>
+#include <sstream>
+#include <iostream>
+#include <fstream>
 
 namespace Platform::OpenGL
 {
    enum class ShaderType
    {
-      None = 0,
-      Vertex = 1,
-      Fragment = 2
+      None = -1,
+      Vertex = 0,
+      Fragment = 1
    };
 
-   class Shader
+   struct ShaderSource
    {
       /*****   CLASS   VARIABLES    *****/
-      public:
       ShaderType m_Type = ShaderType::None;
-      std::string m_Source;
+      std::stringstream m_Source;
    };
+
+   struct ShaderProgramSource
+   {
+      std::string m_VertexSource;
+      std::string m_FragmentSource;
+   };
+
+   static ShaderProgramSource ParseProgram( const std::string& a_FilePath )
+   {
+      std::ifstream x_Stream( a_FilePath );
+      std::string x_Line;
+      ShaderType x_Type = ShaderType::None;
+      ShaderSource x_ShaderSources[2];
+
+      while ( getline( x_Stream, x_Line ) )
+      {
+         if ( x_Line.find( "#Shader" ) != std::string::npos )
+         {
+            if ( x_Line.find( "Vertex" ) != std::string::npos )
+               x_Type = ShaderType::Vertex;
+            else if ( x_Line.find( "Fragment" ) != std::string::npos )
+               x_Type = ShaderType::Fragment;
+         }
+         else
+         {
+            x_ShaderSources[(int)x_Type].m_Source << x_Line << "\n";
+         }
+      }
+
+      return { x_ShaderSources[0].m_Source.str(), x_ShaderSources[1].m_Source.str() };
+   }
 
    static unsigned int CompileShader( unsigned int a_Type, const std::string& a_Source )
    {
