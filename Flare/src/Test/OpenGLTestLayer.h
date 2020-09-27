@@ -13,7 +13,14 @@ namespace Flare::Testing
 
       unsigned int m_BufferID;
       unsigned int m_IndexBufferID;
+      unsigned int m_VertexArrayID;
       unsigned int m_ShaderProgramID;
+      unsigned int m_u_Color;
+      float m_R = 1.0f;
+      float m_G = 0.5f;
+      float m_B = 0.0f;
+      float m_A = 1.0f;
+      float m_Increment = 0.0025f;
 
       float m_VertexPositions[8] =
       {

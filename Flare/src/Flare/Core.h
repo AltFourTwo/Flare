@@ -18,6 +18,8 @@
    #define FLARE_ENABLE_ASSERTS true
 #endif
 
+#define ASSERT(x, y) { if(!(x)) { std::cout << "Assertion Failed: " << y << "\n"; __debugbreak(); } }
+
 // TODO : Refactor loggers and how console manages them. Log should always be available.
 #if FLARE_ENABLE_ASSERTS
    #define FLARE_ASSERT(x, ...) { if(!(x)) { Flare::Logging::Console::GetInstance().Log( Flare::Logging::LogLevel::ERR_OR, "Assertion Failed: {0}.", __VA_ARGS__ ); __debugbreak(); } }

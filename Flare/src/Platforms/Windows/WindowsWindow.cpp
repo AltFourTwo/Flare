@@ -187,6 +187,7 @@ namespace Flare::UserInterface
 
    static void GLFWErrorCallback( int a_Error, const char* a_Desc )
    {
+      // TODO : This throws a badalloc...
       Logging::Console::GetInstance().Log( Logging::LogLevel::ERR_OR, "GLFW Error. Code [{0}] : {1}", { a_Error, a_Desc } );
    }
 
