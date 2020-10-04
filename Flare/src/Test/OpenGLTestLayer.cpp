@@ -2,6 +2,8 @@
 #include "OpenGLTestLayer.h"
 #include "OpenGLUtils.h"
 
+#include "Platforms/OpenGL/Renderer.h"
+
 #include <string>
 #include <iostream>
 
@@ -24,18 +26,8 @@ namespace Flare::Testing
       GL_DEBUG_WRAPPER( glGenVertexArrays( 1, &m_VertexArrayID ) );
       GL_DEBUG_WRAPPER( glBindVertexArray( m_VertexArrayID ) );
 
-      // Genereate a buffer and bind to it.
-      glGenBuffers( 1, &m_BufferID );
-      glBindBuffer( GL_ARRAY_BUFFER, m_BufferID );
-
-      // Copy data to the buffer.
-      //             Type,            Size in bytes          Data (can be null)   usage
-      glBufferData( GL_ARRAY_BUFFER, 4 * 2 * sizeof( float ), m_VertexPositions, GL_STATIC_DRAW );
-
-      // Index Buffer.
-      glGenBuffers( 1, &m_IndexBufferID );
-      glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_IndexBufferID );
-      glBufferData( GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof( unsigned int ), m_Indices, GL_STATIC_DRAW );
+      m_VertexBuffer = new Flare::OpenGL::VertexBuffer(m_VertexPositions, 4 * 2 * sizeof( float ) );
+      m_IndexBuffer = new Flare::OpenGL::IndexBuffer(m_Indices, 6);
 
       // Must enable Vertex Attribute Pointers, before or after they are set does not matter. Where it matters is which buffer is bound. (glBindBuffer)
       //                       Index defined in shader
@@ -45,9 +37,9 @@ namespace Flare::Testing
       // Index, size of vertex, Data Type, normalized, stride, offset
       glVertexAttribPointer( 0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof( float ), 0 );
 
-      Platform::OpenGL::ShaderProgramSource x_ProgramSource = Platform::OpenGL::ParseProgram( "testres/Source.shader" );
+      Flare::OpenGL::ShaderProgramSource x_ProgramSource = Flare::OpenGL::ParseProgram( "testres/Source.shader" );
 
-      m_ShaderProgramID = Platform::OpenGL::CreateShaderProgram( x_ProgramSource.m_VertexSource, x_ProgramSource.m_FragmentSource );
+      m_ShaderProgramID = Flare::OpenGL::CreateShaderProgram( x_ProgramSource.m_VertexSource, x_ProgramSource.m_FragmentSource );
 
       glUseProgram( m_ShaderProgramID );
 
@@ -63,6 +55,8 @@ namespace Flare::Testing
 
    OpenGLTestLayer::~OpenGLTestLayer()
    {
+      delete m_VertexBuffer;
+      delete m_IndexBuffer;
       glDeleteProgram( m_ShaderProgramID );
    }
 
@@ -83,6 +77,9 @@ namespace Flare::Testing
       //GL_DEBUG_WRAPPER( glVertexAttribPointer( 0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof( float ), 0 ) );
       //GL_DEBUG_WRAPPER( glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_IndexBufferID ) );
       GL_DEBUG_WRAPPER( glBindVertexArray( m_VertexArrayID ) );
+
+      m_VertexBuffer->Bind();
+      m_IndexBuffer->Bind();
 
 
       //            Mode, Start Index, Vertices Count

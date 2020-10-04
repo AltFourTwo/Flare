@@ -61,7 +61,7 @@ namespace Flare::ProtoImGui
    void ImGuiLayer::OnImGuiRender()
    {
       static bool s_Show = true;
-      ImGui::ShowDemoWindow( &s_Show );
+      //ImGui::ShowDemoWindow( &s_Show );
    }
 
    void ImGuiLayer::Begin()

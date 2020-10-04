@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Flare/UserInterface/Layer.h"
+#include "Platforms/OpenGL/VertexBuffer.h"
+#include "Platforms/OpenGL/IndexBuffer.h"
 
 namespace Flare::Testing
 {
@@ -11,8 +13,9 @@ namespace Flare::Testing
       virtual ~OpenGLTestLayer();
       virtual void OnRender( Time::TimeStep a_TimeStep ) override;
 
-      unsigned int m_BufferID;
-      unsigned int m_IndexBufferID;
+      Flare::OpenGL::VertexBuffer* m_VertexBuffer;
+      Flare::OpenGL::IndexBuffer* m_IndexBuffer;
+      
       unsigned int m_VertexArrayID;
       unsigned int m_ShaderProgramID;
       unsigned int m_u_Color;
