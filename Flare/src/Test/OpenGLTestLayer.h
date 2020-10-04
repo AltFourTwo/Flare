@@ -2,6 +2,8 @@
 
 #include "Flare/UserInterface/Layer.h"
 #include "Platforms/OpenGL/VertexBuffer.h"
+#include "Platforms/OpenGL/VertexBufferLayout.h"
+#include "Platforms/OpenGL/VertexArray.h"
 #include "Platforms/OpenGL/IndexBuffer.h"
 
 namespace Flare::Testing
@@ -13,10 +15,11 @@ namespace Flare::Testing
       virtual ~OpenGLTestLayer();
       virtual void OnRender( Time::TimeStep a_TimeStep ) override;
 
+      Flare::OpenGL::VertexArray* m_VertexArray;
       Flare::OpenGL::VertexBuffer* m_VertexBuffer;
+      Flare::OpenGL::VertexBufferLayout* m_VertexBufferLayout;
       Flare::OpenGL::IndexBuffer* m_IndexBuffer;
       
-      unsigned int m_VertexArrayID;
       unsigned int m_ShaderProgramID;
       unsigned int m_u_Color;
       float m_R = 1.0f;

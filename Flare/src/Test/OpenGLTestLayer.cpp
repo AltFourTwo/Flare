@@ -21,31 +21,25 @@ namespace Flare::Testing
       glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 6 );
       glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
 
-
-      // Vertex Array Object
-      GL_DEBUG_WRAPPER( glGenVertexArrays( 1, &m_VertexArrayID ) );
-      GL_DEBUG_WRAPPER( glBindVertexArray( m_VertexArrayID ) );
+      m_VertexArray = new Flare::OpenGL::VertexArray();
 
       m_VertexBuffer = new Flare::OpenGL::VertexBuffer(m_VertexPositions, 4 * 2 * sizeof( float ) );
       m_IndexBuffer = new Flare::OpenGL::IndexBuffer(m_Indices, 6);
 
-      // Must enable Vertex Attribute Pointers, before or after they are set does not matter. Where it matters is which buffer is bound. (glBindBuffer)
-      //                       Index defined in shader
-      glEnableVertexAttribArray( 0 );
+      m_VertexBufferLayout = new Flare::OpenGL::VertexBufferLayout();
 
-      // Vertex Attribute Pointers.
-      // Index, size of vertex, Data Type, normalized, stride, offset
-      glVertexAttribPointer( 0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof( float ), 0 );
+      m_VertexBufferLayout->Push_Float(2);
+      m_VertexArray->RegisterBuffer(*m_VertexBuffer, *m_VertexBufferLayout);
 
       Flare::OpenGL::ShaderProgramSource x_ProgramSource = Flare::OpenGL::ParseProgram( "testres/Source.shader" );
 
       m_ShaderProgramID = Flare::OpenGL::CreateShaderProgram( x_ProgramSource.m_VertexSource, x_ProgramSource.m_FragmentSource );
 
-      glUseProgram( m_ShaderProgramID );
+      GL_DEBUG_WRAPPER( glUseProgram( m_ShaderProgramID ) );
 
       m_u_Color = glGetUniformLocation( m_ShaderProgramID, "u_Color" );
       ASSERT( m_u_Color != -1, "Uniform not found!" );
-      glUniform4f( m_u_Color, m_R, m_G, m_B, m_A );
+      GL_DEBUG_WRAPPER( glUniform4f( m_u_Color, m_R, m_G, m_B, m_A );)
 
       GL_DEBUG_WRAPPER( glUseProgram( 0 ) );
       GL_DEBUG_WRAPPER( glBindVertexArray( 0 ) );
@@ -57,6 +51,8 @@ namespace Flare::Testing
    {
       delete m_VertexBuffer;
       delete m_IndexBuffer;
+      delete m_VertexBufferLayout;
+      delete m_VertexArray;
       glDeleteProgram( m_ShaderProgramID );
    }
 
@@ -70,17 +66,15 @@ namespace Flare::Testing
       GL_DEBUG_WRAPPER( glUseProgram( m_ShaderProgramID ) );
       GL_DEBUG_WRAPPER( glUniform4f( m_u_Color, m_R, m_G, m_B, m_A ) );
 
-
       // They get replaced by a Vertex Array Object binding
       //GL_DEBUG_WRAPPER( glBindBuffer( GL_ARRAY_BUFFER, m_BufferID ) );
       //GL_DEBUG_WRAPPER( glEnableVertexAttribArray( 0 ) );
       //GL_DEBUG_WRAPPER( glVertexAttribPointer( 0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof( float ), 0 ) );
       //GL_DEBUG_WRAPPER( glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_IndexBufferID ) );
-      GL_DEBUG_WRAPPER( glBindVertexArray( m_VertexArrayID ) );
+      //GL_DEBUG_WRAPPER( glBindVertexArray( m_VertexArrayID ) );
 
-      m_VertexBuffer->Bind();
+      m_VertexArray->Bind();
       m_IndexBuffer->Bind();
-
 
       //            Mode, Start Index, Vertices Count
       //glDrawArrays( GL_TRIANGLES, 0, 3 );
