@@ -11,7 +11,10 @@ Sandbox::Sandbox() :
    FLARE_TRACE( "Sandbox has pushed 1 layers!" );
 }
 
-Sandbox::~Sandbox() {}
+Sandbox::~Sandbox() 
+{
+   printf( "Deleting Sandbox!\n" );
+}
 
 Flare::Application* Flare::Initialize()
 {

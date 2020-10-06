@@ -6,5 +6,5 @@ class Sandbox : public Flare::Application, public Flare::Logging::LogEmitter
 {
    public:
    Sandbox();
-   ~Sandbox();
+   virtual ~Sandbox();
 };

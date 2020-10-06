@@ -33,7 +33,9 @@ namespace Flare
    }
 
    Application::~Application()
-   {}
+   {
+      printf( "Deleting App!\n" );
+   }
 
    /*****   CLASS   FUNCTIONS    *****/
    void Application::Run()
@@ -68,6 +70,17 @@ namespace Flare
 
          m_MainWindow->OnRender();
       }
+   }
+
+   void Application::Shutdown()
+   {
+      m_LayerStack.PopLayer(m_OpenGLLayer);
+      delete m_OpenGLLayer;
+
+      m_LayerStack.PopOverlay(m_ImGuiLayer);
+      delete m_ImGuiLayer;
+
+      delete this;
    }
 
    void Application::PopLayer( UserInterface::Layer* a_Layer )

@@ -46,6 +46,7 @@ namespace Flare
       inline UserInterface::Window& GetWindow() { return *m_MainWindow; }
       inline static Application& GetInstance() { return *s_Instance; }
       void Run();
+      void Shutdown();
       void PopLayer( UserInterface::Layer* a_Layer );
       void PushLayer( UserInterface::Layer* a_Layer );
       void PopOverlay( UserInterface::Layer* a_Overlay );

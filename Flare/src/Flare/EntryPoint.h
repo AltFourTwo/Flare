@@ -12,7 +12,9 @@ int main( int argc, char** argv )
 
    Flare::Application* app = Flare::Initialize();
    app->Run();
-   delete app;
+   app->Shutdown();
+
+   printf( "Its over!\n" );
 }
 
 #endif

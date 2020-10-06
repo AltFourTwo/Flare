@@ -6,10 +6,19 @@
 
 namespace Flare::OpenGL
 {
-
-   void GLClearErrors()
+   bool GLClearErrors()
    {
-      while ( glGetError() != GL_NO_ERROR );
+      int x_ErrorCount = 0;
+
+      while ( glGetError() != GL_NO_ERROR )
+      {
+         x_ErrorCount++;
+
+         if ( x_ErrorCount >= 10 )
+            return false;
+      }
+
+      return true;
    }
 
    bool GLLogCall( const char* x_Function, const char* x_File, int x_Line )

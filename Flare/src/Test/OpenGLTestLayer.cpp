@@ -1,8 +1,8 @@
 #include "FlarePCH.h"
 #include "OpenGLTestLayer.h"
-#include "OpenGLUtils.h"
 
 #include "Platforms/OpenGL/Renderer.h"
+#include "Platforms/OpenGL/Shader.h"
 
 #include <string>
 #include <iostream>
@@ -31,16 +31,11 @@ namespace Flare::Testing
       m_VertexBufferLayout->Push_Float(2);
       m_VertexArray->RegisterBuffer(*m_VertexBuffer, *m_VertexBufferLayout);
 
-      Flare::OpenGL::ShaderProgramSource x_ProgramSource = Flare::OpenGL::ParseProgram( "testres/Source.shader" );
+      m_Shader = new Flare::OpenGL::Shader( "testres/Source.shader" );
+      m_Shader->Bind();
+      m_Shader->SetUniform4f( "u_Color", m_R, m_G, m_B, m_A );
 
-      m_ShaderProgramID = Flare::OpenGL::CreateShaderProgram( x_ProgramSource.m_VertexSource, x_ProgramSource.m_FragmentSource );
-
-      GL_DEBUG_WRAPPER( glUseProgram( m_ShaderProgramID ) );
-
-      m_u_Color = glGetUniformLocation( m_ShaderProgramID, "u_Color" );
-      ASSERT( m_u_Color != -1, "Uniform not found!" );
-      GL_DEBUG_WRAPPER( glUniform4f( m_u_Color, m_R, m_G, m_B, m_A );)
-
+      // Could use the Unbind functions, but isn't required. 0 is static.
       GL_DEBUG_WRAPPER( glUseProgram( 0 ) );
       GL_DEBUG_WRAPPER( glBindVertexArray( 0 ) );
       GL_DEBUG_WRAPPER( glBindBuffer( GL_ARRAY_BUFFER, 0 ) );
@@ -53,7 +48,8 @@ namespace Flare::Testing
       delete m_IndexBuffer;
       delete m_VertexBufferLayout;
       delete m_VertexArray;
-      glDeleteProgram( m_ShaderProgramID );
+      delete m_Shader;
+      printf("OpenGLTestLayer Destroyed!\n");
    }
 
    void OpenGLTestLayer::OnRender( Time::TimeStep a_TimeStep )
@@ -63,8 +59,8 @@ namespace Flare::Testing
 
       m_R += m_Increment;
 
-      GL_DEBUG_WRAPPER( glUseProgram( m_ShaderProgramID ) );
-      GL_DEBUG_WRAPPER( glUniform4f( m_u_Color, m_R, m_G, m_B, m_A ) );
+      m_Shader->Bind();
+      m_Shader->SetUniform4f( "u_Color", m_R, m_G, m_B, m_A );
 
       // They get replaced by a Vertex Array Object binding
       //GL_DEBUG_WRAPPER( glBindBuffer( GL_ARRAY_BUFFER, m_BufferID ) );
