@@ -1,10 +1,11 @@
 #pragma once
 
-#include "VertexBuffer.h"
-#include "VertexBufferLayout.h"
 
 namespace Flare::OpenGL
 {
+   class VertexBuffer;
+   class VertexBufferLayout;
+
    class VertexArray
    {
       /*****   CLASS   VARIABLES    *****/

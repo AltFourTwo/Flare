@@ -7,6 +7,7 @@ namespace Flare::OpenGL
       /*****   CLASS   VARIABLES    *****/
       private:
       unsigned int m_RendererID;
+      unsigned int m_Count;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -14,7 +15,12 @@ namespace Flare::OpenGL
       ~IndexBuffer();
 
       /*****   CLASS   FUNCTIONS    *****/
+      public:
       void Bind() const;
       void Unbind() const;
+
+      /*****   GETTERS   *****/
+      public:
+      inline unsigned int GetCount() const { return m_Count; }
    };
 }

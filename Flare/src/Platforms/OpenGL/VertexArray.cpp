@@ -2,6 +2,8 @@
 #include "VertexArray.h"
 
 #include "Renderer.h"
+#include "VertexBuffer.h"
+#include "VertexBufferLayout.h"
 
 #include <glfw/glfw3.h>
 #include <glad/glad.h>

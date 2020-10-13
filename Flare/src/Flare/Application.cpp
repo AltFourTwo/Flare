@@ -48,6 +48,7 @@ namespace Flare
 
          //FLARE_CORE_INFO( "TimeStep is {0}s {1}ms", { x_TimeStep.GetSeconds(), x_TimeStep.GetMilliseconds() } );
 
+         // TODO : Use Renderer.Clear().
          glClearColor( 0.5f, 0.25f, 0, 1 );
          glClear( GL_COLOR_BUFFER_BIT );
 

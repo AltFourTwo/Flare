@@ -1,6 +1,8 @@
 #include "FlarePCH.h"
 #include "VertexBufferLayout.h"
 
+#include "Renderer.h"
+
 #include <glfw/glfw3.h>
 #include <glad/glad.h>
 

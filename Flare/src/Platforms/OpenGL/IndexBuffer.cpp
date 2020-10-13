@@ -9,9 +9,9 @@
 namespace Flare::OpenGL
 {
    /*****   CLASS   C-TOR D-TOR  *****/
-   IndexBuffer::IndexBuffer( const unsigned int* a_Data, unsigned int a_Count )
+   IndexBuffer::IndexBuffer( const unsigned int* a_Data, unsigned int a_Count ) :
+      m_Count( a_Count )
    {
-      // Index Buffer.
       glGenBuffers( 1, &m_RendererID );
       glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_RendererID );
       glBufferData( GL_ELEMENT_ARRAY_BUFFER, a_Count * sizeof( unsigned int ), a_Data, GL_STATIC_DRAW );

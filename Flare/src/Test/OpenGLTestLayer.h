@@ -6,6 +6,7 @@
 #include "Platforms/OpenGL/VertexArray.h"
 #include "Platforms/OpenGL/IndexBuffer.h"
 #include "Platforms/OpenGL/Shader.h"
+#include "Platforms/OpenGL/Renderer.h"
 
 namespace Flare::Testing
 {
@@ -21,6 +22,8 @@ namespace Flare::Testing
       Flare::OpenGL::VertexBufferLayout* m_VertexBufferLayout;
       Flare::OpenGL::IndexBuffer* m_IndexBuffer;
       Flare::OpenGL::Shader* m_Shader;
+
+      Flare::OpenGL::Renderer m_Renderer;
 
       float m_R = 1.0f;
       float m_G = 0.5f;

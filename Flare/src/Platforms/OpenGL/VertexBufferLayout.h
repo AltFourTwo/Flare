@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Renderer.h"
-
 #include <vector>
 
 namespace Flare::OpenGL
