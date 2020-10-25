@@ -51,85 +51,75 @@ namespace Flare::Logging
    // Log Without Formattables.
    void Logger::Trace( const char* a_Message )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Trace )
-         Logger::Log( LogLevel::Trace, a_Message );
+      Logger::Log( LogLevel::Trace, a_Message );
    }
 
    void Logger::Debug( const char* a_Message )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Debug )
-         Logger::Log( LogLevel::Debug, a_Message );
+      Logger::Log( LogLevel::Debug, a_Message );
    }
 
    void Logger::Info( const char* a_Message )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Info )
-         Logger::Log( LogLevel::Info, a_Message );
+      Logger::Log( LogLevel::Info, a_Message );
    }
 
    void Logger::Warn( const char* a_Message )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Warning )
-         Logger::Log( LogLevel::Warning, a_Message );
+      Logger::Log( LogLevel::Warning, a_Message );
    }
 
    void Logger::Error( const char* a_Message )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Error )
-         Logger::Log( LogLevel::Error, a_Message );
+      Logger::Log( LogLevel::Error, a_Message );
    }
 
    void Logger::Fatal( const char* a_Message )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Fatal )
-         Logger::Log( LogLevel::Fatal, a_Message );
+      Logger::Log( LogLevel::Fatal, a_Message );
    }
 
    // Log With Formattables.
    void Logger::Trace( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Trace )
-         Logger::Log( LogLevel::Trace, a_Message, a_Formattables );
+      Logger::Log( LogLevel::Trace, a_Message, a_Formattables );
    }
 
    void Logger::Debug( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Debug )
-         Logger::Log( LogLevel::Debug, a_Message, a_Formattables );
+      Logger::Log( LogLevel::Debug, a_Message, a_Formattables );
    }
 
    void Logger::Info( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Info )
-         Logger::Log( LogLevel::Info, a_Message, a_Formattables );
+      Logger::Log( LogLevel::Info, a_Message, a_Formattables );
    }
 
    void Logger::Warn( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Warning )
-         Logger::Log( LogLevel::Warning, a_Message, a_Formattables );
+      Logger::Log( LogLevel::Warning, a_Message, a_Formattables );
    }
 
    void Logger::Error( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Error )
-         Logger::Log( LogLevel::Error, a_Message, a_Formattables );
+      Logger::Log( LogLevel::Error, a_Message, a_Formattables );
    }
 
    void Logger::Fatal( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Fatal )
-         Logger::Log( LogLevel::Fatal, a_Message, a_Formattables );
+      Logger::Log( LogLevel::Fatal, a_Message, a_Formattables );
    }
 
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message )
    {
-      std::cout << PrepareMessage( a_LogLevel, a_Message );
+      if ( a_LogLevel >= m_Parameters.m_BaseLoggingLevel )
+         std::cout << PrepareMessage( a_LogLevel, a_Message );
    }
 
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      std::cout << PrepareMessage( a_LogLevel, a_Message, a_Formattables );
+      if ( a_LogLevel >= m_Parameters.m_BaseLoggingLevel )
+         std::cout << PrepareMessage( a_LogLevel, a_Message, a_Formattables );
    }
 
    void Logger::CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_FormatString )
