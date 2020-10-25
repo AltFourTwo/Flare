@@ -12,7 +12,7 @@ namespace Flare::Logging
       static const char* DEFAULT_FORMAT;
       static const int DEFAULT_BG_COLOR = 0;
       static const int DEFAULT_TEXT_COLOR = 0;
-      static const LogLevel DEFAULT_LOG_LEVEL = LogLevel::TRACE;
+      static const LogLevel DEFAULT_LOG_LEVEL = LogLevel::Trace;
 
       /*****   CLASS   VARIABLES    *****/
       const char* m_LoggerName;

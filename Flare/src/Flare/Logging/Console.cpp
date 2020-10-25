@@ -7,59 +7,32 @@
 #include <vector>
 #include <initializer_list>
 
-namespace Flare::Logging
+namespace Flare
 {
-   using Formattable = Utility::Composing::Formattable;
+   Console* Console::s_Instance = nullptr;
 
    /*****   CLASS   C-TOR D-TOR  *****/
    Console::Console() :
-      s_Loggers()
+      m_ExtraLoggers()
    {
-      s_Loggers.reserve( MAX_LOGGERS );
+      FLARE_CORE_ASSERT( !s_Instance, { "An instance of this application aleady exists!" } );
+      s_Instance = this;
+
+      m_ExtraLoggers.reserve( MAX_EXTRA_LOGGERS );
+      m_CoreLogger = std::make_shared<Logging::Logger>( std::move( Logging::LoggerParameters( "Core", Logging::LogLevel::Trace, "[%T] &N : &M" ) ) );
+      m_ClientLogger = std::make_shared<Logging::Logger>( std::move( Logging::LoggerParameters( "Client", Logging::LogLevel::Trace, "[%T] &N : &M" ) ) );
    }
 
    /*****   CLASS   FUNCTIONS    *****/
-   Console& Console::GetInstance()
+   Console::SharedLogger& Console::CreateLogger( const Logging::LoggerParameters& a_Parameters ) noexcept
    {
-      static Console s_Instance;
-      return s_Instance;
+      s_Instance->m_ExtraLoggers.emplace_back( std::make_shared<Logging::Logger>( a_Parameters ) );
+      return s_Instance->m_ExtraLoggers.back();
    }
 
-   // Output always passes here.
-   void Console::Log( const char* a_Message ) { std::cout << a_Message << "\n"; }
-   void Console::Log( std::string& a_Message ) { std::cout << a_Message << "\n"; }
-
-   // Not specifying a logger uses the first one in the list which should always be the core logger.
-   void Console::Log( LogLevel a_LogLevel, const char* a_Message )
+   Console::SharedLogger& Console::CreateLogger( Logging::LoggerParameters&& a_Parameters ) noexcept
    {
-      Log( s_Loggers.front(), a_LogLevel, a_Message );
-   }
-
-   void Console::Log( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables )
-   {
-      Log( s_Loggers.front(), a_LogLevel, a_Message, a_Formattables );
-   }
-
-   // Log message using a logger's information.
-   void Console::Log( const Logger::SharedLogger& a_Logger, LogLevel a_LogLevel, const char* a_Message )
-   {
-      Log( a_Logger->PrepareMessage( a_LogLevel, a_Message ));
-   }
-
-   void Console::Log( const Logger::SharedLogger& a_Logger, LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables )
-   {
-      Log( a_Logger->PrepareMessage( a_LogLevel, a_Message, a_Formattables ) );
-   }
-
-   Logger::SharedLogger& Console::CreateLogger( const LoggerParameters& a_Parameters ) noexcept
-   {
-      s_Loggers.emplace_back( std::make_shared<Logger>( a_Parameters ) );
-      return s_Loggers.back();
-   }
-
-   Logger::SharedLogger& Console::CreateLogger( LoggerParameters&& a_Parameters ) noexcept
-   {
-      s_Loggers.emplace_back( std::make_shared<Logger>( std::forward<LoggerParameters>( a_Parameters ) ) );
-      return s_Loggers.back();
+      s_Instance->m_ExtraLoggers.emplace_back( std::make_shared<Logging::Logger>( std::forward<Logging::LoggerParameters>( a_Parameters ) ) );
+      return s_Instance->m_ExtraLoggers.back();
    }
 }
