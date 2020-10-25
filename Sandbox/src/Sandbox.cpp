@@ -4,11 +4,12 @@
 #include <Flare.h>
 #include "ExampleLayer.h"
 
-Sandbox::Sandbox() :
-   LogEmitter( Flare::Logging::LoggerParameters( "Sandbox", Flare::Logging::LogLevel::TRACE, "%F at %T | &N says : &M" ) )
+Sandbox::Sandbox()
 {
+   // ( *this->GetConsole().GetClientLogger() ).SetParameters( Flare::Logging::LoggerParameters( "Sandbox", Flare::Logging::LogLevel::Trace, "%F at %T | &N says : &M" ) );
+
    PushLayer( new ExampleLayer() );
-   FLARE_TRACE( "Sandbox has pushed 1 layers!" );
+   FLARE_TRACE( "Sandbox has pushed 1 layers!\n" );
 }
 
 Sandbox::~Sandbox() {}

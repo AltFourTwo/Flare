@@ -51,85 +51,85 @@ namespace Flare::Logging
    // Log Without Formattables.
    void Logger::Trace( const char* a_Message )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::TRACE )
-         Logger::Log( LogLevel::TRACE, a_Message );
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Trace )
+         Logger::Log( LogLevel::Trace, a_Message );
    }
 
    void Logger::Debug( const char* a_Message )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::DEBUG )
-         Logger::Log( LogLevel::DEBUG, a_Message );
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Debug )
+         Logger::Log( LogLevel::Debug, a_Message );
    }
 
    void Logger::Info( const char* a_Message )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::INFO )
-         Logger::Log( LogLevel::INFO, a_Message );
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Info )
+         Logger::Log( LogLevel::Info, a_Message );
    }
 
    void Logger::Warn( const char* a_Message )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::WARNING )
-         Logger::Log( LogLevel::WARNING, a_Message );
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Warning )
+         Logger::Log( LogLevel::Warning, a_Message );
    }
 
    void Logger::Error( const char* a_Message )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::ERR_OR )
-         Logger::Log( LogLevel::ERR_OR, a_Message );
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Error )
+         Logger::Log( LogLevel::Error, a_Message );
    }
 
    void Logger::Fatal( const char* a_Message )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::FATAL )
-         Logger::Log( LogLevel::FATAL, a_Message );
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Fatal )
+         Logger::Log( LogLevel::Fatal, a_Message );
    }
 
    // Log With Formattables.
    void Logger::Trace( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::TRACE )
-         Logger::Log( LogLevel::TRACE, a_Message, a_Formattables );
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Trace )
+         Logger::Log( LogLevel::Trace, a_Message, a_Formattables );
    }
 
    void Logger::Debug( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::DEBUG )
-         Logger::Log( LogLevel::DEBUG, a_Message, a_Formattables );
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Debug )
+         Logger::Log( LogLevel::Debug, a_Message, a_Formattables );
    }
 
    void Logger::Info( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::INFO )
-         Logger::Log( LogLevel::INFO, a_Message, a_Formattables );
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Info )
+         Logger::Log( LogLevel::Info, a_Message, a_Formattables );
    }
 
    void Logger::Warn( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::WARNING )
-         Logger::Log( LogLevel::WARNING, a_Message, a_Formattables );
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Warning )
+         Logger::Log( LogLevel::Warning, a_Message, a_Formattables );
    }
 
    void Logger::Error( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::ERR_OR )
-         Logger::Log( LogLevel::ERR_OR, a_Message, a_Formattables );
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Error )
+         Logger::Log( LogLevel::Error, a_Message, a_Formattables );
    }
 
    void Logger::Fatal( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::FATAL )
-         Logger::Log( LogLevel::FATAL, a_Message, a_Formattables );
+      if ( m_Parameters.m_BaseLoggingLevel <= LogLevel::Fatal )
+         Logger::Log( LogLevel::Fatal, a_Message, a_Formattables );
    }
 
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message )
    {
-      Console::GetInstance().Log( PrepareMessage( a_LogLevel, a_Message ) );
+      std::cout << PrepareMessage( a_LogLevel, a_Message );
    }
 
    void Logger::Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Formattable>& a_Formattables )
    {
-      Console::GetInstance().Log( PrepareMessage( a_LogLevel, a_Message, a_Formattables ) );
+      std::cout << PrepareMessage( a_LogLevel, a_Message, a_Formattables );
    }
 
    void Logger::CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_FormatString )
@@ -291,22 +291,22 @@ namespace Flare::Logging
          {
             switch ( a_LogLevel )
             {
-               case LogLevel::TRACE:
+               case LogLevel::Trace:
                   return "TRACE";
 
-               case LogLevel::DEBUG:
+               case LogLevel::Debug:
                   return "DEBUG";
 
-               case LogLevel::INFO:
+               case LogLevel::Info:
                   return "INFO";
 
-               case LogLevel::WARNING:
+               case LogLevel::Warning:
                   return "WARNING";
 
-               case LogLevel::ERR_OR:
+               case LogLevel::Error:
                   return "ERROR";
 
-               case LogLevel::FATAL:
+               case LogLevel::Fatal:
                   return "FATAL";
 
                default:

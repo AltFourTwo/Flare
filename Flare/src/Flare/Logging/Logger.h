@@ -84,9 +84,11 @@ namespace Flare::Logging
       void CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_LoggingFormat );
 
       /*****   SETTERS   *****/
+      public:
       void SetParameters( LoggerParameters&& a_Parameters );
 
       /*****   GETTERS   *****/
+      public:
       const LoggerParameters& GetParameters() const;
    };
 }

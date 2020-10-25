@@ -17,10 +17,12 @@ namespace Flare
 
    /*****   CLASS   C-TOR D-TOR  *****/
    Application::Application() :
-      CoreLogEmitter( std::move( Logging::LoggerParameters( "Core", Logging::LogLevel::TRACE, "%F at %T | &N says : &M" ) ) )
+      m_Console()
    {
       FLARE_CORE_ASSERT( !s_Instance, { "An instance of this application aleady exists!" } );
       s_Instance = this;
+
+      // ( *m_Console.GetCoreLogger() ).SetParameters( Logging::LoggerParameters( "Core", Logging::LogLevel::Trace, "%F at %T | &N says : &M" ) );
 
       m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );
       m_MainWindow->SetEventCallback( BIND_EVENT_CALLBACK( OnEvent ) );

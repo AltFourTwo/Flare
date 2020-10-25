@@ -39,7 +39,7 @@ namespace Flare::UserInterface
 
    void WindowsWindow::Init( const WindowModel& a_Model )
    {
-      FLARE_CORE_TRACE( "WindowsWindow Init!" );
+      LOG_TRACE( "WindowsWindow Init!\n" );
 
       if ( !s_GLFWInitialized )
       {
@@ -53,12 +53,12 @@ namespace Flare::UserInterface
 
       if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( std::forward<UserInput::KeyMap>(Configuration::GetKeyMapForBackendAPI( Configuration::BackendAPI::OpenGL ) ) ) )
       {
-         FLARE_CORE_TRACE( "Input scheme initialized and tied to window!" );
+         LOG_TRACE( "Input scheme initialized and tied to window!\n" );
          SetInputScheme( UserInput::WindowsInput::GetInstance() );
       }
       else
       {
-         FLARE_CORE_TRACE( "Input scheme already initialized! Tying existing scheme to window." );
+         LOG_TRACE( "Input scheme already initialized! Tying existing scheme to window.\n" );
          SetInputScheme( UserInput::WindowsInput::GetInstance() );
       }
 
@@ -66,7 +66,7 @@ namespace Flare::UserInterface
       glfwMakeContextCurrent( m_Window );
 
       int x_Status = gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress );
-      FLARE_CORE_ASSERT( x_Status, { "Failed to initialize Glad!" } );
+      FLARE_CORE_ASSERT( x_Status, { "Failed to initialize Glad!\n" } );
 
       glfwSetWindowUserPointer( m_Window, &m_WindowData );
       SetVSync( m_WindowData.VSync );
@@ -167,7 +167,7 @@ namespace Flare::UserInterface
          x_Data.Callback( x_Event );
       } );
 
-      FLARE_CORE_TRACE( "WindowsWindow Init Completed!" );
+      LOG_TRACE( "WindowsWindow Init Completed!\n" );
    }
 
    void WindowsWindow::Shutdown()
@@ -187,7 +187,7 @@ namespace Flare::UserInterface
 
    static void GLFWErrorCallback( int a_Error, const char* a_Desc )
    {
-      Logging::Console::GetInstance().Log( Logging::LogLevel::ERR_OR, "GLFW Error. Code [{0}] : {1}", { a_Error, a_Desc } );
+      FLARE_CORE_ERROR( "GLFW Error. Code [{0}] : {1}\n", { a_Error, a_Desc } );
    }
 
    /*****   GETTERS   *****/

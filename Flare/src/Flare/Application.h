@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Flare/Core.h"
+#include "Flare/Logging/LoggerParameters.h"
 #include "Flare/Logging/Console.h"
-#include "Flare/Logging/LogEmitter.h"
 
 #include "Flare/Time/TimeStep.h"
 
@@ -19,11 +19,12 @@
 
 namespace Flare
 {
-   class FLARE_API Application : private Logging::CoreLogEmitter
+   class FLARE_API Application
    {
       /*****   CLASS   VARIABLES    *****/
       private:
       static Application* s_Instance;
+      Console m_Console;
       bool m_Running = true;
       float m_LastFrameTime = 0.0f;
       UserInterface::LayerStack m_LayerStack;
@@ -37,8 +38,6 @@ namespace Flare
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      inline UserInterface::Window& GetWindow() { return *m_MainWindow; }
-      inline static Application& GetInstance() { return *s_Instance; }
       void Run();
       void PopLayer( UserInterface::Layer* a_Layer );
       void PushLayer( UserInterface::Layer* a_Layer );
@@ -51,6 +50,9 @@ namespace Flare
       bool OnWindowClose( Events::WindowCloseEvent& e );
 
       /*****   GETTERS   *****/
+      inline static Application& GetInstance() { return *s_Instance; }
+      inline static Console& GetConsole() { return s_Instance->m_Console; }
+      inline static UserInterface::Window& GetWindow() { return *s_Instance->m_MainWindow; }
 
       /*****   SETTERS   *****/
    };

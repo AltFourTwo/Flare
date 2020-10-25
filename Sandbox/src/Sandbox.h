@@ -2,7 +2,7 @@
 
 #include <Flare.h>
 
-class Sandbox : public Flare::Application, public Flare::Logging::LogEmitter
+class Sandbox : public Flare::Application
 {
    public:
    Sandbox();
