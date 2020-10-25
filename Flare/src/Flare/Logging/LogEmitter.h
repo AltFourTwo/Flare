@@ -18,13 +18,13 @@ namespace Flare::Logging
       LogEmitter( LoggerParameters&& a_Parameters ) noexcept;
       LogEmitter( const LogEmitter& a_Other ) noexcept;
 
-      /*****   CLASS   FUNCTIONS    *****/
-      public:
-      inline const Logger::SharedLogger& GetLogger() const { return m_Logger; }
-
       /*****   CLASS   OPERATORS    *****/
       public:
       void operator=( const LogEmitter& ) = delete;
+
+      /*****   GETTERS   *****/
+      public:
+      inline const Logger::SharedLogger& GetLogger() const { return m_Logger; }
    };
 }
 
