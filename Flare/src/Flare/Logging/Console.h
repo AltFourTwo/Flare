@@ -29,14 +29,16 @@ namespace Flare
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      inline static const Console& GetInstance() { return *s_Instance; }
-      inline const SharedLogger& GetCoreLogger() const { return m_CoreLogger; }
-      inline const SharedLogger& GetClientLogger() const { return m_ClientLogger; }
       static SharedLogger& CreateLogger( const Logging::LoggerParameters& a_Parameters ) noexcept;
       static SharedLogger& CreateLogger( Logging::LoggerParameters&& a_Parameters ) noexcept;
 
       /*****   CLASS   OPERATORS    *****/
       void operator=( const Console& ) = delete;
+
+      /*****   GETTERS   *****/
+      inline static const Console& GetInstance() { return *s_Instance; }
+      inline const SharedLogger& GetCoreLogger() const { return m_CoreLogger; }
+      inline const SharedLogger& GetClientLogger() const { return m_ClientLogger; }
    };
 }
 
