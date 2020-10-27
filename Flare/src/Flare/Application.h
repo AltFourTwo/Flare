@@ -50,6 +50,7 @@ namespace Flare
       bool OnWindowClose( Events::WindowCloseEvent& e );
 
       /*****   GETTERS   *****/
+      public:
       inline static Application& GetInstance() { return *s_Instance; }
       inline static Console& GetConsole() { return s_Instance->m_Console; }
       inline static UserInterface::Window& GetWindow() { return *s_Instance->m_MainWindow; }

@@ -5,22 +5,23 @@
 
 namespace Flare::Configuration
 {
-   struct BACKEND_API_SCOPE
+   struct RENDERER_API_SCOPE
    {
-      enum BackendAPI
+      enum RendererAPI
       {
-         OpenGL = 0,
-         DirectX = 1
+         None = 0,
+         OpenGL = 1,
+         DirectX = 2
       };
    };
 
-   using BackendAPI = BACKEND_API_SCOPE::BackendAPI;
+   using RendererAPI = RENDERER_API_SCOPE::RendererAPI;
 
-   UserInput::KeyMap&& GetKeyMapForBackendAPI( BackendAPI a_ConfigValue )
+   UserInput::KeyMap&& GetKeyMapForBackendAPI( RendererAPI a_ConfigValue )
    {
       switch ( a_ConfigValue )
       {
-         case BackendAPI::OpenGL:
+         case RendererAPI::OpenGL:
             return std::move( UserInput::OpenGLKeyMap() );
 
          default:

@@ -51,7 +51,7 @@ namespace Flare::UserInterface
          s_GLFWInitialized = true;
       }
 
-      if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( std::forward<UserInput::KeyMap>(Configuration::GetKeyMapForBackendAPI( Configuration::BackendAPI::OpenGL ) ) ) )
+      if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( std::forward<UserInput::KeyMap>(Configuration::GetKeyMapForBackendAPI( Configuration::RendererAPI::OpenGL ) ) ) )
       {
          LOG_TRACE( "Input scheme initialized and tied to window!\n" );
          SetInputScheme( UserInput::WindowsInput::GetInstance() );
