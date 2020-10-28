@@ -5,7 +5,6 @@
 
 namespace Flare::Rendering
 {
-
    /****************/
    /* VertexBuffer */
    /****************/

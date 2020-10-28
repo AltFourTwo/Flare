@@ -9,6 +9,9 @@
 
 #include "UserInput/Input.h"
 
+// For testing
+#include "Test/RenderingTestLayer.h"
+
 namespace Flare
 {
 #define BIND_EVENT_CALLBACK(cb) std::bind(&Application::cb, this, std::placeholders::_1)
@@ -29,6 +32,8 @@ namespace Flare
 
       m_ImGuiLayer = new ProtoImGui::ImGuiLayer();
       m_LayerStack.PushOverlay( m_ImGuiLayer );
+
+      m_LayerStack.PushLayer( new Testing::RenderingTestLayer() );
    }
 
    Application::~Application()
