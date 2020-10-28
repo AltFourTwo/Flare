@@ -32,8 +32,30 @@ namespace Flare::Rendering
       glBindBuffer(GL_ARRAY_BUFFER, 0);
    }
 
-
    /***************/
    /* IndexBuffer */
    /***************/
+
+   OpenGLIndexBuffer::OpenGLIndexBuffer( uint32_t* a_Indices, uint32_t a_Count) :
+      m_Count(a_Count)
+   {
+      glCreateBuffers( 1, &m_ID );
+      glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_ID );
+      glBufferData( GL_ELEMENT_ARRAY_BUFFER, a_Count * sizeof(uint32_t), a_Indices, GL_STATIC_DRAW );
+   }
+
+   OpenGLIndexBuffer::~OpenGLIndexBuffer()
+   {
+      glDeleteBuffers( 1, &m_ID );
+   }
+
+   void OpenGLIndexBuffer::Bind() const
+   {
+      glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_ID );
+   }
+
+   void OpenGLIndexBuffer::Unbind() const
+   {
+      glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
+   }
 }

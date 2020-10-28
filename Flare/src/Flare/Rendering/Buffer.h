@@ -1,5 +1,4 @@
 #pragma once
-
 #include "IObject.h"
 
 namespace Flare::Rendering
@@ -31,7 +30,8 @@ namespace Flare::Rendering
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      static IndexBuffer* Create( float* a_Vertices, uint32_t a_Size );
+      static IndexBuffer* Create( uint32_t* a_Indices, uint32_t a_Count );
+      virtual uint32_t GetCount() const = 0;
 
    };
 }
