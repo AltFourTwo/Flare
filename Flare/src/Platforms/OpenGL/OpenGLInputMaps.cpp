@@ -1,5 +1,4 @@
 #include "FlarePCH.h"
-
 #include "OpenGLInputMaps.h"
 #include "Flare/UserInput/InputCodes.h"
 #include "GLFW/glfw3.h"

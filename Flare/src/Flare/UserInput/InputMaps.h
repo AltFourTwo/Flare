@@ -1,7 +1,5 @@
 #pragma once
-
 #include "InputCodes.h"
-#include "Bits/Masks.h"
 
 #include <initializer_list>
 #include <utility>
