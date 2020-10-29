@@ -15,7 +15,7 @@ namespace Flare::Rendering
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      virtual void Bind() const;
-      virtual void Unbind() const;
+      virtual void Bind() const override;
+      virtual void Unbind() const override;
    };
 }

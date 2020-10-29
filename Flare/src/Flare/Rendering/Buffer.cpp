@@ -10,10 +10,55 @@
 
 namespace Flare::Rendering
 {
+   /*****************/
+   /* BufferElement */
+   /*****************/
+
+   /*****   CLASS   C-TOR D-TOR  *****/
+   BufferElement::BufferElement() :
+      Name(""),
+      Type(ShaderDataType::DataType::None),
+      Size(0),
+      Offset(0)
+   {}
+
+   BufferElement::BufferElement( ShaderDataType a_Type, const std::string& a_Name ) :
+      Name( a_Name ),
+      Type( a_Type ),
+      Size( Renderer::GetShaderDataTypeMap().GetSizeOfType( a_Type ) ),
+      Offset( 0 )
+   {}
+
+   /****************/
+   /* BufferLayout */
+   /****************/
+
+   /*****   CLASS   C-TOR D-TOR  *****/
+   BufferLayout::BufferLayout( const std::initializer_list<BufferElement>& a_Elements ) :
+      m_Elements( a_Elements )
+   {
+      CalculateOffsetAndStride();
+   }
+
+   /*****   CLASS   FUNCTIONS    *****/
+   void BufferLayout::CalculateOffsetAndStride()
+   {
+      uint32_t x_Offset = 0;
+      m_Stride = 0;
+
+      for (auto& x_Element : m_Elements )
+      {
+         x_Element.Offset = x_Offset;
+         x_Offset += x_Element.Size;
+         m_Stride += x_Element.Size;
+      }
+   }
+
    /****************/
    /* VertexBuffer */
    /****************/
 
+   /*****   CLASS   FUNCTIONS    *****/
    VertexBuffer* VertexBuffer::Create( float* a_Vertices, uint32_t a_Size )
    {
       switch ( Renderer::CurrentAPI() )
@@ -23,7 +68,7 @@ namespace Flare::Rendering
             return nullptr; // TODO Exception.
 
          case Configuration::RendererAPI::OpenGL:
-            return new OpenGLVertexBuffer(a_Vertices, a_Size);
+            return new OpenGLVertexBuffer( a_Vertices, a_Size );
       }
 
       FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
@@ -34,6 +79,7 @@ namespace Flare::Rendering
    /* IndexBuffer */
    /***************/
 
+   /*****   CLASS   FUNCTIONS    *****/
    IndexBuffer* IndexBuffer::Create( uint32_t* a_Indices, uint32_t a_Count )
    {
       switch ( Renderer::CurrentAPI() )

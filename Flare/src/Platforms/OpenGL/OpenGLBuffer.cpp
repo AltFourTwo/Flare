@@ -9,6 +9,7 @@ namespace Flare::Rendering
    /* VertexBuffer */
    /****************/
 
+   /*****   CLASS   C-TOR D-TOR  *****/
    OpenGLVertexBuffer::OpenGLVertexBuffer( float* a_Vertices, uint32_t a_Size )
    {
       glCreateBuffers(1, &m_ID);
@@ -21,6 +22,7 @@ namespace Flare::Rendering
       glDeleteBuffers(1, &m_ID);
    }
 
+   /*****   CLASS   FUNCTIONS    *****/
    void OpenGLVertexBuffer::Bind() const
    {
       glBindBuffer(GL_ARRAY_BUFFER, m_ID);
@@ -31,10 +33,23 @@ namespace Flare::Rendering
       glBindBuffer(GL_ARRAY_BUFFER, 0);
    }
 
+   /*****   GETTERS   *****/
+   const BufferLayout& OpenGLVertexBuffer::GetLayout() const
+   {
+      return m_Layout;
+   }
+
+   /*****   SETTERS   *****/
+   void OpenGLVertexBuffer::SetLayout( const BufferLayout& a_Layout )
+   {
+      m_Layout = a_Layout;
+   }
+
    /***************/
    /* IndexBuffer */
    /***************/
 
+   /*****   CLASS   C-TOR D-TOR  *****/
    OpenGLIndexBuffer::OpenGLIndexBuffer( uint32_t* a_Indices, uint32_t a_Count) :
       m_Count(a_Count)
    {
@@ -48,6 +63,7 @@ namespace Flare::Rendering
       glDeleteBuffers( 1, &m_ID );
    }
 
+   /*****   CLASS   FUNCTIONS    *****/
    void OpenGLIndexBuffer::Bind() const
    {
       glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_ID );

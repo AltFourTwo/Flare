@@ -3,6 +3,7 @@
 
 #include "Flare/Rendering/Renderer.h"
 #include "Flare/Rendering/Shader.h"
+//#include "Flare/Rendering/ShaderDataType.h"
 
 #include <string>
 #include <iostream>
@@ -26,10 +27,17 @@ namespace Flare::Testing
       m_VertexBuffer = Rendering::VertexBuffer::Create( m_VertexPositions, 4 * 2 * sizeof( float ) );
       m_IndexBuffer = Rendering::IndexBuffer::Create( m_Indices, 6 );
 
-      //m_VertexBufferLayout = Rendering::VertexBufferLayout::Create();
+      //m_BufferLayout = Rendering::BufferLayout::Create();
+      //m_BufferLayout->Push_Float(2);
+      //m_VertexArray->RegisterBuffer(*m_VertexBuffer, *m_BufferLayout);
 
-      //m_VertexBufferLayout->Push_Float(2);
-      //m_VertexArray->RegisterBuffer(*m_VertexBuffer, *m_VertexBufferLayout);
+      Rendering::BufferLayout x_BufferLayout = {
+         { Rendering::ShaderDataType::Float3, "a_Position"},
+         { Rendering::ShaderDataType::Float4, "a_Color"},
+         { Rendering::ShaderDataType::Float2, "a_Normal"}
+      };
+
+      m_VertexBuffer->SetLayout(x_BufferLayout);
 
       std::string x_VSrc = R"(
          #version 330 core
@@ -69,7 +77,7 @@ namespace Flare::Testing
    {
       delete m_VertexBuffer;
       delete m_IndexBuffer;
-      //delete m_VertexBufferLayout;
+      //delete m_BufferLayout;
       //delete m_VertexArray;
       delete m_Shader;
       printf( "RenderingTestLayer Destroyed!\n" );

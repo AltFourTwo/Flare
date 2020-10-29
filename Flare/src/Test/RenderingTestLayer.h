@@ -19,7 +19,7 @@ namespace Flare::Testing
 
       //Rendering::VertexArray* m_VertexArray;
       Rendering::VertexBuffer* m_VertexBuffer;
-      //Rendering::VertexBufferLayout* m_VertexBufferLayout;
+      //Rendering::BufferLayout* m_BufferLayout;
       Rendering::IndexBuffer* m_IndexBuffer;
       Rendering::Shader* m_Shader;
 
