@@ -2,8 +2,6 @@
 
 namespace Flare::Rendering
 {
-   class ShaderDataTypeMap;
-
    class ShaderDataType
    {
       /*****   CLASS   CONSTANTS    *****/
@@ -60,10 +58,11 @@ namespace Flare::Rendering
       ShaderDataType();
       ShaderDataType( DataType a_DataType );
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   GETTERS   *****/
       public:
-      inline const uint8_t GetSizeOfType( const ShaderDataTypeMap& a_TypeMap ) const;
-      inline const char* GetNameOfType( const ShaderDataTypeMap& a_TypeMap ) const;
+      const uint32_t GetComponentCount() const;
+      const uint32_t GetSizeOfType() const;
+      const char* GetNameOfType() const;
 
       /*****   CLASS   OPERATORS    *****/
       operator DataType() const { return m_Type; }

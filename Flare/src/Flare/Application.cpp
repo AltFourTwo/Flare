@@ -99,7 +99,7 @@ namespace Flare
    {
       //FLARE_CORE_TRACE( e.ToString().c_str() );
 
-      for ( UserInterface::LayerIterator_R itr = m_LayerStack.rbegin(); itr != m_LayerStack.rend(); )
+      for ( UserInterface::LayerStack::LayerIterator_R itr = m_LayerStack.rbegin(); itr != m_LayerStack.rend(); )
       {
          ( *itr++ )->OnEvent( e );
          if ( e.IsHandled() )

@@ -37,8 +37,9 @@ namespace Flare::Rendering
 
          // We don't need the shader anymore.
          glDeleteShader( vertexShader );
-        
-         FLARE_CORE_ERROR( "{0}", {infoLog.data()} );
+
+         std::string _message( infoLog.data() );
+         FLARE_CORE_ERROR( "{0}", { _message } );
          FLARE_CORE_ASSERT( false, { "Vertex shader compilation failure!" } );
 
          return;
@@ -70,8 +71,10 @@ namespace Flare::Rendering
          // Either of them. Don't leak shaders.
          glDeleteShader( vertexShader );
 
-         FLARE_CORE_ERROR( "{0}", { infoLog.data() } );
-         FLARE_CORE_ASSERT( false, { "Pixel shader compilation failure!" } );
+         std::string _message( infoLog.data() );
+         FLARE_CORE_ERROR( "{0}", { _message } );
+         std::string _message2 = "Pixel shader compilation failure!";
+         FLARE_CORE_ASSERT( false, { _message2 } );
 
          return;
       }
@@ -106,7 +109,8 @@ namespace Flare::Rendering
          glDeleteShader( vertexShader );
          glDeleteShader( fragmentShader );
 
-         FLARE_CORE_ERROR( "{0}", { infoLog.data() } );
+         std::string _message( infoLog.data() );
+         FLARE_CORE_ERROR( "{0}", { _message } );
          FLARE_CORE_ASSERT( false, { "Shader linking stage failure!" } );
 
          return;

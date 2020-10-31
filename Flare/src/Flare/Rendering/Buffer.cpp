@@ -19,14 +19,16 @@ namespace Flare::Rendering
       Name(""),
       Type(ShaderDataType::DataType::None),
       Size(0),
-      Offset(0)
+      Offset(0),
+      Normalized(false)
    {}
 
-   BufferElement::BufferElement( ShaderDataType a_Type, const std::string& a_Name ) :
+   BufferElement::BufferElement( ShaderDataType a_Type, const std::string& a_Name, bool a_Normalized) :
       Name( a_Name ),
       Type( a_Type ),
-      Size( Renderer::GetShaderDataTypeMap().GetSizeOfType( a_Type ) ),
-      Offset( 0 )
+      Size( Type.GetSizeOfType() ),
+      Offset( 0 ),
+      Normalized( a_Normalized )
    {}
 
    /****************/
