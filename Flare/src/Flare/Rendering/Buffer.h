@@ -1,5 +1,5 @@
 #pragma once
-#include "IObject.h"
+#include "IRendererBindable.h"
 #include "ShaderDataType.h"
 
 namespace Flare::Rendering
@@ -57,7 +57,7 @@ namespace Flare::Rendering
    /* VertexBuffer */
    /****************/
 
-   class VertexBuffer : public IObject
+   class VertexBuffer : public IRendererBindable
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -78,7 +78,7 @@ namespace Flare::Rendering
    /* IndexBuffer */
    /***************/
 
-   class IndexBuffer : public IObject
+   class IndexBuffer : public IRendererBindable
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:

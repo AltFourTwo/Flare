@@ -1,11 +1,11 @@
 #pragma once
-#include "IObject.h"
+#include "IRendererBindable.h"
 
 #include <string>
 
 namespace Flare::Rendering
 {
-   class Shader : public IObject
+   class Shader : public IRendererBindable
    {
       /*****   CLASS   C-TOR D-TOR  *****/
       public:

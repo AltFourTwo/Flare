@@ -2,9 +2,11 @@
 
 #include "Flare/UserInterface/Layer.h"
 #include "Flare/Rendering/Buffer.h"
-//#include "Flare/Rendering/VertexArray.h"
+#include "Flare/Rendering/VertexArray.h"
 #include "Flare/Rendering/Shader.h"
 #include "Flare/Rendering/Renderer.h"
+
+#include <memory>
 
 namespace Flare::Testing
 {
@@ -15,31 +17,8 @@ namespace Flare::Testing
       virtual ~RenderingTestLayer();
       virtual void OnRender( Time::TimeStep a_TimeStep ) override;
 
-      //Rendering::VertexArray* m_VertexArray;
-      Rendering::VertexBuffer* m_VertexBuffer;
-      Rendering::IndexBuffer* m_IndexBuffer;
-      Rendering::Shader* m_Shader;
-
-      Rendering::Renderer m_Renderer;
-
-      float m_R = 1.0f;
-      float m_G = 0.5f;
-      float m_B = 0.0f;
-      float m_A = 1.0f;
-      float m_Increment = 0.0025f;
-
-      float m_Vertex[6*4] =
-      {
-         -0.5f, -0.5f, 0.8f, 0.2f, 0.5f, 1.0f,
-          0.5f, -0.5f, 0.5f, 0.8f, 0.2f, 1.0f,
-          0.5f,  0.5f, 0.2f, 0.5f, 0.8f, 1.0f,
-         -0.5f,  0.5f, 0.5f, 0.5f, 0.5f, 1.0f,
-      };
-
-      unsigned int m_Indices[6] =
-      {
-         0, 1, 2,
-         2, 3, 0
-      };
+      std::shared_ptr<Rendering::Shader> m_Shader;
+      std::shared_ptr<Rendering::VertexArray> m_VertexArray;
+      std::shared_ptr<Rendering::VertexArray> m_TriangleVertexArray;
    };
 }

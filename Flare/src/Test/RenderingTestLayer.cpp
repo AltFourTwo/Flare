@@ -25,36 +25,65 @@ namespace Flare::Testing
       glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 6 );
       glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
 
-      m_VertexBuffer = Rendering::VertexBuffer::Create( m_Vertex, 4 * 6 * sizeof( float ) );
-      m_IndexBuffer = Rendering::IndexBuffer::Create( m_Indices, 6 );
+      // Rectangle/Square in the back.
+      m_VertexArray.reset( Rendering::VertexArray::Create() );
 
+      float x_Vertex[6 * 4] =
       {
-         Rendering::BufferLayout x_BufferLayout = {
-            { Rendering::ShaderDataType::Float2, "a_Position"},
-            { Rendering::ShaderDataType::Float4, "a_Color"}
-         };
+         -0.75f, -0.75f, 0.8f, 0.2f, 0.5f, 1.0f,
+          0.75f, -0.75f, 0.5f, 0.8f, 0.2f, 1.0f,
+          0.75f,  0.75f, 0.2f, 0.5f, 0.8f, 1.0f,
+         -0.75f,  0.75f, 0.5f, 0.5f, 0.5f, 1.0f,
+      };
 
-         m_VertexBuffer->SetLayout( x_BufferLayout );
-      }
+      Rendering::BufferLayout x_BufferLayout = {
+         { Rendering::ShaderDataType::Float2, "a_Position"},
+         { Rendering::ShaderDataType::Float4, "a_Color"}
+      };
 
-      m_VertexBuffer->Bind();
+      std::shared_ptr<Rendering::VertexBuffer> x_VertexBuffer;
+      x_VertexBuffer.reset( Rendering::VertexBuffer::Create( x_Vertex, sizeof( x_Vertex ) ) );
+      x_VertexBuffer->SetLayout( x_BufferLayout );
+      m_VertexArray->AddVertexBuffer( x_VertexBuffer );
 
-      uint32_t x_Index = 0;
-      const auto& layout = m_VertexBuffer->GetLayout();
-      for ( const auto& x_Element : layout )
+      unsigned int x_Indices[6] =
       {
-         glEnableVertexAttribArray( x_Index );
-         glVertexAttribPointer(
-            x_Index,
-            x_Element.Type.GetComponentCount(),
-            Rendering::OpenGLShaderDataTypes::GetUnderlyingTypeOfType( x_Element.Type ),
-            x_Element.Normalized ? GL_TRUE : GL_FALSE,
-            layout.GetStride(),
-            (const void*)x_Element.Offset
-         );
-         x_Index++;
-      }
+         0, 1, 2,
+         2, 3, 0
+      };
 
+      std::shared_ptr<Rendering::IndexBuffer> x_IndexBuffer;
+      x_IndexBuffer.reset( Rendering::IndexBuffer::Create( x_Indices, sizeof( x_Indices ) / sizeof( uint32_t ) ) );
+      m_VertexArray->SetIndexBuffer( x_IndexBuffer );
+
+      // Triangle.
+      m_TriangleVertexArray.reset( Rendering::VertexArray::Create() );
+
+      float x_TriangleVertex[6 * 4] =
+      {
+         -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 1.0f,
+          0.5f, -0.5f, 0.2f, 0.0f, 0.8f, 1.0f,
+          0.0f,  0.5f, 0.8f, 0.2f, 0.0f, 1.0f,
+      };
+
+      Rendering::BufferLayout x_TriangleBufferLayout = {
+         { Rendering::ShaderDataType::Float2, "a_Position"},
+         { Rendering::ShaderDataType::Float4, "a_Color"}
+      };
+
+      std::shared_ptr<Rendering::VertexBuffer> x_TriangleVertexBuffer;
+      x_TriangleVertexBuffer.reset( Rendering::VertexBuffer::Create( x_TriangleVertex, sizeof( x_TriangleVertex ) ) );
+      x_TriangleVertexBuffer->SetLayout( x_TriangleBufferLayout );
+      m_TriangleVertexArray->AddVertexBuffer( x_TriangleVertexBuffer );
+
+      unsigned int x_TriangleIndices[6] =
+      {
+         0, 1, 2,
+      };
+
+      std::shared_ptr<Rendering::IndexBuffer> m_TriangleIndexBuffer;
+      m_TriangleIndexBuffer.reset( Rendering::IndexBuffer::Create( x_TriangleIndices, sizeof( x_TriangleIndices ) / sizeof( uint32_t ) ) );
+      m_TriangleVertexArray->SetIndexBuffer( m_TriangleIndexBuffer );
 
       std::string x_VSrc = R"(
          #version 330 core
@@ -89,26 +118,23 @@ namespace Flare::Testing
 
       // TODO : Create shaders with files instead.
       //m_Shader = Rendering::Shader::Create( "testres/Source.shader" );
-      m_Shader = Rendering::Shader::Create( x_VSrc, x_PSrc );
+      m_Shader.reset( Rendering::Shader::Create( x_VSrc, x_PSrc ) );
       m_Shader->Bind();
    }
 
    RenderingTestLayer::~RenderingTestLayer()
    {
-      delete m_VertexBuffer;
-      delete m_IndexBuffer;
-      //delete m_BufferLayout;
-      //delete m_VertexArray;
-      delete m_Shader;
       printf( "RenderingTestLayer Destroyed!\n" );
    }
 
    void RenderingTestLayer::OnRender( Time::TimeStep a_TimeStep )
    {
       m_Shader->Bind();
-      m_VertexBuffer->Bind();
-      m_IndexBuffer->Bind();
+      m_VertexArray->Bind();
+      glDrawElements( GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr );
 
-      glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr );
+      m_TriangleVertexArray->Bind();
+      glDrawElements( GL_TRIANGLES, m_TriangleVertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr );
+
    }
 }

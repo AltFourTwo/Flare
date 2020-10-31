@@ -2,11 +2,8 @@
 
 namespace Flare::Rendering
 {
-   class IObject
+   class IRendererBindable
    {
-      /*****   CLASS   VARIABLES    *****/
-      private:
-
       /*****   CLASS   FUNCTIONS    *****/
       public:
       virtual void Bind() const = 0;
