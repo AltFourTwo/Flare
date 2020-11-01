@@ -1,17 +1,16 @@
 #include "FlarePCH.h"
 #include "PlatformUtils.h"
-#include "Flare/Configuration/Configuration.h"
 
 #include "Flare/UserInput/InputMaps.h"
 #include "Platforms/OpenGL/OpenGLInputMaps.h"
 
 namespace Flare::UserInput
 {
-   KeyMap&& GetAPIKeyMap( Configuration::RendererAPI a_ConfigValue )
+   KeyMap&& GetAPIKeyMap( Rendering::API a_ConfigValue )
    {
       switch ( a_ConfigValue )
       {
-         case Configuration::RendererAPI::OpenGL:
+         case Rendering::API::OpenGL:
             return std::move( UserInput::OpenGLKeyMap() );
 
          default:

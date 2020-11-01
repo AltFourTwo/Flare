@@ -1,9 +1,8 @@
 #pragma once
-
-#include "Flare/Configuration/Configuration.h"
+#include "Flare/Rendering/Rendering.h"
 #include "Flare/UserInput/InputMaps.h"
 
 namespace Flare::UserInput
 {
-   KeyMap&& GetAPIKeyMap( Configuration::RendererAPI a_ConfigValue );
+   KeyMap&& GetAPIKeyMap( Rendering::API a_ConfigValue );
 }

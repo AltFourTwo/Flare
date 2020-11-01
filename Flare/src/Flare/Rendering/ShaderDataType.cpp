@@ -1,9 +1,9 @@
 #include "FlarePCH.h"
 #include "ShaderDataType.h"
-
-#include "Flare/Configuration/Configuration.h"
-#include "Flare/Logging/Console.h"
 #include "Renderer.h"
+#include "Flare/Logging/Console.h"
+
+// Following includes should be surrounded by ifdefs according to platform.
 #include "Platforms/OpenGL/OpenGLShaderDataTypes.h"
 
 namespace Flare::Rendering
@@ -126,13 +126,13 @@ namespace Flare::Rendering
 
    const char* ShaderDataType::GetNameOfType() const 
    { 
-      switch ( Renderer::CurrentAPI() )
+      switch ( Renderer::GetCommandInterfaceAPI() )
       {
-         case Configuration::RendererAPI::None:
+         case API::None:
             FLARE_CORE_ASSERT( false, { "Renderer API is set to [None]. Cannot proceed." } );
             return nullptr; // TODO Exception.
 
-         case Configuration::RendererAPI::OpenGL:
+         case API::OpenGL:
             return OpenGLShaderDataTypes::GetNameOfType(m_Type);
       }
    }

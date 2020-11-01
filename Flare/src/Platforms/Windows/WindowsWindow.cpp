@@ -9,7 +9,6 @@
 #include "Flare/Events/KeyEvent.h"
 #include "Flare/Events/MouseEvent.h"
 #include "Flare/Events/EventDispatcher.h"
-#include "Flare/Configuration/Configuration.h"
 #include "Platforms/Utils/PlatformUtils.h"
 
 #include <glad/glad.h>
@@ -52,7 +51,7 @@ namespace Flare::UserInterface
          s_GLFWInitialized = true;
       }
 
-      if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( std::forward<UserInput::KeyMap>(Flare::UserInput::GetAPIKeyMap( Configuration::RendererAPI::OpenGL ) ) ) )
+      if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( std::forward<UserInput::KeyMap>(Flare::UserInput::GetAPIKeyMap( Rendering::API::OpenGL ) ) ) )
       {
          LOG_TRACE( "Input scheme initialized and tied to window!\n" );
          SetInputScheme( UserInput::WindowsInput::GetInstance() );

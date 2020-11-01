@@ -9,21 +9,18 @@
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
-
-// Temporary
-#include "Flare/Rendering/ShaderDataType.h"
-#include "Platforms/OpenGL/OpenGLShaderDataTypes.h"
+#include "Flare/Rendering/Renderer.h"
 
 namespace Flare::Testing
 {
    RenderingTestLayer::RenderingTestLayer() :
       Layer( "RenderingTestLayer" )
    {
-      std::cout << (const char*)glGetString( GL_VERSION ) << std::endl;
-
-      glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
-      glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 6 );
-      glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
+      // std::cout << (const char*)glGetString( GL_VERSION ) << std::endl;
+      // 
+      // glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
+      // glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 6 );
+      // glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
 
       // Rectangle/Square in the back.
       m_VertexArray.reset( Rendering::VertexArray::Create() );
@@ -129,12 +126,12 @@ namespace Flare::Testing
 
    void RenderingTestLayer::OnRender( Time::TimeStep a_TimeStep )
    {
+      Rendering::Renderer::BeginScene();
+
       m_Shader->Bind();
-      m_VertexArray->Bind();
-      glDrawElements( GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr );
+      Rendering::Renderer::Submit(m_VertexArray);
+      Rendering::Renderer::Submit(m_TriangleVertexArray);
 
-      m_TriangleVertexArray->Bind();
-      glDrawElements( GL_TRIANGLES, m_TriangleVertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr );
-
+      Rendering::Renderer::EndScene();
    }
 }

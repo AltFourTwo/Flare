@@ -1,17 +1,19 @@
 #pragma once
 
-#include "Flare/Configuration/Configuration.h"
+#include "RenderCommand.h"
 
 namespace Flare::Rendering
 {
    class Renderer
    {
-      /*****   CLASS   VARIABLES    *****/
-      private:
-      static Configuration::RendererAPI s_RendererAPI;
+      /*****   CLASS   FUNCTIONS    *****/
+      public:
+      static void BeginScene();
+      static void EndScene();
+      static void Submit( const std::shared_ptr<VertexArray>& a_VertexArray );
 
       /*****   GETTERS   *****/
       public:
-      inline static Configuration::RendererAPI CurrentAPI() { return s_RendererAPI; }
+      inline static const API GetCommandInterfaceAPI() { return RenderCommand::GetInterfaceAPI(); }
    };
 }

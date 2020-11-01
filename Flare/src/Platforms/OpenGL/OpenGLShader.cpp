@@ -82,29 +82,29 @@ namespace Flare::Rendering
       // Vertex and fragment shaders are successfully compiled.
       // Now time to link them together into a program.
       // Get a program object.
-      m_ID = glCreateProgram();
+      m_OpenGLID = glCreateProgram();
 
       // Attach our shaders to our program
-      glAttachShader( m_ID, vertexShader );
-      glAttachShader( m_ID, fragmentShader );
+      glAttachShader( m_OpenGLID, vertexShader );
+      glAttachShader( m_OpenGLID, fragmentShader );
 
       // Link our program
-      glLinkProgram( m_ID );
+      glLinkProgram( m_OpenGLID );
 
       // Note the different functions here: glGetProgram* instead of glGetShader*.
       GLint isLinked = 0;
-      glGetProgramiv( m_ID, GL_LINK_STATUS, (int*)&isLinked );
+      glGetProgramiv( m_OpenGLID, GL_LINK_STATUS, (int*)&isLinked );
       if ( isLinked == GL_FALSE )
       {
          GLint maxLength = 0;
-         glGetProgramiv( m_ID, GL_INFO_LOG_LENGTH, &maxLength );
+         glGetProgramiv( m_OpenGLID, GL_INFO_LOG_LENGTH, &maxLength );
 
          // The maxLength includes the NULL character
          std::vector<GLchar> infoLog( maxLength );
-         glGetProgramInfoLog( m_ID, maxLength, &maxLength, &infoLog[0] );
+         glGetProgramInfoLog( m_OpenGLID, maxLength, &maxLength, &infoLog[0] );
 
          // We don't need the program anymore.
-         glDeleteProgram( m_ID );
+         glDeleteProgram( m_OpenGLID );
          // Don't leak shaders either.
          glDeleteShader( vertexShader );
          glDeleteShader( fragmentShader );
@@ -117,18 +117,18 @@ namespace Flare::Rendering
       }
 
       // Always detach shaders after a successful link.
-      glDetachShader( m_ID, vertexShader );
-      glDetachShader( m_ID, fragmentShader );
+      glDetachShader( m_OpenGLID, vertexShader );
+      glDetachShader( m_OpenGLID, fragmentShader );
    }
 
    OpenGLShader::~OpenGLShader()
    {
-      glDeleteProgram( m_ID );
+      glDeleteProgram( m_OpenGLID );
    }
 
    void OpenGLShader::Bind() const
    {
-      glUseProgram( m_ID );
+      glUseProgram( m_OpenGLID );
    }
 
    void OpenGLShader::Unbind() const

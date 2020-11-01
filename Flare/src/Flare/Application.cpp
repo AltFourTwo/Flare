@@ -11,6 +11,7 @@
 
 // For testing
 #include "Test/RenderingTestLayer.h"
+#include "Flare/Rendering/Renderer.h"
 
 namespace Flare
 {
@@ -50,8 +51,8 @@ namespace Flare
 
          //FLARE_CORE_INFO( "TimeStep is {0}s {1}ms", { x_TimeStep.GetSeconds(), x_TimeStep.GetMilliseconds() } );
 
-         glClearColor( 0.5f, 0.25f, 0, 1 );
-         glClear( GL_COLOR_BUFFER_BIT );
+         Rendering::RenderCommand::SetClearColor( { 0.5f, 0.25f, 0, 1 } );
+         Rendering::RenderCommand::Clear();
 
          for ( UserInterface::Layer* x_Layer : m_LayerStack )
             x_Layer->OnUpdate( x_TimeStep );

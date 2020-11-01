@@ -1,7 +1,6 @@
 #include "FlarePCH.h"
 #include "VertexArray.h"
 #include "Renderer.h"
-#include "Flare/Configuration/Configuration.h"
 #include "Flare/Logging/Console.h"
 
 // Following includes should be surrounded by ifdefs according to platform.
@@ -11,13 +10,13 @@ namespace Flare::Rendering
 {
    VertexArray* VertexArray::Create()
    {
-      switch ( Renderer::CurrentAPI() )
+      switch ( Renderer::GetCommandInterfaceAPI() )
       {
-         case Configuration::RendererAPI::None:
+         case API::None:
             FLARE_CORE_ASSERT( false, { "Renderer API is set to [None]. Cannot proceed." } );
             return nullptr; // TODO Exception.
 
-         case Configuration::RendererAPI::OpenGL:
+         case API::OpenGL:
             return new OpenGLVertexArray();
       }
 

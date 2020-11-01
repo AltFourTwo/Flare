@@ -10,18 +10,18 @@ namespace Flare::Rendering
    /*****   CLASS   C-TOR D-TOR  *****/
    OpenGLVertexArray::OpenGLVertexArray()
    {
-      glGenVertexArrays( 1, &m_ID );
+      glGenVertexArrays( 1, &m_OpenGLID );
    }
 
    OpenGLVertexArray::~OpenGLVertexArray()
    {
-      glDeleteVertexArrays( 1, &m_ID );
+      glDeleteVertexArrays( 1, &m_OpenGLID );
    }
 
    /*****   CLASS   FUNCTIONS    *****/
    void OpenGLVertexArray::Bind() const
    {
-      glBindVertexArray( m_ID );
+      glBindVertexArray( m_OpenGLID );
    }
 
    void OpenGLVertexArray::Unbind() const
@@ -34,7 +34,7 @@ namespace Flare::Rendering
    {
       FLARE_CORE_ASSERT( a_VertexBuffer->GetLayout().GetElements().size(), { "Vertex Buffer has no layout!" } );
 
-      glBindVertexArray( m_ID );
+      glBindVertexArray( m_OpenGLID );
       a_VertexBuffer->Bind();
 
       uint32_t x_Index = 0;
@@ -58,7 +58,7 @@ namespace Flare::Rendering
 
    void OpenGLVertexArray::SetIndexBuffer( std::shared_ptr<IndexBuffer>& a_IndexBuffer )
    {
-      glBindVertexArray( m_ID );
+      glBindVertexArray( m_OpenGLID );
       a_IndexBuffer->Bind();
 
       m_IndexBuffer = a_IndexBuffer;

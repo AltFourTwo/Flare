@@ -12,20 +12,20 @@ namespace Flare::Rendering
    /*****   CLASS   C-TOR D-TOR  *****/
    OpenGLVertexBuffer::OpenGLVertexBuffer( float* a_Vertices, uint32_t a_Size )
    {
-      glCreateBuffers(1, &m_ID);
-      glBindBuffer(GL_ARRAY_BUFFER, m_ID);
+      glCreateBuffers(1, &m_OpenGLID);
+      glBindBuffer(GL_ARRAY_BUFFER, m_OpenGLID);
       glBufferData(GL_ARRAY_BUFFER, a_Size, a_Vertices, GL_STATIC_DRAW);
    }
 
    OpenGLVertexBuffer::~OpenGLVertexBuffer() 
    {
-      glDeleteBuffers(1, &m_ID);
+      glDeleteBuffers(1, &m_OpenGLID);
    }
 
    /*****   CLASS   FUNCTIONS    *****/
    void OpenGLVertexBuffer::Bind() const
    {
-      glBindBuffer(GL_ARRAY_BUFFER, m_ID);
+      glBindBuffer(GL_ARRAY_BUFFER, m_OpenGLID);
    }
 
    void OpenGLVertexBuffer::Unbind() const
@@ -53,20 +53,20 @@ namespace Flare::Rendering
    OpenGLIndexBuffer::OpenGLIndexBuffer( uint32_t* a_Indices, uint32_t a_Count) :
       m_Count(a_Count)
    {
-      glCreateBuffers( 1, &m_ID );
-      glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_ID );
+      glCreateBuffers( 1, &m_OpenGLID );
+      glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_OpenGLID );
       glBufferData( GL_ELEMENT_ARRAY_BUFFER, a_Count * sizeof(uint32_t), a_Indices, GL_STATIC_DRAW );
    }
 
    OpenGLIndexBuffer::~OpenGLIndexBuffer()
    {
-      glDeleteBuffers( 1, &m_ID );
+      glDeleteBuffers( 1, &m_OpenGLID );
    }
 
    /*****   CLASS   FUNCTIONS    *****/
    void OpenGLIndexBuffer::Bind() const
    {
-      glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_ID );
+      glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_OpenGLID );
    }
 
    void OpenGLIndexBuffer::Unbind() const

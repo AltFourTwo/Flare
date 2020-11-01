@@ -6,6 +6,6 @@ namespace Flare::Rendering
    {
       /*****   CLASS   VARIABLES    *****/
       protected:
-      uint32_t m_ID;
+      uint32_t m_OpenGLID;
    };
 }
