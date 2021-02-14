@@ -37,7 +37,7 @@ project "Flare"
     location "Flare"
     kind "StaticLib"
     language "C++"
-    cppdialect "C++17"
+    cppdialect "C++20"
     staticruntime "on"
     
     targetdir ( CommonTargetDir .. "%{prj.name}/" )
@@ -108,7 +108,7 @@ project "Utility"
     location "Utility"
     kind "StaticLib"
     language "C++"
-    cppdialect "C++17"
+    cppdialect "C++20"
     staticruntime "on"
     
     targetdir ( CommonTargetDir .. "%{prj.name}" )
@@ -155,7 +155,7 @@ project "UnitTest"
     location "UnitTest"
     kind "ConsoleApp"
     language "C++"
-    cppdialect "C++17"
+    cppdialect "C++20"
     staticruntime "on"
     
     targetdir ( CommonTargetDir .. "%{prj.name}" )
@@ -202,7 +202,7 @@ project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
-    cppdialect "C++17"
+    cppdialect "C++20"
     staticruntime "on"
     
     targetdir ( CommonTargetDir .. "%{prj.name}" )
