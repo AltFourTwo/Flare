@@ -16,11 +16,11 @@ namespace Flare::Testing
    RenderingTestLayer::RenderingTestLayer() :
       Layer( "RenderingTestLayer" )
    {
-      // std::cout << (const char*)glGetString( GL_VERSION ) << std::endl;
-      // 
-      // glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
-      // glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 6 );
-      // glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
+      std::cout << (const char*)glGetString( GL_VERSION ) << std::endl;
+      
+      glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
+      glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 6 );
+      glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
 
       // Rectangle/Square in the back.
       m_VertexArray.reset( Rendering::VertexArray::Create() );
