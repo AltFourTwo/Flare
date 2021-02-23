@@ -3,6 +3,11 @@
 
 namespace Flare::Rendering
 {
+   /*****   CLASS   C-TOR D-TOR  *****/
+   Renderer::Renderer( API a_API ) :
+      m_CommandInterface(a_API)
+   {}
+
    /*****   CLASS   FUNCTIONS    *****/
    void Renderer::BeginScene()
    {
@@ -17,6 +22,6 @@ namespace Flare::Rendering
    void Renderer::Submit( const std::shared_ptr<VertexArray>& a_VertexArray )
    {
       a_VertexArray->Bind();
-      RenderCommand::DrawIndexed( a_VertexArray );
+      m_CommandInterface.DrawIndexed( a_VertexArray );
    }
 }

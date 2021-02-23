@@ -1,15 +1,12 @@
 #include "FlarePCH.h"
 #include "RenderingTestLayer.h"
-
-#include "Flare/Rendering/Renderer.h"
-#include "Flare/Rendering/Shader.h"
+#include "Flare/Rendering/RenderingController.h"
 
 #include <string>
 #include <iostream>
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
-#include "Flare/Rendering/Renderer.h"
 
 namespace Flare::Testing
 {
@@ -34,8 +31,8 @@ namespace Flare::Testing
       };
 
       Rendering::BufferLayout x_BufferLayout = {
-         { Rendering::ShaderDataType::Float2, "a_Position"},
-         { Rendering::ShaderDataType::Float4, "a_Color"}
+         { Rendering::ShaderDataType::DataType::Float2, "a_Position"},
+         { Rendering::ShaderDataType::DataType::Float4, "a_Color"}
       };
 
       std::shared_ptr<Rendering::VertexBuffer> x_VertexBuffer;
@@ -64,8 +61,8 @@ namespace Flare::Testing
       };
 
       Rendering::BufferLayout x_TriangleBufferLayout = {
-         { Rendering::ShaderDataType::Float2, "a_Position"},
-         { Rendering::ShaderDataType::Float4, "a_Color"}
+         { Rendering::ShaderDataType::DataType::Float2, "a_Position"},
+         { Rendering::ShaderDataType::DataType::Float4, "a_Color"}
       };
 
       std::shared_ptr<Rendering::VertexBuffer> x_TriangleVertexBuffer;
@@ -126,12 +123,14 @@ namespace Flare::Testing
 
    void RenderingTestLayer::OnRender( Time::TimeStep a_TimeStep )
    {
-      Rendering::Renderer::BeginScene();
+      Flare::Rendering::Renderer& x_Renderer = Rendering::RenderingController::GetRenderer();
+
+      x_Renderer.BeginScene();
 
       m_Shader->Bind();
-      Rendering::Renderer::Submit(m_VertexArray);
-      Rendering::Renderer::Submit(m_TriangleVertexArray);
+      x_Renderer.Submit(m_VertexArray);
+      x_Renderer.Submit(m_TriangleVertexArray);
 
-      Rendering::Renderer::EndScene();
+      x_Renderer.EndScene();
    }
 }

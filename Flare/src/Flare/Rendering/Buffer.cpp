@@ -1,7 +1,8 @@
 #include "FlarePCH.h"
+#include "Flare/Logging/Console.h"
+#include "Flare/Rendering/RenderingController.h"
 #include "Buffer.h"
 #include "Renderer.h"
-#include "Flare/Logging/Console.h"
 
 // Following includes should be surrounded by ifdefs according to platform.
 #include "Platforms/OpenGL/OpenGLBuffer.h"
@@ -61,7 +62,7 @@ namespace Flare::Rendering
    /*****   CLASS   FUNCTIONS    *****/
    VertexBuffer* VertexBuffer::Create( float* a_Vertices, uint32_t a_Size )
    {
-      switch ( Renderer::GetCommandInterfaceAPI() )
+      switch ( RenderingController::GetCurrentRendererUnderlyingAPI() )
       {
          case API::None:
             FLARE_CORE_ASSERT( false, { "Renderer API is set to [None]. Cannot proceed." } );
@@ -69,10 +70,11 @@ namespace Flare::Rendering
 
          case API::OpenGL:
             return new OpenGLVertexBuffer( a_Vertices, a_Size );
-      }
 
-      FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
-      return nullptr;
+         default:
+            FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
+            return nullptr; // TODO Exception.
+      }
    }
 
    /***************/
@@ -82,7 +84,7 @@ namespace Flare::Rendering
    /*****   CLASS   FUNCTIONS    *****/
    IndexBuffer* IndexBuffer::Create( uint32_t* a_Indices, uint32_t a_Count )
    {
-      switch ( Renderer::GetCommandInterfaceAPI() )
+      switch ( RenderingController::GetCurrentRendererUnderlyingAPI() )
       {
          case API::None:
             FLARE_CORE_ASSERT( false, { "Renderer API is set to [None]. Cannot proceed." } );
@@ -90,9 +92,10 @@ namespace Flare::Rendering
 
          case API::OpenGL:
             return new OpenGLIndexBuffer( a_Indices, a_Count );
-      }
 
-      FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
-      return nullptr;
+         default:
+            FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
+            return nullptr; // TODO Exception.
+      }
    }
 }

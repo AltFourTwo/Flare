@@ -1,4 +1,5 @@
 #pragma once
+#include "Flare/Rendering/Rendering.h"
 
 namespace Flare::Rendering
 {
@@ -6,7 +7,7 @@ namespace Flare::Rendering
    {
       /*****   CLASS   CONSTANTS    *****/
       public:
-      enum DataType
+      enum class DataType
       {
          None = 0,
          Bool1 = 1,
@@ -62,7 +63,7 @@ namespace Flare::Rendering
       public:
       const uint32_t GetComponentCount() const;
       const uint32_t GetSizeOfType() const;
-      const char* GetNameOfType() const;
+      const char* GetNameOfType( const API a_API ) const;
 
       /*****   CLASS   OPERATORS    *****/
       operator DataType() const { return m_Type; }

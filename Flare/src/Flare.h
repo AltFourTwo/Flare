@@ -2,7 +2,7 @@
 
 // For use by Flare applications!
 #include "Flare/Application.h"
-#include "Flare/Rendering/Renderer.h"
+//#include "Flare/Rendering/Renderer.h"
 //#include "Flare/Time/TimeStep.h"
 //#include "Flare/Logging/LogEmitter.h"
 //#include "Flare/Logging/LoggerParameters.h"

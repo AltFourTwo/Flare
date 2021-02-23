@@ -1,10 +1,8 @@
 #pragma once
 
 #include "Flare/UserInterface/Layer.h"
-#include "Flare/Rendering/Buffer.h"
 #include "Flare/Rendering/VertexArray.h"
 #include "Flare/Rendering/Shader.h"
-#include "Flare/Rendering/Renderer.h"
 
 #include <memory>
 

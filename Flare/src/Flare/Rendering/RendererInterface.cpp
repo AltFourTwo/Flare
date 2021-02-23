@@ -1,6 +1,6 @@
 #include "FlarePCH.h"
-#include "RendererInterface.h"
 #include "Flare/Logging/Console.h"
+#include "RendererInterface.h"
 
 // Following includes should be surrounded by ifdefs according to platform.
 #include "Platforms/OpenGL/OpenGLRendererInterface.h"
@@ -13,7 +13,7 @@ namespace Flare::Rendering
    {}
 
    /*****   CLASS   FUNCTIONS    *****/
-   RendererInterface* RendererInterface::MakeInterface( API a_API )
+   RendererInterface* RendererInterface::CreateInterface( API a_API )
    {
       switch ( a_API )
       {
@@ -23,9 +23,10 @@ namespace Flare::Rendering
 
          case API::OpenGL:
             return new OpenGLRendererInterface();
-      }
 
-      FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
-      return nullptr;
+         default:
+            FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
+            return nullptr; // TODO Exception.
+      }
    }
 }

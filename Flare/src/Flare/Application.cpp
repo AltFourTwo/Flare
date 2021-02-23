@@ -21,12 +21,15 @@ namespace Flare
 
    /*****   CLASS   C-TOR D-TOR  *****/
    Application::Application() :
-      m_Console()
+      m_Console(),
+      m_RenderingController()
    {
       FLARE_CORE_ASSERT( !s_Instance, { "An instance of this application aleady exists!" } );
       s_Instance = this;
 
       // ( *m_Console.GetCoreLogger() ).SetParameters( Logging::LoggerParameters( "Core", Logging::LogLevel::Trace, "%F at %T | &N says : &M" ) );
+
+      m_RenderingController.InitializePrimaryRenderer(Rendering::API::OpenGL, true);
 
       m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );
       m_MainWindow->SetEventCallback( BIND_EVENT_CALLBACK( OnEvent ) );
@@ -51,8 +54,9 @@ namespace Flare
 
          //FLARE_CORE_INFO( "TimeStep is {0}s {1}ms", { x_TimeStep.GetSeconds(), x_TimeStep.GetMilliseconds() } );
 
-         Rendering::RenderCommand::SetClearColor( { 0.5f, 0.25f, 0, 1 } );
-         Rendering::RenderCommand::Clear();
+         const Rendering::RendererCommandInterface& x_CommandInterface = m_RenderingController.GetRenderer().GetCommandInterface();
+         x_CommandInterface.SetClearColor( { 0.5f, 0.25f, 0, 1 } );
+         x_CommandInterface.Clear();
 
          for ( UserInterface::Layer* x_Layer : m_LayerStack )
             x_Layer->OnUpdate( x_TimeStep );

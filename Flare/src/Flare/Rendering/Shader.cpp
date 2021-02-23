@@ -1,7 +1,8 @@
 #include "FlarePCH.h"
+#include "Flare/Logging/Console.h"
+#include "Flare/Rendering/RenderingController.h"
 #include "Shader.h"
 #include "Renderer.h"
-#include "Flare/Logging/Console.h"
 
 // Following includes should be surrounded by ifdefs according to platform.
 #include "Platforms/OpenGL/OpenGLShader.h"
@@ -10,7 +11,7 @@ namespace Flare::Rendering
 {
    Shader* Shader::Create( const std::string& a_VertexSource, const std::string& a_PixelSource )
    {
-      switch ( Renderer::GetCommandInterfaceAPI() )
+      switch ( RenderingController::GetCurrentRendererUnderlyingAPI() )
       {
          case API::None:
             FLARE_CORE_ASSERT( false, { "Renderer API is set to [None]. Cannot proceed." } );
@@ -18,9 +19,10 @@ namespace Flare::Rendering
 
          case API::OpenGL:
             return new OpenGLShader( a_VertexSource, a_PixelSource );
-      }
 
-      FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
-      return nullptr;
+         default:
+            FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
+            return nullptr; // TODO Exception.
+      }
    }
 }
