@@ -19,7 +19,6 @@ namespace Flare::Logging
 
       /*****   NESTED  CLASSES      *****/
       private:
-   #pragma region FormatAction Nested Struct
       struct FormatAction
       {
          enum class ActionType : int
@@ -47,7 +46,6 @@ namespace Flare::Logging
 
          std::string ExecuteAction( const Logger& a_Logger, const LogLevel& a_LogLevel, const char*& a_Message );
       };
-   #pragma endregion
 
       /*****   CLASS   VARIABLES    *****/
       private:

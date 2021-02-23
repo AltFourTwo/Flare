@@ -7,11 +7,13 @@
 
 namespace Flare::UserInterface
 {
-   using LayerIterator_F = std::vector<Layer*>::iterator;
-   using LayerIterator_R = std::vector<Layer*>::reverse_iterator;
-
    class FLARE_API LayerStack
    {
+      // TODO : Make Iterator using & typedef standards.
+      public:
+      using LayerIterator_F = std::vector<Layer*>::iterator;
+      using LayerIterator_R = std::vector<Layer*>::reverse_iterator;
+
       /*****   CLASS   VARIABLES    *****/
       private:
       std::vector<Layer*> m_Layers;

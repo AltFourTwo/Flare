@@ -9,7 +9,7 @@ Sandbox::Sandbox()
    // ( *this->GetConsole().GetClientLogger() ).SetParameters( Flare::Logging::LoggerParameters( "Sandbox", Flare::Logging::LogLevel::Trace, "%F at %T | &N says : &M" ) );
 
    PushLayer( new ExampleLayer() );
-   FLARE_TRACE( "Sandbox has pushed 1 layers!\n" );
+   FLARE_TRACE( "Sandbox has pushed 1 layer!\n" );
 }
 
 Sandbox::~Sandbox() {}
