@@ -9,6 +9,10 @@
 
 #include "UserInput/Input.h"
 
+// For testing
+#include "Test/RenderingTestLayer.h"
+#include "Flare/Rendering/Renderer.h"
+
 namespace Flare
 {
 #define BIND_EVENT_CALLBACK(cb) std::bind(&Application::cb, this, std::placeholders::_1)
@@ -17,18 +21,23 @@ namespace Flare
 
    /*****   CLASS   C-TOR D-TOR  *****/
    Application::Application() :
-      m_Console()
+      m_Console(),
+      m_RenderingController()
    {
       FLARE_CORE_ASSERT( !s_Instance, { "An instance of this application aleady exists!" } );
       s_Instance = this;
 
       // ( *m_Console.GetCoreLogger() ).SetParameters( Logging::LoggerParameters( "Core", Logging::LogLevel::Trace, "%F at %T | &N says : &M" ) );
 
+      m_RenderingController.InitializePrimaryRenderer(Rendering::API::OpenGL, true);
+
       m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );
       m_MainWindow->SetEventCallback( BIND_EVENT_CALLBACK( OnEvent ) );
 
       m_ImGuiLayer = new ProtoImGui::ImGuiLayer();
       m_LayerStack.PushOverlay( m_ImGuiLayer );
+
+      m_LayerStack.PushLayer( new Testing::RenderingTestLayer() );
    }
 
    Application::~Application()
@@ -45,8 +54,9 @@ namespace Flare
 
          //FLARE_CORE_INFO( "TimeStep is {0}s {1}ms", { x_TimeStep.GetSeconds(), x_TimeStep.GetMilliseconds() } );
 
-         glClearColor( 0.5f, 0.25f, 0, 1 );
-         glClear( GL_COLOR_BUFFER_BIT );
+         const Rendering::RendererCommandInterface& x_CommandInterface = m_RenderingController.GetRenderer().GetCommandInterface();
+         x_CommandInterface.SetClearColor( { 0.5f, 0.25f, 0, 1 } );
+         x_CommandInterface.Clear();
 
          for ( UserInterface::Layer* x_Layer : m_LayerStack )
             x_Layer->OnUpdate( x_TimeStep );
@@ -94,7 +104,7 @@ namespace Flare
    {
       //FLARE_CORE_TRACE( e.ToString().c_str() );
 
-      for ( UserInterface::LayerIterator_R itr = m_LayerStack.rbegin(); itr != m_LayerStack.rend(); )
+      for ( UserInterface::LayerStack::LayerIterator_R itr = m_LayerStack.rbegin(); itr != m_LayerStack.rend(); )
       {
          ( *itr++ )->OnEvent( e );
          if ( e.IsHandled() )

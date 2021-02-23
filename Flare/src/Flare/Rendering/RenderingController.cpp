@@ -1,0 +1,81 @@
+#include "FlarePCH.h"
+#include "Flare/Application.h"
+#include "Flare/Rendering/RenderingController.h"
+
+namespace Flare::Rendering
+{
+   /*****   CLASS   C-TOR D-TOR  *****/
+   RenderingController::RenderingController() :
+      m_PrimaryRenderer(nullptr),
+      m_SecondaryRenderer(nullptr),
+      m_CurrentRenderer(nullptr)
+   {}
+
+   RenderingController::~RenderingController()
+   {
+      if ( m_PrimaryRenderer != nullptr )
+         delete m_PrimaryRenderer;
+
+      if ( m_SecondaryRenderer != nullptr )
+         delete m_SecondaryRenderer;
+   }
+
+   /*****   CLASS   FUNCTIONS    *****/
+   void RenderingController::SwapRenderers()
+   {
+      if ( m_PrimaryRenderer == nullptr || m_SecondaryRenderer == nullptr )
+         throw; // TODO Exception : Can't use swap when a renderer is not set.
+
+      if ( m_CurrentRenderer == m_PrimaryRenderer )
+         m_CurrentRenderer = m_SecondaryRenderer;
+      else
+         m_CurrentRenderer = m_PrimaryRenderer;
+   }
+
+   void RenderingController::InitializePrimaryRenderer( Rendering::API a_API, bool a_SetCurrent )
+   {
+      m_PrimaryRenderer = new Renderer( a_API );
+
+      if ( a_SetCurrent )
+         m_CurrentRenderer = m_PrimaryRenderer;
+   }
+
+   void RenderingController::InitializeSecondaryRenderer( Rendering::API a_API, bool a_SetCurrent )
+   {
+      m_SecondaryRenderer = new Renderer( a_API );
+
+      if ( a_SetCurrent )
+         m_CurrentRenderer = m_SecondaryRenderer;
+   }
+
+   /*****   GETTERS   *****/
+   Renderer& RenderingController::GetRenderer()
+   {
+      return *Application::GetRenderingController().m_CurrentRenderer;
+   }
+
+   Renderer& RenderingController::GetPrimaryRenderer()
+   {
+      return *Application::GetRenderingController().m_PrimaryRenderer;
+   }
+
+   Renderer& RenderingController::GetSecondaryRenderer()
+   {
+      return *Application::GetRenderingController().m_SecondaryRenderer;
+   }
+
+   const API RenderingController::GetCurrentRendererUnderlyingAPI()
+   {
+      return Application::GetRenderingController().m_CurrentRenderer->GetCommandInterfaceAPI();
+   }
+
+   const API RenderingController::GetPrimaryRendererUnderlyingAPI()
+   {
+      return Application::GetRenderingController().m_PrimaryRenderer->GetCommandInterfaceAPI();
+   }
+
+   const API RenderingController::GetSecondaryRendererUnderlyingAPI()
+   {
+      return Application::GetRenderingController().m_SecondaryRenderer->GetCommandInterfaceAPI();
+   }
+}

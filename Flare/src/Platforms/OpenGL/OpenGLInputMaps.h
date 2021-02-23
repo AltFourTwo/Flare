@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Flare/UserInput/InputMaps.h"
 #include "GLFW/glfw3.h"
 

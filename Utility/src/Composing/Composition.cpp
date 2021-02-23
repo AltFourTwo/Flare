@@ -35,7 +35,7 @@ namespace Utility::Composing
          if ( x_Formatter.Index() > a_FormattableObjects.size() )
             throw Utility::Exceptions::UtilityException(ErrorCodes::Composing::INDEX_OUT_OF_RANGE, "Index does not point to any of the passed parameter(s).");
 
-         std::string& x_FormattedObject = x_Formatter.FormatObject( *( x_ObjectsPtr + x_Formatter.Index() ) );
+         const std::string& x_FormattedObject = x_Formatter.FormatObject( x_ObjectsPtr + x_Formatter.Index() );
 
          x_ExtractsSize += x_Extract.Length();
          x_StringSize += x_FormattedObject.length();
