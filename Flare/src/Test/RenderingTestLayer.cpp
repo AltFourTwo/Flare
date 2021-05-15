@@ -2,19 +2,19 @@
 #include "RenderingTestLayer.h"
 #include "Flare/Rendering/RenderingController.h"
 
-#include <string>
-#include <iostream>
-
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <glm/gtc/type_ptr.hpp>
+#include <imgui.h>
 
 namespace Flare::Testing
 {
    RenderingTestLayer::RenderingTestLayer() :
-      Layer( "RenderingTestLayer" )
+      Layer( "RenderingTestLayer" ),
+      m_OrthographicCamera( -1.0f, 1.0f, -1.0f, 1.0f )
    {
       std::cout << (const char*)glGetString( GL_VERSION ) << std::endl;
-      
+
       glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
       glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 6 );
       glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
@@ -22,16 +22,16 @@ namespace Flare::Testing
       // Rectangle/Square in the back.
       m_VertexArray.reset( Rendering::VertexArray::Create() );
 
-      float x_Vertex[6 * 4] =
+      float x_Vertex[7 * 4] =
       {
-         -0.75f, -0.75f, 0.8f, 0.2f, 0.5f, 1.0f,
-          0.75f, -0.75f, 0.5f, 0.8f, 0.2f, 1.0f,
-          0.75f,  0.75f, 0.2f, 0.5f, 0.8f, 1.0f,
-         -0.75f,  0.75f, 0.5f, 0.5f, 0.5f, 1.0f,
+         -0.75f, -0.75f, 0.0f, 0.8f, 0.2f, 0.5f, 1.0f,
+          0.75f, -0.75f, 0.0f, 0.5f, 0.8f, 0.2f, 1.0f,
+          0.75f,  0.75f, 0.0f, 0.2f, 0.5f, 0.8f, 1.0f,
+         -0.75f,  0.75f, 0.0f, 0.5f, 0.5f, 0.5f, 1.0f,
       };
 
       Rendering::BufferLayout x_BufferLayout = {
-         { Rendering::ShaderDataType::DataType::Float2, "a_Position"},
+         { Rendering::ShaderDataType::DataType::Float3, "a_Position"},
          { Rendering::ShaderDataType::DataType::Float4, "a_Color"}
       };
 
@@ -53,15 +53,15 @@ namespace Flare::Testing
       // Triangle.
       m_TriangleVertexArray.reset( Rendering::VertexArray::Create() );
 
-      float x_TriangleVertex[6 * 4] =
+      float x_TriangleVertex[7 * 3] =
       {
-         -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 1.0f,
-          0.5f, -0.5f, 0.2f, 0.0f, 0.8f, 1.0f,
-          0.0f,  0.5f, 0.8f, 0.2f, 0.0f, 1.0f,
+         -0.5f, -0.5f, 0.0f, 0.0f, 0.8f, 0.2f, 1.0f,
+          0.5f, -0.5f, 0.0f, 0.2f, 0.0f, 0.8f, 1.0f,
+          0.0f,  0.5f, 0.0f, 0.8f, 0.2f, 0.0f, 1.0f,
       };
 
       Rendering::BufferLayout x_TriangleBufferLayout = {
-         { Rendering::ShaderDataType::DataType::Float2, "a_Position"},
+         { Rendering::ShaderDataType::DataType::Float3, "a_Position"},
          { Rendering::ShaderDataType::DataType::Float4, "a_Color"}
       };
 
@@ -82,17 +82,19 @@ namespace Flare::Testing
       std::string x_VSrc = R"(
          #version 330 core
          
-         layout(location = 0) in vec2 a_Position;
+         layout(location = 0) in vec3 a_Position;
          layout(location = 1) in vec4 a_Color;
 
-         out vec2 v_Position;
+         uniform mat4 u_ViewProjection;
+
+         out vec3 v_Position;
          out vec4 v_Color;
 
          void main()
          {
             v_Position = a_Position;
             v_Color = a_Color;
-            gl_Position = vec4(a_Position, 1.0 , 1.0);
+            gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
          }
       )";
 
@@ -101,7 +103,7 @@ namespace Flare::Testing
          
          layout(location = 0) out vec4 x_color;
 
-         in vec2 v_Position;
+         in vec3 v_Position;
          in vec4 v_Color;
 
          void main()
@@ -121,16 +123,31 @@ namespace Flare::Testing
       printf( "RenderingTestLayer Destroyed!\n" );
    }
 
+   void RenderingTestLayer::OnUpdate( Time::TimeStep a_TimeStep )
+   {
+      m_OrthographicCamera.SetPosition(m_CameraPosition);
+      m_OrthographicCamera.SetRotation(m_CameraRotation);
+   }
+
    void RenderingTestLayer::OnRender( Time::TimeStep a_TimeStep )
    {
       Flare::Rendering::Renderer& x_Renderer = Rendering::RenderingController::GetRenderer();
 
-      x_Renderer.BeginScene();
+      x_Renderer.BeginScene( m_OrthographicCamera );
 
-      m_Shader->Bind();
-      x_Renderer.Submit(m_VertexArray);
-      x_Renderer.Submit(m_TriangleVertexArray);
+      x_Renderer.Submit( m_Shader, m_VertexArray );
+      x_Renderer.Submit( m_Shader, m_TriangleVertexArray );
 
       x_Renderer.EndScene();
+   }
+
+   void RenderingTestLayer::OnImGuiRender()
+   {
+      ImGui::Begin("Controls");
+
+      ImGui::DragFloat3( "Position", glm::value_ptr(m_CameraPosition), 0.1f, -1.0f, 1.0f );
+      ImGui::DragFloat( "Rotation", &m_CameraRotation, 0.5f, -360.0f, 360.0f);
+
+      ImGui::End();
    }
 }

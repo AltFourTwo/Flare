@@ -3,11 +3,12 @@
 
 #include "Flare/Logging/Console.h"
 
-#include <string>
-#include <glad\glad.h>
+#include <glad/glad.h>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace Flare::Rendering
 {
+   /*****   CLASS   C-TOR D-TOR  *****/
    OpenGLShader::OpenGLShader( const std::string& a_VertexSource, const std::string& a_PixelSource )
    {
       // Most of the code in the constructor is from Khronos.org's example. Oct 27 2020.
@@ -126,6 +127,7 @@ namespace Flare::Rendering
       glDeleteProgram( m_OpenGLID );
    }
 
+   /*****   CLASS   FUNCTIONS    *****/
    void OpenGLShader::Bind() const
    {
       glUseProgram( m_OpenGLID );
@@ -134,5 +136,27 @@ namespace Flare::Rendering
    void OpenGLShader::Unbind() const
    {
       glUseProgram( 0 );
+   }
+
+   GLint OpenGLShader::GetUniformLocation( const std::string& a_Name ) const
+   {
+      if ( m_UniformLocationCache.find( a_Name ) != m_UniformLocationCache.end() )
+         return m_UniformLocationCache[a_Name];
+
+      GLint x_Location = glGetUniformLocation( m_OpenGLID, a_Name.c_str() );
+      m_UniformLocationCache[a_Name] = x_Location;
+      return x_Location;
+   }
+
+   void OpenGLShader::UploadUniformFloat4( const std::string& a_Name, const glm::vec4& a_Value )
+   {
+      GLint x_Location = GetUniformLocation( a_Name );
+      glUniform4f( x_Location, a_Value.x, a_Value.y, a_Value.z, a_Value.w );
+   }
+
+   void OpenGLShader::UploadUniformMat4( const std::string& a_Name, const glm::mat4& a_Matrix )
+   {
+      GLint x_Location = GetUniformLocation( a_Name );
+      glUniformMatrix4fv(x_Location, 1, GL_FALSE, glm::value_ptr(a_Matrix));
    }
 }
