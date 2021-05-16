@@ -51,7 +51,7 @@ namespace Flare::UserInterface
          s_GLFWInitialized = true;
       }
 
-      if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( std::forward<UserInput::KeyMap>( Flare::UserInput::GetAPIKeyMap( Rendering::API::OpenGL ) ) ) )
+      if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( Rendering::API::OpenGL ) )
       {
          LOG_TRACE( "Input scheme initialized and tied to window!\n" );
          SetInputScheme( UserInput::WindowsInput::GetInstance() );
@@ -166,6 +166,12 @@ namespace Flare::UserInterface
          Flare::Events::MouseMovedEvent x_Event( (float)a_XPos, (float)a_YPos );
          x_Data.Callback( x_Event );
       } );
+
+      std::cout << (const char*)glGetString( GL_VERSION ) << std::endl;
+
+      glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
+      glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 6 );
+      glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
 
       LOG_TRACE( "WindowsWindow Init Completed!\n" );
    }

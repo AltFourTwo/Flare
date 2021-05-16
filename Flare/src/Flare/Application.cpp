@@ -10,7 +10,6 @@
 #include "UserInput/Input.h"
 
 // For testing
-#include "Test/RenderingTestLayer.h"
 #include "Flare/Rendering/Renderer.h"
 
 namespace Flare
@@ -36,8 +35,6 @@ namespace Flare
 
       m_ImGuiLayer = new ProtoImGui::ImGuiLayer();
       m_LayerStack.PushOverlay( m_ImGuiLayer );
-
-      m_LayerStack.PushLayer( new Testing::RenderingTestLayer() );
    }
 
    Application::~Application()

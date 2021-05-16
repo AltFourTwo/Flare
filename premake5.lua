@@ -223,13 +223,24 @@ project "Sandbox"
         "Flare/src",
         "Flare/vendor",
         "%{IncludeDir.Utility}",
+
+        -- Temporary Includes ? --
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}",
         "%{IncludeDir.GLM}"
     }
     
     links
     {
         "Flare",
-        "Utility"
+        "Utility",
+        
+        -- Temporary Links ? --
+        "GLFW",
+        "Glad",
+        "ImGui",
+        "opengl32.lib"
     }
 
     filter "system:windows"
