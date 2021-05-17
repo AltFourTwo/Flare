@@ -10,7 +10,7 @@ namespace Flare::Rendering
       m_ProjectionMatrix( glm::ortho( a_Left, a_Right, a_Bottom, a_Top, -1.0f, 1.0f ) ),
       m_ViewMatrix( 1.0f )
    {
-      m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;// Glm is Column-major.
+      m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix; // Glm is Column-major.
    }
 
    /*****   CLASS   FUNCTIONS    *****/

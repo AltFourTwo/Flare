@@ -1,15 +1,12 @@
 #pragma once
 
-//#include "Flare.h"
-
 #include "Flare/UserInterface/Layer.h"
 #include "Flare/Events/Event.h"
 #include "Flare/Events/KeyEvent.h"
-#include "Flare/Rendering/VertexArray.h"
+#include "Flare/Rendering/Renderer.h"
 #include "Flare/Rendering/Shader.h"
+#include "Flare/Rendering/VertexArray.h"
 #include "Flare/Rendering/OrthographicCamera.h"
-
-#include "Flare/Time/TimeStep.h"
 
 #include <memory>
 
@@ -19,9 +16,9 @@ namespace SandboxTesting
    {
       /*****   CLASS   VARIABLES    *****/
       Flare::Rendering::OrthographicCamera m_OrthographicCamera;
-      std::shared_ptr<Flare::Rendering::Shader> m_Shader;
-      std::shared_ptr<Flare::Rendering::VertexArray> m_VertexArray;
-      std::shared_ptr<Flare::Rendering::VertexArray> m_TriangleVertexArray;
+      Flare::Ref<Flare::Rendering::Shader> m_Shader;
+      Flare::Ref<Flare::Rendering::VertexArray> m_VertexArray;
+      Flare::Ref<Flare::Rendering::VertexArray> m_TriangleVertexArray;
 
       glm::vec3 m_CameraPosition = glm::vec3( 0.0f, 0.0f, 0.0f );
       float m_CameraRotation = 0.0f;

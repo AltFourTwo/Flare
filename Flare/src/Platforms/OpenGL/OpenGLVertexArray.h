@@ -8,8 +8,8 @@ namespace Flare::Rendering
    {
       /*****   CLASS   VARIABLES    *****/
       private:
-      std::vector< std::shared_ptr<VertexBuffer>> m_VertexBuffers;
-      std::shared_ptr<IndexBuffer> m_IndexBuffer;
+      std::vector< Ref<VertexBuffer>> m_VertexBuffers;
+      Ref<IndexBuffer> m_IndexBuffer;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -23,12 +23,12 @@ namespace Flare::Rendering
 
       /*****   GETTERS   *****/
       public:
-      virtual const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const override { return m_VertexBuffers; }
-      virtual const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const override { return m_IndexBuffer; }
+      virtual const std::vector<Ref<VertexBuffer>>& GetVertexBuffers() const override { return m_VertexBuffers; }
+      virtual const Ref<IndexBuffer>& GetIndexBuffer() const override { return m_IndexBuffer; }
 
       /*****   SET&ADD   *****/
       public:
-      virtual void AddVertexBuffer( std::shared_ptr<VertexBuffer>& a_VertexBuffer ) override;
-      virtual void SetIndexBuffer( std::shared_ptr<IndexBuffer>& a_IndexBuffer ) override;
+      virtual void AddVertexBuffer( Ref<VertexBuffer>& a_VertexBuffer ) override;
+      virtual void SetIndexBuffer( Ref<IndexBuffer>& a_IndexBuffer ) override;
    };
 }

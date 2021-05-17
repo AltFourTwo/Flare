@@ -1,8 +1,9 @@
 #include "FlarePCH.h"
-#include "Flare/Logging/Console.h"
-#include "Flare/Rendering/RenderingController.h"
 #include "Buffer.h"
+
+#include "Flare/Logging/Console.h"
 #include "Renderer.h"
+#include "RenderingController.h"
 
 // Following includes should be surrounded by ifdefs according to platform.
 #include "Platforms/OpenGL/OpenGLBuffer.h"
@@ -15,14 +16,14 @@ namespace Flare::Rendering
 
    /*****   CLASS   C-TOR D-TOR  *****/
    BufferElement::BufferElement() :
-      Name(""),
-      Type(ShaderDataType::DataType::None),
-      Size(0),
-      Offset(0),
-      Normalized(false)
+      Name( "" ),
+      Type( ShaderDataType::DataType::None ),
+      Size( 0 ),
+      Offset( 0 ),
+      Normalized( false )
    {}
 
-   BufferElement::BufferElement( ShaderDataType a_Type, const std::string& a_Name, bool a_Normalized) :
+   BufferElement::BufferElement( ShaderDataType a_Type, const std::string& a_Name, bool a_Normalized ) :
       Name( a_Name ),
       Type( a_Type ),
       Size( Type.GetSizeOfType() ),
@@ -47,7 +48,7 @@ namespace Flare::Rendering
       uint32_t x_Offset = 0;
       m_Stride = 0;
 
-      for (auto& x_Element : m_Elements )
+      for ( auto& x_Element : m_Elements )
       {
          x_Element.Offset = x_Offset;
          x_Offset += x_Element.Size;
@@ -60,7 +61,7 @@ namespace Flare::Rendering
    /****************/
 
    /*****   CLASS   FUNCTIONS    *****/
-   VertexBuffer* VertexBuffer::Create( float* a_Vertices, uint32_t a_Size )
+   Ref<VertexBuffer> VertexBuffer::Create( float* a_Vertices, uint32_t a_Size )
    {
       switch ( RenderingController::GetCurrentRendererUnderlyingAPI() )
       {
@@ -69,7 +70,7 @@ namespace Flare::Rendering
             return nullptr; // TODO Exception.
 
          case API::OpenGL:
-            return new OpenGLVertexBuffer( a_Vertices, a_Size );
+            return std::make_shared<OpenGLVertexBuffer>( a_Vertices, a_Size );
 
          default:
             FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
@@ -82,7 +83,7 @@ namespace Flare::Rendering
    /***************/
 
    /*****   CLASS   FUNCTIONS    *****/
-   IndexBuffer* IndexBuffer::Create( uint32_t* a_Indices, uint32_t a_Count )
+   Ref<IndexBuffer> IndexBuffer::Create( uint32_t* a_Indices, uint32_t a_Count )
    {
       switch ( RenderingController::GetCurrentRendererUnderlyingAPI() )
       {
@@ -91,7 +92,7 @@ namespace Flare::Rendering
             return nullptr; // TODO Exception.
 
          case API::OpenGL:
-            return new OpenGLIndexBuffer( a_Indices, a_Count );
+            return std::make_shared<OpenGLIndexBuffer>( a_Indices, a_Count );
 
          default:
             FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );

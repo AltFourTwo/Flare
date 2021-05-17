@@ -7,7 +7,7 @@ namespace Flare::Rendering
    {
       /*****   CLASS   VARIABLES    *****/
       private:
-      RendererInterface* m_Interface;
+      Ref<RendererInterface> m_Interface;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:

@@ -65,7 +65,7 @@ namespace Flare::Rendering
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      static VertexBuffer* Create( float* a_Vertices, uint32_t a_Size );
+      static Ref<VertexBuffer> Create( float* a_Vertices, uint32_t a_Size );
 
       /*****   GETTERS   *****/
       inline virtual const BufferLayout& GetLayout() const = 0;
@@ -86,8 +86,7 @@ namespace Flare::Rendering
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      static IndexBuffer* Create( uint32_t* a_Indices, uint32_t a_Count );
+      static Ref<IndexBuffer> Create( uint32_t* a_Indices, uint32_t a_Count );
       virtual uint32_t GetCount() const = 0;
-
    };
 }

@@ -1,6 +1,8 @@
 #include "FlarePCH.h"
 #include "OpenGLRendererInterface.h"
 
+#include "Flare/Rendering/VertexArray.h"
+
 #include <glad/glad.h>
 
 namespace Flare::Rendering

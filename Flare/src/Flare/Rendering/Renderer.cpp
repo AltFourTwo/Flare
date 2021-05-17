@@ -1,9 +1,12 @@
 #include "FlarePCH.h"
 #include "Renderer.h"
 
+#include "Shader.h"
+#include "VertexArray.h"
+#include "OrthographicCamera.h"
+
 // Temporary, until shader abstraction is complete.
 #include "Platforms/OpenGL/OpenGLShader.h"
-
 
 namespace Flare::Rendering
 {
@@ -24,7 +27,7 @@ namespace Flare::Rendering
       // TODO.
    }
 
-   void Renderer::Submit( const std::shared_ptr<Shader>& a_Shader, const std::shared_ptr<VertexArray>& a_VertexArray )
+   void Renderer::Submit( const Ref<Shader>& a_Shader, const Ref<VertexArray>& a_VertexArray )
    {
       a_Shader->Bind();
       std::dynamic_pointer_cast<OpenGLShader>( a_Shader )->UploadUniformMat4( "u_ViewProjection", m_SceneData.ViewProjectionMatrix );

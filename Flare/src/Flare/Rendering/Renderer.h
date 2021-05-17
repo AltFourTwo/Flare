@@ -1,14 +1,14 @@
 #pragma once
-
 #include "Rendering.h"
 #include "RendererCommandInterface.h"
-#include "Shader.h"
-#include "OrthographicCamera.h"
 
 #include <glm/glm.hpp>
 
 namespace Flare::Rendering
 {
+   class Shader;
+   class OrthographicCamera;
+
    class Renderer
    {
       /*****   NESTED  CLASSES      *****/
@@ -31,7 +31,7 @@ namespace Flare::Rendering
       public:
       void BeginScene(const OrthographicCamera& a_Camera);
       void EndScene();
-      void Submit( const std::shared_ptr<Shader>& a_Shader, const std::shared_ptr<VertexArray>& a_VertexArray );
+      void Submit( const Ref<Shader>& a_Shader, const Ref<VertexArray>& a_VertexArray );
 
       /*****   GETTERS   *****/
       public:

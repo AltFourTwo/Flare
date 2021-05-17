@@ -2,8 +2,8 @@
 #include "Flare/Rendering/Shader.h"
 #include "OpenGLObject.h"
 
-#include <string>
 #include <glad/glad.h>
+#include <glm/glm.hpp>
 
 namespace Flare::Rendering
 {

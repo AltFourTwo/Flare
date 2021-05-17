@@ -1,17 +1,17 @@
 #pragma once
-
-#include "Flare/Rendering/Renderer.h"
+#include "Rendering.h"
 
 namespace Flare::Rendering
 {
+   class Renderer;
+
    class RenderingController
    {
       /*****   CLASS   VARIABLES    *****/
       private:
-      // TODO Use smart pointers.
-      Renderer* m_PrimaryRenderer = nullptr;
-      Renderer* m_SecondaryRenderer = nullptr;
-      Renderer* m_CurrentRenderer = m_PrimaryRenderer; // Should be a ref?
+      Ref<Renderer> m_PrimaryRenderer = nullptr;
+      Ref<Renderer> m_SecondaryRenderer = nullptr;
+      Ref<Renderer> m_CurrentRenderer = m_PrimaryRenderer; // Should be a ref?
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:

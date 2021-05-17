@@ -1,11 +1,12 @@
 #pragma once
 #include "Rendering.h"
-#include "VertexArray.h"
 
 #include <glm/glm.hpp>
 
 namespace Flare::Rendering
 {
+   class VertexArray;
+
    class RendererInterface
    {
       /*****   CLASS   VARIABLES    *****/
@@ -18,10 +19,10 @@ namespace Flare::Rendering
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      static RendererInterface* CreateInterface(API a_API);
+      static Ref<RendererInterface> CreateInterface(API a_API);
       virtual void SetClearColor( const glm::vec4& a_Color ) const = 0;
       virtual void Clear() const = 0;
-      virtual void DrawIndexed( const std::shared_ptr<VertexArray>& a_VertexArray ) const = 0;
+      virtual void DrawIndexed( const Ref<VertexArray>& a_VertexArray ) const = 0;
 
       /*****   GETTERS   *****/
       public:

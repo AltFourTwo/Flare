@@ -15,7 +15,7 @@ namespace SandboxTesting
       m_OrthographicCamera( -1.0f, 1.0f, -1.0f, 1.0f )
    {
       // Rectangle/Square in the back.
-      m_VertexArray.reset( Flare::Rendering::VertexArray::Create() );
+      m_VertexArray = Flare::Rendering::VertexArray::Create();
 
       float x_Vertex[7 * 4] =
       {
@@ -31,7 +31,7 @@ namespace SandboxTesting
       };
 
       std::shared_ptr<Flare::Rendering::VertexBuffer> x_VertexBuffer;
-      x_VertexBuffer.reset( Flare::Rendering::VertexBuffer::Create( x_Vertex, sizeof( x_Vertex ) ) );
+      x_VertexBuffer = Flare::Rendering::VertexBuffer::Create( x_Vertex, sizeof( x_Vertex ) );
       x_VertexBuffer->SetLayout( x_BufferLayout );
       m_VertexArray->AddVertexBuffer( x_VertexBuffer );
 
@@ -42,11 +42,11 @@ namespace SandboxTesting
       };
 
       std::shared_ptr<Flare::Rendering::IndexBuffer> x_IndexBuffer;
-      x_IndexBuffer.reset( Flare::Rendering::IndexBuffer::Create( x_Indices, sizeof( x_Indices ) / sizeof( uint32_t ) ) );
+      x_IndexBuffer = Flare::Rendering::IndexBuffer::Create( x_Indices, sizeof( x_Indices ) / sizeof( uint32_t ) );
       m_VertexArray->SetIndexBuffer( x_IndexBuffer );
 
       // Triangle.
-      m_TriangleVertexArray.reset( Flare::Rendering::VertexArray::Create() );
+      m_TriangleVertexArray = Flare::Rendering::VertexArray::Create();
 
       float x_TriangleVertex[7 * 3] =
       {
@@ -61,7 +61,7 @@ namespace SandboxTesting
       };
 
       std::shared_ptr<Flare::Rendering::VertexBuffer> x_TriangleVertexBuffer;
-      x_TriangleVertexBuffer.reset( Flare::Rendering::VertexBuffer::Create( x_TriangleVertex, sizeof( x_TriangleVertex ) ) );
+      x_TriangleVertexBuffer = Flare::Rendering::VertexBuffer::Create( x_TriangleVertex, sizeof( x_TriangleVertex ) );
       x_TriangleVertexBuffer->SetLayout( x_TriangleBufferLayout );
       m_TriangleVertexArray->AddVertexBuffer( x_TriangleVertexBuffer );
 
@@ -71,7 +71,7 @@ namespace SandboxTesting
       };
 
       std::shared_ptr<Flare::Rendering::IndexBuffer> m_TriangleIndexBuffer;
-      m_TriangleIndexBuffer.reset( Flare::Rendering::IndexBuffer::Create( x_TriangleIndices, sizeof( x_TriangleIndices ) / sizeof( uint32_t ) ) );
+      m_TriangleIndexBuffer = Flare::Rendering::IndexBuffer::Create( x_TriangleIndices, sizeof( x_TriangleIndices ) / sizeof( uint32_t ) );
       m_TriangleVertexArray->SetIndexBuffer( m_TriangleIndexBuffer );
 
       std::string x_VSrc = R"(
@@ -109,7 +109,7 @@ namespace SandboxTesting
 
       // TODO : Create shaders with files instead.
       //m_Shader = Rendering::Shader::Create( "testres/Source.shader" );
-      m_Shader.reset( Flare::Rendering::Shader::Create( x_VSrc, x_PSrc ) );
+      m_Shader = Flare::Rendering::Shader::Create( x_VSrc, x_PSrc );
       m_Shader->Bind();
    }
 
