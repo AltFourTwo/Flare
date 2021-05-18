@@ -34,6 +34,8 @@ namespace Flare::Rendering
 
       if ( a_SetCurrent )
          m_CurrentRenderer = m_PrimaryRenderer;
+
+      m_PrimaryRenderer->Init();
    }
 
    void RenderingController::InitializeSecondaryRenderer( Rendering::API a_API, bool a_SetCurrent )
@@ -42,6 +44,8 @@ namespace Flare::Rendering
 
       if ( a_SetCurrent )
          m_CurrentRenderer = m_SecondaryRenderer;
+
+      m_SecondaryRenderer->Init();
    }
 
    /*****   GETTERS   *****/

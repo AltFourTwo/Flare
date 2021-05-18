@@ -14,6 +14,11 @@ namespace Flare::Rendering
       RendererCommandInterface(API a_RenderingAPI);
 
       /*****   CLASS   FUNCTIONS    *****/
+      inline void  Init()
+      {
+         m_Interface->Init();
+      }
+
       inline const RendererInterface& GetInterface() const
       {
          return *m_Interface;

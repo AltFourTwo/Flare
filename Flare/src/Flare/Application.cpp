@@ -28,10 +28,10 @@ namespace Flare
 
       // ( *m_Console.GetCoreLogger() ).SetParameters( Logging::LoggerParameters( "Core", Logging::LogLevel::Trace, "%F at %T | &N says : &M" ) );
 
-      m_RenderingController.InitializePrimaryRenderer(Rendering::API::OpenGL, true);
-
       m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );
       m_MainWindow->SetEventCallback( BIND_EVENT_CALLBACK( OnEvent ) );
+
+      m_RenderingController.InitializePrimaryRenderer(Rendering::API::OpenGL, true);
 
       m_ImGuiLayer = new ProtoImGui::ImGuiLayer();
       m_LayerStack.PushOverlay( m_ImGuiLayer );

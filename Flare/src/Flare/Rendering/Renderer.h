@@ -29,6 +29,7 @@ namespace Flare::Rendering
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
+      void Init();
       void BeginScene(const OrthographicCamera& a_Camera);
       void EndScene();
       void Submit( const Ref<Shader>& a_Shader, const Ref<VertexArray>& a_VertexArray );
