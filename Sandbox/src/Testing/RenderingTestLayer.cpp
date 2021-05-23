@@ -1,9 +1,13 @@
 #include "SandboxPCH.h"
 #include "RenderingTestLayer.h"
 
+#include "Flare/Core.h"
+#include "Flare/Logging/Console.h"
 #include "Flare/UserInput/Input.h"
 #include "Flare/Events/EventDispatcher.h"
+#include "Flare/Resource/ResourceManager.h"
 #include "Flare/Rendering/RenderingController.h"
+#include "Flare/Resource/FileAsset.h"
 
 #include <glm/gtc/type_ptr.hpp> // Temporary ?
 #include <imgui.h>
@@ -74,42 +78,13 @@ namespace SandboxTesting
       m_TriangleIndexBuffer = Flare::Rendering::IndexBuffer::Create( x_TriangleIndices, sizeof( x_TriangleIndices ) / sizeof( uint32_t ) );
       m_TriangleVertexArray->SetIndexBuffer( m_TriangleIndexBuffer );
 
-      std::string x_VSrc = R"(
-         #version 330 core
-         
-         layout(location = 0) in vec3 a_Position;
-         layout(location = 1) in vec4 a_Color;
+      Flare::Ref<Flare::FileAsset> x_VertexSource = Flare::ResourceManager::GetInstance().LoadAsset<Flare::FileAsset>
+         ( "./resources/shaders/Color.vertex.glsl" , "Vertex Shader", true );
 
-         uniform mat4 u_ViewProjection;
+      Flare::Ref<Flare::FileAsset> x_PixelSource = Flare::ResourceManager::GetInstance().LoadAsset<Flare::FileAsset>
+         ( "./resources/shaders/Color.pixel.glsl", "Pixel Shader", true );
 
-         out vec3 v_Position;
-         out vec4 v_Color;
-
-         void main()
-         {
-            v_Position = a_Position;
-            v_Color = a_Color;
-            gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
-         }
-      )";
-
-      std::string x_PSrc = R"(
-         #version 330 core
-         
-         layout(location = 0) out vec4 x_color;
-
-         in vec3 v_Position;
-         in vec4 v_Color;
-
-         void main()
-         {
-            x_color = v_Color;
-         }
-      )";
-
-      // TODO : Create shaders with files instead.
-      //m_Shader = Rendering::Shader::Create( "testres/Source.shader" );
-      m_Shader = Flare::Rendering::Shader::Create( x_VSrc, x_PSrc );
+      m_Shader = Flare::Rendering::Shader::Create( x_VertexSource->GetBytes(), x_PixelSource->GetBytes() );
       m_Shader->Bind();
    }
 

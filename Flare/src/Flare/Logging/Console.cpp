@@ -15,7 +15,7 @@ namespace Flare
    Console::Console() :
       m_ExtraLoggers()
    {
-      FLARE_CORE_ASSERT( !s_Instance, { "An instance of this application aleady exists!" } );
+      FLARE_CORE_ASSERT( !s_Instance, { "An instance of Flare::Console aleady exists!" } );
       s_Instance = this;
 
       m_ExtraLoggers.reserve( MAX_EXTRA_LOGGERS );

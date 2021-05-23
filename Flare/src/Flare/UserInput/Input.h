@@ -9,6 +9,10 @@ namespace Flare::UserInput
 {
    class FLARE_API Input
    {
+      private:
+      template<typename T>
+      using EnableIfDerivedFromInput = Utility::Templates::EnableIfDerived<T, Input>;
+
       public:
       using MousePosition = std::pair<float, float>;
 
@@ -35,19 +39,19 @@ namespace Flare::UserInput
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      template<typename T, typename = Utility::Templates::EnableByInheritance<T, Input>>
+      template<typename T, typename = EnableIfDerivedFromInput<T>>
       static bool Initialize( Flare::Rendering::API a_API )
       {
          if ( s_Instance )
             return false;
-      
+
          KeyMap&& x_KeyMap = Flare::UserInput::GetAPIKeyMap( a_API );
          ModifierMap&& x_ModifierMap = Flare::UserInput::GetAPIModifierMap( a_API );
          MouseMap&& x_MouseMap = Flare::UserInput::GetAPIMouseMap( a_API );
          JoystickMap&& x_JoystickMap = Flare::UserInput::GetAPIJoystickMap( a_API );
          GamePadMap&& x_GamePadMap = Flare::UserInput::GetAPIGamePadMap( a_API );
          GamePadAxisMap&& x_GamePadAxisMap = Flare::UserInput::GetAPIGamePadAxisMap( a_API );
-      
+
          s_Instance = new T(
             std::forward<KeyMap>( x_KeyMap ),
             std::forward< ModifierMap>( x_ModifierMap ),
@@ -56,7 +60,7 @@ namespace Flare::UserInput
             std::forward< GamePadMap>( x_GamePadMap ),
             std::forward< GamePadAxisMap>( x_GamePadAxisMap )
          );
-      
+
          return true;
       }
 

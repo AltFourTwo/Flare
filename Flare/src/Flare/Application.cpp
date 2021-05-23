@@ -7,9 +7,7 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-#include "UserInput/Input.h"
-
-// For testing
+// Temporary no rendering code should be here ?
 #include "Flare/Rendering/Renderer.h"
 
 namespace Flare
@@ -21,6 +19,7 @@ namespace Flare
    /*****   CLASS   C-TOR D-TOR  *****/
    Application::Application() :
       m_Console(),
+      m_ResourceManager(),
       m_RenderingController()
    {
       FLARE_CORE_ASSERT( !s_Instance, { "An instance of this application aleady exists!" } );
@@ -31,7 +30,7 @@ namespace Flare
       m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );
       m_MainWindow->SetEventCallback( BIND_EVENT_CALLBACK( OnEvent ) );
 
-      m_RenderingController.InitializePrimaryRenderer(Rendering::API::OpenGL, true);
+      m_RenderingController.InitializePrimaryRenderer( Rendering::API::OpenGL, true );
 
       m_ImGuiLayer = new ProtoImGui::ImGuiLayer();
       m_LayerStack.PushOverlay( m_ImGuiLayer );

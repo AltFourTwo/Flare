@@ -1,7 +1,7 @@
 #include "FlarePCH.h"
+#include "WindowsInput.h"
 
 #include "Flare/Application.h"
-#include "WindowsInput.h"
 
 #include <GLFW/glfw3.h>
 
@@ -43,4 +43,3 @@ namespace Flare::UserInput
       return y;
    }
 }
-
