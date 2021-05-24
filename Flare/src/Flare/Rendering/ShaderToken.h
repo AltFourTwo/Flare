@@ -1,4 +1,5 @@
 #pragma once
+#include "Compilation/ConstantExpressions.h"
 
 namespace Flare::Rendering
 {
@@ -15,23 +16,7 @@ namespace Flare::Rendering
    template<typename const TokenID _TokenID>
    struct Token
    {
-      private:
-      constexpr static const size_t GetLengthOfName( const char* a_Name )
-      {
-         size_t x_Size = 0;
-         const char* x_Current = a_Name;
-
-         while ( *x_Current != 0 )
-         {
-            x_Current++;
-            x_Size++;
-         }
-
-         return x_Size;
-      }
-
-      public:
       constexpr static const char* Name = SHADER_TOKEN_NAMES[(int)_TokenID];
-      constexpr static const size_t Size = GetLengthOfName( SHADER_TOKEN_NAMES[(int)_TokenID] );
+      constexpr static const size_t Size = Utility::Compilation::ConstStrLen( Name );
    };
 }
