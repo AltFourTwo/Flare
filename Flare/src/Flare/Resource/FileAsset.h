@@ -19,6 +19,8 @@ namespace Flare
       virtual void AfterLoadSetup() override;
       virtual void BeforeSaveSetup() override;
 
+      std::string AsText();
+
       /*****   CLASS   OPERATORS    *****/
       void operator=( const FileAsset& ) = delete;
    };

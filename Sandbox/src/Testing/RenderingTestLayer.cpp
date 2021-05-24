@@ -84,7 +84,7 @@ namespace SandboxTesting
       Flare::Ref<Flare::FileAsset> x_PixelSource = Flare::ResourceManager::GetInstance().LoadAsset<Flare::FileAsset>
          ( "./resources/shaders/Color.pixel.glsl", "Pixel Shader", true );
 
-      m_Shader = Flare::Rendering::Shader::Create( x_VertexSource->GetBytes(), x_PixelSource->GetBytes() );
+      m_Shader = Flare::Rendering::Shader::Create( x_VertexSource->AsText(), x_PixelSource->AsText() );
       m_Shader->Bind();
    }
 

@@ -24,18 +24,18 @@ namespace Flare
          return false;
 
       m_Filepath = a_Filepath;
-      std::ifstream x_FileStream( a_Filepath, std::ios::in, std::ios::binary );
+      std::ifstream x_FileStream( a_Filepath, std::ios::in | std::ios::binary );
 
-      if (!x_FileStream )
+      if ( !x_FileStream )
          return false;
 
       // Getting the size of the file.
       x_FileStream.seekg( 0, std::ios::end );
       m_FileSize = x_FileStream.tellg();
+      m_FileBytes.reset( new char[m_FileSize] );
 
       // Reading from begining to end into the buffer m_FileBytes.
       x_FileStream.seekg( 0, std::ios::beg );
-      m_FileBytes.reset( new char[m_FileSize]() );
       x_FileStream.read( m_FileBytes.get(), m_FileSize );
       x_FileStream.close();
 

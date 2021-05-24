@@ -11,6 +11,14 @@ namespace Flare
    FileAsset::~FileAsset() {}
 
    /*****   CLASS   FUNCTIONS    *****/
-   void FileAsset::BeforeSaveSetup() {}
    void FileAsset::AfterLoadSetup() {}
+   void FileAsset::BeforeSaveSetup() {}
+
+   std::string FileAsset::AsText()
+   {
+      std::string x_Text;
+      x_Text.reserve(GetFileSize());
+      x_Text.assign(GetBytes(), GetFileSize());
+      return x_Text;
+   }
 }
