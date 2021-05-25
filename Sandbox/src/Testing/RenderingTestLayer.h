@@ -34,6 +34,6 @@ namespace SandboxTesting
       virtual void OnRender( Flare::Time::TimeStep a_TimeStep ) override;
       virtual void OnImGuiRender() override;
 
-      bool OnKeyPressedEvent( Flare::Events::KeyPressedEvent& a_Event);
+      bool OnKeyPressedEvent( Flare::Events::KeyPressedEvent& a_Event );
    };
 }

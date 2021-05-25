@@ -9,6 +9,24 @@
 
 namespace Flare::Rendering
 {
+   /*****   CLASS   FUNCTIONS    *****/
+   Ref<Shader> Shader::Create( const std::string& a_Source )
+   {
+      switch ( RenderingController::GetCurrentRendererUnderlyingAPI() )
+      {
+         case API::None:
+            FLARE_CORE_ASSERT( false, { "Renderer API is set to [None]. Cannot proceed." } );
+            return nullptr; // TODO Exception.
+
+         case API::OpenGL:
+            return std::make_shared<OpenGLShader>( a_Source );
+
+         default:
+            FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
+            return nullptr; // TODO Exception.
+      }
+   }
+
    Ref<Shader> Shader::Create( const std::string& a_VertexSource, const std::string& a_PixelSource )
    {
       switch ( RenderingController::GetCurrentRendererUnderlyingAPI() )

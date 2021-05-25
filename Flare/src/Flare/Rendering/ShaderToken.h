@@ -10,7 +10,7 @@ namespace Flare::Rendering
 
    constexpr static const char* SHADER_TOKEN_NAMES[] =
    {
-      "#!Type",
+      "#!ShaderType:",
    };
 
    template<typename const TokenID _TokenID>

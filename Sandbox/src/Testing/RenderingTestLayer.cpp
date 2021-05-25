@@ -78,13 +78,19 @@ namespace SandboxTesting
       m_TriangleIndexBuffer = Flare::Rendering::IndexBuffer::Create( x_TriangleIndices, sizeof( x_TriangleIndices ) / sizeof( uint32_t ) );
       m_TriangleVertexArray->SetIndexBuffer( m_TriangleIndexBuffer );
 
-      Flare::Ref<Flare::FileAsset> x_VertexSource = Flare::ResourceManager::GetInstance().LoadAsset<Flare::FileAsset>
-         ( "./resources/shaders/Color.vertex.glsl" , "Vertex Shader", true );
+      //Flare::Ref<Flare::FileAsset> x_VertexSource = Flare::ResourceManager::GetInstance().LoadAsset<Flare::FileAsset>
+      //   ( "./resources/shaders/Color.vertex.glsl" , "Vertex Shader", true );
+      //
+      //Flare::Ref<Flare::FileAsset> x_PixelSource = Flare::ResourceManager::GetInstance().LoadAsset<Flare::FileAsset>
+      //   ( "./resources/shaders/Color.pixel.glsl", "Pixel Shader", true );
 
-      Flare::Ref<Flare::FileAsset> x_PixelSource = Flare::ResourceManager::GetInstance().LoadAsset<Flare::FileAsset>
-         ( "./resources/shaders/Color.pixel.glsl", "Pixel Shader", true );
+      //m_Shader = Flare::Rendering::Shader::Create( x_VertexSource->AsText(), x_PixelSource->AsText() );
 
-      m_Shader = Flare::Rendering::Shader::Create( x_VertexSource->AsText(), x_PixelSource->AsText() );
+      Flare::Ref<Flare::FileAsset> x_SomeSource = Flare::ResourceManager::GetInstance().LoadAsset<Flare::FileAsset>
+         ( "./resources/shaders/ShaderTest.notglsl", "Test Shader", true );
+
+      m_Shader = Flare::Rendering::Shader::Create( x_SomeSource->AsText() );
+
       m_Shader->Bind();
    }
 
@@ -109,7 +115,7 @@ namespace SandboxTesting
       Flare::UserInput::Input& x_Input = Flare::UserInput::Input::GetInstance();
 
       if ( x_Input.IsKeyPressed( FLARE_KEY_LEFT ) )
-         m_CameraPosition.x -= a_TimeStep.GetSeconds() ;
+         m_CameraPosition.x -= a_TimeStep.GetSeconds();
 
       if ( x_Input.IsKeyPressed( FLARE_KEY_RIGHT ) )
          m_CameraPosition.x += a_TimeStep.GetSeconds();

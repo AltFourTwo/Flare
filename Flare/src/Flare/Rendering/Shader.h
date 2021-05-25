@@ -1,6 +1,7 @@
 #pragma once
 #include "IRendererBindable.h"
 #include "RenderingController.h"
+#include "ShaderToken.h"
 
 #include <string>
 
@@ -14,6 +15,7 @@ namespace Flare::Rendering
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
+      static Ref<Shader> Create( const std::string& a_Source ); // TODO Replace with a Shader Asset Specialization.
       static Ref<Shader> Create( const std::string& a_VertexSource, const std::string& a_PixelSource );
 
       // This will be for later, a simple casting of the shader into specialized type should allow uniform uploading.
