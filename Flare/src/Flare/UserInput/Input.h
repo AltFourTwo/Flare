@@ -1,18 +1,17 @@
 #pragma once
 
 #include "Flare/Core.h"
-#include "Templates/BaseTemplates.h"
 #include "InputMaps.h"
 #include "Platforms/Utils/PlatformUtils.h"
 
 namespace Flare::UserInput
 {
+   class Input;
+   template<typename T>
+   concept DerivedFromInput = std::derived_from<T, Input>;
+
    class FLARE_API Input
    {
-      private:
-      template<typename T>
-      using EnableIfDerivedFromInput = Utility::Templates::EnableIfDerived<T, Input>;
-
       public:
       using MousePosition = std::pair<float, float>;
 
@@ -39,7 +38,7 @@ namespace Flare::UserInput
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      template<typename T, typename = EnableIfDerivedFromInput<T>>
+      template<typename T> requires DerivedFromInput<T>
       static bool Initialize( Flare::Rendering::API a_API )
       {
          if ( s_Instance )

@@ -2,19 +2,18 @@
 #include "Flare/Core.h"
 
 #include "Asset.h"
-#include "Templates/BaseTemplates.h"
 
+#include <concepts>
 #include <string>
 #include <unordered_map>
 
 namespace Flare
 {
+   template<typename T>
+   concept DerivedFromAsset = std::derived_from<T, Asset>;
+
    class ResourceManager
    {
-      private:
-      template<typename T>
-      using EnableIfDerivedFromAsset = Utility::Templates::EnableIfDerived<T, Asset>;
-
       /*****   CLASS   VARIABLES    *****/
       private:
       static ResourceManager* s_Instance;
@@ -27,14 +26,14 @@ namespace Flare
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      template<typename T, typename = EnableIfDerivedFromAsset<T>>
+      template<typename T> requires DerivedFromAsset<T>
       static Ref<T> CreateAsset( const std::string& a_Name = "Unnamed Asset", bool a_PersistentData = false )
       {
          // TODO Add to resource map.
          return std::make_shared<T>( a_Name, a_PersistentData );
       }
        
-      template<typename T, typename = EnableIfDerivedFromAsset<T>>
+      template<typename T> requires DerivedFromAsset<T>
       static Ref<T> LoadAsset( const std::string& a_Filepath, const std::string& a_Name = "Unnamed Asset", bool a_PersistentData = false )
       {
          // TODO Add to resource map.

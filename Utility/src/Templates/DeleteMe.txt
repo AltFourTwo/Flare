@@ -1,0 +1,1 @@
+This file exists for Git to recognize the folder.
