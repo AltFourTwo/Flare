@@ -17,4 +17,64 @@ namespace Flare::UserInput
             throw; // TODO : When the time comes, more KeyMaps can be added here.
       };
    }
+
+   ModifierMap&& GetAPIModifierMap( Rendering::API a_ConfigValue )
+   {
+      switch ( a_ConfigValue )
+      {
+         case Rendering::API::OpenGL:
+            return std::move( UserInput::OpenGLModifierMap() );
+
+         default:
+            throw; // TODO : When the time comes, more ModifierMap can be added here.
+      };
+   }
+
+   MouseMap&& GetAPIMouseMap( Rendering::API a_ConfigValue )
+   {
+      switch ( a_ConfigValue )
+      {
+         case Rendering::API::OpenGL:
+            return std::move( UserInput::OpenGLMouseMap() );
+
+         default:
+            throw; // TODO : When the time comes, more MouseMaps can be added here.
+      };
+   }
+
+   JoystickMap&& GetAPIJoystickMap( Rendering::API a_ConfigValue )
+   {
+      switch ( a_ConfigValue )
+      {
+         case Rendering::API::OpenGL:
+            return std::move( UserInput::OpenGLJoystickMap() );
+
+         default:
+            throw; // TODO : When the time comes, more JoystickMap can be added here.
+      };
+   }
+
+   GamePadMap&& GetAPIGamePadMap( Rendering::API a_ConfigValue )
+   {
+      switch ( a_ConfigValue )
+      {
+         case Rendering::API::OpenGL:
+            return std::move( UserInput::OpenGLGamePadMap() );
+
+         default:
+            throw; // TODO : When the time comes, more GamePadMap can be added here.
+      };
+   }
+
+   GamePadAxisMap&& GetAPIGamePadAxisMap( Rendering::API a_ConfigValue )
+   {
+      switch ( a_ConfigValue )
+      {
+         case Rendering::API::OpenGL:
+            return std::move( UserInput::OpenGLGamePadAxisMap() );
+
+         default:
+            throw; // TODO : When the time comes, more GamePadAxisMap can be added here.
+      };
+   }
 }

@@ -7,10 +7,7 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-#include "UserInput/Input.h"
-
-// For testing
-#include "Test/RenderingTestLayer.h"
+// Temporary no rendering code should be here ?
 #include "Flare/Rendering/Renderer.h"
 
 namespace Flare
@@ -22,22 +19,21 @@ namespace Flare
    /*****   CLASS   C-TOR D-TOR  *****/
    Application::Application() :
       m_Console(),
+      m_ResourceManager(),
       m_RenderingController()
    {
-      FLARE_CORE_ASSERT( !s_Instance, { "An instance of this application aleady exists!" } );
+      FLARE_CORE_ASSERT( !s_Instance, "An instance of this application aleady exists!" ); // TODO more logs & error codes.
       s_Instance = this;
 
       // ( *m_Console.GetCoreLogger() ).SetParameters( Logging::LoggerParameters( "Core", Logging::LogLevel::Trace, "%F at %T | &N says : &M" ) );
 
-      m_RenderingController.InitializePrimaryRenderer(Rendering::API::OpenGL, true);
-
       m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );
       m_MainWindow->SetEventCallback( BIND_EVENT_CALLBACK( OnEvent ) );
 
+      m_RenderingController.InitializePrimaryRenderer( Rendering::API::OpenGL, true );
+
       m_ImGuiLayer = new ProtoImGui::ImGuiLayer();
       m_LayerStack.PushOverlay( m_ImGuiLayer );
-
-      m_LayerStack.PushLayer( new Testing::RenderingTestLayer() );
    }
 
    Application::~Application()

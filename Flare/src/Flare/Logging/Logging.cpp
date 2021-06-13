@@ -47,7 +47,7 @@ namespace Flare::Logging
          case DateTimeControlCharacter::ISO_8601_OFFSET_FROM_UTC_IN_TIMEZONE:                             return true;
          case DateTimeControlCharacter::TIMEZONE_NAME_OR_ABBREVIATION:                                    return true;
          case DateTimeControlCharacter::A_PERCENTAGE_SIGN:                                                return true;
-         default:                                                                   return false;
+         default:                                                                                         return false;
       }
    }
 
@@ -68,7 +68,7 @@ namespace Flare::Logging
          case LoggingControlCharacter::THREAD_ID:     return true;
          case LoggingControlCharacter::PROCESS_ID:    return true;
          case LoggingControlCharacter::ERROR_LCC:     return true;
-         default:                return false;
+         default:                                     return false;
       }
    }
 }

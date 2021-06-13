@@ -3,6 +3,7 @@
 #include "Flare/Core.h"
 #include "Flare/Logging/LoggerParameters.h"
 #include "Flare/Logging/Console.h"
+#include "Flare/Resource/ResourceManager.h"
 #include "Flare/Rendering/RenderingController.h"
 
 #include "Flare/Time/TimeStep.h"
@@ -26,6 +27,7 @@ namespace Flare
       private:
       static Application* s_Instance;
       Console m_Console;
+      ResourceManager m_ResourceManager;
       Rendering::RenderingController m_RenderingController;
       bool m_Running = true;
       float m_LastFrameTime = 0.0f;
@@ -54,7 +56,6 @@ namespace Flare
       /*****   GETTERS   *****/
       public:
       inline static Application& GetInstance() { return *s_Instance; }
-      inline static Console& GetConsole() { return s_Instance->m_Console; }
       inline static const Rendering::RenderingController& GetRenderingController() { return s_Instance->m_RenderingController; }
       inline static UserInterface::Window& GetWindow() { return *s_Instance->m_MainWindow; }
 

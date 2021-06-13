@@ -1,7 +1,8 @@
 #include "FlarePCH.h"
-#include "Flare/Logging/Console.h"
-#include "Flare/Rendering/RenderingController.h"
 #include "ShaderDataType.h"
+
+#include "Flare/Logging/Console.h"
+#include "RenderingController.h"
 
 // Following includes should be surrounded by ifdefs according to platform.
 #include "Platforms/OpenGL/OpenGLShaderDataTypes.h"
@@ -23,7 +24,7 @@ namespace Flare::Rendering
       switch ( m_Type )
       {
          case DataType::None:
-            FLARE_CORE_ASSERT( false, { "ShaderDataType 'None' is used!" });
+            FLARE_CORE_ASSERT( false, "ShaderDataType [None] is used!" ); // TODO more logs & error codes.
             return 0;
 
          case DataType::Bool1            : return 1;
@@ -67,7 +68,7 @@ namespace Flare::Rendering
 
          default:
             // Same logic with the 'NONE' case.
-            FLARE_CORE_ASSERT( false, { "Unknown ShaderDataType" } );
+            FLARE_CORE_ASSERT( false, "Unknown ShaderDataType" ); // TODO more logs & error codes.
             return 0;
       }
    }
@@ -77,7 +78,7 @@ namespace Flare::Rendering
       switch ( m_Type )
       {
          case DataType::None:
-            FLARE_CORE_ASSERT( false, { "ShaderDataType 'None' is used!" });
+            FLARE_CORE_ASSERT( false, "ShaderDataType [None] is used!" ); // TODO more logs & error codes.
             return 0;
 
          case DataType::Bool1            : return 4;
@@ -121,7 +122,7 @@ namespace Flare::Rendering
 
          default :
             // Same logic with the 'NONE' case.
-            FLARE_CORE_ASSERT( false, { "Unknown ShaderDataType" } );
+            FLARE_CORE_ASSERT( false, "Unknown ShaderDataType" ); // TODO more logs & error codes.
             return 0;
       }
    }
@@ -131,7 +132,7 @@ namespace Flare::Rendering
       switch ( a_API )
       {
          case API::None:
-            FLARE_CORE_ASSERT( false, { "Renderer API is set to [None]. Cannot proceed." } );
+            FLARE_CORE_ASSERT( false, "Renderer API is set to [None]. Cannot proceed." ); // TODO more logs & error codes.
             return nullptr; // TODO Exception.
 
          case API::OpenGL:
@@ -139,7 +140,7 @@ namespace Flare::Rendering
 
          default :
             // Same logic with the 'NONE' case.
-            FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
+            FLARE_CORE_ASSERT( false, "Unknown Renderer API! Cannot proceed." ); // TODO more logs & error codes.
             return nullptr; // TODO Exception.
       }
    }

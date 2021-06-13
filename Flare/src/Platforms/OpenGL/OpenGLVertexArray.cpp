@@ -1,5 +1,6 @@
 #include "FlarePCH.h"
 #include "OpenGLVertexArray.h"
+
 #include "OpenGLShaderDataTypes.h"
 #include "Flare/Logging/Console.h"
 
@@ -30,9 +31,9 @@ namespace Flare::Rendering
    }
 
    /*****   SET&ADD   *****/
-   void OpenGLVertexArray::AddVertexBuffer( std::shared_ptr<VertexBuffer>& a_VertexBuffer )
+   void OpenGLVertexArray::AddVertexBuffer( Ref<VertexBuffer>& a_VertexBuffer )
    {
-      FLARE_CORE_ASSERT( a_VertexBuffer->GetLayout().GetElements().size(), { "Vertex Buffer has no layout!" } );
+      FLARE_CORE_ASSERT( a_VertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!" ); // TODO more logs & error codes.
 
       glBindVertexArray( m_OpenGLID );
       a_VertexBuffer->Bind();
@@ -56,7 +57,7 @@ namespace Flare::Rendering
       m_VertexBuffers.push_back( a_VertexBuffer );
    }
 
-   void OpenGLVertexArray::SetIndexBuffer( std::shared_ptr<IndexBuffer>& a_IndexBuffer )
+   void OpenGLVertexArray::SetIndexBuffer( Ref<IndexBuffer>& a_IndexBuffer )
    {
       glBindVertexArray( m_OpenGLID );
       a_IndexBuffer->Bind();

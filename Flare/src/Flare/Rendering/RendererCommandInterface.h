@@ -7,13 +7,18 @@ namespace Flare::Rendering
    {
       /*****   CLASS   VARIABLES    *****/
       private:
-      RendererInterface* m_Interface;
+      Ref<RendererInterface> m_Interface;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
       RendererCommandInterface(API a_RenderingAPI);
 
       /*****   CLASS   FUNCTIONS    *****/
+      inline void  Init()
+      {
+         m_Interface->Init();
+      }
+
       inline const RendererInterface& GetInterface() const
       {
          return *m_Interface;

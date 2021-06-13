@@ -27,3 +27,14 @@
 #endif
 
 #define FLARE_BIND_EVENT_FN(x_Func) std::bind(&x_Func, this, std::placeholders::_1)
+
+#include <memory>
+
+namespace Flare
+{
+   template<typename T>
+   using Scope = std::unique_ptr<T>;
+
+   template<typename T>
+   using Ref = std::shared_ptr<T>;
+}

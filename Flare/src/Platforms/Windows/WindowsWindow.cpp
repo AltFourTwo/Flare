@@ -44,14 +44,14 @@ namespace Flare::UserInterface
       if ( !s_GLFWInitialized )
       {
          int x_Success = glfwInit();
-         FLARE_CORE_ASSERT( x_Success );
+         FLARE_CORE_ASSERT( x_Success ); // TODO more logs & error codes.
 
          glfwSetErrorCallback( GLFWErrorCallback );
 
          s_GLFWInitialized = true;
       }
 
-      if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( std::forward<UserInput::KeyMap>( Flare::UserInput::GetAPIKeyMap( Rendering::API::OpenGL ) ) ) )
+      if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( Rendering::API::OpenGL ) )
       {
          LOG_TRACE( "Input scheme initialized and tied to window!\n" );
          SetInputScheme( UserInput::WindowsInput::GetInstance() );
@@ -66,7 +66,7 @@ namespace Flare::UserInterface
       glfwMakeContextCurrent( m_Window );
 
       int x_Status = gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress );
-      FLARE_CORE_ASSERT( x_Status, { "Failed to initialize Glad!\n" } );
+      FLARE_CORE_ASSERT( x_Status, "Failed to initialize Glad!\n" ); // TODO more logs & error codes.
 
       glfwSetWindowUserPointer( m_Window, &m_WindowData );
       SetVSync( m_WindowData.VSync );
@@ -167,6 +167,12 @@ namespace Flare::UserInterface
          x_Data.Callback( x_Event );
       } );
 
+      std::cout << (const char*)glGetString( GL_VERSION ) << std::endl;
+
+      glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
+      glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 6 );
+      glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
+
       LOG_TRACE( "WindowsWindow Init Completed!\n" );
    }
 
@@ -187,7 +193,7 @@ namespace Flare::UserInterface
 
    static void GLFWErrorCallback( int a_Error, const char* a_Desc )
    {
-      FLARE_CORE_ERROR( "GLFW Error. Code [{0}] : {1}\n", { a_Error, a_Desc } );
+      FLARE_CORE_ERROR( "GLFW Error. Code [{0}] : {1}\n", a_Error, a_Desc ); // TODO more logs & error codes.
    }
 
    /*****   GETTERS   *****/

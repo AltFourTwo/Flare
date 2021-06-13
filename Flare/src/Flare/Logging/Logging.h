@@ -84,7 +84,7 @@ namespace Flare::Logging
       NANOSECONDS = 'n',     // The number of nanoseconds since the last message from the logger.
       THREAD_ID = 'T',       // The thread ID used by ? Where ? Leaving unimplemented for now.
       PROCESS_ID = 'P',      // The process ID used by ? Where ? Leaving unimplemented for now.
-      ERROR_LCC = '?'            // Error Character.
+      ERROR_LCC = '?'        // Error Character.
    };
 
    /*****   NAMESPACE   FUNCTIONS   *****/

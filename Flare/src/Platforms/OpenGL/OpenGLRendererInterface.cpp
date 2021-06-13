@@ -1,6 +1,8 @@
 #include "FlarePCH.h"
 #include "OpenGLRendererInterface.h"
 
+#include "Flare/Rendering/VertexArray.h"
+
 #include <glad/glad.h>
 
 namespace Flare::Rendering
@@ -10,7 +12,13 @@ namespace Flare::Rendering
       RendererInterface(API::OpenGL)
    {}
 
-   /*****   CLASS   CONSTANTS    *****/
+   /*****   CLASS   FUNCTIONS    *****/
+   void OpenGLRendererInterface::Init()
+   {
+      glEnable(GL_BLEND);
+      glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+   }
+
    void OpenGLRendererInterface::SetClearColor( const glm::vec4& a_Color ) const
    {
       glClearColor( a_Color.r, a_Color.g, a_Color.b, a_Color.a );

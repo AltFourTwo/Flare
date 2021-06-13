@@ -3,13 +3,13 @@
 #include "Logging.h"
 #include "Logger.h"
 #include "LoggerParameters.h"
-#include "Composing/Formattable.h"
 
 namespace Flare
 {
    class Console
    {
-      using SharedLogger = Flare::Logging::Logger::SharedLogger;
+      public:
+      using SharedLogger = std::shared_ptr<Logging::Logger>;
 
       /*****   CLASS   CONSTANTS    *****/
       private:

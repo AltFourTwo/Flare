@@ -3,8 +3,8 @@
 #include "Flare/Core.h"
 #include "Logging.h"
 #include "LoggerParameters.h"
-#include "Composing/Formattable.h"
 
+#include <iostream>
 #include <vector>
 #include <memory>
 #include <chrono>
@@ -13,10 +13,6 @@ namespace Flare::Logging
 {
    class FLARE_API Logger
    {
-      public:
-      using SharedLogger = std::shared_ptr<Logger>;
-      using Formattable = Utility::Composing::Formattable;
-
       /*****   NESTED  CLASSES      *****/
       private:
       struct FormatAction
@@ -60,26 +56,108 @@ namespace Flare::Logging
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      void Trace( const char* a_Message );
-      void Debug( const char* a_Message );
-      void Info( const char* a_Message );
-      void Warn( const char* a_Message );
-      void Error( const char* a_Message );
-      void Fatal( const char* a_Message );
-      void Trace( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
-      void Debug( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
-      void Info( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
-      void Warn( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
-      void Error( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
-      void Fatal( const char* a_Message, const std::initializer_list<Formattable>& a_Formattables );
-      std::string PrepareMessage( LogLevel a_LogLevel, const char* a_Message ) const;
-      std::string PrepareMessage( LogLevel a_LogLevel, const char* a_Message, std::initializer_list<Formattable> a_Formattables ) const;
+      template<typename... Ts>
+      inline void Trace( const char* a_Message, const Ts&... args )
+      {
+         Logger::Log( LogLevel::Trace, a_Message, args... );
+      }
+
+      template<>
+      inline void Trace( const char* a_Message )
+      {
+         Logger::Log( LogLevel::Trace, a_Message );
+      }
+
+      template<typename... Ts>
+      inline void Debug( const char* a_Message, const Ts&... args )
+      {
+         Logger::Log( LogLevel::Debug, a_Message, args... );
+      }
+
+      template<>
+      inline void Debug( const char* a_Message )
+      {
+         Logger::Log( LogLevel::Debug, a_Message );
+      }
+
+      template<typename... Ts>
+      inline void Info( const char* a_Message, const Ts&... args )
+      {
+         Logger::Log( LogLevel::Info, a_Message, args... );
+      }
+
+      template<>
+      inline void Info( const char* a_Message )
+      {
+         Logger::Log( LogLevel::Info, a_Message );
+      }
+
+      template<typename... Ts>
+      inline void Warn( const char* a_Message, const Ts&... args )
+      {
+         Logger::Log( LogLevel::Warning, a_Message, args... );
+      }
+
+      template<>
+      inline void Warn( const char* a_Message )
+      {
+         Logger::Log( LogLevel::Warning, a_Message );
+      }
+
+      template<typename... Ts>
+      void Error( const char* a_Message, const Ts&... args )
+      {
+         Logger::Log( LogLevel::Error, a_Message, args... );
+      }
+
+      template<>
+      void Error( const char* a_Message )
+      {
+         Logger::Log( LogLevel::Error, a_Message );
+      }
+
+      template<typename... Ts>
+      inline void Fatal( const char* a_Message, const Ts&... args )
+      {
+         Logger::Log( LogLevel::Fatal, a_Message, args... );
+      }
+
+      template<>
+      inline void Fatal( const char* a_Message )
+      {
+         Logger::Log( LogLevel::Fatal, a_Message );
+      }
+
+      template<typename... Ts>
+      std::string PrepareMessage( LogLevel a_LogLevel, const char* a_Message, const Ts&... args ) const
+      {
+         std::string x_ComposedMessage = std::format(a_Message, args...);
+         return ExecuteQueue( a_LogLevel, x_ComposedMessage.c_str() );
+      };
+
+      template<>
+      std::string PrepareMessage( LogLevel a_LogLevel, const char* a_Message ) const
+      {
+         return ExecuteQueue( a_LogLevel, a_Message );
+      };
 
       private:
-      void Log( const LogLevel& a_LogLevel, const char*& a_Message );
-      void Log( const LogLevel& a_LogLevel, const char*& a_Message, const std::initializer_list<Formattable>& a_Formattables );
       std::string ExecuteQueue( const LogLevel& a_LogLevel, const char* a_Message ) const;
       void CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_LoggingFormat );
+
+      template<typename... Ts>
+      void Log( const LogLevel& a_LogLevel, const char*& a_Message, const Ts&... args )
+      {
+         if ( a_LogLevel >= m_Parameters.m_BaseLoggingLevel )
+            std::cout << PrepareMessage( a_LogLevel, a_Message, args... );
+      }
+
+      template<>
+      void Log( const LogLevel& a_LogLevel, const char*& a_Message )
+      {
+         if ( a_LogLevel >= m_Parameters.m_BaseLoggingLevel )
+            std::cout << PrepareMessage( a_LogLevel, a_Message );
+      }
 
       /*****   SETTERS   *****/
       public:

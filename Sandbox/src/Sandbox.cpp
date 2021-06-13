@@ -3,13 +3,15 @@
 
 #include <Flare.h>
 #include "ExampleLayer.h"
+#include "Testing/RenderingTestLayer.h"
 
 Sandbox::Sandbox()
 {
    // ( *this->GetConsole().GetClientLogger() ).SetParameters( Flare::Logging::LoggerParameters( "Sandbox", Flare::Logging::LogLevel::Trace, "%F at %T | &N says : &M" ) );
 
    PushLayer( new ExampleLayer() );
-   FLARE_TRACE( "Sandbox has pushed 1 layer!\n" );
+   PushLayer( new SandboxTesting::RenderingTestLayer() );
+   FLARE_TRACE( "Sandbox has pushed 2 layers!\n" );
 }
 
 Sandbox::~Sandbox() {}

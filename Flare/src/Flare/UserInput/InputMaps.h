@@ -45,6 +45,7 @@ namespace Flare::UserInput
 #define FLARE_INPUT_MAP_DEF( a_ClassName, a_InputMapTypeName, a_Size ) class\
    a_ClassName : public InputMap<InputMapType::##a_InputMapTypeName, a_Size>\
    {\
+      public:\
       virtual const char* GetName() const override { return #a_InputMapTypeName; }\
    };\
 

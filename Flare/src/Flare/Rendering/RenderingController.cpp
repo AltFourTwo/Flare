@@ -1,24 +1,20 @@
 #include "FlarePCH.h"
+#include "RenderingController.h"
+
 #include "Flare/Application.h"
-#include "Flare/Rendering/RenderingController.h"
+#include "Renderer.h"
 
 namespace Flare::Rendering
 {
    /*****   CLASS   C-TOR D-TOR  *****/
    RenderingController::RenderingController() :
-      m_PrimaryRenderer(nullptr),
-      m_SecondaryRenderer(nullptr),
-      m_CurrentRenderer(nullptr)
+      m_PrimaryRenderer( nullptr ),
+      m_SecondaryRenderer( nullptr ),
+      m_CurrentRenderer( m_PrimaryRenderer )
    {}
 
    RenderingController::~RenderingController()
-   {
-      if ( m_PrimaryRenderer != nullptr )
-         delete m_PrimaryRenderer;
-
-      if ( m_SecondaryRenderer != nullptr )
-         delete m_SecondaryRenderer;
-   }
+   {}
 
    /*****   CLASS   FUNCTIONS    *****/
    void RenderingController::SwapRenderers()
@@ -34,18 +30,22 @@ namespace Flare::Rendering
 
    void RenderingController::InitializePrimaryRenderer( Rendering::API a_API, bool a_SetCurrent )
    {
-      m_PrimaryRenderer = new Renderer( a_API );
+      m_PrimaryRenderer = std::make_shared<Renderer>( a_API );
 
       if ( a_SetCurrent )
          m_CurrentRenderer = m_PrimaryRenderer;
+
+      m_PrimaryRenderer->Init();
    }
 
    void RenderingController::InitializeSecondaryRenderer( Rendering::API a_API, bool a_SetCurrent )
    {
-      m_SecondaryRenderer = new Renderer( a_API );
+      m_SecondaryRenderer = std::make_shared<Renderer>( a_API );
 
       if ( a_SetCurrent )
          m_CurrentRenderer = m_SecondaryRenderer;
+
+      m_SecondaryRenderer->Init();
    }
 
    /*****   GETTERS   *****/

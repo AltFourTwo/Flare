@@ -10,8 +10,8 @@ namespace Flare::UserInput
 
       /*****   CLASS   C-TOR D-TOR  *****/
       protected:
-      WindowsInput( KeyMap&& a_KeyMap ) :
-         Input( std::move( a_KeyMap ) )
+      WindowsInput( KeyMap&& a_KeyMap, ModifierMap&& a_ModifierMap, MouseMap&& a_MouseMap, JoystickMap&& a_JoystickMap, GamePadMap&& a_GamePadMap, GamePadAxisMap&& a_GamePadAxisMap ) :
+         Input( std::move( a_KeyMap ), std::move( a_ModifierMap ), std::move( a_MouseMap ), std::move( a_JoystickMap ), std::move( a_GamePadMap ), std::move( a_GamePadAxisMap ) )
       {};
 
       /*****   CLASS   FUNCTIONS    *****/
