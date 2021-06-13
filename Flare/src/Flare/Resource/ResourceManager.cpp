@@ -12,7 +12,7 @@ namespace Flare
    ResourceManager::ResourceManager() :
       m_ResourceMap()
    {
-      FLARE_CORE_ASSERT( !s_Instance, { "An instance of Flare::ResouceManager aleady exists!" } );
+      FLARE_CORE_ASSERT( !s_Instance, "An instance of Flare::ResouceManager aleady exists!" ); // TODO more logs & error codes.
       s_Instance = this;
    }
 

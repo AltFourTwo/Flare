@@ -19,14 +19,14 @@ namespace Flare::Rendering
       switch ( a_API )
       {
          case API::None:
-            FLARE_CORE_ASSERT( false, { "Chosen API is [None]. Cannot proceed." } );
+            FLARE_CORE_ASSERT( false, "Chosen API is [None]. Cannot proceed." ); // TODO more logs & error codes.
             return nullptr; // TODO Exception.
 
          case API::OpenGL:
             return std::make_shared<OpenGLRendererInterface>();
 
          default:
-            FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
+            FLARE_CORE_ASSERT( false, "Unknown Renderer API! Cannot proceed." ); // TODO more logs & error codes.
             return nullptr; // TODO Exception.
       }
    }

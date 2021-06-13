@@ -22,7 +22,7 @@ namespace Flare
       m_ResourceManager(),
       m_RenderingController()
    {
-      FLARE_CORE_ASSERT( !s_Instance, { "An instance of this application aleady exists!" } );
+      FLARE_CORE_ASSERT( !s_Instance, "An instance of this application aleady exists!" ); // TODO more logs & error codes.
       s_Instance = this;
 
       // ( *m_Console.GetCoreLogger() ).SetParameters( Logging::LoggerParameters( "Core", Logging::LogLevel::Trace, "%F at %T | &N says : &M" ) );

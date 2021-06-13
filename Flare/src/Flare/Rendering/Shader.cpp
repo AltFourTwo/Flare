@@ -15,14 +15,14 @@ namespace Flare::Rendering
       switch ( RenderingController::GetCurrentRendererUnderlyingAPI() )
       {
          case API::None:
-            FLARE_CORE_ASSERT( false, { "Renderer API is set to [None]. Cannot proceed." } );
+            FLARE_CORE_ASSERT( false, "Renderer API is set to [None]. Cannot proceed." ); // TODO more logs & error codes.
             return nullptr; // TODO Exception.
 
          case API::OpenGL:
             return std::make_shared<OpenGLShader>( a_Source );
 
          default:
-            FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
+            FLARE_CORE_ASSERT( false, "Unknown Renderer API! Cannot proceed." ); // TODO more logs & error codes.
             return nullptr; // TODO Exception.
       }
    }
@@ -32,14 +32,14 @@ namespace Flare::Rendering
       switch ( RenderingController::GetCurrentRendererUnderlyingAPI() )
       {
          case API::None:
-            FLARE_CORE_ASSERT( false, { "Renderer API is set to [None]. Cannot proceed." } );
+            FLARE_CORE_ASSERT( false, "Renderer API is set to [None]. Cannot proceed." ); // TODO more logs & error codes.
             return nullptr; // TODO Exception.
 
          case API::OpenGL:
             return std::make_shared<OpenGLShader>( a_VertexSource, a_PixelSource );
 
          default:
-            FLARE_CORE_ASSERT( false, { "Unknown Renderer API! Cannot proceed." } );
+            FLARE_CORE_ASSERT( false, "Unknown Renderer API! Cannot proceed." ); // TODO more logs & error codes.
             return nullptr; // TODO Exception.
       }
    }

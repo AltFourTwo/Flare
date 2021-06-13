@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Flare/Core.h"
-#include "Logger.h"
-#include "LoggerParameters.h"
+#include "Console.h"
 
 namespace Flare::Logging
 {
@@ -10,7 +9,7 @@ namespace Flare::Logging
    {
       /*****   CLASS   VARIABLES    *****/
       protected:
-      const Logger::SharedLogger& m_Logger;
+      const Console::SharedLogger& m_Logger;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       protected:
@@ -24,7 +23,7 @@ namespace Flare::Logging
 
       /*****   GETTERS   *****/
       public:
-      inline const Logger::SharedLogger& GetLogger() const { return m_Logger; }
+      inline const Console::SharedLogger& GetLogger() const { return m_Logger; }
    };
 }
 

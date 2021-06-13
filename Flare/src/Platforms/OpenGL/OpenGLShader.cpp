@@ -17,7 +17,7 @@ namespace Flare::Rendering
       if ( Utility::Strings::EqualsCaseInsensitive( a_Type, "fragment" ) || Utility::Strings::EqualsCaseInsensitive( a_Type, "pixel" ) )
          return GL_FRAGMENT_SHADER;
 
-      FLARE_CORE_ASSERT( false, { "Unknown shader type !" } );
+      FLARE_CORE_ASSERT( false, "Unknown shader type !" ); // TODO more logs & error codes.
    }
 
    /*****   CLASS   C-TOR D-TOR  *****/
@@ -51,7 +51,9 @@ namespace Flare::Rendering
       // Adapted to codebase standard.
 
       GLuint x_ProgramID = glCreateProgram();
-      std::vector<GLenum> x_GLShaderIDs( a_SplitSources.size() );
+      FLARE_CORE_ASSERT( a_SplitSources.size() <= MAX_NUMBER_OF_SHADERS, "A maximum of {} shaders is supported.", MAX_NUMBER_OF_SHADERS ); // TODO more logs & error codes.
+      std::array<GLuint, 6> x_ShaderIDs;
+      int x_ShaderIDIndex = 0;
 
       // Create and compile each shader.
       for ( const auto& [x_Type, x_Source] : a_SplitSources )
@@ -78,12 +80,13 @@ namespace Flare::Rendering
 
             // Log message and assert false.
             std::string x_Message( x_InfoLog.data() );
-            FLARE_CORE_ERROR( "GL Message : {0}", { x_Message } );
-            FLARE_CORE_ASSERT( false, { "Shader compilation failure!" } );
+            FLARE_CORE_ERROR( "GL Message : {0}", x_Message );
+            FLARE_CORE_ASSERT( false, "Shader compilation failure!" ); // TODO more logs & error codes.
             break;
          }
 
          glAttachShader( x_ProgramID, x_ShaderID );
+         x_ShaderIDs[x_ShaderIDIndex++] = x_ShaderID;
       }
 
       // Linking stage.
@@ -104,20 +107,20 @@ namespace Flare::Rendering
          glDeleteProgram( x_ProgramID );
 
          // Delete compiled shaders.
-         for ( auto x_ShaderID : x_GLShaderIDs )
-            glDeleteShader( x_ShaderID );
+         for ( int i = 0; i < x_ShaderIDIndex; i++ )
+            glDeleteShader( x_ShaderIDs[i] );
 
          // Log message and assert false.
          std::string x_Message( x_InfoLog.data() );
-         FLARE_CORE_ERROR( "{0}", { x_Message } );
-         FLARE_CORE_ASSERT( false, { "Shader linking stage failure!" } );
+         FLARE_CORE_ERROR( "GL Message : {0}", x_Message );
+         FLARE_CORE_ASSERT( false, "Shader linking stage failure!" ); // TODO more logs & error codes.
 
          return;
       }
 
       // Detach shaders after a successful link.
-      for ( auto x_ShaderID : x_GLShaderIDs )
-         glDetachShader( x_ProgramID, x_ShaderID );
+      for ( int i = 0; i < x_ShaderIDIndex; i++ )
+         glDetachShader( x_ProgramID, x_ShaderIDs[i] );
 
       m_OpenGLID = x_ProgramID;
    }
@@ -130,16 +133,16 @@ namespace Flare::Rendering
 
       while ( x_Pos != std::string::npos )
       {
-         size_t x_EOL = a_Source.find_first_of( "\r\n", x_Pos );
-         FLARE_CORE_ASSERT( x_EOL != std::string::npos, { " Syntax Error in shader !" } );
+         size_t x_EOL = a_Source.find_first_of( NEW_LINE_CHARS, x_Pos );
+         FLARE_CORE_ASSERT( x_EOL != std::string::npos, " Syntax Error in shader !" ); // TODO more logs & error codes.
          size_t x_BeginPos = x_Pos + Token<TokenID::ShaderType>::Size;
          std::string x_ShaderTypeString = a_Source.substr( x_BeginPos, x_EOL - x_BeginPos );
 
          GLenum x_ShaderType = ShaderTypeFromString( x_ShaderTypeString );
 
          // Find the begining of the next line and the position of a potential other shader type token.
-         size_t x_ShaderSegmentBegin = a_Source.find_first_not_of( "\r\n", x_EOL );
-         FLARE_CORE_ASSERT( x_ShaderSegmentBegin != std::string::npos, { " Syntax Error in shader !" } );
+         size_t x_ShaderSegmentBegin = a_Source.find_first_not_of( NEW_LINE_CHARS, x_EOL );
+         FLARE_CORE_ASSERT( x_ShaderSegmentBegin != std::string::npos, " Syntax Error in shader !" ); // TODO more logs & error codes.
          x_Pos = a_Source.find( Token<TokenID::ShaderType>::Name, x_ShaderSegmentBegin );
 
          // If x_Pos is string::npos then we have reached the end of the file.

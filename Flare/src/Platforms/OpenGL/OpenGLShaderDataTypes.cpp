@@ -15,7 +15,7 @@ namespace Flare::Rendering
          // If it does, the 'NONE' artefact is inserted.
          // GLSL compilation should then lift this as a clear error.
          case ShaderDataType::DataType::None:
-            FLARE_CORE_ASSERT( false, { "ShaderDataType 'None' is used!" } );
+            FLARE_CORE_ASSERT( false, "ShaderDataType 'None' is used!" ); // TODO more logs & error codes.
             return "FLARE_SHADER_DATA_TYPE_NONE"; // None  
 
          case ShaderDataType::DataType::Bool1:            return "bool";    // Bool1
@@ -59,7 +59,7 @@ namespace Flare::Rendering
 
          default:
             // Same logic with the 'NONE' case, but sends 'ERROR' instead.
-            FLARE_CORE_ASSERT( false, { "Unknown ShaderDataType" } );
+            FLARE_CORE_ASSERT( false, "Unknown ShaderDataType." ); // TODO more logs & error codes.
             return "FLARE_SHADER_DATA_TYPE_ERROR";
       }
    }
@@ -69,7 +69,7 @@ namespace Flare::Rendering
       switch ( a_DataType )
       {
          case ShaderDataType::DataType::None:
-            FLARE_CORE_ASSERT( false, { "ShaderDataType 'None' is used!" } );
+            FLARE_CORE_ASSERT( false, "ShaderDataType 'None' is used!" ); // TODO more logs & error codes.
             return 0;
 
          case ShaderDataType::DataType::Bool1:            return GL_BOOL;
@@ -113,7 +113,7 @@ namespace Flare::Rendering
 
          default:
             // Same logic with the 'NONE' case.
-            FLARE_CORE_ASSERT( false, { "Unknown ShaderDataType" } );
+            FLARE_CORE_ASSERT( false, "Unknown ShaderDataType." ); // TODO more logs & error codes.
             return 0;
       }
    }

@@ -33,7 +33,7 @@ namespace Flare::Rendering
    /*****   SET&ADD   *****/
    void OpenGLVertexArray::AddVertexBuffer( Ref<VertexBuffer>& a_VertexBuffer )
    {
-      FLARE_CORE_ASSERT( a_VertexBuffer->GetLayout().GetElements().size(), { "Vertex Buffer has no layout!" } );
+      FLARE_CORE_ASSERT( a_VertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!" ); // TODO more logs & error codes.
 
       glBindVertexArray( m_OpenGLID );
       a_VertexBuffer->Bind();

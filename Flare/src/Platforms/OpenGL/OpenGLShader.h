@@ -10,6 +10,11 @@ namespace Flare::Rendering
 {
    class OpenGLShader : public Shader, OpenGLObject
    {
+      /*****   CLASS   CONSTANTS    *****/
+      private:
+      const int MAX_NUMBER_OF_SHADERS = 6;
+      const char * NEW_LINE_CHARS = "\r\n";
+
       /*****   CLASS   VARIABLES    *****/
       private:
       mutable std::unordered_map<std::string, GLint> m_UniformLocationCache;
