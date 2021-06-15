@@ -7,138 +7,144 @@
 #include <chrono>
 #include <vector>
 #include <utility>
-#include <initializer_list>
 
 namespace Flare::Logging
 {
    /*****   CLASS   C-TOR D-TOR  *****/
    Logger::Logger( const LoggerParameters& a_Parameters ) noexcept :
       m_Parameters( a_Parameters ),
-      m_ExecutionQueue(),
+      m_ActionQueue(),
       m_LastMessageTimeStamp( std::chrono::steady_clock::now() )
    {
-      CompileFormat( m_ExecutionQueue, m_Parameters.m_FormatString );
+      CompileFormat( m_Parameters.m_FormatString );
    }
 
    Logger::Logger( LoggerParameters&& a_Parameters ) noexcept :
       m_Parameters( std::move( a_Parameters ) ),
-      m_ExecutionQueue(),
+      m_ActionQueue(),
       m_LastMessageTimeStamp( std::chrono::steady_clock::now() )
    {
-      CompileFormat( m_ExecutionQueue, m_Parameters.m_FormatString );
+      CompileFormat( m_Parameters.m_FormatString );
    }
 
    // Nested Class FormatAction Constructors
-   Logger::FormatAction::FormatAction( const FormatAction::ActionType&& a_ActionType, const char& a_FormatChar ) :
+   Logger::FormatAction::FormatAction( FormatAction::ActionType a_ActionType, char a_FormatChar ) :
       m_FormatChar( a_FormatChar ),
       m_ActionType( a_ActionType ),
       m_ReturnText()
    {}
 
-   Logger::FormatAction::FormatAction( const FormatAction::ActionType&& a_ActionType, LoggingControlCharacter&& a_FormatChar ) :
-      m_FormatChar( (char)a_FormatChar ),
+   Logger::FormatAction::FormatAction( FormatAction::ActionType a_ActionType, LoggingControlCharacter a_FormatChar ) :
+      m_FormatChar( static_cast<char>( a_FormatChar ) ),
       m_ActionType( a_ActionType ),
       m_ReturnText()
    {}
 
-   Logger::FormatAction::FormatAction( const char*& a_TextStart, const size_t a_Length ) :
+   Logger::FormatAction::FormatAction( const char* a_TextStart, size_t a_Length ) :
       m_FormatChar( 0 ),
       m_ActionType( FormatAction::ActionType::SIMPLE_TEXT ),
       m_ReturnText( a_TextStart, a_Length )
    {}
 
    /*****   CLASS   FUNCTIONS    *****/
-   void Logger::CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_FormatString )
+   void Logger::CompileFormat( const char* a_FormatString )
    {
-      a_ExecutionQueue.clear();
+      m_ActionQueue.clear();
       const char* x_TextStart = a_FormatString;
       const char* i_ptr = a_FormatString;
 
       while ( *i_ptr != 0 )
       {
-         FormatControlCharacter x_Char = (FormatControlCharacter)*i_ptr;
+         FormatControlCharacter x_Char = static_cast<FormatControlCharacter>( *i_ptr );
 
          switch ( x_Char )
          {
             case FormatControlCharacter::FCC_DATE:
             {
-               if ( i_ptr - x_TextStart > 0 )
-                  a_ExecutionQueue.emplace_back( x_TextStart, i_ptr - x_TextStart );
+               if ( i_ptr - x_TextStart > 0 ) // Some text was passed over. Add it to the actions.
+                  m_ActionQueue.emplace_back( x_TextStart, i_ptr - x_TextStart );
 
-               if ( *( i_ptr + 1 ) != 0 )
+               if ( *( i_ptr + 1 ) != 0 ) // Must have a valid ActionType character.
                {
-                  if ( IsDateControlCharacter( *i_ptr ) )
-                     a_ExecutionQueue.emplace_back( FormatAction::ActionType::FORMAT_DATE, *( i_ptr + 1 ) );
-                  else
-                     a_ExecutionQueue.emplace_back( FormatAction::ActionType::DATE_COMPILE_ERROR, *( i_ptr + 1 ) );
+                  const char x_NextChar = *( i_ptr + 1 );
 
-                  x_TextStart = i_ptr + 2;
-                  i_ptr++;
+                  if ( x_NextChar == static_cast<char>( DateTimeControlCharacter::A_PERCENTAGE_SIGN ) )
+                     m_ActionQueue.emplace_back( "%", 1 ); // Avoid date time parsing logic if we just want a % char.
+                  else if ( IsDateControlCharacter( x_NextChar ) )
+                     m_ActionQueue.emplace_back( FormatAction::ActionType::FORMAT_DATE, x_NextChar );
+                  else
+                     m_ActionQueue.emplace_back( FormatAction::ActionType::DATE_COMPILE_ERROR, x_NextChar );
+
+                  x_TextStart = i_ptr + 2; // Reposition TextStart after control characters.
+                  i_ptr++; // Extra incrementation to skip a second character.
                }
                else
                {
-                  a_ExecutionQueue.emplace_back( FormatAction::ActionType::DATE_COMPILE_ERROR, '?' );
-                  x_TextStart = i_ptr + 1;
+                  m_ActionQueue.emplace_back( FormatAction::ActionType::DATE_COMPILE_ERROR, '?' );
+                  x_TextStart = i_ptr + 1; // Reposition TextStart after control characters.
                }
                break;
             }
 
             case FormatControlCharacter::FCC_LOGGER:
             {
-               if ( i_ptr - x_TextStart > 0 )
-                  a_ExecutionQueue.emplace_back( x_TextStart, i_ptr - x_TextStart );
+               if ( i_ptr - x_TextStart > 0 ) // Some text was passed over. Add it to the actions.
+                  m_ActionQueue.emplace_back( x_TextStart, i_ptr - x_TextStart );
 
-               if ( *( i_ptr + 1 ) != 0 )
+               if ( *( i_ptr + 1 ) != 0 ) // Must have a valid ActionType character.
                {
-                  LoggingControlCharacter x_NextChar = (LoggingControlCharacter)( *( i_ptr + 1 ) );
+                  LoggingControlCharacter x_NextChar = static_cast<LoggingControlCharacter>( *( i_ptr + 1 ) );
 
                   switch ( x_NextChar )
                   {
                      case LoggingControlCharacter::MESSAGE:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_MESSAGE, LoggingControlCharacter::MESSAGE );
+                        m_ActionQueue.emplace_back( FormatAction::ActionType::LOG_MESSAGE, LoggingControlCharacter::MESSAGE );
                         break;
-                     case LoggingControlCharacter::LOG_LEVEL:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_LEVEL, LoggingControlCharacter::LOG_LEVEL );
+                     case LoggingControlCharacter::LOG_LEVEL_L:
+                        m_ActionQueue.emplace_back( FormatAction::ActionType::LOG_LEVEL, LoggingControlCharacter::LOG_LEVEL_L );
+                        break;
+                     case LoggingControlCharacter::LOG_LEVEL_U:
+                        m_ActionQueue.emplace_back( FormatAction::ActionType::LOG_LEVEL, LoggingControlCharacter::LOG_LEVEL_U );
                         break;
                      case LoggingControlCharacter::LOGGER_NAME:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_NAME, LoggingControlCharacter::LOGGER_NAME );
+                        m_ActionQueue.emplace_back( FormatAction::ActionType::LOGGER_NAME, LoggingControlCharacter::LOGGER_NAME );
                         break;
                      case LoggingControlCharacter::AMPERSAND:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::AMPERSAND, LoggingControlCharacter::AMPERSAND );
+                        m_ActionQueue.emplace_back( "&", 1 );
                         break;
                      case LoggingControlCharacter::SMARTTIME:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::SMARTTIME );
+                        m_ActionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::SMARTTIME );
                         break;
                      case LoggingControlCharacter::SECONDS:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::SECONDS );
+                        m_ActionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::SECONDS );
                         break;
                      case LoggingControlCharacter::MILLISECONDS:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::MILLISECONDS );
+                        m_ActionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::MILLISECONDS );
                         break;
                      case LoggingControlCharacter::MICROSECONDS:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::MICROSECONDS );
+                        m_ActionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::MICROSECONDS );
                         break;
                      case LoggingControlCharacter::NANOSECONDS:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::NANOSECONDS );
+                        m_ActionQueue.emplace_back( FormatAction::ActionType::LOG_TIME_DIFFERENCE, LoggingControlCharacter::NANOSECONDS );
                         break;
                      case LoggingControlCharacter::THREAD_ID:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_THREAD_ID, LoggingControlCharacter::THREAD_ID );
+                        m_ActionQueue.emplace_back( FormatAction::ActionType::LOG_THREAD_ID, LoggingControlCharacter::THREAD_ID );
                         break;
                      case LoggingControlCharacter::PROCESS_ID:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOG_PROCESS_ID, LoggingControlCharacter::PROCESS_ID );
+                        m_ActionQueue.emplace_back( FormatAction::ActionType::LOG_PROCESS_ID, LoggingControlCharacter::PROCESS_ID );
                         break;
                      default:
-                        a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_COMPILE_ERROR, LoggingControlCharacter::ERROR_LCC );
+                        m_ActionQueue.emplace_back( FormatAction::ActionType::LOGGER_COMPILE_ERROR, LoggingControlCharacter::ERROR_LCC );
                         break;
                   }
 
-                  x_TextStart = i_ptr + 2;
-                  i_ptr++;
+                  x_TextStart = i_ptr + 2; // Reposition TextStart after control characters.
+                  i_ptr++; // Extra incrementation to skip a second character.
                }
                else
                {
-                  a_ExecutionQueue.emplace_back( FormatAction::ActionType::LOGGER_COMPILE_ERROR, LoggingControlCharacter::ERROR_LCC );
-                  x_TextStart = i_ptr + 1;
+                  m_ActionQueue.emplace_back( FormatAction::ActionType::LOGGER_COMPILE_ERROR, LoggingControlCharacter::ERROR_LCC );
+                  x_TextStart = i_ptr + 1; // Reposition TextStart after control characters.
                }
                break;
             }
@@ -149,34 +155,38 @@ namespace Flare::Logging
          i_ptr++;
       }
 
-      if ( i_ptr - x_TextStart > 0 )
-         a_ExecutionQueue.emplace_back( x_TextStart, i_ptr - x_TextStart );
+      if ( i_ptr - x_TextStart > 0 ) // Add the final piece of text if there is.
+         m_ActionQueue.emplace_back( x_TextStart, i_ptr - x_TextStart );
    }
 
-   std::string Logger::ExecuteQueue( const LogLevel& a_LogLevel, const char* a_Message ) const
+   std::string Logger::ExecuteQueue( const LoggingContext& a_Context ) const
    {
       std::string x_ConsoleMessage;
-      x_ConsoleMessage.reserve( strlen( a_Message ) + 250 ); // TWEAK
+      x_ConsoleMessage.reserve( a_Context.m_FormattedMessage.length() + 100 ); // TWEAK
 
-      for ( FormatAction itr : m_ExecutionQueue )
+      for ( FormatAction itr : m_ActionQueue )
       {
-         x_ConsoleMessage += itr.ExecuteAction( *this, a_LogLevel, a_Message );
+         std::string x_Output;
+         itr.Execute( a_Context, x_Output );
+         std::format_to( std::back_inserter( x_ConsoleMessage ), "{}", x_Output ); // TODO : Find a better way to do this.
       }
       m_LastMessageTimeStamp = std::chrono::steady_clock::now();
 
-      return x_ConsoleMessage;
+      return x_ConsoleMessage; // TODO : Use move semantics.
    }
 
 #pragma region Nested FormatAction Functions
-   std::string Logger::FormatAction::ExecuteAction( const Logger& a_Logger, const LogLevel& a_LogLevel, const char*& a_Message )
+   void Logger::FormatAction::Execute( const LoggingContext& a_Context, std::string& /* out */ a_ReturnText )
    {
       switch ( m_ActionType )
       {
          case FormatAction::ActionType::SIMPLE_TEXT:
-            return m_ReturnText;
+            a_ReturnText = m_ReturnText;
+            break;
 
          case FormatAction::ActionType::FORMAT_DATE:
          {
+            // TODO : There must be a better way to obatain the date and time.
             char x_Buffer[40]; // TWEAK
             const char x_Format[] = { '%', m_FormatChar, 0 };
             const time_t x_RawTime = std::chrono::system_clock::to_time_t( std::chrono::system_clock::now() );
@@ -184,77 +194,94 @@ namespace Flare::Logging
             localtime_s( &x_TimeNow, &x_RawTime );
             size_t x_TimeStringLength = strftime( x_Buffer, 40, x_Format, &x_TimeNow ); // TWEAK
 
-            m_ReturnText = std::string( x_Buffer, x_TimeStringLength );
-
-            return m_ReturnText;
+            a_ReturnText = std::move( std::string( x_Buffer, x_TimeStringLength ) );
+            break;
          }
 
          case FormatAction::ActionType::LOGGER_NAME:
-            return a_Logger.m_Parameters.m_LoggerName;
+            a_ReturnText = a_Context.m_Logger.m_Parameters.m_LoggerName;
+            break;
 
          case FormatAction::ActionType::LOG_LEVEL:
          {
-            switch ( a_LogLevel )
-            {
+            bool x_Upper = static_cast<LoggingControlCharacter>( m_FormatChar ) == LoggingControlCharacter::LOG_LEVEL_U;
+
+            switch ( a_Context.m_LogLevel )
+            { // TODO : Use Name array.
                case LogLevel::Trace:
-                  return "TRACE";
+                  a_ReturnText = x_Upper ? "TRACE" : "Trace";
+                  break;
 
                case LogLevel::Debug:
-                  return "DEBUG";
+                  a_ReturnText = x_Upper ? "DEBUG" : "Debug";
+                  break;
 
                case LogLevel::Info:
-                  return "INFO";
+                  a_ReturnText = x_Upper ? "INFO" : "Info";
+                  break;
 
                case LogLevel::Warning:
-                  return "WARNING";
+                  a_ReturnText = x_Upper ? "WARNING" : "Warning";
+                  break;
 
                case LogLevel::Error:
-                  return "ERROR";
+                  a_ReturnText = x_Upper ? "ERROR" : "Error";
+                  break;
 
                case LogLevel::Fatal:
-                  return "FATAL";
+                  a_ReturnText = x_Upper ? "FATAL" : "Fatal";
+                  break;
 
                default:
                   throw; // TODO Exception Unknown Logging::LogLevel
             }
+            break;
          }
 
          case FormatAction::ActionType::LOG_MESSAGE:
-            return a_Message;
+            a_ReturnText = a_Context.m_FormattedMessage;
+            break;
 
          case FormatAction::ActionType::LOG_TIME_DIFFERENCE:
          {
-            std::chrono::duration<float> x_TimeDiff = std::chrono::steady_clock::now() - a_Logger.m_LastMessageTimeStamp;
+            std::chrono::duration<float> x_TimeDiff = std::chrono::steady_clock::now() - a_Context.m_Logger.m_LastMessageTimeStamp;
             float x_Ticks = x_TimeDiff.count();
             const char* x_TimeSymbols[] = { "s", "ms", "us", "ns" };
 
-            LoggingControlCharacter x_TDChar = (LoggingControlCharacter)m_FormatChar;
+            LoggingControlCharacter x_TDChar = static_cast<LoggingControlCharacter>( m_FormatChar );
 
             switch ( x_TDChar )
             {
                case LoggingControlCharacter::SMARTTIME:
                {
-                  for ( int i = 0; i < 4; i++ )
+                  int i = 0; // Keep i alive after loop in case we reach nanoseconds.
+                  for ( ; i < 4; i++ )
                   {
                      if ( x_Ticks < 1 )
                         x_Ticks *= 1000.0f;
                      else
-                        return std::to_string( x_Ticks ) + x_TimeSymbols[i];
+                        break;
                   }
-                  return std::to_string( x_Ticks ) + x_TimeSymbols[3];
+
+                  a_ReturnText = std::move( std::format( "{:.3f}{}", x_Ticks, x_TimeSymbols[i] ) );
+                  break;
                }
 
                case LoggingControlCharacter::SECONDS:
-                  return std::to_string( x_Ticks ) + x_TimeSymbols[0];
+                  a_ReturnText = std::move( std::format( "{:.3f}{}", x_Ticks, x_TimeSymbols[0] ) );
+                  break;
 
                case LoggingControlCharacter::MILLISECONDS:
-                  return std::to_string( x_Ticks * 1000.0f ) + x_TimeSymbols[1];
+                  a_ReturnText = std::move( std::format( "{:.3f}{}", x_Ticks, x_TimeSymbols[1] ) );
+                  break;
 
                case LoggingControlCharacter::MICROSECONDS:
-                  return std::to_string( x_Ticks * 1000000.0f ) + x_TimeSymbols[2];
+                  a_ReturnText = std::move( std::format( "{:.3f}{}", x_Ticks, x_TimeSymbols[2] ) );
+                  break;
 
                case LoggingControlCharacter::NANOSECONDS:
-                  return std::to_string( x_Ticks * 1000000000.0f ) + x_TimeSymbols[3];
+                  a_ReturnText = std::move( std::format( "{:.3f}{}", x_Ticks, x_TimeSymbols[3] ) );
+                  break;
 
                default:
                   throw; // TODO Exception Unknown Time Difference Control Character
@@ -270,35 +297,24 @@ namespace Flare::Logging
             throw "Not Implemented."; // TODO Implement This.
             break;
 
-         case FormatAction::ActionType::AMPERSAND:
-            return "&";
-
          case FormatAction::ActionType::DATE_COMPILE_ERROR:
-         {
-            m_ReturnText.reserve( 4 );
-            m_ReturnText += "?%";
-            m_ReturnText += m_FormatChar;
-            m_ReturnText += '?';
-            return m_ReturnText;
-         }
+            a_ReturnText = std::move( std::format( "?%{}?", m_FormatChar ) );
+            break;
 
          case FormatAction::ActionType::LOGGER_COMPILE_ERROR:
-         {
-            m_ReturnText.reserve( 4 );
-            m_ReturnText += "?&";
-            m_ReturnText += m_FormatChar;
-            m_ReturnText += '?';
-            return m_ReturnText;
-         }
+            a_ReturnText = std::move( std::format( "?&{}?", m_FormatChar ) );
+            break;
+
+         default:
+            throw; // TODO Exception Unknown FormatAction::ActionType
       }
-      throw; // TODO Exception Unknown FormatAction::ActionType
    }
 #pragma endregion
 
    /*****   SETTERS   *****/
    void Logger::SetParameters( LoggerParameters&& a_Parameters )
    {
-      CompileFormat( m_ExecutionQueue, a_Parameters.m_FormatString );
+      CompileFormat( a_Parameters.m_FormatString );
       m_Parameters = std::move( a_Parameters );
    }
 

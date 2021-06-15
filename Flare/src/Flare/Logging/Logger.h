@@ -15,6 +15,13 @@ namespace Flare::Logging
    {
       /*****   NESTED  CLASSES      *****/
       private:
+      struct LoggingContext
+      {
+         const Logger& m_Logger;
+         const Logging::LogLevel m_LogLevel;
+         const std::string& m_FormattedMessage;
+      };
+
       struct FormatAction
       {
          enum class ActionType : int
@@ -27,26 +34,25 @@ namespace Flare::Logging
             LOG_TIME_DIFFERENCE = 6,
             LOG_PROCESS_ID = 7,
             LOG_THREAD_ID = 8,
-            AMPERSAND = 9,
-            DATE_COMPILE_ERROR = 10,
-            LOGGER_COMPILE_ERROR = 11
+            DATE_COMPILE_ERROR = 9,
+            LOGGER_COMPILE_ERROR = 10
          };
 
          const char m_FormatChar;
          ActionType m_ActionType;
          std::string m_ReturnText;
 
-         FormatAction( const ActionType&& a_ActionType, const char& a_FormatChar );
-         FormatAction( const ActionType&& a_ActionType, LoggingControlCharacter&& a_FormatChar );
-         FormatAction( const char*& a_TextStart, const size_t a_Length );
+         FormatAction( ActionType a_ActionType, char a_FormatChar );
+         FormatAction( ActionType a_ActionType, LoggingControlCharacter a_FormatChar );
+         FormatAction( const char* a_TextStart, size_t a_Length );
 
-         std::string ExecuteAction( const Logger& a_Logger, const LogLevel& a_LogLevel, const char*& a_Message );
+         void Execute( const LoggingContext& a_Context, std::string& /* out */ a_ReturnText );
       };
 
       /*****   CLASS   VARIABLES    *****/
       private:
       LoggerParameters m_Parameters;
-      mutable std::vector<FormatAction> m_ExecutionQueue;
+      std::vector<FormatAction> m_ActionQueue;
       mutable std::chrono::time_point<std::chrono::steady_clock> m_LastMessageTimeStamp;
 
       /*****   CLASS   C-TOR D-TOR  *****/
@@ -129,21 +135,34 @@ namespace Flare::Logging
       }
 
       template<typename... Ts>
-      std::string PrepareMessage( LogLevel a_LogLevel, const char* a_Message, const Ts&... args ) const
+      inline std::string PrepareMessage( LogLevel a_LogLevel, const char* a_Message, const Ts&... args ) const
       {
-         std::string x_ComposedMessage = std::format(a_Message, args...);
-         return ExecuteQueue( a_LogLevel, x_ComposedMessage.c_str() );
+         LoggingContext x_Context
+         {
+            *this,
+            a_LogLevel,
+            std::format( a_Message, args... ),
+         };
+
+         return ExecuteQueue( x_Context ); // TODO : Use move semantics.
       };
 
       template<>
-      std::string PrepareMessage( LogLevel a_LogLevel, const char* a_Message ) const
+      inline std::string PrepareMessage( LogLevel a_LogLevel, const char* a_Message ) const
       {
-         return ExecuteQueue( a_LogLevel, a_Message );
+         LoggingContext x_Context
+         {
+            *this,
+            a_LogLevel,
+            a_Message,
+         };
+
+         return ExecuteQueue( x_Context ); // TODO : Use move semantics.
       };
 
       private:
-      std::string ExecuteQueue( const LogLevel& a_LogLevel, const char* a_Message ) const;
-      void CompileFormat( std::vector<FormatAction>& a_ExecutionQueue, const char* a_LoggingFormat );
+      void CompileFormat( const char* a_LoggingFormat );
+      std::string ExecuteQueue( const LoggingContext& a_Context ) const;
 
       template<typename... Ts>
       void Log( const LogLevel& a_LogLevel, const char*& a_Message, const Ts&... args )

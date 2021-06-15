@@ -7,15 +7,17 @@ namespace Flare::Logging
    {
       enum LogLevel
       {
-         Trace = 1,
-         Debug = 2,
-         Info = 3,
-         Warning = 4,
-         Error = 5,
-         Fatal = 6,
-         Off = 7
+         Trace = 0,
+         Debug = 1,
+         Info = 2,
+         Warning = 3,
+         Error = 4,
+         Fatal = 5,
+         Off = 6
       };
    };
+
+   static const char* LogLevelNames[] = { "Trace", "Debug", "Info", "Warning", "Error", "Fatal","Off", "TRACE", "DEBUG", "INFO", "WARNING", "ERROR", "FATAL","OFF" };
 
    using LogLevel = LOG_LEVEL_SCOPE::LogLevel;
 
@@ -74,7 +76,8 @@ namespace Flare::Logging
    enum class LoggingControlCharacter : char
    {
       MESSAGE = 'M',         // The actual message to log.
-      LOG_LEVEL = 'L',       // The log level the message is issued as.
+      LOG_LEVEL_L = 'l',     // The severity the message in lower case.
+      LOG_LEVEL_U = 'L',     // The severity the message in upper case.
       LOGGER_NAME = 'N',     // The logger that is used to log the message.
       AMPERSAND = '&',       // The ampersand symbol '&'.
       SMARTTIME = 't',       // Displays the time since the last message from the logger in it's most significant unit.

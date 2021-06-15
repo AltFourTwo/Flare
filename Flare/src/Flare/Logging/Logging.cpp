@@ -58,7 +58,8 @@ namespace Flare::Logging
       switch ( x_LCC )
       {
          case LoggingControlCharacter::MESSAGE:       return true;
-         case LoggingControlCharacter::LOG_LEVEL:     return true;
+         case LoggingControlCharacter::LOG_LEVEL_L:     return true;
+         case LoggingControlCharacter::LOG_LEVEL_U:     return true;
          case LoggingControlCharacter::LOGGER_NAME:   return true;
          case LoggingControlCharacter::AMPERSAND:     return true;
          case LoggingControlCharacter::SECONDS:       return true;
