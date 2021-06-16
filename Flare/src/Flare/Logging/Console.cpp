@@ -31,7 +31,7 @@ namespace Flare
 
    Console::SharedLogger& Console::CreateLogger( Logging::LoggerParameters&& a_Parameters ) noexcept
    {
-      s_Instance->m_ExtraLoggers.emplace_back( std::make_shared<Logging::Logger>( std::forward<Logging::LoggerParameters>( a_Parameters ) ) );
+      s_Instance->m_ExtraLoggers.emplace_back( std::make_shared<Logging::Logger>( std::move( a_Parameters ) ) );
       return s_Instance->m_ExtraLoggers.back();
    }
 }

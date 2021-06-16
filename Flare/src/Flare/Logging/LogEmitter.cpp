@@ -11,7 +11,7 @@ namespace Flare::Logging
    {}
 
    LogEmitter::LogEmitter( LoggerParameters&& a_Parameters ) noexcept :
-      m_Logger( Console::GetInstance().CreateLogger( std::forward<LoggerParameters>( a_Parameters ) ) )
+      m_Logger( Console::GetInstance().CreateLogger( std::move( a_Parameters ) ) )
    {}
 
    LogEmitter::LogEmitter( const LogEmitter& a_Other ) noexcept :

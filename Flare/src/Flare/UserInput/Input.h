@@ -44,20 +44,13 @@ namespace Flare::UserInput
          if ( s_Instance )
             return false;
 
-         KeyMap&& x_KeyMap = Flare::UserInput::GetAPIKeyMap( a_API );
-         ModifierMap&& x_ModifierMap = Flare::UserInput::GetAPIModifierMap( a_API );
-         MouseMap&& x_MouseMap = Flare::UserInput::GetAPIMouseMap( a_API );
-         JoystickMap&& x_JoystickMap = Flare::UserInput::GetAPIJoystickMap( a_API );
-         GamePadMap&& x_GamePadMap = Flare::UserInput::GetAPIGamePadMap( a_API );
-         GamePadAxisMap&& x_GamePadAxisMap = Flare::UserInput::GetAPIGamePadAxisMap( a_API );
-
          s_Instance = new T(
-            std::forward<KeyMap>( x_KeyMap ),
-            std::forward< ModifierMap>( x_ModifierMap ),
-            std::forward< MouseMap>( x_MouseMap ),
-            std::forward< JoystickMap>( x_JoystickMap ),
-            std::forward< GamePadMap>( x_GamePadMap ),
-            std::forward< GamePadAxisMap>( x_GamePadAxisMap )
+            std::move( Flare::UserInput::GetAPIKeyMap( a_API ) ),
+            std::move( Flare::UserInput::GetAPIModifierMap( a_API ) ),
+            std::move( Flare::UserInput::GetAPIMouseMap( a_API ) ),
+            std::move( Flare::UserInput::GetAPIJoystickMap( a_API ) ),
+            std::move( Flare::UserInput::GetAPIGamePadMap( a_API ) ),
+            std::move( Flare::UserInput::GetAPIGamePadAxisMap( a_API ) )
          );
 
          return true;

@@ -18,8 +18,11 @@ namespace Flare::Logging
       struct LoggingContext
       {
          const Logger& m_Logger;
-         const Logging::LogLevel m_LogLevel;
-         const std::string& m_FormattedMessage;
+         const LogLevel m_LogLevel;
+         const std::string m_FormattedMessage;
+
+         LoggingContext( const Logger& a_Logger, LogLevel a_LogLevel, const std::string& a_FormattedMessage );
+         LoggingContext( const Logger& a_Logger, LogLevel a_LogLevel, std::string&& a_FormattedMessage );
       };
 
       struct FormatAction
@@ -134,32 +137,6 @@ namespace Flare::Logging
          Logger::Log( LogLevel::Fatal, a_Message );
       }
 
-      template<typename... Ts>
-      inline std::string PrepareMessage( LogLevel a_LogLevel, const char* a_Message, const Ts&... args ) const
-      {
-         LoggingContext x_Context
-         {
-            *this,
-            a_LogLevel,
-            std::format( a_Message, args... ),
-         };
-
-         return ExecuteQueue( x_Context ); // TODO : Use move semantics.
-      };
-
-      template<>
-      inline std::string PrepareMessage( LogLevel a_LogLevel, const char* a_Message ) const
-      {
-         LoggingContext x_Context
-         {
-            *this,
-            a_LogLevel,
-            a_Message,
-         };
-
-         return ExecuteQueue( x_Context ); // TODO : Use move semantics.
-      };
-
       private:
       void CompileFormat( const char* a_LoggingFormat );
       std::string ExecuteQueue( const LoggingContext& a_Context ) const;
@@ -168,14 +145,22 @@ namespace Flare::Logging
       void Log( const LogLevel& a_LogLevel, const char*& a_Message, const Ts&... args )
       {
          if ( a_LogLevel >= m_Parameters.m_BaseLoggingLevel )
-            std::cout << PrepareMessage( a_LogLevel, a_Message, args... );
+         {
+            LoggingContext x_Context( *this, a_LogLevel, std::move( std::format( a_Message, args... ) ) );
+            std::string x_ConsoleFormattedMessage = std::move( ExecuteQueue( x_Context ) );
+            std::cout << x_ConsoleFormattedMessage;
+         }
       }
 
       template<>
       void Log( const LogLevel& a_LogLevel, const char*& a_Message )
       {
          if ( a_LogLevel >= m_Parameters.m_BaseLoggingLevel )
-            std::cout << PrepareMessage( a_LogLevel, a_Message );
+         {
+            LoggingContext x_Context( *this, a_LogLevel, std::move( std::string( a_Message ) ) );
+            std::string x_ConsoleFormattedMessage = std::move( ExecuteQueue( x_Context ) );
+            std::cout << x_ConsoleFormattedMessage;
+         }
       }
 
       /*****   SETTERS   *****/

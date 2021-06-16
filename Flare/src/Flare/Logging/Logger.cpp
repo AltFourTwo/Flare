@@ -27,6 +27,19 @@ namespace Flare::Logging
       CompileFormat( m_Parameters.m_FormatString );
    }
 
+   // Nested Class LoggingContext Constructors
+   Logger::LoggingContext::LoggingContext( const Logger& a_Logger, LogLevel a_LogLevel, const std::string& a_FormattedMessage ) :
+      m_Logger( a_Logger ),
+      m_LogLevel( a_LogLevel ),
+      m_FormattedMessage( a_FormattedMessage )
+   {}
+
+   Logger::LoggingContext::LoggingContext( const Logger& a_Logger, LogLevel a_LogLevel, std::string&& a_FormattedMessage ) :
+      m_Logger(a_Logger),
+      m_LogLevel(a_LogLevel),
+      m_FormattedMessage( std::move( a_FormattedMessage ) )
+   {}
+
    // Nested Class FormatAction Constructors
    Logger::FormatAction::FormatAction( FormatAction::ActionType a_ActionType, char a_FormatChar ) :
       m_FormatChar( a_FormatChar ),
@@ -172,7 +185,7 @@ namespace Flare::Logging
       }
       m_LastMessageTimeStamp = std::chrono::steady_clock::now();
 
-      return x_ConsoleMessage; // TODO : Use move semantics.
+      return x_ConsoleMessage;
    }
 
 #pragma region Nested FormatAction Functions
