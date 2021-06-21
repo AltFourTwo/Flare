@@ -3,23 +3,18 @@
 namespace Flare::Logging
 {
    /*****   NAMESPACE   CONSTANTS   *****/
-   struct LOG_LEVEL_SCOPE
+   enum class LogLevel : int
    {
-      enum LogLevel
-      {
-         Trace = 0,
-         Debug = 1,
-         Info = 2,
-         Warning = 3,
-         Error = 4,
-         Fatal = 5,
-         Off = 6
-      };
+      Trace = 0,
+      Debug = 1,
+      Info = 2,
+      Warning = 3,
+      Error = 4,
+      Fatal = 5,
+      Off = 6
    };
 
    static const char* LogLevelNames[] = { "Trace", "Debug", "Info", "Warning", "Error", "Fatal","Off", "TRACE", "DEBUG", "INFO", "WARNING", "ERROR", "FATAL","OFF" };
-
-   using LogLevel = LOG_LEVEL_SCOPE::LogLevel;
 
    enum class FormatControlCharacter : char
    {
