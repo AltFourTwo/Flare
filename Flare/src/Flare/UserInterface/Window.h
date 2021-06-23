@@ -37,7 +37,7 @@ namespace Flare::UserInterface
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
       Window() :
-         LogEmitter( Logging::LoggerParameters( "Main Window Logger", Logging::LogLevel::Trace, "%F at %T | &N says : &M" ) )
+         LogEmitter( "Main Window Logger", Logging::LogLevel::Trace, "%F at %T | &N says : &M" )
       {}
 
       virtual ~Window() {}

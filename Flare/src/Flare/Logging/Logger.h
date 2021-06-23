@@ -1,67 +1,34 @@
 #pragma once
-
 #include "Flare/Core.h"
 #include "Logging.h"
-#include "LoggerParameters.h"
+#include "LoggingContext.h"
 
 #include <iostream>
-#include <vector>
-#include <memory>
-#include <chrono>
 
 namespace Flare::Logging
 {
    class FLARE_API Logger
    {
-      /*****   NESTED  CLASSES      *****/
-      private:
-      struct LoggingContext
-      {
-         const Logger& m_Logger;
-         const LogLevel m_LogLevel;
-         const std::string m_FormattedMessage;
-
-         LoggingContext( const Logger& a_Logger, LogLevel a_LogLevel, const std::string& a_FormattedMessage );
-         LoggingContext( const Logger& a_Logger, LogLevel a_LogLevel, std::string&& a_FormattedMessage );
-      };
-
-      struct FormatAction
-      {
-         enum class ActionType : int
-         {
-            SIMPLE_TEXT = 1,
-            FORMAT_DATE = 2,
-            LOGGER_NAME = 3,
-            LOG_LEVEL = 4,
-            LOG_MESSAGE = 5,
-            LOG_TIME_DIFFERENCE = 6,
-            LOG_PROCESS_ID = 7,
-            LOG_THREAD_ID = 8,
-            DATE_COMPILE_ERROR = 9,
-            LOGGER_COMPILE_ERROR = 10
-         };
-
-         const char m_FormatChar;
-         ActionType m_ActionType;
-         std::string m_ReturnText;
-
-         FormatAction( ActionType a_ActionType, char a_FormatChar );
-         FormatAction( ActionType a_ActionType, LoggingControlCharacter a_FormatChar );
-         FormatAction( const char* a_TextStart, size_t a_Length );
-
-         void Execute( const LoggingContext& a_Context, std::string& /* out */ a_ReturnText );
-      };
+      /*****   CLASS   CONSTANTS    *****/
+      public:
+      static const char* DEFAULT_LOGGER_NAME;
+      static const char* DEFAULT_FORMAT;
+      static const LogLevel DEFAULT_LOG_LEVEL = LogLevel::Trace;
 
       /*****   CLASS   VARIABLES    *****/
       private:
-      LoggerParameters m_Parameters;
-      std::vector<FormatAction> m_ActionQueue;
+      std::string m_LoggerName;
+      std::string m_FormatString;
+      LogLevel m_BaseLoggingLevel;
       mutable std::chrono::time_point<std::chrono::steady_clock> m_LastMessageTimeStamp;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
-      Logger( const LoggerParameters& a_Parameters ) noexcept;
-      Logger( LoggerParameters&& a_Parameters ) noexcept;
+      Logger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const char* a_FormatString ) noexcept;
+      Logger( const std::string& a_LoggerName, const LogLevel a_BaseLoggingLevel, const std::string& a_FormatString ) noexcept;
+      Logger( const std::string& a_LoggerName, const LogLevel a_BaseLoggingLevel, std::string&& a_FormatString ) noexcept;
+      Logger( std::string&& a_LoggerName, const LogLevel a_BaseLoggingLevel, const std::string& a_FormatString ) noexcept;
+      Logger( std::string&& a_LoggerName, const LogLevel a_BaseLoggingLevel, std::string&& a_FormatString ) noexcept;
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
@@ -138,37 +105,40 @@ namespace Flare::Logging
       }
 
       private:
-      void CompileFormat( const char* a_LoggingFormat );
-      std::string ExecuteQueue( const LoggingContext& a_Context ) const;
-
       template<typename... Ts>
       void Log( const LogLevel& a_LogLevel, const char*& a_Message, const Ts&... args )
       {
-         if ( a_LogLevel >= m_Parameters.m_BaseLoggingLevel )
+         if ( a_LogLevel >= m_BaseLoggingLevel )
          {
-            LoggingContext x_Context( *this, a_LogLevel, std::move( std::format( a_Message, args... ) ) );
-            std::string x_ConsoleFormattedMessage = std::move( ExecuteQueue( x_Context ) );
-            std::cout << x_ConsoleFormattedMessage;
+            std::string x_Message = std::move( std::format( a_Message, args... ) );
+            LoggingContext x_Context( *this, a_LogLevel, x_Message );
+            std::cout << std::format( m_FormatString, x_Context );
          }
       }
 
       template<>
       void Log( const LogLevel& a_LogLevel, const char*& a_Message )
       {
-         if ( a_LogLevel >= m_Parameters.m_BaseLoggingLevel )
+         if ( a_LogLevel >= m_BaseLoggingLevel )
          {
-            LoggingContext x_Context( *this, a_LogLevel, std::move( std::string( a_Message ) ) );
-            std::string x_ConsoleFormattedMessage = std::move( ExecuteQueue( x_Context ) );
-            std::cout << x_ConsoleFormattedMessage;
+            std::string x_Message( a_Message );
+            LoggingContext x_Context( *this, a_LogLevel, x_Message );
+            std::cout << std::format( m_FormatString, x_Context );
          }
       }
 
       /*****   SETTERS   *****/
       public:
-      void SetParameters( LoggerParameters&& a_Parameters );
+      inline void SetLoggingLevel( LogLevel a_LogLevel ) { m_BaseLoggingLevel = a_LogLevel; }
+      inline void SetName( const std::string& a_Name ) { m_LoggerName = a_Name; }
+      inline void SetName( std::string&& a_Name ) { m_LoggerName = std::move( a_Name ); }
+      inline void SetFormatString( const std::string& a_FormatString ) { m_FormatString = a_FormatString; }
+      inline void SetFormatString( std::string&& a_FormatString ) { m_FormatString = std::move( a_FormatString ); }
 
       /*****   GETTERS   *****/
       public:
-      const LoggerParameters& GetParameters() const;
+      inline LogLevel GetLoggingLevel() const { return m_BaseLoggingLevel; }
+      inline const std::string& GetName() const { return m_LoggerName; }
+      inline const std::string& GetFormatString() const { return m_FormatString; }
    };
 }

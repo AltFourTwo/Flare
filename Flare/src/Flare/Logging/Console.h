@@ -2,14 +2,13 @@
 
 #include "Logging.h"
 #include "Logger.h"
-#include "LoggerParameters.h"
 
-namespace Flare
+namespace Flare::Logging
 {
    class Console
    {
       public:
-      using SharedLogger = std::shared_ptr<Logging::Logger>;
+      using SharedLogger = std::shared_ptr<Logger>;
 
       /*****   CLASS   CONSTANTS    *****/
       private:
@@ -29,8 +28,11 @@ namespace Flare
 
       /*****   CLASS   FUNCTIONS    *****/
       public:
-      static SharedLogger& CreateLogger( const Logging::LoggerParameters& a_Parameters ) noexcept;
-      static SharedLogger& CreateLogger( Logging::LoggerParameters&& a_Parameters ) noexcept;
+      static SharedLogger& CreateLogger( const char* a_LoggerName = Logger::DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = Logger::DEFAULT_LOG_LEVEL, const char* a_FormatString = Logger::DEFAULT_FORMAT ) noexcept;
+      static SharedLogger& CreateLogger( const std::string& a_LoggerName = Logger::DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = Logger::DEFAULT_LOG_LEVEL, const std::string& a_FormatString = Logger::DEFAULT_FORMAT ) noexcept;
+      static SharedLogger& CreateLogger( const std::string& a_LoggerName = Logger::DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = Logger::DEFAULT_LOG_LEVEL, std::string&& a_FormatString = Logger::DEFAULT_FORMAT ) noexcept;
+      static SharedLogger& CreateLogger( std::string&& a_LoggerName = Logger::DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = Logger::DEFAULT_LOG_LEVEL, const std::string& a_FormatString = Logger::DEFAULT_FORMAT ) noexcept;
+      static SharedLogger& CreateLogger( std::string&& a_LoggerName = Logger::DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = Logger::DEFAULT_LOG_LEVEL, std::string&& a_FormatString = Logger::DEFAULT_FORMAT ) noexcept;
 
       /*****   CLASS   OPERATORS    *****/
       void operator=( const Console& ) = delete;
@@ -42,14 +44,14 @@ namespace Flare
    };
 }
 
-#define FLARE_CORE_TRACE(...) (*::Flare::Console::GetInstance().GetCoreLogger()).Trace(__VA_ARGS__)
-#define FLARE_CORE_INFO(...)  (*::Flare::Console::GetInstance().GetCoreLogger()).Info(__VA_ARGS__)
-#define FLARE_CORE_WARN(...)  (*::Flare::Console::GetInstance().GetCoreLogger()).Warn(__VA_ARGS__)
-#define FLARE_CORE_ERROR(...) (*::Flare::Console::GetInstance().GetCoreLogger()).Error(__VA_ARGS__)
-#define FLARE_CORE_FATAL(...) (*::Flare::Console::GetInstance().GetCoreLogger()).Fatal(__VA_ARGS__)
+#define FLARE_CORE_TRACE(...) (*::Flare::Logging::Console::GetInstance().GetCoreLogger()).Trace(__VA_ARGS__)
+#define FLARE_CORE_INFO(...)  (*::Flare::Logging::Console::GetInstance().GetCoreLogger()).Info(__VA_ARGS__)
+#define FLARE_CORE_WARN(...)  (*::Flare::Logging::Console::GetInstance().GetCoreLogger()).Warn(__VA_ARGS__)
+#define FLARE_CORE_ERROR(...) (*::Flare::Logging::Console::GetInstance().GetCoreLogger()).Error(__VA_ARGS__)
+#define FLARE_CORE_FATAL(...) (*::Flare::Logging::Console::GetInstance().GetCoreLogger()).Fatal(__VA_ARGS__)
 
-#define FLARE_TRACE(...) (*::Flare::Console::GetInstance().GetClientLogger()).Trace(__VA_ARGS__)
-#define FLARE_INFO(...)  (*::Flare::Console::GetInstance().GetClientLogger()).Info(__VA_ARGS__)
-#define FLARE_WARN(...)  (*::Flare::Console::GetInstance().GetClientLogger()).Warn(__VA_ARGS__)
-#define FLARE_ERROR(...) (*::Flare::Console::GetInstance().GetClientLogger()).Error(__VA_ARGS__)
-#define FLARE_FATAL(...) (*::Flare::Console::GetInstance().GetClientLogger()).Fatal(__VA_ARGS__)
+#define FLARE_TRACE(...) (*::Flare::Logging::Console::GetInstance().GetClientLogger()).Trace(__VA_ARGS__)
+#define FLARE_INFO(...)  (*::Flare::Logging::Console::GetInstance().GetClientLogger()).Info(__VA_ARGS__)
+#define FLARE_WARN(...)  (*::Flare::Logging::Console::GetInstance().GetClientLogger()).Warn(__VA_ARGS__)
+#define FLARE_ERROR(...) (*::Flare::Logging::Console::GetInstance().GetClientLogger()).Error(__VA_ARGS__)
+#define FLARE_FATAL(...) (*::Flare::Logging::Console::GetInstance().GetClientLogger()).Fatal(__VA_ARGS__)
