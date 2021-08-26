@@ -18,8 +18,8 @@ namespace Flare::Logging
       s_Instance = this;
 
       m_ExtraLoggers.reserve( MAX_EXTRA_LOGGERS );
-      m_CoreLogger = std::make_shared<Logger>( "Core", LogLevel::Trace, "[%T] &N : &M" );
-      m_ClientLogger = std::make_shared<Logger>( "Client", LogLevel::Trace, "[%T] &N : &M" );
+      m_CoreLogger = std::make_shared<Logger>( "Core", LogLevel::Trace, "[{0:t%H:%M}] {0:N} : {0:M}\n" );
+      m_ClientLogger = std::make_shared<Logger>( "Client", LogLevel::Trace, "[{0:t%H:%M}] ({0:P}) {0:N} : {0:M}\n" );
    }
 
    /*****   CLASS   FUNCTIONS    *****/

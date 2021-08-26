@@ -9,7 +9,7 @@ int main( int argc, char** argv )
    printf( "It begins!\n" );
 
    Flare::Application* app = Flare::Initialize();
-   FLARE_CORE_TRACE( "App Initialized!\n" );
+   FLARE_CORE_TRACE( "App Initialized!" );
 
    app->Run();
    delete app;

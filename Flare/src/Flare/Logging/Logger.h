@@ -20,7 +20,7 @@ namespace Flare::Logging
       std::string m_LoggerName;
       std::string m_FormatString;
       LogLevel m_BaseLoggingLevel;
-      mutable std::chrono::time_point<std::chrono::steady_clock> m_LastMessageTimeStamp;
+      mutable std::chrono::system_clock::time_point m_LastMessageTimeStamp;
 
       /*****   CLASS   C-TOR D-TOR  *****/
       public:
@@ -113,6 +113,7 @@ namespace Flare::Logging
             std::string x_Message = std::move( std::format( a_Message, args... ) );
             LoggingContext x_Context( *this, a_LogLevel, x_Message );
             std::cout << std::format( m_FormatString, x_Context );
+            m_LastMessageTimeStamp = std::chrono::system_clock::now();
          }
       }
 
@@ -140,5 +141,6 @@ namespace Flare::Logging
       inline LogLevel GetLoggingLevel() const { return m_BaseLoggingLevel; }
       inline const std::string& GetName() const { return m_LoggerName; }
       inline const std::string& GetFormatString() const { return m_FormatString; }
+      inline const std::chrono::system_clock::time_point& GetLastMessageTimeStamp() const { return m_LastMessageTimeStamp; }
    };
 }

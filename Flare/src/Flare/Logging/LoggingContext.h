@@ -24,6 +24,11 @@ namespace Flare::Logging
 template<>
 class std::formatter<Flare::Logging::LoggingContext>
 {
+   /*****   NESTED  CLASSES      *****/
+   private:
+   Flare::Logging::LoggingControlCharacter m_Indicator = Flare::Logging::LoggingControlCharacter::UNDEFINED;
+   std::string m_SubFormat = "";
+
    public:
    typename std::format_parse_context::iterator parse( std::format_parse_context& a_ParseContext );
    typename std::format_context::iterator format( Flare::Logging::LoggingContext a_LoggingContext, std::format_context& a_FormatContext );
