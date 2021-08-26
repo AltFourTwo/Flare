@@ -4,8 +4,6 @@
 
 #include "UtilityException.h"
 
-#include "Composing/Composition.h"
-
 namespace Utility::Exceptions
 {
    /**************************************\

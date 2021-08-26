@@ -5,7 +5,6 @@
 #include "Flare/UserInterface/Layer.h"
 
 #include "Flare/Logging/LogEmitter.h"
-#include "Flare/Logging/LoggerParameters.h"
 
 #include "Flare/UserInput/Input.h"
 #include "Flare/UserInput/InputCodes.h"

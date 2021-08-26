@@ -11,7 +11,7 @@ Sandbox::Sandbox()
 
    PushLayer( new ExampleLayer() );
    PushLayer( new SandboxTesting::RenderingTestLayer() );
-   FLARE_TRACE( "Sandbox has pushed 2 layers!\n" );
+   FLARE_TRACE( "Sandbox has pushed 2 layers!" );
 }
 
 Sandbox::~Sandbox() {}

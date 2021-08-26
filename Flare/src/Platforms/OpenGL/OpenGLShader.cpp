@@ -18,6 +18,7 @@ namespace Flare::Rendering
          return GL_FRAGMENT_SHADER;
 
       FLARE_CORE_ASSERT( false, "Unknown shader type !" ); // TODO more logs & error codes.
+      return 0;
    }
 
    /*****   CLASS   C-TOR D-TOR  *****/

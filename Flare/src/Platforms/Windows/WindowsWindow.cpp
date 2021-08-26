@@ -39,7 +39,7 @@ namespace Flare::UserInterface
 
    void WindowsWindow::Init( const WindowModel& a_Model )
    {
-      LOG_TRACE( "WindowsWindow Init!\n" );
+      LOG_TRACE( "WindowsWindow Init!" );
 
       if ( !s_GLFWInitialized )
       {
@@ -53,12 +53,12 @@ namespace Flare::UserInterface
 
       if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( Rendering::API::OpenGL ) )
       {
-         LOG_TRACE( "Input scheme initialized and tied to window!\n" );
+         LOG_TRACE( "Input scheme initialized and tied to window!" );
          SetInputScheme( UserInput::WindowsInput::GetInstance() );
       }
       else
       {
-         LOG_TRACE( "Input scheme already initialized! Tying existing scheme to window.\n" );
+         LOG_TRACE( "Input scheme already initialized! Tying existing scheme to window." );
          SetInputScheme( UserInput::WindowsInput::GetInstance() );
       }
 
@@ -66,7 +66,7 @@ namespace Flare::UserInterface
       glfwMakeContextCurrent( m_Window );
 
       int x_Status = gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress );
-      FLARE_CORE_ASSERT( x_Status, "Failed to initialize Glad!\n" ); // TODO more logs & error codes.
+      FLARE_CORE_ASSERT( x_Status, "Failed to initialize Glad!" ); // TODO more logs & error codes.
 
       glfwSetWindowUserPointer( m_Window, &m_WindowData );
       SetVSync( m_WindowData.VSync );
@@ -173,7 +173,7 @@ namespace Flare::UserInterface
       glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 6 );
       glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
 
-      LOG_TRACE( "WindowsWindow Init Completed!\n" );
+      LOG_TRACE( "WindowsWindow Init Completed!" );
    }
 
    void WindowsWindow::Shutdown()
@@ -193,7 +193,7 @@ namespace Flare::UserInterface
 
    static void GLFWErrorCallback( int a_Error, const char* a_Desc )
    {
-      FLARE_CORE_ERROR( "GLFW Error. Code [{0}] : {1}\n", a_Error, a_Desc ); // TODO more logs & error codes.
+      FLARE_CORE_ERROR( "GLFW Error. Code [{0}] : {1}", a_Error, a_Desc ); // TODO more logs & error codes.
    }
 
    /*****   GETTERS   *****/

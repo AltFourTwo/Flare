@@ -96,7 +96,7 @@ namespace SandboxTesting
 
    RenderingTestLayer::~RenderingTestLayer()
    {
-      printf( "RenderingTestLayer Destroyed!\n" );
+      printf( "RenderingTestLayer Destroyed!" );
    }
 
    void RenderingTestLayer::OnEvent( Flare::Events::Event& a_Event )

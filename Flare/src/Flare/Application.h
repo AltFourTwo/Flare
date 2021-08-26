@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Flare/Core.h"
-#include "Flare/Logging/LoggerParameters.h"
 #include "Flare/Logging/Console.h"
 #include "Flare/Resource/ResourceManager.h"
 #include "Flare/Rendering/RenderingController.h"
@@ -26,7 +25,7 @@ namespace Flare
       /*****   CLASS   VARIABLES    *****/
       private:
       static Application* s_Instance;
-      Console m_Console;
+      Logging::Console m_Console;
       ResourceManager m_ResourceManager;
       Rendering::RenderingController m_RenderingController;
       bool m_Running = true;
