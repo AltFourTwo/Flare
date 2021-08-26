@@ -5,7 +5,7 @@ namespace Flare::Logging
 {
    /*****   CLASS   CONSTANTS    *****/
    const char* DEFAULT_LOGGER_NAME = "Unnamed Logger";
-   const char* DEFAULT_FORMAT = "{:&M}";
+   const char* DEFAULT_FORMAT = "{:M}";
 
    /*****   CLASS   C-TOR D-TOR  *****/
    Logger::Logger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const char* a_FormatString ) noexcept :

@@ -125,6 +125,7 @@ namespace Flare::Logging
             std::string x_Message( a_Message );
             LoggingContext x_Context( *this, a_LogLevel, x_Message );
             std::cout << std::format( m_FormatString, x_Context );
+            m_LastMessageTimeStamp = std::chrono::system_clock::now();
          }
       }
 

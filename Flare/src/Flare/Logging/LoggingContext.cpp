@@ -13,6 +13,7 @@ namespace Flare::Logging
    {}
 }
 
+/*****   CLASS   FUNCTIONS    *****/
 typename std::format_parse_context::iterator std::formatter<Flare::Logging::LoggingContext>::parse( std::format_parse_context& a_ParseContext )
 {
    using U_C_Itr = std::format_parse_context::const_iterator;
