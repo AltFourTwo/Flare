@@ -7,7 +7,7 @@
 
 namespace Flare::UserInterface
 {
-   class FLARE_API LayerStack
+   class LayerStack
    {
       // TODO : Make Iterator using & typedef standards.
       public:

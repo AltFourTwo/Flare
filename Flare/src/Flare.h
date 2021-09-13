@@ -1,7 +1,7 @@
 #pragma once
 
 // For use by Flare applications!
-//#include "Flare/Core.h"
+#include "Flare/Core.h"
 
 #include "Flare/Application.h"
 #include "Flare/UserInterface/Layer.h"
@@ -35,7 +35,3 @@
 // ---------------------------------
 
 #include "Flare/ImGui/ImGuiLayer.h"
-
-// ---------- Entry Point ----------
-#include "Flare/EntryPoint.h"
-// ---------------------------------

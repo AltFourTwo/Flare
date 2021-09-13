@@ -1,4 +1,6 @@
 #pragma once
+#include "Flare/Core.h"
+#include "Flare/Application.h"
 
 #ifdef FLARE_FOR_WINDOWS
 

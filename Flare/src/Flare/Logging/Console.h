@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Flare/Core.h"
 #include "Logging.h"
 #include "Logger.h"
 

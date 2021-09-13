@@ -4,7 +4,7 @@
 
 namespace Flare::Events
 {
-   class FLARE_API MouseMovedEvent : public Event
+   class MouseMovedEvent : public Event
    {
       /*****   VARIABLES   *****/
       private:
@@ -34,7 +34,7 @@ namespace Flare::Events
       FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Mouse ) | static_cast<uint32_t>( EventCategory::Input ) );
    };
 
-   class FLARE_API MouseScrolledEvent : public Event
+   class MouseScrolledEvent : public Event
    {
       /*****   VARIABLES   *****/
       private:
@@ -64,7 +64,7 @@ namespace Flare::Events
       FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Mouse ) | static_cast<uint32_t>( EventCategory::Input ) );
    };
 
-   class FLARE_API MouseButtonEvent : public Event
+   class MouseButtonEvent : public Event
    {
       /*****   VARIABLES   *****/
       protected:
@@ -82,7 +82,7 @@ namespace Flare::Events
       FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::MouseButton ) | static_cast<uint32_t>( EventCategory::Mouse ) | static_cast<uint32_t>( EventCategory::Input ) );
    };
 
-   class FLARE_API MouseButtonPressedEvent : public MouseButtonEvent
+   class MouseButtonPressedEvent : public MouseButtonEvent
    {
       /*****  C-TOR D-TOR  *****/
       public:
@@ -104,7 +104,7 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( MouseButtonPressed );
    };
 
-   class FLARE_API MouseButtonReleasedEvent : public MouseButtonEvent
+   class MouseButtonReleasedEvent : public MouseButtonEvent
    {
       /*****  C-TOR D-TOR  *****/
       public:

@@ -4,7 +4,7 @@
 
 namespace Flare::Events
 {
-   class FLARE_API KeyEvent : public Event
+   class KeyEvent : public Event
    {
       /*****   VARIABLES   *****/
       protected:
@@ -22,7 +22,7 @@ namespace Flare::Events
       FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Keyboard ) | static_cast<uint32_t>( EventCategory::Input ) );
    };
 
-   class FLARE_API KeyPressedEvent : public KeyEvent
+   class KeyPressedEvent : public KeyEvent
    {
       /*****   VARIABLES   *****/
       private:
@@ -50,7 +50,7 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( KeyPressed );
    };
 
-   class FLARE_API KeyReleasedEvent : public KeyEvent
+   class KeyReleasedEvent : public KeyEvent
    {
       /*****  C-TOR D-TOR  *****/
       public:
@@ -72,7 +72,7 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( KeyReleased );
    };
 
-   class FLARE_API KeyTypedEvent : public KeyEvent
+   class KeyTypedEvent : public KeyEvent
    {
       /*****  C-TOR D-TOR  *****/
       public:

@@ -7,25 +7,30 @@ namespace Flare::Rendering
 
    class RenderingController
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
+      static RenderingController* s_Instance;
       Ref<Renderer> m_PrimaryRenderer = nullptr;
       Ref<Renderer> m_SecondaryRenderer = nullptr;
-      Ref<Renderer> m_CurrentRenderer = m_PrimaryRenderer; // Should be a ref?
+      Ref<Renderer> m_CurrentRenderer = m_PrimaryRenderer;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       RenderingController();
-      ~RenderingController();
+      RenderingController( const RenderingController& ) = delete;
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
-      void InitializePrimaryRenderer( Rendering::API a_API, bool a_SetCurrent = false );
-      void InitializeSecondaryRenderer( Rendering::API a_API, bool a_SetCurrent = false );
-      void SwapRenderers();
+      void InitializePrimaryRenderer( API a_API, bool a_SetCurrent = false );
+      void InitializeSecondaryRenderer( API a_API, bool a_SetCurrent = false );
+      void SwitchRenderers();
+
+      private:
+      void InitializeRenderer( Ref<Renderer>& a_Renderer, API a_API, bool a_SetCurrent );
 
       /*****   GETTERS   *****/
       public:
+      inline static const RenderingController& GetInstance() { return *s_Instance; }
       static Renderer& GetRenderer();
       static Renderer& GetPrimaryRenderer();
       static Renderer& GetSecondaryRenderer();

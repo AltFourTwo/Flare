@@ -4,7 +4,7 @@
 
 namespace Flare::Events
 {
-   class FLARE_API WindowCloseEvent : public Event
+   class WindowCloseEvent : public Event
    {
       /*****   FUNCTIONS   *****/
       public:
@@ -21,7 +21,7 @@ namespace Flare::Events
       FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
    };
 
-   class FLARE_API WindowResizeEvent : public Event
+   class WindowResizeEvent : public Event
    {
       /*****   VARIABLES   *****/
       private:
@@ -51,7 +51,7 @@ namespace Flare::Events
       FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
    };
 
-   class FLARE_API WindowFocusEvent : public Event
+   class WindowFocusEvent : public Event
    {
       /*****   FUNCTIONS   *****/
       public:
@@ -68,7 +68,7 @@ namespace Flare::Events
       FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
    };
 
-   class FLARE_API WindowLostFocusEvent : public Event
+   class WindowLostFocusEvent : public Event
    {
       /*****   FUNCTIONS   *****/
       public:
@@ -85,7 +85,7 @@ namespace Flare::Events
       FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
    };
 
-   class FLARE_API WindowMovedEvent : public Event
+   class WindowMovedEvent : public Event
    {
       /*****   VARIABLES   *****/
       private:

@@ -7,12 +7,12 @@
 
 namespace Flare::Rendering
 {
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    OpenGLRendererInterface::OpenGLRendererInterface() :
       RendererInterface(API::OpenGL)
    {}
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    void OpenGLRendererInterface::Init()
    {
       glEnable(GL_BLEND);

@@ -4,7 +4,7 @@
 
 namespace Flare::Events
 {
-   class FLARE_API ApplicationEvent : public Event
+   class ApplicationEvent : public Event
    {
       /*****  C-TOR D-TOR  *****/
       protected:
@@ -14,7 +14,7 @@ namespace Flare::Events
       FLARE_EVENT_CATEGORY( static_cast<uint32_t>(EventCategory::Application) );
    };
 
-   class FLARE_API AppTickEvent : public ApplicationEvent
+   class AppTickEvent : public ApplicationEvent
    {
       /*****  C-TOR D-TOR  *****/
       public:
@@ -32,7 +32,7 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( AppTick );
    };
 
-   class FLARE_API AppBeforeUpdateEvent : public ApplicationEvent
+   class AppBeforeUpdateEvent : public ApplicationEvent
    {
       /*****  C-TOR D-TOR  *****/
       public:
@@ -50,7 +50,7 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( AppBeforeUpdate );
    };
 
-   class FLARE_API AppUpdateEvent : public ApplicationEvent
+   class AppUpdateEvent : public ApplicationEvent
    {
       /*****  C-TOR D-TOR  *****/
       public:
@@ -68,7 +68,7 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( AppUpdate );
    };
 
-   class FLARE_API AppAfterUpdateEvent : public ApplicationEvent
+   class AppAfterUpdateEvent : public ApplicationEvent
    {
       /*****  C-TOR D-TOR  *****/
       public:
@@ -86,7 +86,7 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( AppAfterUpdate );
    };
 
-   class FLARE_API AppBeforeRenderEvent : public ApplicationEvent
+   class AppBeforeRenderEvent : public ApplicationEvent
    {
       /*****  C-TOR D-TOR  *****/
       public:
@@ -104,7 +104,7 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( AppBeforeRender );
    };
 
-   class FLARE_API AppRenderEvent : public ApplicationEvent
+   class AppRenderEvent : public ApplicationEvent
    {
       /*****  C-TOR D-TOR  *****/
       public:
@@ -122,7 +122,7 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( AppRender );
    };
 
-   class FLARE_API AppAfterRenderEvent : public ApplicationEvent
+   class AppAfterRenderEvent : public ApplicationEvent
    {
       /*****  C-TOR D-TOR  *****/
       public:

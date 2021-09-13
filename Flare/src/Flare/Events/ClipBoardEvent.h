@@ -4,7 +4,7 @@
 
 namespace Flare::Events
 {
-   class FLARE_API ClipboardEvent : public Event
+   class ClipboardEvent : public Event
    {
       /*****   VARIABLES   *****/
       protected:
@@ -22,7 +22,7 @@ namespace Flare::Events
       FLARE_EVENT_CATEGORY( static_cast<uint32_t>(EventCategory::Clipboard) );
    };
 
-   class FLARE_API ClipboardCutEvent : public ClipboardEvent
+   class ClipboardCutEvent : public ClipboardEvent
    {
       /*****  C-TOR D-TOR  *****/
       protected:
@@ -44,7 +44,7 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( ClipboardCut );
    };
 
-   class FLARE_API ClipboardCopyEvent : public ClipboardEvent
+   class ClipboardCopyEvent : public ClipboardEvent
    {
       /*****  C-TOR D-TOR  *****/
       protected:
@@ -66,7 +66,7 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( ClipboardCopy );
    };
 
-   class FLARE_API ClipboardPasteEvent : public ClipboardEvent
+   class ClipboardPasteEvent : public ClipboardEvent
    {
       /*****  C-TOR D-TOR  *****/
       protected:

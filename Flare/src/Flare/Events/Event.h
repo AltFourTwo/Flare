@@ -7,7 +7,7 @@
 
 namespace Flare::Events
 {
-   class FLARE_API Event
+   class Event
    {
       /*****   FRIENDS     *****/
       friend class EventDispatcher;

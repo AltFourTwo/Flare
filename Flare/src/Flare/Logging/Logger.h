@@ -1,5 +1,4 @@
 #pragma once
-#include "Flare/Core.h"
 #include "Logging.h"
 #include "LoggingContext.h"
 
@@ -7,7 +6,7 @@
 
 namespace Flare::Logging
 {
-   class FLARE_API Logger
+   class Logger
    {
       /*****   CONSTANTS   *****/
       public:

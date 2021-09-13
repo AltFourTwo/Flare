@@ -10,13 +10,13 @@
 
 namespace Flare::Rendering
 {
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    Renderer::Renderer( API a_API ) :
-      m_CommandInterface(a_API),
+      m_CommandInterface( a_API ),
       m_SceneData()
    {}
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    void Renderer::Init()
    {
       m_CommandInterface.Init();

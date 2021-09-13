@@ -4,7 +4,7 @@
 
 namespace Flare::ProtoImGui
 {
-   class FLARE_API ImGuiLayer : public UserInterface::Layer
+   class ImGuiLayer : public UserInterface::Layer
    {
       /*****  C-TOR D-TOR  *****/
       public:

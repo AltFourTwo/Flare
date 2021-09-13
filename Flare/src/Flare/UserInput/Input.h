@@ -10,7 +10,7 @@ namespace Flare::UserInput
    template<typename T>
    concept DerivedFromInput = std::derived_from<T, Input>;
 
-   class FLARE_API Input
+   class Input
    {
       public:
       using MousePosition = std::pair<float, float>;

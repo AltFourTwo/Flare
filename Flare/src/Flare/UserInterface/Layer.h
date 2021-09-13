@@ -6,7 +6,7 @@
 
 namespace Flare::UserInterface
 {
-   class FLARE_API Layer
+   class Layer
    {
       /*****   VARIABLES   *****/
       protected:

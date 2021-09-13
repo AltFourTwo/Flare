@@ -25,7 +25,7 @@ namespace Flare::UserInterface
       {}
    };
 
-   class FLARE_API Window : protected Logging::LogEmitter
+   class Window : protected Logging::LogEmitter
    {
       public:
       using EventCallback = std::function<void( Flare::Events::Event& )>;
