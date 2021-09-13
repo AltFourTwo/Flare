@@ -22,15 +22,15 @@ namespace Flare::UserInput
    template<InputMapType T_InputMapType, size_t T_Size>
    class InputMap
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       protected:
       static const int s_InputCodes[T_Size];
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       virtual std::string ToString() const { return GetName(); }
 
-      /*****   CLASS   OPERATORS    *****/
+      /*****   OPERATORS    *****/
       public:
       const int& operator[] ( const int a_Index ) const { return s_InputCodes[a_Index]; }
 

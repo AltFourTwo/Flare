@@ -10,23 +10,23 @@ namespace Flare::Logging
       public:
       using SharedLogger = std::shared_ptr<Logger>;
 
-      /*****   CLASS   CONSTANTS    *****/
+      /*****   CONSTANTS   *****/
       private:
       static const int MAX_EXTRA_LOGGERS = 16; // TWEAK/CONFIG
       static Console* s_Instance;
 
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       SharedLogger m_CoreLogger;
       SharedLogger m_ClientLogger;
       std::vector<SharedLogger> m_ExtraLoggers;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       Console();
       Console( const Console& ) = delete;
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       static SharedLogger& CreateLogger( const char* a_LoggerName = Logger::DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = Logger::DEFAULT_LOG_LEVEL, const char* a_FormatString = Logger::DEFAULT_FORMAT ) noexcept;
       static SharedLogger& CreateLogger( const std::string& a_LoggerName = Logger::DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = Logger::DEFAULT_LOG_LEVEL, const std::string& a_FormatString = Logger::DEFAULT_FORMAT ) noexcept;
@@ -34,7 +34,7 @@ namespace Flare::Logging
       static SharedLogger& CreateLogger( std::string&& a_LoggerName = Logger::DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = Logger::DEFAULT_LOG_LEVEL, const std::string& a_FormatString = Logger::DEFAULT_FORMAT ) noexcept;
       static SharedLogger& CreateLogger( std::string&& a_LoggerName = Logger::DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = Logger::DEFAULT_LOG_LEVEL, std::string&& a_FormatString = Logger::DEFAULT_FORMAT ) noexcept;
 
-      /*****   CLASS   OPERATORS    *****/
+      /*****   OPERATORS    *****/
       void operator=( const Console& ) = delete;
 
       /*****   GETTERS   *****/

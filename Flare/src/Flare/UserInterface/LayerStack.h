@@ -14,17 +14,17 @@ namespace Flare::UserInterface
       using LayerIterator_F = std::vector<Layer*>::iterator;
       using LayerIterator_R = std::vector<Layer*>::reverse_iterator;
 
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       std::vector<Layer*> m_Layers;
       unsigned int m_LayerInsertIndex = 0;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       LayerStack();
       ~LayerStack();
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       void PopLayer(Layer* a_Layer);
       void PushLayer(Layer* a_Layer);

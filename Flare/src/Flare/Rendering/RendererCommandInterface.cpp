@@ -5,7 +5,7 @@
 
 namespace Flare::Rendering
 {
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    RendererCommandInterface::RendererCommandInterface( API a_API ):
       m_Interface(Rendering::RendererInterface::CreateInterface(a_API))
    {}

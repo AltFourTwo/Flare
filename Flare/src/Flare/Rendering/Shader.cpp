@@ -9,7 +9,7 @@
 
 namespace Flare::Rendering
 {
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    Ref<Shader> Shader::Create( const std::string& a_Source )
    {
       switch ( RenderingController::GetCurrentRendererUnderlyingAPI() )

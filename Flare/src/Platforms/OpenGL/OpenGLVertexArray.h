@@ -6,17 +6,17 @@ namespace Flare::Rendering
 {
    class OpenGLVertexArray : public VertexArray, OpenGLObject
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       std::vector< Ref<VertexBuffer>> m_VertexBuffers;
       Ref<IndexBuffer> m_IndexBuffer;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       OpenGLVertexArray();
       virtual ~OpenGLVertexArray();
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       virtual void Bind() const override;
       virtual void Unbind() const override;

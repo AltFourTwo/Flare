@@ -10,16 +10,16 @@ namespace Flare::Rendering
 
    class OpenGLVertexBuffer : public VertexBuffer, OpenGLObject
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       BufferLayout m_Layout;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       OpenGLVertexBuffer( float* a_Vertices, uint32_t a_Size );
       virtual ~OpenGLVertexBuffer();
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       virtual void Bind() const override;
       virtual void Unbind() const override;
@@ -37,16 +37,16 @@ namespace Flare::Rendering
 
    class OpenGLIndexBuffer : public IndexBuffer, OpenGLObject
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       uint32_t m_Count;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       OpenGLIndexBuffer( uint32_t* a_Indices, uint32_t a_Count );
       virtual ~OpenGLIndexBuffer();
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       virtual void Bind() const override;
       virtual void Unbind() const override;

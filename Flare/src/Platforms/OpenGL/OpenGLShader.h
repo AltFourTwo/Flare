@@ -15,17 +15,17 @@ namespace Flare::Rendering
       const int MAX_NUMBER_OF_SHADERS = 6;
       const char * NEW_LINE_CHARS = "\r\n";
 
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       mutable std::unordered_map<std::string, GLint> m_UniformLocationCache;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       OpenGLShader( const std::string& a_Source );
       OpenGLShader( const std::string& a_VertexSource, const std::string& a_PixelSource );
       virtual ~OpenGLShader();
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       private:
       void Compile( const std::unordered_map<GLenum, std::string>& a_SplitSources );
       std::unordered_map<GLenum, std::string> PreProcess( const std::string& a_Source );

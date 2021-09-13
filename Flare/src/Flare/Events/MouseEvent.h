@@ -6,18 +6,18 @@ namespace Flare::Events
 {
    class FLARE_API MouseMovedEvent : public Event
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       float m_MouseX, m_MouseY;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       MouseMovedEvent( float a_XPos, float a_YPos ) :
          m_MouseX( a_XPos ),
          m_MouseY( a_YPos )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
@@ -31,23 +31,23 @@ namespace Flare::Events
       inline float GetX() const { return m_MouseX; }
       inline float GetY() const { return m_MouseY; }
       FLARE_EVENT_TYPE( MouseMoved );
-      FLARE_EVENT_CATEGORY( EventCategory::Mouse | EventCategory::Input );
+      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Mouse ) | static_cast<uint32_t>( EventCategory::Input ) );
    };
 
    class FLARE_API MouseScrolledEvent : public Event
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       float m_XOffset, m_YOffset;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       MouseScrolledEvent( float a_XOffset, float a_YOffset ) :
          m_XOffset( a_XOffset ),
          m_YOffset( a_YOffset )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
@@ -61,16 +61,16 @@ namespace Flare::Events
       inline float GetXOffSet() const { return m_XOffset; }
       inline float GetYOffSet() const { return m_YOffset; }
       FLARE_EVENT_TYPE( MouseScrolled );
-      FLARE_EVENT_CATEGORY( EventCategory::Mouse | EventCategory::Input );
+      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Mouse ) | static_cast<uint32_t>( EventCategory::Input ) );
    };
 
    class FLARE_API MouseButtonEvent : public Event
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       protected:
       int m_Button;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       protected:
       MouseButtonEvent( int a_Button ) :
          m_Button( a_Button )
@@ -79,18 +79,18 @@ namespace Flare::Events
       /*****   GETTERS   *****/
       public:
       inline int GetMouseButton() const { return m_Button; }
-      FLARE_EVENT_CATEGORY( EventCategory::MouseButton | EventCategory::Mouse | EventCategory::Input );
+      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::MouseButton ) | static_cast<uint32_t>( EventCategory::Mouse ) | static_cast<uint32_t>( EventCategory::Input ) );
    };
 
    class FLARE_API MouseButtonPressedEvent : public MouseButtonEvent
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       MouseButtonPressedEvent( int a_Button ) :
          MouseButtonEvent( a_Button )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
@@ -106,13 +106,13 @@ namespace Flare::Events
 
    class FLARE_API MouseButtonReleasedEvent : public MouseButtonEvent
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       MouseButtonReleasedEvent( int a_Button ) :
          MouseButtonEvent( a_Button )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {

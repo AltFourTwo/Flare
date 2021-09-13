@@ -8,11 +8,11 @@ namespace Flare::Rendering
 {
    class VertexArray : public IRendererBindable
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       virtual ~VertexArray() {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       static Ref<VertexArray> Create();
 

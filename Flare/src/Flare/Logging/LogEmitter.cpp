@@ -4,7 +4,7 @@
 
 namespace Flare::Logging
 {
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    LogEmitter::LogEmitter( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const char* a_FormatString ) noexcept :
       m_Logger( Console::GetInstance().CreateLogger( a_LoggerName, a_BaseLoggingLevel, a_FormatString ) )
    {}

@@ -8,12 +8,12 @@
 
 namespace Flare::Rendering
 {
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    RendererInterface::RendererInterface( API a_API ) :
       m_API( a_API )
    {}
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    Ref<RendererInterface> RendererInterface::CreateInterface( API a_API )
    {
       switch ( a_API )

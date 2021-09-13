@@ -33,25 +33,20 @@ namespace Flare::Events
       MouseMoved,
       MouseScrolled,
 
-      ClipBoardCut,
-      ClipBoardCopy,
-      ClipBoardPaste,
+      ClipboardCut,
+      ClipboardCopy,
+      ClipboardPaste,
    };
 
-   struct EVENT_CATEGORY_SCOPE
+   enum class EventCategory : uint32_t
    {
-      enum EventCategory
-      {
-         Undefined = 0,
-         Application = Utility::Bits::Masks::BIT00,
-         Window = Utility::Bits::Masks::BIT01,
-         Input = Utility::Bits::Masks::BIT02,
-         Keyboard = Utility::Bits::Masks::BIT03,
-         Mouse = Utility::Bits::Masks::BIT04,
-         MouseButton = Utility::Bits::Masks::BIT05,
-         ClipBoard = Utility::Bits::Masks::BIT06,
-      };
+      Undefined = 0,
+      Application = Utility::Bits::Masks::BIT00,
+      Window = Utility::Bits::Masks::BIT01,
+      Input = Utility::Bits::Masks::BIT02,
+      Keyboard = Utility::Bits::Masks::BIT03,
+      Mouse = Utility::Bits::Masks::BIT04,
+      MouseButton = Utility::Bits::Masks::BIT05,
+      Clipboard = Utility::Bits::Masks::BIT06,
    };
-
-   using EventCategory = EVENT_CATEGORY_SCOPE::EventCategory;
 }

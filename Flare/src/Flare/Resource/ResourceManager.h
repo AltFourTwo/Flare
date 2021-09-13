@@ -14,17 +14,17 @@ namespace Flare
 
    class ResourceManager
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       static ResourceManager* s_Instance;
       mutable std::unordered_map<std::string, Ref<Asset>> m_ResourceMap;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       ResourceManager();
       ResourceManager( const ResourceManager& ) = delete;
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       template<typename T> requires DerivedFromAsset<T>
       static Ref<T> CreateAsset( const std::string& a_Name = "Unnamed Asset", bool a_PersistentData = false )

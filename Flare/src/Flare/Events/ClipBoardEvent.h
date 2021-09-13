@@ -4,87 +4,87 @@
 
 namespace Flare::Events
 {
-   class FLARE_API ClipBoardEvent : public Event
+   class FLARE_API ClipboardEvent : public Event
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       protected:
       const char* m_Data;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       protected:
-      ClipBoardEvent( const char* x_Data ) :
+      ClipboardEvent( const char* x_Data ) :
          m_Data( x_Data )
       {}
 
       /*****   GETTERS   *****/
       public:
       const char* GetData() { return m_Data; }
-      FLARE_EVENT_CATEGORY( EventCategory::ClipBoard );
+      FLARE_EVENT_CATEGORY( static_cast<uint32_t>(EventCategory::Clipboard) );
    };
 
-   class FLARE_API ClipBoardCutEvent : public ClipBoardEvent
+   class FLARE_API ClipboardCutEvent : public ClipboardEvent
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       protected:
-      ClipBoardCutEvent( const char* x_Data ) :
-         ClipBoardEvent( x_Data )
+      ClipboardCutEvent( const char* x_Data ) :
+         ClipboardEvent( x_Data )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
          std::stringstream x_SS;
-         x_SS << "ClipBoardCutEvent";
+         x_SS << "ClipboardCutEvent";
          return x_SS.str();
       }
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( ClipBoardCut );
+      FLARE_EVENT_TYPE( ClipboardCut );
    };
 
-   class FLARE_API ClipBoardCopyEvent : public ClipBoardEvent
+   class FLARE_API ClipboardCopyEvent : public ClipboardEvent
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       protected:
-      ClipBoardCopyEvent( const char* x_Data ) :
-         ClipBoardEvent( x_Data )
+      ClipboardCopyEvent( const char* x_Data ) :
+         ClipboardEvent( x_Data )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
          std::stringstream x_SS;
-         x_SS << "ClipBoardCopyEvent";
+         x_SS << "ClipboardCopyEvent";
          return x_SS.str();
       }
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( ClipBoardCopy );
+      FLARE_EVENT_TYPE( ClipboardCopy );
    };
 
-   class FLARE_API ClipBoardPasteEvent : public ClipBoardEvent
+   class FLARE_API ClipboardPasteEvent : public ClipboardEvent
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       protected:
-      ClipBoardPasteEvent( const char* x_Data ) :
-         ClipBoardEvent( x_Data )
+      ClipboardPasteEvent( const char* x_Data ) :
+         ClipboardEvent( x_Data )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
          std::stringstream x_SS;
-         x_SS << "ClipBoardPasteEvent";
+         x_SS << "ClipboardPasteEvent";
          return x_SS.str();
       }
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( ClipBoardPaste );
+      FLARE_EVENT_TYPE( ClipboardPaste );
    };
 }

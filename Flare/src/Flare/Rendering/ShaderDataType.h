@@ -50,22 +50,22 @@ namespace Flare::Rendering
          Matrix4By4D = 38,
       };
 
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       public:
       DataType m_Type;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       ShaderDataType();
       ShaderDataType( DataType a_DataType );
+
+      /*****   OPERATORS    *****/
+      operator DataType() const { return m_Type; }
 
       /*****   GETTERS   *****/
       public:
       const uint32_t GetComponentCount() const;
       const uint32_t GetSizeOfType() const;
       const char* GetNameOfType( const API a_API ) const;
-
-      /*****   CLASS   OPERATORS    *****/
-      operator DataType() const { return m_Type; }
    };
 }

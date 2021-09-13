@@ -8,7 +8,7 @@ namespace Flare
 {
    ResourceManager* ResourceManager::s_Instance = nullptr;
 
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    ResourceManager::ResourceManager() :
       m_ResourceMap()
    {
@@ -16,5 +16,5 @@ namespace Flare
       s_Instance = this;
    }
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
 }

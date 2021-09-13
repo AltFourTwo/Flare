@@ -11,7 +11,7 @@ namespace Flare::UserInterface
 {
    struct WindowModel
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       std::string Title;
       unsigned int Width;
       unsigned int Height;
@@ -30,11 +30,11 @@ namespace Flare::UserInterface
       public:
       using EventCallback = std::function<void( Flare::Events::Event& )>;
 
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       protected:
       const UserInput::Input* m_InputScheme = nullptr;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       Window() :
          LogEmitter( "Main Window Logger", Logging::LogLevel::Trace, "{0:t%F} at {0:t%H:%M:%OS} | {0:N} says : {0:M} ({0:P})\n" )
@@ -42,7 +42,7 @@ namespace Flare::UserInterface
 
       virtual ~Window() {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       static Window* Create( const bool a_VSync = false, const WindowModel& a_Model = WindowModel() );
       virtual void OnUpdate() = 0;

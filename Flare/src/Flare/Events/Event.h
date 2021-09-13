@@ -9,18 +9,18 @@ namespace Flare::Events
 {
    class FLARE_API Event
    {
-      /*****   CLASS   FRIENDS      *****/
+      /*****   FRIENDS     *****/
       friend class EventDispatcher;
 
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       protected:
       bool m_Handled = false;
       bool m_Intercepted = false;
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       virtual std::string ToString() const { return GetName(); }
-      inline bool IsInCategory( EventCategory a_Category ) { return GetCategoryFlags() & a_Category; }
+      inline bool IsInCategory( EventCategory a_Category ) { return GetCategoryFlags() & static_cast<int>(a_Category); }
 
       /*****   GETTERS   *****/
       public:
@@ -31,8 +31,9 @@ namespace Flare::Events
       virtual int GetCategoryFlags() const = 0;
    };
 
-   /*****   CLASS   OPERATORS    *****/
+   /*****   OPERATORS    *****/
    inline std::ostream& operator<<( std::ostream& os, Event& e ) { return os << e.ToString(); }
+   // TODO : Also implement a std::formatter for event.
 
    // These macros are used as quick definitions of the pure virtual methods in the abstract event class above.
 #define FLARE_EVENT_TYPE(a_Type) static EventType GetStaticType() { return EventType::##a_Type; }\

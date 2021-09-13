@@ -9,7 +9,7 @@
 
 namespace Flare::Rendering
 {
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    ShaderDataType::ShaderDataType() :
       m_Type( DataType::None )
    {}

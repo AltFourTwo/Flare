@@ -4,7 +4,7 @@
 
 namespace Flare::Logging
 {
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    LoggingContext::LoggingContext( const Logger& a_Logger, LogLevel a_LogLevel, const std::string& a_Message ) :
       m_Logger( a_Logger ),
       m_LogLevel( a_LogLevel ),
@@ -13,7 +13,7 @@ namespace Flare::Logging
    {}
 }
 
-/*****   CLASS   FUNCTIONS    *****/
+/*****   FUNCTIONS   *****/
 typename std::format_parse_context::iterator std::formatter<Flare::Logging::LoggingContext>::parse( std::format_parse_context& a_ParseContext )
 {
    using U_C_Itr = std::format_parse_context::const_iterator;

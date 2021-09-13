@@ -8,13 +8,13 @@ namespace Flare::UserInput
    {
       friend class Input;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       protected:
       WindowsInput( KeyMap&& a_KeyMap, ModifierMap&& a_ModifierMap, MouseMap&& a_MouseMap, JoystickMap&& a_JoystickMap, GamePadMap&& a_GamePadMap, GamePadAxisMap&& a_GamePadAxisMap ) :
          Input( std::move( a_KeyMap ), std::move( a_ModifierMap ), std::move( a_MouseMap ), std::move( a_JoystickMap ), std::move( a_GamePadMap ), std::move( a_GamePadAxisMap ) )
       {};
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       protected:
       virtual bool IsKeyPressed_I( int a_Keycode ) const override;
       virtual bool IsMouseButtonPressed_I( int a_Button ) const override;
