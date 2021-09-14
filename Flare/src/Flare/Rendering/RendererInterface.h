@@ -21,6 +21,7 @@ namespace Flare::Rendering
       public:
       static Ref<RendererInterface> CreateInterface(API a_API);
       virtual void Init() = 0;
+      virtual void SetViewport(uint32_t a_X, uint32_t a_Y, uint32_t a_Width, uint32_t a_Height) const = 0;
 
       virtual void SetClearColor( const glm::vec4& a_Color ) const = 0;
       virtual void Clear() const = 0;

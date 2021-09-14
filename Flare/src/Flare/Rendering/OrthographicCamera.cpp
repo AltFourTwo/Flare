@@ -14,6 +14,12 @@ namespace Flare::Rendering
    }
 
    /*****   FUNCTIONS   *****/
+   void OrthographicCamera::SetProjection( float a_Left, float a_Right, float a_Bottom, float a_Top )
+   {
+      m_ProjectionMatrix = glm::ortho( a_Left, a_Right, a_Bottom, a_Top, -1.0f, 1.0f );
+      m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix; // Glm is Column-major.
+   }
+
    void OrthographicCamera::UpdateViewMatrix()
    {
       glm::mat4 x_TransformationMatrix = // Translate then rotate.
