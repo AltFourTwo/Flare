@@ -20,6 +20,11 @@ namespace Flare::Rendering
          m_Interface->Init();
       }
 
+      inline void SetViewport( uint32_t a_X, uint32_t a_Y, uint32_t a_Width, uint32_t a_Height ) const
+      {
+         m_Interface->SetViewport(a_X, a_Y, a_Width, a_Height);
+      }
+
       inline void Clear() const
       {
          m_Interface->Clear();

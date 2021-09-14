@@ -30,6 +30,7 @@ namespace Flare::Rendering
       /*****   FUNCTIONS   *****/
       public:
       void Init();
+      void OnWindowResize(uint32_t a_Width, uint32_t a_Height);
       void BeginScene(const OrthographicCamera& a_Camera);
       void EndScene();
       void Submit( const Ref<Shader>& a_Shader, const Ref<VertexArray>& a_VertexArray );
