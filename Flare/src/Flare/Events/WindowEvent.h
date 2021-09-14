@@ -4,9 +4,9 @@
 
 namespace Flare::Events
 {
-   class FLARE_API WindowCloseEvent : public Event
+   class WindowCloseEvent : public Event
    {
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
@@ -18,23 +18,23 @@ namespace Flare::Events
       /*****   GETTERS   *****/
       public:
       FLARE_EVENT_TYPE( WindowClose );
-      FLARE_EVENT_CATEGORY( EventCategory::Window );
+      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
    };
 
-   class FLARE_API WindowResizeEvent : public Event
+   class WindowResizeEvent : public Event
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       unsigned int m_Width, m_Height;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       WindowResizeEvent(unsigned int a_Width, unsigned int a_Height ) :
          m_Width( a_Width ),
          m_Height( a_Height )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
@@ -48,12 +48,12 @@ namespace Flare::Events
       inline unsigned int GetWidth() const { return m_Width; }
       inline unsigned int GetHeight() const { return m_Height; }
       FLARE_EVENT_TYPE( WindowResize );
-      FLARE_EVENT_CATEGORY( EventCategory::Window );
+      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
    };
 
-   class FLARE_API WindowFocusEvent : public Event
+   class WindowFocusEvent : public Event
    {
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
@@ -65,12 +65,12 @@ namespace Flare::Events
       /*****   GETTERS   *****/
       public:
       FLARE_EVENT_TYPE( WindowFocus );
-      FLARE_EVENT_CATEGORY( EventCategory::Window );
+      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
    };
 
-   class FLARE_API WindowLostFocusEvent : public Event
+   class WindowLostFocusEvent : public Event
    {
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
@@ -82,23 +82,23 @@ namespace Flare::Events
       /*****   GETTERS   *****/
       public:
       FLARE_EVENT_TYPE( WindowLostFocus );
-      FLARE_EVENT_CATEGORY( EventCategory::Window );
+      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
    };
 
-   class FLARE_API WindowMovedEvent : public Event
+   class WindowMovedEvent : public Event
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       int m_XPos, m_YPos;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       WindowMovedEvent(int a_XPos, int a_YPos) :
          m_XPos(a_XPos),
          m_YPos(a_YPos)
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
@@ -112,6 +112,6 @@ namespace Flare::Events
       inline int GetX() const { return m_XPos; }
       inline int GetY() const { return m_YPos; }
       FLARE_EVENT_TYPE( WindowMoved );
-      FLARE_EVENT_CATEGORY( EventCategory::Window );
+      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
    };
 }

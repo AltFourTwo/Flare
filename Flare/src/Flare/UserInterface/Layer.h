@@ -6,18 +6,18 @@
 
 namespace Flare::UserInterface
 {
-   class FLARE_API Layer
+   class Layer
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       protected:
       std::string m_DebugName;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       Layer( const std::string& a_Name = "Layer" );
       virtual ~Layer();
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       virtual void OnAttach() {}
       virtual void OnDetach() {}

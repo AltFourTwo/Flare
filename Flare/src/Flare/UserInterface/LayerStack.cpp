@@ -3,7 +3,7 @@
 
 namespace Flare::UserInterface
 {
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    LayerStack::LayerStack() {}
 
    LayerStack::~LayerStack()
@@ -12,7 +12,7 @@ namespace Flare::UserInterface
          delete x_Layer;
    }
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    void LayerStack::PopLayer( Layer* a_Layer )
    {
       LayerIterator_F x_Layer = std::find(m_Layers.begin(), m_Layers.end(), a_Layer);

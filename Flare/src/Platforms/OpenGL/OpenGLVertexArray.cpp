@@ -8,7 +8,7 @@
 
 namespace Flare::Rendering
 {
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    OpenGLVertexArray::OpenGLVertexArray()
    {
       glGenVertexArrays( 1, &m_OpenGLID );
@@ -19,7 +19,7 @@ namespace Flare::Rendering
       glDeleteVertexArrays( 1, &m_OpenGLID );
    }
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    void OpenGLVertexArray::Bind() const
    {
       glBindVertexArray( m_OpenGLID );
@@ -30,7 +30,6 @@ namespace Flare::Rendering
       glBindVertexArray( 0 );
    }
 
-   /*****   SET&ADD   *****/
    void OpenGLVertexArray::AddVertexBuffer( Ref<VertexBuffer>& a_VertexBuffer )
    {
       FLARE_CORE_ASSERT( a_VertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!" ); // TODO more logs & error codes.
@@ -57,6 +56,7 @@ namespace Flare::Rendering
       m_VertexBuffers.push_back( a_VertexBuffer );
    }
 
+   /*****   SETTERS   *****/
    void OpenGLVertexArray::SetIndexBuffer( Ref<IndexBuffer>& a_IndexBuffer )
    {
       glBindVertexArray( m_OpenGLID );

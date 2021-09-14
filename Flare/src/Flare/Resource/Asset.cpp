@@ -6,7 +6,7 @@
 
 namespace Flare
 {
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    Asset::Asset( const std::string& a_Name, bool a_PersistentData ) :
       m_Name( a_Name ),
       m_Filepath( "" ),
@@ -17,7 +17,7 @@ namespace Flare
 
    Asset::~Asset() {}
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    bool Asset::Load( const std::string& a_Filepath )
    {
       if ( !std::filesystem::exists( a_Filepath ) )

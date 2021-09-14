@@ -6,18 +6,20 @@
 
 namespace Flare::Rendering
 {
-   /*****   CLASS   C-TOR D-TOR  *****/
+   RenderingController* RenderingController::s_Instance = nullptr;
+
+   /*****  C-TOR D-TOR  *****/
    RenderingController::RenderingController() :
       m_PrimaryRenderer( nullptr ),
       m_SecondaryRenderer( nullptr ),
       m_CurrentRenderer( m_PrimaryRenderer )
-   {}
+   {
+      FLARE_CORE_ASSERT( !s_Instance, "An instance of Flare::RenderingController aleady exists!" ); // TODO more logs & error codes.
+      s_Instance = this;
+   }
 
-   RenderingController::~RenderingController()
-   {}
-
-   /*****   CLASS   FUNCTIONS    *****/
-   void RenderingController::SwapRenderers()
+   /*****   FUNCTIONS   *****/
+   void RenderingController::SwitchRenderers()
    {
       if ( m_PrimaryRenderer == nullptr || m_SecondaryRenderer == nullptr )
          throw; // TODO Exception : Can't use swap when a renderer is not set.
@@ -28,24 +30,24 @@ namespace Flare::Rendering
          m_CurrentRenderer = m_PrimaryRenderer;
    }
 
-   void RenderingController::InitializePrimaryRenderer( Rendering::API a_API, bool a_SetCurrent )
+   void RenderingController::InitializeRenderer( Ref<Renderer>& a_Renderer, API a_API, bool a_SetCurrent )
    {
-      m_PrimaryRenderer = std::make_shared<Renderer>( a_API );
+      a_Renderer = std::make_shared<Renderer>( a_API );
 
       if ( a_SetCurrent )
-         m_CurrentRenderer = m_PrimaryRenderer;
+         m_CurrentRenderer = a_Renderer;
 
-      m_PrimaryRenderer->Init();
+      a_Renderer->Init();
    }
 
-   void RenderingController::InitializeSecondaryRenderer( Rendering::API a_API, bool a_SetCurrent )
+   void RenderingController::InitializePrimaryRenderer( API a_API, bool a_SetCurrent )
    {
-      m_SecondaryRenderer = std::make_shared<Renderer>( a_API );
+      InitializeRenderer( m_PrimaryRenderer, a_API, a_SetCurrent );
+   }
 
-      if ( a_SetCurrent )
-         m_CurrentRenderer = m_SecondaryRenderer;
-
-      m_SecondaryRenderer->Init();
+   void RenderingController::InitializeSecondaryRenderer( API a_API, bool a_SetCurrent )
+   {
+      InitializeRenderer( m_SecondaryRenderer, a_API, a_SetCurrent );
    }
 
    /*****   GETTERS   *****/

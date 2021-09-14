@@ -1,5 +1,4 @@
 #pragma once
-#include "Flare/Core.h"
 #include "Logging.h"
 #include "LoggingContext.h"
 
@@ -7,22 +6,22 @@
 
 namespace Flare::Logging
 {
-   class FLARE_API Logger
+   class Logger
    {
-      /*****   CLASS   CONSTANTS    *****/
+      /*****   CONSTANTS   *****/
       public:
       static const char* DEFAULT_LOGGER_NAME;
       static const char* DEFAULT_FORMAT;
       static const LogLevel DEFAULT_LOG_LEVEL = LogLevel::Trace;
 
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       std::string m_LoggerName;
       std::string m_FormatString;
       LogLevel m_BaseLoggingLevel;
       mutable std::chrono::system_clock::time_point m_LastMessageTimeStamp;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       Logger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const char* a_FormatString ) noexcept;
       Logger( const std::string& a_LoggerName, const LogLevel a_BaseLoggingLevel, const std::string& a_FormatString ) noexcept;
@@ -30,7 +29,7 @@ namespace Flare::Logging
       Logger( std::string&& a_LoggerName, const LogLevel a_BaseLoggingLevel, const std::string& a_FormatString ) noexcept;
       Logger( std::string&& a_LoggerName, const LogLevel a_BaseLoggingLevel, std::string&& a_FormatString ) noexcept;
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       template<typename... Ts>
       inline void Trace( const char* a_Message, const Ts&... args )

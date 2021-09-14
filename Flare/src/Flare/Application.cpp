@@ -16,7 +16,7 @@ namespace Flare
 
    Application* Application::s_Instance = nullptr;
 
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    Application::Application() :
       m_Console(),
       m_ResourceManager(),
@@ -37,7 +37,7 @@ namespace Flare
    Application::~Application()
    {}
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    void Application::Run()
    {
       while ( m_Running )
@@ -46,7 +46,7 @@ namespace Flare
          Time::TimeStep x_TimeStep = x_Time - m_LastFrameTime;
          m_LastFrameTime = x_Time;
 
-         //FLARE_CORE_INFO( "TimeStep is {0}s {1}ms", { x_TimeStep.GetSeconds(), x_TimeStep.GetMilliseconds() } );
+         //FLARE_CORE_INFO( "TimeStep is {0}s {1}ms", x_TimeStep.GetSeconds(), x_TimeStep.GetMilliseconds() );
 
          const Rendering::RendererCommandInterface& x_CommandInterface = m_RenderingController.GetRenderer().GetCommandInterface();
          x_CommandInterface.SetClearColor( { 0.5f, 0.25f, 0, 1 } );
@@ -57,16 +57,13 @@ namespace Flare
 
          m_MainWindow->OnUpdate();
 
-         //auto [x, y] = UserInput::Input::GetMousePosition();
-         //FLARE_CORE_TRACE( "{0}, {1}", { x, y } );
-
          // TODO : Should be in a render thread.
+         for ( UserInterface::Layer* x_Layer : m_LayerStack )
+            x_Layer->OnRender( x_TimeStep );
+
          m_ImGuiLayer->Begin();
          for ( UserInterface::Layer* x_Layer : m_LayerStack )
-         {
-            x_Layer->OnRender( x_TimeStep );
             x_Layer->OnImGuiRender();
-         }
          m_ImGuiLayer->End();
 
          m_MainWindow->OnRender();
@@ -93,10 +90,15 @@ namespace Flare
       m_LayerStack.PushOverlay( a_Overlay );
    }
 
-   /*****   EVENT   HANDLERS     *****/
+   /*****   EVENT HANDLERS   *****/
    void Application::OnEvent( Events::Event& e )
    {
       //FLARE_CORE_TRACE( e.ToString().c_str() );
+      Events::EventDispatcher x_Dispatcher( e );
+      x_Dispatcher.Dispatch<Events::WindowCloseEvent>( BIND_EVENT_CALLBACK( OnWindowClose ) );
+
+      if ( e.IsHandled() )
+         return;
 
       for ( UserInterface::LayerStack::LayerIterator_R itr = m_LayerStack.rbegin(); itr != m_LayerStack.rend(); )
       {
@@ -105,8 +107,6 @@ namespace Flare
             break;
       }
 
-      Events::EventDispatcher x_Dispatcher( e );
-      x_Dispatcher.Dispatch<Events::WindowCloseEvent>( BIND_EVENT_CALLBACK( OnWindowClose ) );
    }
 
    bool Application::OnWindowClose( Events::WindowCloseEvent& e )

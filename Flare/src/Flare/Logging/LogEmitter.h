@@ -7,11 +7,11 @@ namespace Flare::Logging
 {
    class LogEmitter
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       protected:
       const Console::SharedLogger& m_Logger;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       protected:
       LogEmitter( const char* a_LoggerName = Logger::DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = Logger::DEFAULT_LOG_LEVEL, const char* a_FormatString = Logger::DEFAULT_FORMAT ) noexcept;
       LogEmitter( const std::string& a_LoggerName = Logger::DEFAULT_LOGGER_NAME, const LogLevel a_BaseLoggingLevel = Logger::DEFAULT_LOG_LEVEL, const std::string& a_FormatString = Logger::DEFAULT_FORMAT ) noexcept;
@@ -21,7 +21,7 @@ namespace Flare::Logging
 
       LogEmitter( const LogEmitter& a_Other ) noexcept;
 
-      /*****   CLASS   OPERATORS    *****/
+      /*****   OPERATORS    *****/
       public:
       void operator=( const LogEmitter& ) = delete;
 

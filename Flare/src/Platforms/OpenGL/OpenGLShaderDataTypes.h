@@ -7,7 +7,7 @@ namespace Flare::Rendering
 {
    class OpenGLShaderDataTypes
    {
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       static const char* GetNameOfType( ShaderDataType::DataType a_DataType );
       static const GLenum GetUnderlyingTypeOfType( ShaderDataType::DataType a_DataType );

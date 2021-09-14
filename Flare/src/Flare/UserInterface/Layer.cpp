@@ -3,7 +3,7 @@
 
 namespace Flare::UserInterface
 {
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    Layer::Layer( const std::string& a_Name ) :
       m_DebugName( a_Name )
    {}

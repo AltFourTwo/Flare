@@ -1,19 +1,12 @@
 #include "SandboxPCH.h"
 #include "RenderingTestLayer.h"
 
-#include "Flare/Core.h"
-#include "Flare/Logging/Console.h"
-#include "Flare/UserInput/Input.h"
-#include "Flare/Events/EventDispatcher.h"
-#include "Flare/Resource/ResourceManager.h"
-#include "Flare/Rendering/RenderingController.h"
-#include "Flare/Resource/FileAsset.h"
-
 #include <glm/gtc/type_ptr.hpp> // Temporary ?
 #include <imgui.h>
 
 namespace SandboxTesting
 {
+   /*****  C-TOR D-TOR  *****/
    RenderingTestLayer::RenderingTestLayer() :
       Layer( "RenderingTestLayer" ),
       m_OrthographicCamera( -1.0f, 1.0f, -1.0f, 1.0f )
@@ -99,17 +92,7 @@ namespace SandboxTesting
       printf( "RenderingTestLayer Destroyed!" );
    }
 
-   void RenderingTestLayer::OnEvent( Flare::Events::Event& a_Event )
-   {
-      Flare::Events::EventDispatcher x_Dispatcher( a_Event );
-      x_Dispatcher.Dispatch<Flare::Events::KeyPressedEvent>( FLARE_BIND_EVENT_FN( RenderingTestLayer::OnKeyPressedEvent ) );
-   }
-
-   bool RenderingTestLayer::OnKeyPressedEvent( Flare::Events::KeyPressedEvent& a_Event )
-   {
-      return false;
-   }
-
+   /*****   FUNCTIONS   *****/
    void RenderingTestLayer::OnUpdate( Flare::Time::TimeStep a_TimeStep )
    {
       Flare::UserInput::Input& x_Input = Flare::UserInput::Input::GetInstance();
@@ -150,5 +133,17 @@ namespace SandboxTesting
       ImGui::DragFloat( "Rotation", &m_CameraRotation, 0.5f, -360.0f, 360.0f );
 
       ImGui::End();
+   }
+
+   /*****   EVENT HANDLERS   *****/
+   void RenderingTestLayer::OnEvent( Flare::Events::Event& a_Event )
+   {
+      Flare::Events::EventDispatcher x_Dispatcher( a_Event );
+      x_Dispatcher.Dispatch<Flare::Events::KeyPressedEvent>( FLARE_BIND_EVENT_FN( RenderingTestLayer::OnKeyPressedEvent ) );
+   }
+
+   bool RenderingTestLayer::OnKeyPressedEvent( Flare::Events::KeyPressedEvent& a_Event )
+   {
+      return false;
    }
 }

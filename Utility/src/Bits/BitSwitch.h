@@ -7,16 +7,16 @@ namespace Utility::Bits
    template<typename T>
    class BitSwitch
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       protected:
       T m_Flags;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       protected:
       BitSwitch();
       BitSwitch( T a_IntegralValue );
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       private:
       static T GetBitMask( const uint8_t& a_Pos );
 
@@ -37,7 +37,7 @@ namespace Utility::Bits
 
    class BitSwitch8 : public BitSwitch<uint8_t>
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       BitSwitch8() : BitSwitch() {}
       BitSwitch8( const uint8_t& a_IntegralValue ) : BitSwitch( a_IntegralValue ) {}
@@ -45,7 +45,7 @@ namespace Utility::Bits
 
    class BitSwitch16 : public BitSwitch<uint16_t>
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       BitSwitch16() : BitSwitch() {}
       BitSwitch16( const uint16_t& a_IntegralValue ) : BitSwitch( a_IntegralValue ) {}
@@ -53,7 +53,7 @@ namespace Utility::Bits
 
    class BitSwitch32 : public BitSwitch<uint32_t>
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       BitSwitch32() : BitSwitch() {}
       BitSwitch32( const uint32_t& a_IntegralValue ) : BitSwitch( a_IntegralValue ) {}
@@ -61,13 +61,13 @@ namespace Utility::Bits
 
    class BitSwitch64 : public BitSwitch<uint64_t>
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       BitSwitch64() : BitSwitch() {}
       BitSwitch64( const uint64_t& a_IntegralValue ) : BitSwitch( a_IntegralValue ) {}
    };
 
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    template<typename T>
    BitSwitch<T>::BitSwitch() :
       m_Flags( 0 )
@@ -78,7 +78,7 @@ namespace Utility::Bits
       m_Flags( a_IntegralValue )
    {}
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    template<typename T>
    T BitSwitch<T>::GetBitMask( const uint8_t& a_Pos )
    {

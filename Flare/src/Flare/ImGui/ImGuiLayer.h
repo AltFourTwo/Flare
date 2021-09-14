@@ -4,14 +4,14 @@
 
 namespace Flare::ProtoImGui
 {
-   class FLARE_API ImGuiLayer : public UserInterface::Layer
+   class ImGuiLayer : public UserInterface::Layer
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       ImGuiLayer();
       ~ImGuiLayer();
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       virtual void OnAttach() override;
       virtual void OnDetach() override;

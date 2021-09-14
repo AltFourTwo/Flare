@@ -25,17 +25,17 @@ namespace Flare::UserInterface
          {}
       };
 
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       GLFWwindow* m_Window;
       WindowData m_WindowData;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       WindowsWindow( const WindowModel& a_Model, const bool a_VSync = false );
       virtual ~WindowsWindow();
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       private:
       virtual void Init( const WindowModel& a_Model );
       virtual void Shutdown();

@@ -4,22 +4,22 @@ namespace Flare::Time
 {
    class TimeStep
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       float m_Time;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       TimeStep( float a_Time = 0.0f )
          : m_Time( a_Time )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
-      float GetSeconds() const { return m_Time; }
-      float GetMilliseconds() const { return m_Time * 1000.0f; }
+      inline float GetSeconds() const { return m_Time; }
+      inline float GetMilliseconds() const { return m_Time * 1000.0f; }
 
-      /*****   CLASS   OPERATORS    *****/
+      /*****   OPERATORS    *****/
       public:
       operator float() const { return m_Time; } // TODO Documentation : The default return value is in seconds.
    };

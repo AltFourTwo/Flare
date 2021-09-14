@@ -14,7 +14,7 @@ namespace Flare::Rendering
    /* BufferElement */
    /*****************/
 
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    BufferElement::BufferElement() :
       Name( "" ),
       Type( ShaderDataType::DataType::None ),
@@ -35,14 +35,14 @@ namespace Flare::Rendering
    /* BufferLayout */
    /****************/
 
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    BufferLayout::BufferLayout( const std::initializer_list<BufferElement>& a_Elements ) :
       m_Elements( a_Elements )
    {
       CalculateOffsetAndStride();
    }
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    void BufferLayout::CalculateOffsetAndStride()
    {
       uint32_t x_Offset = 0;
@@ -60,7 +60,7 @@ namespace Flare::Rendering
    /* VertexBuffer */
    /****************/
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    Ref<VertexBuffer> VertexBuffer::Create( float* a_Vertices, uint32_t a_Size )
    {
       switch ( RenderingController::GetCurrentRendererUnderlyingAPI() )
@@ -82,7 +82,7 @@ namespace Flare::Rendering
    /* IndexBuffer */
    /***************/
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    Ref<IndexBuffer> IndexBuffer::Create( uint32_t* a_Indices, uint32_t a_Count )
    {
       switch ( RenderingController::GetCurrentRendererUnderlyingAPI() )

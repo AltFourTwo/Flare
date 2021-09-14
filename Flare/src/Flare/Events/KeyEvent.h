@@ -4,13 +4,13 @@
 
 namespace Flare::Events
 {
-   class FLARE_API KeyEvent : public Event
+   class KeyEvent : public Event
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       protected:
       int m_KeyCode;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       protected:
       KeyEvent( int a_KeyCode ) :
          m_KeyCode( a_KeyCode )
@@ -19,23 +19,23 @@ namespace Flare::Events
       /*****   GETTERS   *****/
       public:
       inline int GetKeyCode() const { return m_KeyCode; }
-      FLARE_EVENT_CATEGORY( EventCategory::Keyboard | EventCategory::Input );
+      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Keyboard ) | static_cast<uint32_t>( EventCategory::Input ) );
    };
 
-   class FLARE_API KeyPressedEvent : public KeyEvent
+   class KeyPressedEvent : public KeyEvent
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       int m_RepeatCount;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       KeyPressedEvent( int a_KeyCode, int a_RepeatCount ) :
          KeyEvent( a_KeyCode ),
          m_RepeatCount( a_RepeatCount )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
@@ -50,15 +50,15 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( KeyPressed );
    };
 
-   class FLARE_API KeyReleasedEvent : public KeyEvent
+   class KeyReleasedEvent : public KeyEvent
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
-      KeyReleasedEvent( int a_KeyCode) :
+      KeyReleasedEvent( int a_KeyCode ) :
          KeyEvent( a_KeyCode )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {
@@ -72,15 +72,15 @@ namespace Flare::Events
       FLARE_EVENT_TYPE( KeyReleased );
    };
 
-   class FLARE_API KeyTypedEvent : public KeyEvent
+   class KeyTypedEvent : public KeyEvent
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       KeyTypedEvent( int a_KeyCode ) :
          KeyEvent( a_KeyCode )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       std::string ToString() const override
       {

@@ -10,14 +10,14 @@ namespace Flare::Rendering
 
    struct BufferElement
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       std::string Name;
       ShaderDataType Type;
       uint32_t Size;
       uint32_t Offset;
       bool Normalized;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       BufferElement();
       BufferElement( ShaderDataType a_Type, const std::string& a_Name, bool a_Normalized = false );
    };
@@ -28,17 +28,17 @@ namespace Flare::Rendering
 
    class BufferLayout
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       std::vector<BufferElement> m_Elements;
       uint32_t m_Stride = 0;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       BufferLayout() : m_Elements() {}
       BufferLayout( const std::initializer_list<BufferElement>& a_Elements );
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       private:
       void CalculateOffsetAndStride();
 
@@ -59,11 +59,11 @@ namespace Flare::Rendering
 
    class VertexBuffer : public IRendererBindable
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       virtual ~VertexBuffer() {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       static Ref<VertexBuffer> Create( float* a_Vertices, uint32_t a_Size );
 
@@ -80,11 +80,11 @@ namespace Flare::Rendering
 
    class IndexBuffer : public IRendererBindable
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       virtual ~IndexBuffer() {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       static Ref<IndexBuffer> Create( uint32_t* a_Indices, uint32_t a_Count );
       virtual uint32_t GetCount() const = 0;

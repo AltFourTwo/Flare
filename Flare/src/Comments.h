@@ -7,21 +7,23 @@
 
 /*****   NAMESPACE   FUNCTIONS   *****/
 
-/*****   CLASS   FRIENDS      *****/
+/*****   FRIENDS     *****/
 
-/*****   NESTED  CLASSES      *****/
+/*****   NESTED      *****/
 
-/*****   CLASS   CONSTANTS    *****/
+/*****   CONSTANTS   *****/
 
-/*****   CLASS   VARIABLES    *****/
+/*****   VARIABLES   *****/
 
-/*****   CLASS   C-TOR D-TOR  *****/
+/*****  C-TOR D-TOR  *****/
 
-/*****   CLASS   FUNCTIONS    *****/
+/*****   FUNCTIONS   *****/
 
-/*****   CLASS   OPERATORS    *****/
+/*****   EVENT HANDLERS   *****/
 
 /*****   PROPERTIES   *****/
+
+/*****   OPERATORS    *****/
 
 /*****   GETTERS   *****/
 

@@ -2,44 +2,33 @@
 
 #include "Event.h"
 
-#include <functional>
-#include <type_traits>
-
-#if 0
-#define INTELLISENSE_TEMPLATE_HELPER
-#endif
-
-#ifdef INTELLISENSE_TEMPLATE_HELPER
-#include "ApplicationEvent.h"
-#include "WindowEvent.h"
-#include "MouseEvent.h"
-#include "KeyEvent.h"
-namespace _Ev = ::Flare::Events;
-#endif // INTELLISENSE_TEMPLATE_HELPER
-
 namespace Flare::Events
 {
+   template<typename T>
+   concept DerivedFromEvent = std::derived_from<T, Event>;
+
    class EventDispatcher
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       Event& m_Event;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       EventDispatcher( Event& a_Event ) :
          m_Event( a_Event )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
-      template<typename T, typename = std::enable_if_t<std::is_convertible_v<T*, Event*>>>
-      bool Dispatch( std::function<bool( T& )> a_HandlerFunction )
+      // F is deduced by the compiler.
+      template<typename T, typename F> requires DerivedFromEvent<T>
+      bool Dispatch( const F& a_HandlerFunction )
       {
          // Play with Event Interceptors here ?
          if ( m_Event.GetEventType() == T::GetStaticType() )
          {
-            m_Event.m_Handled = a_HandlerFunction(*(T*)&m_Event);
+            m_Event.m_Handled = a_HandlerFunction( static_cast<T&>( m_Event ) );
             return true;
          }
          return false;

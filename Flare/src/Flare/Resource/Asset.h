@@ -7,7 +7,7 @@ namespace Flare
 {
    class Asset
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       std::string m_Name;
       std::string m_Filepath;
@@ -15,13 +15,13 @@ namespace Flare
       Scope<char[]> m_FileBytes;
       bool m_PersistentData;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       Asset( const std::string& a_Name = "Unnamed Asset", bool a_PersistentData = false );
       Asset( const Asset& x_Other ) = delete;
       virtual ~Asset();
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       protected:
       virtual void AfterLoadSetup() = 0;
       virtual void BeforeSaveSetup() = 0;
@@ -34,7 +34,7 @@ namespace Flare
       bool Reload();
       void Save( const std::string& a_Filepath );
 
-      /*****   CLASS   OPERATORS    *****/
+      /*****   OPERATORS    *****/
       void operator=( const Asset& ) = delete;
 
       /*****   GETTERS   *****/

@@ -21,7 +21,7 @@ namespace Flare::Rendering
       return 0;
    }
 
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    OpenGLShader::OpenGLShader( const std::string& a_Source )
    {
       std::unordered_map<GLenum, std::string> x_SplitSources = PreProcess( a_Source );
@@ -44,7 +44,7 @@ namespace Flare::Rendering
       glDeleteProgram( m_OpenGLID );
    }
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    void OpenGLShader::Compile( const std::unordered_map<GLenum, std::string>& a_SplitSources )
    {
       // Some of the code is from Khronos.org's example. May 24 2021.

@@ -11,23 +11,23 @@ namespace Flare::Rendering
 
    class Renderer
    {
-      /*****   NESTED  CLASSES      *****/
+      /*****   NESTED      *****/
       private:
       struct SceneData
       {
          glm::mat4 ViewProjectionMatrix;
       };
 
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       RendererCommandInterface m_CommandInterface;
       SceneData m_SceneData;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       Renderer( API a_API );
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       void Init();
       void BeginScene(const OrthographicCamera& a_Camera);

@@ -10,7 +10,7 @@ namespace Flare::Logging
 {
    Console* Console::s_Instance = nullptr;
 
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    Console::Console() :
       m_ExtraLoggers()
    {
@@ -22,7 +22,7 @@ namespace Flare::Logging
       m_ClientLogger = std::make_shared<Logger>( "Client", LogLevel::Trace, "[{0:t%H:%M}] ({0:P}) {0:N} : {0:M}\n" );
    }
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    Console::SharedLogger& Console::CreateLogger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const char* a_FormatString ) noexcept
    {
       s_Instance->m_ExtraLoggers.emplace_back( std::make_shared<Logger>( a_LoggerName, a_BaseLoggingLevel, a_FormatString ) );

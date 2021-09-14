@@ -10,12 +10,12 @@ namespace Flare::UserInput
    template<typename T>
    concept DerivedFromInput = std::derived_from<T, Input>;
 
-   class FLARE_API Input
+   class Input
    {
       public:
       using MousePosition = std::pair<float, float>;
 
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
       static Input* s_Instance;
       const KeyMap m_KeyMap;
@@ -25,7 +25,7 @@ namespace Flare::UserInput
       const GamePadMap m_GamePadMap;
       const GamePadAxisMap m_GamePadAxisMap;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       protected:
       Input( KeyMap&& a_KeyMap, ModifierMap&& a_ModifierMap, MouseMap&& a_MouseMap, JoystickMap&& a_JoystickMap, GamePadMap&& a_GamePadMap, GamePadAxisMap&& a_GamePadAxisMap ) :
          m_KeyMap( std::move( a_KeyMap ) ),
@@ -36,7 +36,14 @@ namespace Flare::UserInput
          m_GamePadAxisMap( std::move( a_GamePadAxisMap ) )
       {}
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
+      protected:
+      virtual bool IsKeyPressed_I( int a_Keycode ) const = 0;
+      virtual MousePosition GetMousePosition_I() const = 0;
+      virtual bool IsMouseButtonPressed_I( int a_Button ) const = 0;
+      virtual float GetMouseX_I() const = 0;
+      virtual float GetMouseY_I() const = 0;
+
       public:
       template<typename T> requires DerivedFromInput<T>
       static bool Initialize( Flare::Rendering::API a_API )
@@ -86,14 +93,7 @@ namespace Flare::UserInput
          return s_Instance->GetMouseY_I();
       }
 
-      protected:
-      virtual bool IsKeyPressed_I( int a_Keycode ) const = 0;
-      virtual MousePosition GetMousePosition_I() const = 0;
-      virtual bool IsMouseButtonPressed_I( int a_Button ) const = 0;
-      virtual float GetMouseX_I() const = 0;
-      virtual float GetMouseY_I() const = 0;
-
-      /*****   CLASS   OPERATORS    *****/
+      /*****   OPERATORS    *****/
       public:
       const int& operator[] ( const int a_Index ) const { return m_KeyMap[a_Index]; }
    };

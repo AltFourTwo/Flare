@@ -9,11 +9,11 @@ namespace Flare::Rendering
 {
    class Shader : public IRendererBindable
    {
-      /*****   CLASS   C-TOR D-TOR  *****/
+      /*****  C-TOR D-TOR  *****/
       public:
       virtual ~Shader() = default;
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       static Ref<Shader> Create( const std::string& a_Source ); // TODO Replace with a Shader Asset Specialization.
       static Ref<Shader> Create( const std::string& a_VertexSource, const std::string& a_PixelSource );

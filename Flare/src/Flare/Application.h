@@ -20,26 +20,31 @@
 
 namespace Flare
 {
-   class FLARE_API Application
+   class Application
    {
-      /*****   CLASS   VARIABLES    *****/
+      /*****   VARIABLES   *****/
       private:
+      // Singletons
       static Application* s_Instance;
       Logging::Console m_Console;
       ResourceManager m_ResourceManager;
       Rendering::RenderingController m_RenderingController;
-      bool m_Running = true;
-      float m_LastFrameTime = 0.0f;
-      UserInterface::LayerStack m_LayerStack;
+
+      // Windows and Layers
       std::unique_ptr<UserInterface::Window> m_MainWindow;
+      UserInterface::LayerStack m_LayerStack;
       ProtoImGui::ImGuiLayer* m_ImGuiLayer;
 
-      /*****   CLASS   C-TOR D-TOR  *****/
+      // Runtime variables.
+      bool m_Running = true;
+      float m_LastFrameTime = 0.0f;
+
+      /*****  C-TOR D-TOR  *****/
       public:
       Application();
       virtual ~Application();
 
-      /*****   CLASS   FUNCTIONS    *****/
+      /*****   FUNCTIONS   *****/
       public:
       void Run();
       void PopLayer( UserInterface::Layer* a_Layer );

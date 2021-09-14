@@ -21,7 +21,7 @@ namespace Flare::UserInterface
    /*****   NAMESPACE   VARIABLES   *****/
    static bool s_GLFWInitialized = false;
 
-   /*****   CLASS   C-TOR D-TOR  *****/
+   /*****  C-TOR D-TOR  *****/
    WindowsWindow::WindowsWindow( const WindowModel& a_Model, const bool a_VSync ) :
       Window(),
       m_WindowData( a_Model, a_VSync )
@@ -34,7 +34,7 @@ namespace Flare::UserInterface
       Shutdown();
    }
 
-   /*****   CLASS   FUNCTIONS    *****/
+   /*****   FUNCTIONS   *****/
    Window* Window::Create( const bool a_VSync, const WindowModel& a_Model ) { return new WindowsWindow( a_Model, a_VSync ); }
 
    void WindowsWindow::Init( const WindowModel& a_Model )
