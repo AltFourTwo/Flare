@@ -22,9 +22,6 @@ namespace Flare::Rendering
       private:
       void UpdateViewMatrix();
 
-      public:
-      void SetProjection( float a_Left, float a_Right, float a_Bottom, float a_Top );
-
       /*****   GETTERS   *****/
       public:
       const glm::vec3& GetPosition() const { return m_Position; }

@@ -28,7 +28,7 @@ namespace Flare::Events
       bool IsIntercepted() { return m_Intercepted; }
       virtual EventType GetEventType() const = 0;
       virtual const char* GetName() const = 0;
-      virtual uint32_t GetCategoryFlags() const = 0;
+      virtual int GetCategoryFlags() const = 0;
    };
 
    /*****   OPERATORS    *****/
@@ -40,5 +40,5 @@ namespace Flare::Events
                                 virtual EventType GetEventType() const override { return GetStaticType(); }\
                                 virtual const char* GetName() const override { return #a_Type; }
 
-#define FLARE_EVENT_CATEGORY(a_Category) virtual uint32_t GetCategoryFlags() const override { return a_Category; }
+#define FLARE_EVENT_CATEGORY(a_Category) virtual int GetCategoryFlags() const override { return a_Category; }
 }

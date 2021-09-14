@@ -22,11 +22,6 @@ namespace Flare::Rendering
       m_CommandInterface.Init();
    }
 
-   void Renderer::OnWindowResize( uint32_t a_Width, uint32_t a_Height )
-   {
-      m_CommandInterface.SetViewport( 0, 0, a_Width, a_Height );
-   }
-
    void Renderer::BeginScene( const OrthographicCamera& a_Camera )
    {
       m_SceneData.ViewProjectionMatrix = a_Camera.GetViewProjectionMatrix();

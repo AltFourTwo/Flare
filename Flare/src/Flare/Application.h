@@ -37,9 +37,6 @@ namespace Flare
 
       // Runtime variables.
       bool m_Running = true;
-      bool m_Minimized = false;
-      bool m_MainWindowFocused = true;
-      bool m_NoPauseOutsideFocus = false;
       float m_LastFrameTime = 0.0f;
 
       /*****  C-TOR D-TOR  *****/
@@ -58,9 +55,6 @@ namespace Flare
       /*****   EVENT   HANDLERS     *****/
       private:
       void OnEvent( Events::Event& e );
-      bool OnWindowFocus( Events::WindowFocusEvent& e );
-      bool OnWindowLostFocus( Events::WindowLostFocusEvent& e );
-      bool OnWindowResize( Events::WindowResizeEvent& e );
       bool OnWindowClose( Events::WindowCloseEvent& e );
 
       /*****   GETTERS   *****/

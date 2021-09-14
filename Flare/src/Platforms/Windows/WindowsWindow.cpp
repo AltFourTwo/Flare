@@ -72,40 +72,6 @@ namespace Flare::UserInterface
       SetVSync( m_WindowData.VSync );
 
       // GLFW Callbacks
-      /* TODO : This code works when the window is focused in and out normally, but has issues when minimzed. Triggers both events.
-      glfwSetWindowFocusCallback( m_Window, []( GLFWwindow* a_Window, int a_Iconified )
-      {
-         WindowData& x_Data = *(WindowData*)glfwGetWindowUserPointer( a_Window );
-
-         if ( a_Iconified == GLFW_TRUE )
-         {
-            Flare::Events::WindowFocusEvent x_Event;
-            x_Data.Callback( x_Event );
-         }
-         else
-         {
-            Flare::Events::WindowLostFocusEvent x_Event;
-            x_Data.Callback( x_Event );
-         }
-      } );
-
-      glfwSetWindowIconifyCallback( m_Window, []( GLFWwindow* a_Window, int a_Iconified )
-      {
-         WindowData& x_Data = *(WindowData*)glfwGetWindowUserPointer( a_Window );
-
-         if ( a_Iconified == GLFW_TRUE )
-         {
-            Flare::Events::WindowFocusEvent x_Event;
-            x_Data.Callback( x_Event );
-         }
-         else
-         {
-            Flare::Events::WindowLostFocusEvent x_Event;
-            x_Data.Callback( x_Event );
-         }
-      } );
-      */
-
       glfwSetWindowSizeCallback( m_Window, []( GLFWwindow* a_Window, int a_Width, int a_Height )
       {
          WindowData& x_Data = *(WindowData*)glfwGetWindowUserPointer( a_Window );
