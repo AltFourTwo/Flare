@@ -20,7 +20,7 @@ namespace Flare::Events
       /*****   FUNCTIONS   *****/
       public:
       virtual std::string ToString() const { return GetName(); }
-      inline bool IsInCategory( EventCategory a_Category ) { return GetCategoryFlags() & static_cast<int>(a_Category); }
+      inline bool IsInCategory( EventCategory a_Category ) { return GetCategoryFlags() & static_cast<uint32_t>(a_Category); }
 
       /*****   GETTERS   *****/
       public:
