@@ -8,16 +8,18 @@
 namespace Flare::Rendering
 {
    /*****  C-TOR D-TOR  *****/
-   OrthographicCameraController::OrthographicCameraController( float a_AspectRatio, bool a_RotationEnabled ) :
+   OrthographicCameraController::OrthographicCameraController( float a_AspectRatio, bool a_ZoomEnabled, bool a_RotationEnabled ) :
       CameraController( a_AspectRatio ),
-      m_Camera( -m_AspectRatio * m_Zoom, m_AspectRatio* m_Zoom, -m_Zoom, m_Zoom ),
-      m_RotationEnabled( a_RotationEnabled )
+      m_Camera( -m_AspectRatio /* * m_Zoom */, m_AspectRatio /* * m_Zoom */, -m_Zoom, m_Zoom ), // Multiplication by zoom removed while zoom is initialized to 1.0f.
+      m_RotationEnabled( a_RotationEnabled ),
+      m_ZoomEnabled( a_ZoomEnabled )
    {}
 
-   OrthographicCameraController::OrthographicCameraController( float a_Width, float a_Height, bool a_RotationEnabled ) :
+   OrthographicCameraController::OrthographicCameraController( float a_Width, float a_Height, bool a_ZoomEnabled, bool a_RotationEnabled ) :
       CameraController( a_Width, a_Height ),
-      m_Camera( -m_AspectRatio * m_Zoom, m_AspectRatio* m_Zoom, -m_Zoom, m_Zoom ),
-      m_RotationEnabled( a_RotationEnabled )
+      m_Camera( -m_AspectRatio /* * m_Zoom */, m_AspectRatio /* * m_Zoom */, -m_Zoom, m_Zoom ), // Multiplication by zoom removed while zoom is initialized to 1.0f.
+      m_RotationEnabled( a_RotationEnabled ),
+      m_ZoomEnabled( a_ZoomEnabled )
    {}
 
    /*****   FUNCTIONS   *****/
@@ -36,7 +38,7 @@ namespace Flare::Rendering
       else if ( x_Input.IsKeyPressed( FLARE_KEY_S ) )
          m_CameraPosition.y -= m_CameraTranslationSpeed * a_TimeStep.GetSeconds();
 
-      m_Camera.SetPosition(m_CameraPosition);
+      m_Camera.SetPosition( m_CameraPosition );
 
       if ( m_RotationEnabled )
       {
@@ -45,7 +47,7 @@ namespace Flare::Rendering
          else if ( x_Input.IsKeyPressed( FLARE_KEY_E ) )
             m_CameraRotation -= m_CameraRotationSpeed * a_TimeStep.GetSeconds();
 
-         m_Camera.SetRotation(m_CameraRotation);
+         m_Camera.SetRotation( m_CameraRotation );
       }
    }
 
@@ -59,7 +61,10 @@ namespace Flare::Rendering
 
    bool OrthographicCameraController::OnMouseScrolled( Events::MouseScrolledEvent& a_Event )
    {
-      m_Zoom -= a_Event.GetYOffSet();
+      if ( !m_ZoomEnabled )
+         return false;
+
+      m_Zoom -= a_Event.GetYOffSet() / 4;
       m_Camera.SetProjection( -m_AspectRatio * m_Zoom, m_AspectRatio * m_Zoom, -m_Zoom, m_Zoom );
       return false;
    }

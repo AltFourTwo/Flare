@@ -10,12 +10,13 @@ namespace Flare::Rendering
       private:
       OrthographicCamera m_Camera;
       bool m_RotationEnabled;
+      bool m_ZoomEnabled;
 
       /*****  C-TOR D-TOR  *****/
       public:
       OrthographicCameraController() = delete;
-      OrthographicCameraController( float a_AspectRatio, bool a_RotationEnabled = false );
-      OrthographicCameraController( float a_Width, float a_Height, bool a_RotationEnabled = false );
+      OrthographicCameraController( float a_AspectRatio, bool a_ZoomEnabled = true, bool a_RotationEnabled = false );
+      OrthographicCameraController( float a_Width, float a_Height, bool a_ZoomEnabled = true, bool a_RotationEnabled = false );
 
       /*****   FUNCTIONS   *****/
       public:

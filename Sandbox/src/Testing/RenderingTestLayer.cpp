@@ -9,7 +9,7 @@ namespace SandboxTesting
    /*****  C-TOR D-TOR  *****/
    RenderingTestLayer::RenderingTestLayer() :
       Layer( "RenderingTestLayer" ),
-      m_OrthographicCameraController( 1280.0f, 720.0f, true )
+      m_OrthographicCameraController( 1280.0f, 720.0f, true, true )
    {
       // Rectangle/Square in the back.
       m_VertexArray = Flare::Rendering::VertexArray::Create();
