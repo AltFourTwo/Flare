@@ -27,7 +27,7 @@ namespace Flare::Rendering
    {
       UserInput::Input& x_Input = UserInput::Input::GetInstance();
 
-      // TODO : Camera translation speed could be dynamic depending on zoom.
+      // TODO : Camera translation speed could be dynamic depending on zoom. Implement functions/curves.
       if ( x_Input.IsKeyPressed( FLARE_KEY_A ) )
          m_CameraPosition.x -= m_CameraTranslationSpeed * a_TimeStep.GetSeconds();
       else if ( x_Input.IsKeyPressed( FLARE_KEY_D ) )
@@ -64,7 +64,11 @@ namespace Flare::Rendering
       if ( !m_ZoomEnabled )
          return false;
 
+      // TODO : Configurable zoom boundaries and 'speed'. Implement functions/curves.
       m_Zoom -= a_Event.GetYOffSet() / 4;
+      m_Zoom = std::max(m_Zoom, 0.25f);
+      m_Zoom = std::min(m_Zoom, 5.0f);
+
       m_Camera.SetProjection( -m_AspectRatio * m_Zoom, m_AspectRatio * m_Zoom, -m_Zoom, m_Zoom );
       return false;
    }
