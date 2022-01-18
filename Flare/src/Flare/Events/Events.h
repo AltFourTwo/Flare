@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Bits/Masks.h"
 #include "Flare/Core.h"
+#include "Bits/Bits.h"
 
 namespace Flare::Events
 {
@@ -16,12 +16,8 @@ namespace Flare::Events
       WindowMoved,
 
       AppTick,
-      AppBeforeUpdate,
       AppUpdate,
-      AppAfterUpdate,
-      AppBeforeRender,
       AppRender,
-      AppAfterRender,
 
       KeyPressed,
       KeyReleased,
@@ -41,12 +37,14 @@ namespace Flare::Events
    enum class EventCategory : uint32_t
    {
       Undefined = 0,
-      Application = Utility::Bits::Masks::BIT00,
-      Window = Utility::Bits::Masks::BIT01,
-      Input = Utility::Bits::Masks::BIT02,
-      Keyboard = Utility::Bits::Masks::BIT03,
-      Mouse = Utility::Bits::Masks::BIT04,
-      MouseButton = Utility::Bits::Masks::BIT05,
-      Clipboard = Utility::Bits::Masks::BIT06,
+
+      Application = Utility::Bits::BIT00,
+      Window = Utility::Bits::BIT01,
+      Keyboard = Utility::Bits::BIT02,
+      Mouse = Utility::Bits::BIT03,
+      Clipboard = Utility::Bits::BIT04,
+
+      // Compound categories.
+      Input = Keyboard | Mouse,
    };
 }

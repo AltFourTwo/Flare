@@ -4,7 +4,14 @@
 
 namespace Flare::Events
 {
-   class WindowCloseEvent : public Event
+   class WindowEvent : public Event
+   {
+      /*****   GETTERS   *****/
+      public:
+      virtual uint32_t GetCategoryFlags() const override { return static_cast<uint32_t>( EventCategory::Window ); }
+   };
+
+   class WindowCloseEvent : public WindowEvent
    {
       /*****   FUNCTIONS   *****/
       public:
@@ -17,11 +24,12 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( WindowClose );
-      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
+      static EventType GetStaticType() { return EventType::WindowClose; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "WindowClose"; }
    };
 
-   class WindowResizeEvent : public Event
+   class WindowResizeEvent : public WindowEvent
    {
       /*****   VARIABLES   *****/
       private:
@@ -47,11 +55,12 @@ namespace Flare::Events
       public:
       inline unsigned int GetWidth() const { return m_Width; }
       inline unsigned int GetHeight() const { return m_Height; }
-      FLARE_EVENT_TYPE( WindowResize );
-      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
+      static EventType GetStaticType() { return EventType::WindowResize; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "WindowResize"; }
    };
 
-   class WindowFocusEvent : public Event
+   class WindowFocusEvent : public WindowEvent
    {
       /*****   FUNCTIONS   *****/
       public:
@@ -64,11 +73,12 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( WindowFocus );
-      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
+      static EventType GetStaticType() { return EventType::WindowFocus; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "WindowFocus"; }
    };
 
-   class WindowLostFocusEvent : public Event
+   class WindowLostFocusEvent : public WindowEvent
    {
       /*****   FUNCTIONS   *****/
       public:
@@ -81,11 +91,12 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( WindowLostFocus );
-      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
+      static EventType GetStaticType() { return EventType::WindowLostFocus; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "WindowLostFocus"; }
    };
 
-   class WindowMovedEvent : public Event
+   class WindowMovedEvent : public WindowEvent
    {
       /*****   VARIABLES   *****/
       private:
@@ -111,7 +122,8 @@ namespace Flare::Events
       public:
       inline int GetX() const { return m_XPos; }
       inline int GetY() const { return m_YPos; }
-      FLARE_EVENT_TYPE( WindowMoved );
-      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Window) );
+      static EventType GetStaticType() { return EventType::WindowMoved; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "WindowMoved"; }
    };
 }

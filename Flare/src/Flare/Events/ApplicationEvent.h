@@ -11,7 +11,7 @@ namespace Flare::Events
       ApplicationEvent() {}
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_CATEGORY( static_cast<uint32_t>(EventCategory::Application) );
+      virtual uint32_t GetCategoryFlags() const override { return static_cast<uint32_t>( EventCategory::Application ); }
    };
 
    class AppTickEvent : public ApplicationEvent
@@ -29,25 +29,9 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppTick );
-   };
-
-   class AppBeforeUpdateEvent : public ApplicationEvent
-   {
-      /*****  C-TOR D-TOR  *****/
-      public:
-      AppBeforeUpdateEvent() : ApplicationEvent() {}
-
-      /*****   FUNCTIONS   *****/
-      std::string ToString() const
-      {
-         std::stringstream x_SS;
-         x_SS << "AppBeforeUpdateEvent";
-         return x_SS.str();
-      }
-
-      /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppBeforeUpdate );
+      static EventType GetStaticType() { return EventType::AppTick; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "AppTick"; }
    };
 
    class AppUpdateEvent : public ApplicationEvent
@@ -65,43 +49,9 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppUpdate );
-   };
-
-   class AppAfterUpdateEvent : public ApplicationEvent
-   {
-      /*****  C-TOR D-TOR  *****/
-      public:
-      AppAfterUpdateEvent() : ApplicationEvent() {}
-
-      /*****   FUNCTIONS   *****/
-      std::string ToString() const
-      {
-         std::stringstream x_SS;
-         x_SS << "AppAfterUpdateEvent";
-         return x_SS.str();
-      }
-
-      /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppAfterUpdate );
-   };
-
-   class AppBeforeRenderEvent : public ApplicationEvent
-   {
-      /*****  C-TOR D-TOR  *****/
-      public:
-      AppBeforeRenderEvent() : ApplicationEvent() {}
-
-      /*****   FUNCTIONS   *****/
-      std::string ToString() const
-      {
-         std::stringstream x_SS;
-         x_SS << "AppBeforeRenderEvent";
-         return x_SS.str();
-      }
-
-      /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppBeforeRender );
+      static EventType GetStaticType() { return EventType::AppUpdate; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "AppUpdate"; }
    };
 
    class AppRenderEvent : public ApplicationEvent
@@ -119,24 +69,8 @@ namespace Flare::Events
       }
 
       /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppRender );
-   };
-
-   class AppAfterRenderEvent : public ApplicationEvent
-   {
-      /*****  C-TOR D-TOR  *****/
-      public:
-      AppAfterRenderEvent() : ApplicationEvent() {}
-
-      /*****   FUNCTIONS   *****/
-      std::string ToString() const
-      {
-         std::stringstream x_SS;
-         x_SS << "AppAfterRenderEvent";
-         return x_SS.str();
-      }
-
-      /*****   GETTERS   *****/
-      FLARE_EVENT_TYPE( AppAfterRender );
+      static EventType GetStaticType() { return EventType::AppRender; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "AppRender"; }
    };
 }

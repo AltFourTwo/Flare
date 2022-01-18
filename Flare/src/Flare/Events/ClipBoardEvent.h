@@ -19,7 +19,7 @@ namespace Flare::Events
       /*****   GETTERS   *****/
       public:
       const char* GetData() { return m_Data; }
-      FLARE_EVENT_CATEGORY( static_cast<uint32_t>(EventCategory::Clipboard) );
+      virtual uint32_t GetCategoryFlags() const override { return static_cast<uint32_t>( EventCategory::Clipboard ); }
    };
 
    class ClipboardCutEvent : public ClipboardEvent
@@ -41,7 +41,9 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( ClipboardCut );
+      static EventType GetStaticType() { return EventType::ClipboardCut; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "ClipboardCut"; }
    };
 
    class ClipboardCopyEvent : public ClipboardEvent
@@ -63,7 +65,9 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( ClipboardCopy );
+      static EventType GetStaticType() { return EventType::ClipboardCopy; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "ClipboardCopy"; }
    };
 
    class ClipboardPasteEvent : public ClipboardEvent
@@ -85,6 +89,8 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( ClipboardPaste );
+      static EventType GetStaticType() { return EventType::ClipboardPaste; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "ClipboardPaste"; }
    };
 }
