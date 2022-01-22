@@ -1,11 +1,11 @@
 #include "gtest/gtest.h"
 
-#include "Bits/Masks.h"
+#include "Bits/Bits.h"
 #include "Bits/BitSwitch.h"
 
 namespace UnitTest::Utility::Bits::BitSwitch16
 {
-   namespace Masks = ::Utility::Bits::Masks;
+   namespace Bits = ::Utility::Bits;
    using BitSwitch16 = ::Utility::Bits::BitSwitch16;
 
    TEST( BitSwitch16_Test, DefaultConstructor )
@@ -16,8 +16,8 @@ namespace UnitTest::Utility::Bits::BitSwitch16
 
    TEST( BitSwitch16_Test, InitializeValueConstructor )
    {
-      BitSwitch16 x_Flags( Masks::BIT03 );
-      EXPECT_EQ( Masks::BIT03, x_Flags.Value() );
+      BitSwitch16 x_Flags( Bits::BIT03 );
+      EXPECT_EQ( Bits::BIT03, x_Flags.Value() );
    }
 
    TEST( BitSwitch16_Test, SetAll )
@@ -31,14 +31,14 @@ namespace UnitTest::Utility::Bits::BitSwitch16
    {
       BitSwitch16 x_Flags;
       x_Flags.Set( 15 );
-      EXPECT_EQ( Masks::BIT15, x_Flags.Value() );
+      EXPECT_EQ( Bits::BIT15, x_Flags.Value() );
    }
 
    TEST( BitSwitch16_Test, SetWithTrue )
    {
       BitSwitch16 x_Flags;
       x_Flags.Set( 14, true );
-      EXPECT_EQ( Masks::BIT14, x_Flags.Value() );
+      EXPECT_EQ( Bits::BIT14, x_Flags.Value() );
    }
 
    TEST( BitSwitch16_Test, SetWithFalse )

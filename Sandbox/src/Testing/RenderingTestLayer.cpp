@@ -9,7 +9,7 @@ namespace SandboxTesting
    /*****  C-TOR D-TOR  *****/
    RenderingTestLayer::RenderingTestLayer() :
       Layer( "RenderingTestLayer" ),
-      m_OrthographicCamera( -1.0f, 1.0f, -1.0f, 1.0f )
+      m_OrthographicCameraController( 1280.0f, 720.0f, true, true )
    {
       // Rectangle/Square in the back.
       m_VertexArray = Flare::Rendering::VertexArray::Create();
@@ -95,29 +95,14 @@ namespace SandboxTesting
    /*****   FUNCTIONS   *****/
    void RenderingTestLayer::OnUpdate( Flare::Time::TimeStep a_TimeStep )
    {
-      Flare::UserInput::Input& x_Input = Flare::UserInput::Input::GetInstance();
-
-      if ( x_Input.IsKeyPressed( FLARE_KEY_LEFT ) )
-         m_CameraPosition.x -= a_TimeStep.GetSeconds();
-
-      if ( x_Input.IsKeyPressed( FLARE_KEY_RIGHT ) )
-         m_CameraPosition.x += a_TimeStep.GetSeconds();
-
-      if ( x_Input.IsKeyPressed( FLARE_KEY_UP ) )
-         m_CameraPosition.y += a_TimeStep.GetSeconds();
-
-      if ( x_Input.IsKeyPressed( FLARE_KEY_DOWN ) )
-         m_CameraPosition.y -= a_TimeStep.GetSeconds();
-
-      m_OrthographicCamera.SetPosition( m_CameraPosition );
-      m_OrthographicCamera.SetRotation( m_CameraRotation );
+      m_OrthographicCameraController.OnUpdate( a_TimeStep );
    }
 
    void RenderingTestLayer::OnRender( Flare::Time::TimeStep a_TimeStep )
    {
       Flare::Rendering::Renderer& x_Renderer = Flare::Rendering::RenderingController::GetRenderer();
 
-      x_Renderer.BeginScene( m_OrthographicCamera );
+      x_Renderer.BeginScene( m_OrthographicCameraController.GetCamera() );
 
       x_Renderer.Submit( m_Shader, m_VertexArray );
       x_Renderer.Submit( m_Shader, m_TriangleVertexArray );
@@ -127,19 +112,16 @@ namespace SandboxTesting
 
    void RenderingTestLayer::OnImGuiRender()
    {
-      ImGui::Begin( "Controls" );
-
-      ImGui::DragFloat3( "Position", glm::value_ptr( m_CameraPosition ), 0.1f, -1.0f, 1.0f );
-      ImGui::DragFloat( "Rotation", &m_CameraRotation, 0.5f, -360.0f, 360.0f );
-
-      ImGui::End();
+      //ImGui::Begin( "Controls" );
+      //ImGui::DragFloat3( "Position", glm::value_ptr( m_CameraPosition ), 0.1f, -1.0f, 1.0f );
+      //ImGui::DragFloat( "Rotation", &m_CameraRotation, 0.5f, -360.0f, 360.0f );
+      //ImGui::End();
    }
 
    /*****   EVENT HANDLERS   *****/
    void RenderingTestLayer::OnEvent( Flare::Events::Event& a_Event )
    {
-      Flare::Events::EventDispatcher x_Dispatcher( a_Event );
-      x_Dispatcher.Dispatch<Flare::Events::KeyPressedEvent>( FLARE_BIND_EVENT_FN( RenderingTestLayer::OnKeyPressedEvent ) );
+      m_OrthographicCameraController.OnEvent( a_Event );
    }
 
    bool RenderingTestLayer::OnKeyPressedEvent( Flare::Events::KeyPressedEvent& a_Event )

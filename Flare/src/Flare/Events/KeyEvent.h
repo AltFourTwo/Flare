@@ -19,7 +19,7 @@ namespace Flare::Events
       /*****   GETTERS   *****/
       public:
       inline int GetKeyCode() const { return m_KeyCode; }
-      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Keyboard ) | static_cast<uint32_t>( EventCategory::Input ) );
+      virtual uint32_t GetCategoryFlags() const override { return static_cast<uint32_t>( EventCategory::Keyboard ); }
    };
 
    class KeyPressedEvent : public KeyEvent
@@ -47,7 +47,9 @@ namespace Flare::Events
       /*****   GETTERS   *****/
       public:
       inline int GetRepeatCount() const { return m_RepeatCount; }
-      FLARE_EVENT_TYPE( KeyPressed );
+      static EventType GetStaticType() { return EventType::KeyPressed; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "KeyPressed"; }
    };
 
    class KeyReleasedEvent : public KeyEvent
@@ -69,7 +71,9 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( KeyReleased );
+      static EventType GetStaticType() { return EventType::KeyReleased; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "KeyReleased"; }
    };
 
    class KeyTypedEvent : public KeyEvent
@@ -91,6 +95,8 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( KeyTyped );
+      static EventType GetStaticType() { return EventType::KeyTyped; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "KeyTyped"; }
    };
 }

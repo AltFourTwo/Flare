@@ -4,7 +4,14 @@
 
 namespace Flare::Events
 {
-   class MouseMovedEvent : public Event
+   class MouseEvent : public Event
+   {
+      /*****   GETTERS   *****/
+      public:
+      virtual uint32_t GetCategoryFlags() const override { return static_cast<uint32_t>( EventCategory::Mouse ); }
+   };
+
+   class MouseMovedEvent : public MouseEvent
    {
       /*****   VARIABLES   *****/
       private:
@@ -30,11 +37,13 @@ namespace Flare::Events
       public:
       inline float GetX() const { return m_MouseX; }
       inline float GetY() const { return m_MouseY; }
-      FLARE_EVENT_TYPE( MouseMoved );
-      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Mouse ) | static_cast<uint32_t>( EventCategory::Input ) );
+      static EventType GetStaticType() { return EventType::MouseMoved; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "MouseMoved"; }
+      
    };
 
-   class MouseScrolledEvent : public Event
+   class MouseScrolledEvent : public MouseEvent
    {
       /*****   VARIABLES   *****/
       private:
@@ -60,11 +69,12 @@ namespace Flare::Events
       public:
       inline float GetXOffSet() const { return m_XOffset; }
       inline float GetYOffSet() const { return m_YOffset; }
-      FLARE_EVENT_TYPE( MouseScrolled );
-      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::Mouse ) | static_cast<uint32_t>( EventCategory::Input ) );
+      static EventType GetStaticType() { return EventType::MouseScrolled; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "MouseScrolled"; }
    };
 
-   class MouseButtonEvent : public Event
+   class MouseButtonEvent : public MouseEvent
    {
       /*****   VARIABLES   *****/
       protected:
@@ -79,7 +89,6 @@ namespace Flare::Events
       /*****   GETTERS   *****/
       public:
       inline int GetMouseButton() const { return m_Button; }
-      FLARE_EVENT_CATEGORY( static_cast<uint32_t>( EventCategory::MouseButton ) | static_cast<uint32_t>( EventCategory::Mouse ) | static_cast<uint32_t>( EventCategory::Input ) );
    };
 
    class MouseButtonPressedEvent : public MouseButtonEvent
@@ -101,7 +110,9 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( MouseButtonPressed );
+      static EventType GetStaticType() { return EventType::MouseButtonPressed; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "MouseButtonPressed"; }
    };
 
    class MouseButtonReleasedEvent : public MouseButtonEvent
@@ -123,6 +134,8 @@ namespace Flare::Events
 
       /*****   GETTERS   *****/
       public:
-      FLARE_EVENT_TYPE( MouseButtonReleased );
+      static EventType GetStaticType() { return EventType::MouseButtonReleased; }
+      virtual EventType GetEventType() const override { return GetStaticType(); }
+      virtual const char* GetName() const override { return "MouseButtonReleased"; }
    };
 }
