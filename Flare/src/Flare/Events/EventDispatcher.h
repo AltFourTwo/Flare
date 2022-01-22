@@ -28,7 +28,7 @@ namespace Flare::Events
          // Play with Event Interceptors here ?
          if ( m_Event.GetEventType() == T::GetStaticType() )
          {
-            m_Event.m_Handled = a_HandlerFunction( static_cast<T&>( m_Event ) );
+            m_Event.m_Handled |= a_HandlerFunction( static_cast<T&>( m_Event ) );
             return true;
          }
          return false;

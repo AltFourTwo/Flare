@@ -80,13 +80,13 @@ namespace Flare::Logging
       }
 
       template<typename... Ts>
-      void Error( const char* a_Message, const Ts&... args )
+      inline void Error( const char* a_Message, const Ts&... args )
       {
          Logger::Log( LogLevel::Error, a_Message, args... );
       }
 
       template<>
-      void Error( const char* a_Message )
+      inline void Error( const char* a_Message )
       {
          Logger::Log( LogLevel::Error, a_Message );
       }
