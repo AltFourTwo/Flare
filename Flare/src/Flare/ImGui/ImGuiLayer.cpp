@@ -1,10 +1,10 @@
 #include "FlarePCH.h"
 #include "ImGuiLayer.h"
 
-#include "imgui.h"
-
-#include "Flare/Application.h"
+#include "Flare/Core/Application.h"
 #include "Platforms/Windows/WindowsWindow.h"
+
+#include <imgui.h>
 
 // TEMPORARY ?
 #include <GLFW/glfw3.h>
@@ -22,7 +22,6 @@ namespace Flare::ProtoImGui
 
    void ImGuiLayer::OnAttach()
    {
-
       // Setup Dear ImGui Context
       IMGUI_CHECKVERSION();
       ImGui::CreateContext();

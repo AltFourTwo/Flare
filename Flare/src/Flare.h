@@ -1,10 +1,11 @@
 #pragma once
 
 // For use by Flare applications!
-#include "Flare/Core.h"
+#include "Flare/Core/Core.h"
 
-#include "Flare/Application.h"
-#include "Flare/UserInterface/Layer.h"
+#include "Flare/Core/Application.h"
+#include "Flare/Core/Layer.h"
+#include "Flare/Core/TimeStep.h"
 
 #include "Flare/Logging/Console.h"
 #include "Flare/Logging/LogEmitter.h"
@@ -18,8 +19,6 @@
 
 #include "Flare/Resource/ResourceManager.h"
 #include "Flare/Resource/FileAsset.h"
-
-#include "Flare/Time/TimeStep.h"
 
 // ----------  Rendering  ----------
 #include "Flare/Rendering/Renderer.h"

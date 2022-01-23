@@ -1,7 +1,7 @@
 #include "FlarePCH.h"
 #include "OrthographicCameraController.h"
 
-#include "Flare/Core.h"
+#include "Flare/Core/Core.h"
 #include "Flare/UserInput/Input.h"
 #include "Flare/Events/EventDispatcher.h"
 

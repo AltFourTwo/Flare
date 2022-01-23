@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Flare/Core.h"
-#include "Console.h"
+#include "Flare/Core/Core.h"
+#include "Flare/Logging/Console.h"
 
 namespace Flare::Logging
 {

@@ -1,7 +1,7 @@
 #pragma once
-#include "Flare/Core.h"
+#include "Flare/Core/Core.h"
 
-#include "Asset.h"
+#include "Flare/Resource/Asset.h"
 
 #include <concepts>
 #include <string>

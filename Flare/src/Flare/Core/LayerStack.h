@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Flare/Core.h"
-#include "Layer.h"
+#include "Flare/Core/Core.h"
+#include "Flare/Core/Layer.h"
 
 #include <vector>
 

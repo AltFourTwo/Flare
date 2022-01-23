@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Flare/Core.h"
-#include "Flare/Time/TimeStep.h"
+#include "Flare/Core/Core.h"
+#include "Flare/Core/TimeStep.h"
 #include "Flare/Events/Event.h"
 
 namespace Flare::UserInterface

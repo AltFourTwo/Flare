@@ -1,7 +1,7 @@
 #include "FlarePCH.h"
 #include "Application.h"
 
-#include "Events/EventDispatcher.h"
+#include "Flare/Events/EventDispatcher.h"
 
 // Temporary Includes
 #include <GLFW/glfw3.h>

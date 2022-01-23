@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Flare/Core.h"
+#include "Flare/Core/Core.h"
+#include "Flare/Core/TimeStep.h"
+#include "Flare/Core/Window.h"
+#include "Flare/Core/LayerStack.h"
+
 #include "Flare/Logging/Console.h"
 #include "Flare/Resource/ResourceManager.h"
 #include "Flare/Rendering/RenderingController.h"
 
-#include "Flare/Time/TimeStep.h"
-
-#include "Flare/UserInterface/Window.h"
-#include "Flare/UserInterface/LayerStack.h"
 #include "Flare/ImGui/ImGuiLayer.h"
 
 #include "Flare/Events/Event.h"

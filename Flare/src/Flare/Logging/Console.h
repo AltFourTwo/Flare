@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Flare/Core.h"
-#include "Logging.h"
-#include "Logger.h"
+#include "Flare/Core/Core.h"
+#include "Flare/Logging/Logging.h"
+#include "Flare/Logging/Logger.h"
 
 namespace Flare::Logging
 {

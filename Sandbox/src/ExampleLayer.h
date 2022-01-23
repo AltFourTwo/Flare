@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Flare/UserInterface/Layer.h"
+#include "Flare/Core/Layer.h"
 
 class ExampleLayer : public Flare::UserInterface::Layer
 {

@@ -2,7 +2,7 @@
 
 #include <functional>
 
-#include "Flare/Core.h"
+#include "Flare/Core/Core.h"
 #include "Flare/Events/Event.h"
 #include "Flare/UserInput/Input.h"
 #include "Flare/Logging/LogEmitter.h"
