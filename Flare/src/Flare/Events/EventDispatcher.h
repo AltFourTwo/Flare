@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Event.h"
+#include "Flare/Events/Event.h"
 
 namespace Flare::Events
 {

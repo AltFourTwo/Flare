@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Flare/Core.h"
+#include "Flare/Core/Core.h"
 #include "Bits/Bits.h"
 
 namespace Flare::Events

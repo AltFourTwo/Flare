@@ -1,7 +1,7 @@
 #include "FlarePCH.h"
 #include "WindowsInput.h"
 
-#include "Flare/Application.h"
+#include "Flare/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 

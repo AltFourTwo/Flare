@@ -1,5 +1,5 @@
 #pragma once
-#include "Flare/Time/TimeStep.h"
+#include "Flare/Core/TimeStep.h"
 #include "Flare/Events/Event.h"
 #include "Flare/Events/MouseEvent.h"
 #include "Flare/Events/WindowEvent.h"

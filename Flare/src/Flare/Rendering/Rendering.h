@@ -1,5 +1,5 @@
 #pragma once
-#include "Flare/Core.h"
+#include "Flare/Core/Core.h"
 
 namespace Flare::Rendering
 {

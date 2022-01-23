@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Flare/Core.h"
-#include "InputMaps.h"
+#include "Flare/Core/Core.h"
+#include "Flare/UserInput/InputMaps.h"
 #include "Platforms/Utils/PlatformUtils.h"
 
 namespace Flare::UserInput
