@@ -2,7 +2,7 @@
 #include "OpenGLVertexArray.h"
 
 #include "OpenGLShaderDataTypes.h"
-#include "Flare/Logging/Console.h"
+#include "Flare/Logging/LogService.h"
 
 #include <glad/glad.h>
 

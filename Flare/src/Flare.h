@@ -7,7 +7,7 @@
 #include "Flare/Core/Layer.h"
 #include "Flare/Core/TimeStep.h"
 
-#include "Flare/Logging/Console.h"
+#include "Flare/Logging/LogService.h"
 #include "Flare/Logging/LogEmitter.h"
 
 #include "Flare/UserInput/Input.h"
