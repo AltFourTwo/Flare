@@ -4,13 +4,13 @@
 
 #ifdef FLARE_FOR_WINDOWS
 
-extern Flare::Application* Flare::Initialize();
+extern Flare::Application* Flare::Start();
 
 int main( int argc, char** argv )
 {
    printf( "It begins!\n" );
 
-   Flare::Application* app = Flare::Initialize();
+   Flare::Application* app = Flare::Start();
    FLARE_CORE_TRACE( "App Initialized!" );
 
    app->Run();

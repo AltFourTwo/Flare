@@ -5,10 +5,6 @@
 #include "Flare/Core/Window.h"
 #include "Flare/Core/LayerStack.h"
 
-#include "Flare/Logging/Console.h"
-#include "Flare/Resource/ResourceManager.h"
-#include "Flare/Rendering/RenderingController.h"
-
 #include "Flare/ImGui/ImGuiLayer.h"
 
 #include "Flare/Events/Event.h"
@@ -26,9 +22,6 @@ namespace Flare
       private:
       // Singletons
       static Application* s_Instance;
-      Logging::Console m_Console;
-      ResourceManager m_ResourceManager;
-      Rendering::RenderingController m_RenderingController;
 
       // Windows and Layers
       std::unique_ptr<UserInterface::Window> m_MainWindow;
@@ -49,6 +42,7 @@ namespace Flare
 
       /*****   FUNCTIONS   *****/
       public:
+      void Initialize();
       void Run();
       void PopLayer( UserInterface::Layer* a_Layer );
       void PushLayer( UserInterface::Layer* a_Layer );
@@ -66,12 +60,11 @@ namespace Flare
       /*****   GETTERS   *****/
       public:
       inline static Application& GetInstance() { return *s_Instance; }
-      inline static const Rendering::RenderingController& GetRenderingController() { return s_Instance->m_RenderingController; }
       inline static UserInterface::Window& GetWindow() { return *s_Instance->m_MainWindow; }
 
       /*****   SETTERS   *****/
    };
 
    // To be defined in client
-   Application* Initialize();
+   Application* Start();
 }

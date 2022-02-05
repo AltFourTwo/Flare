@@ -1,7 +1,7 @@
 #include "FlarePCH.h"
 #include "ResourceManager.h"
 
-#include "Flare/Logging/Console.h"
+#include "Flare/Logging/LogService.h"
 #include "FileAsset.h"
 
 namespace Flare
@@ -9,12 +9,23 @@ namespace Flare
    ResourceManager* ResourceManager::s_Instance = nullptr;
 
    /*****  C-TOR D-TOR  *****/
-   ResourceManager::ResourceManager() :
+   ResourceManager::ResourceManager() noexcept :
       m_ResourceMap()
+   {}
+
+   ResourceManager::~ResourceManager() noexcept
    {
-      FLARE_CORE_ASSERT( !s_Instance, "An instance of Flare::ResouceManager aleady exists!" ); // TODO more logs & error codes.
-      s_Instance = this;
+      // TODO Close open handles ?
+
+      m_ResourceMap.clear();
    }
 
    /*****   FUNCTIONS   *****/
+   ResourceManager& ResourceManager::Initialize()
+   {
+      FLARE_CORE_ASSERT( !s_Instance, "An instance of Flare::ResouceManager aleady exists!" ); // TODO more logs & error codes.
+      s_Instance = new ResourceManager();
+
+      return *s_Instance;
+   }
 }

@@ -20,12 +20,17 @@ namespace Flare
       mutable std::unordered_map<std::string, Ref<Asset>> m_ResourceMap;
 
       /*****  C-TOR D-TOR  *****/
+      private:
+      ResourceManager() noexcept;
+      ~ResourceManager() noexcept;
+
       public:
-      ResourceManager();
       ResourceManager( const ResourceManager& ) = delete;
 
       /*****   FUNCTIONS   *****/
       public:
+      static ResourceManager& Initialize();
+
       template<typename T> requires DerivedFromAsset<T>
       static Ref<T> CreateAsset( const std::string& a_Name = "Unnamed Asset", bool a_PersistentData = false )
       {
@@ -41,6 +46,10 @@ namespace Flare
          static_cast<Asset*>(x_Asset.get())->Load(a_Filepath);
          return x_Asset;
       }
+
+      /*****   OPERATORS    *****/
+      public:
+      void operator=( const ResourceManager& ) = delete;
 
       /*****   GETTERS   *****/
       public:

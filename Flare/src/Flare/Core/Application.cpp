@@ -1,6 +1,10 @@
 #include "FlarePCH.h"
 #include "Application.h"
 
+#include "Flare/Logging/LogService.h"
+#include "Flare/Resource/ResourceManager.h"
+#include "Flare/Rendering/RenderingController.h"
+
 #include "Flare/Events/EventDispatcher.h"
 
 // Temporary Includes
@@ -17,27 +21,33 @@ namespace Flare
    Application* Application::s_Instance = nullptr;
 
    /*****  C-TOR D-TOR  *****/
-   Application::Application() :
-      m_Console(),
-      m_ResourceManager(),
-      m_RenderingController()
+   Application::Application()
    {
       FLARE_CORE_ASSERT( !s_Instance, "An instance of this application already exists!" ); // TODO more logs & error codes.
       s_Instance = this;
-
-      m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );
-      m_MainWindow->SetEventCallback( BIND_EVENT_CALLBACK( OnEvent ) );
-
-      m_RenderingController.InitializePrimaryRenderer( Rendering::API::OpenGL, true );
-
-      m_ImGuiLayer = new ProtoImGui::ImGuiLayer();
-      m_LayerStack.PushOverlay( m_ImGuiLayer );
+      Initialize();
    }
 
    Application::~Application()
    {}
 
    /*****   FUNCTIONS   *****/
+   void Application::Initialize()
+   {
+      /* TODO Config Loading shenanigans. */
+
+      Logging::LogService::Initialize();
+      ResourceManager::Initialize();
+
+      m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );
+      m_MainWindow->SetEventCallback( BIND_EVENT_CALLBACK( OnEvent ) );
+
+      Rendering::RenderingController::Initialize(/* Config */);
+
+      m_ImGuiLayer = new ProtoImGui::ImGuiLayer();
+      m_LayerStack.PushOverlay( m_ImGuiLayer );
+   }
+
    void Application::Run()
    {
       while ( m_Running )
@@ -48,7 +58,8 @@ namespace Flare
 
          //FLARE_CORE_INFO( "TimeStep is {0}s {1}ms", x_TimeStep.GetSeconds(), x_TimeStep.GetMilliseconds() );
 
-         const Rendering::RendererCommandInterface& x_CommandInterface = m_RenderingController.GetRenderer().GetCommandInterface();
+         // This should eventually make its way into a layer or a window of some kind.
+         const auto& x_CommandInterface = Rendering::RenderingController::GetRenderer().GetCommandInterface();
          x_CommandInterface.SetClearColor( { 0.5f, 0.25f, 0, 1 } );
          x_CommandInterface.Clear();
 
@@ -116,7 +127,6 @@ namespace Flare
          if ( e.IsHandled() )
             break;
       }
-
    }
 
    bool Application::OnWindowFocus( Events::WindowFocusEvent& e )
@@ -143,7 +153,11 @@ namespace Flare
       }
 
       m_Minimized = false;
-      m_RenderingController.GetRenderer().GetCommandInterface().SetViewport( 0, 0, e.GetWidth(), e.GetHeight() );
+
+      // This should eventually make its way into a layer or a window of some kind.
+      const auto& x_CommandInterface = Rendering::RenderingController::GetRenderer().GetCommandInterface();
+      x_CommandInterface.SetViewport( 0, 0, e.GetWidth(), e.GetHeight() );
+
       return false;
    }
 
