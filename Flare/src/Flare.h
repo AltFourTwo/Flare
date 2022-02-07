@@ -2,7 +2,6 @@
 
 // For use by Flare applications!
 #include "Flare/Core/Core.h"
-#include "Flare/Core/Assert.h"
 #include "Flare/Core/Log.h"
 #include "Flare/Core/Application.h"
 #include "Flare/Core/Layer.h"
