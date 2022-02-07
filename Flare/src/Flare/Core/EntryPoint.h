@@ -1,5 +1,7 @@
 #pragma once
 #include "Flare/Core/Core.h"
+#include "Flare/Core/Assert.h"
+#include "Flare/Core/Log.h"
 #include "Flare/Core/Application.h"
 
 #ifdef FLARE_FOR_WINDOWS

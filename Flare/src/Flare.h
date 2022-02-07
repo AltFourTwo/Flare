@@ -2,13 +2,11 @@
 
 // For use by Flare applications!
 #include "Flare/Core/Core.h"
-
+#include "Flare/Core/Assert.h"
+#include "Flare/Core/Log.h"
 #include "Flare/Core/Application.h"
 #include "Flare/Core/Layer.h"
 #include "Flare/Core/TimeStep.h"
-
-#include "Flare/Logging/LogService.h"
-#include "Flare/Logging/LogEmitter.h"
 
 #include "Flare/UserInput/Input.h"
 #include "Flare/UserInput/InputCodes.h"

@@ -1,7 +1,8 @@
 #include "FlarePCH.h"
 #include "ResourceManager.h"
 
-#include "Flare/Logging/LogService.h"
+#include "Flare/Core/Assert.h"
+#include "Flare/Core/Log.h"
 #include "FileAsset.h"
 
 namespace Flare

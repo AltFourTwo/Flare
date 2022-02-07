@@ -1,6 +1,8 @@
 #pragma once
 #include "Rendering.h"
 
+#include "Flare/Core/SmartPointers.h"
+
 namespace Flare::Rendering
 {
    class Renderer;

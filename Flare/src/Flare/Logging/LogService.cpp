@@ -2,6 +2,7 @@
 #include "LogService.h"
 
 #include "Flare/Core/Core.h"
+#include "Flare/Core/Assert.h"
 #include "Flare/Logging/Logging.h"
 
 namespace Flare::Logging

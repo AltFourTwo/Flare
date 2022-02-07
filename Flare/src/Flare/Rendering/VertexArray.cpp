@@ -1,7 +1,8 @@
 #include "FlarePCH.h"
 #include "VertexArray.h"
 
-#include "Flare/Logging/LogService.h"
+#include "Flare/Core/Assert.h"
+#include "Flare/Core/Log.h"
 #include "Renderer.h"
 #include "RenderingController.h"
 

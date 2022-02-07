@@ -1,7 +1,7 @@
 #include "FlarePCH.h"
 #include "ShaderDataType.h"
 
-#include "Flare/Logging/LogService.h"
+#include "Flare/Core/Assert.h"
 #include "RenderingController.h"
 
 // Following includes should be surrounded by ifdefs according to platform.

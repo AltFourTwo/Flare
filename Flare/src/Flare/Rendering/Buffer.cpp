@@ -1,7 +1,7 @@
 #include "FlarePCH.h"
 #include "Buffer.h"
 
-#include "Flare/Logging/LogService.h"
+#include "Flare/Core/Assert.h"
 #include "Renderer.h"
 #include "RenderingController.h"
 

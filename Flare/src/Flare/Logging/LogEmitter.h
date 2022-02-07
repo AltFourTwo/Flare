@@ -8,7 +8,7 @@ namespace Flare::Logging
    {
       /*****   VARIABLES   *****/
       protected:
-      const SharedLogger& m_Logger;
+      const SharedLogger m_Logger;
 
       /*****  C-TOR D-TOR  *****/
       protected:
@@ -23,7 +23,7 @@ namespace Flare::Logging
 
       /*****   GETTERS   *****/
       public:
-      inline const SharedLogger& GetLogger() const { return m_Logger; }
+      inline const SharedLogger GetLogger() const { return m_Logger; }
    };
 }
 

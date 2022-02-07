@@ -1,8 +1,8 @@
 #include "FlarePCH.h"
 #include "OpenGLVertexArray.h"
 
+#include "Flare/Core/Assert.h"
 #include "OpenGLShaderDataTypes.h"
-#include "Flare/Logging/LogService.h"
 
 #include <glad/glad.h>
 

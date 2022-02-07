@@ -1,15 +1,15 @@
 #include "FlarePCH.h"
-
-#include "WindowsInput.h"
 #include "WindowsWindow.h"
 
-#include "Flare/Logging/LogService.h"
+#include "Flare/Core/Assert.h"
+#include "Flare/Core/Log.h"
 #include "Flare/Events/ApplicationEvent.h"
 #include "Flare/Events/WindowEvent.h"
 #include "Flare/Events/KeyEvent.h"
 #include "Flare/Events/MouseEvent.h"
 #include "Flare/Events/EventDispatcher.h"
 #include "Platforms/Utils/PlatformUtils.h"
+#include "WindowsInput.h"
 
 #include <glad/glad.h>
 

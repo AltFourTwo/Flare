@@ -1,6 +1,7 @@
 #include "FlarePCH.h"
 #include "RenderingController.h"
 
+#include "Flare/Core/Assert.h"
 #include "Renderer.h"
 
 namespace Flare::Rendering
