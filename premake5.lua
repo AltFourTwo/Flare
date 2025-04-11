@@ -15,7 +15,7 @@ workspace "Flare"
     }
 
 CommonTargetDir = "%{wks.location}/bin/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}/"
-CommonObjDir = "%{wks.location}/b-int/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}/"
+CommonObjDir = "%{wks.location}/bin-int/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}/"
 
 -- Include directories relative to root folder -> Solution Directory
 IncludeDir = {}

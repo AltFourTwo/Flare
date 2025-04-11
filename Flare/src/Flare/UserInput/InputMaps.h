@@ -41,18 +41,39 @@ namespace Flare::UserInput
       virtual const char* GetName() const = 0;
    };
 
-   // This macro is used as quick heritance of the abstract class above.
-#define FLARE_INPUT_MAP_DEF( a_ClassName, a_InputMapTypeName, a_Size ) class\
-   a_ClassName : public InputMap<InputMapType::##a_InputMapTypeName, a_Size>\
-   {\
-      public:\
-      virtual const char* GetName() const override { return #a_InputMapTypeName; }\
-   };\
+   class KeyMap : public InputMap<InputMapType::Keyboard, 128>
+   {
+      public:
+      virtual const char* GetName() const override { return "Keyboard"; }
+   };
 
-   FLARE_INPUT_MAP_DEF( KeyMap, Keyboard, 128 );
-   FLARE_INPUT_MAP_DEF( ModifierMap, Modifier, 6 );
-   FLARE_INPUT_MAP_DEF( MouseMap, Mouse, 8 );
-   FLARE_INPUT_MAP_DEF( JoystickMap, Joystick, 16 );
-   FLARE_INPUT_MAP_DEF( GamePadMap, GamePad, 16 );
-   FLARE_INPUT_MAP_DEF( GamePadAxisMap, GamePadAxis, 6 );
+   class ModifierMap : public InputMap<InputMapType::Modifier, 6>
+   {
+      public:
+      virtual const char* GetName() const override { return "Modifier"; }
+   };
+
+   class MouseMap : public InputMap<InputMapType::Mouse, 8>
+   {
+      public:
+      virtual const char* GetName() const override { return "Mouse"; }
+   };
+
+   class JoystickMap : public InputMap<InputMapType::Joystick, 16>
+   {
+      public:
+      virtual const char* GetName() const override { return "Joystick"; }
+   };
+
+   class GamePadMap : public InputMap<InputMapType::GamePad, 16>
+   {
+      public:
+      virtual const char* GetName() const override { return "GamePad"; }
+   };
+
+   class GamePadAxisMap : public InputMap<InputMapType::GamePadAxis, 6>
+   {
+      public:
+      virtual const char* GetName() const override { return "GamePadAxis"; }
+   };
 }
