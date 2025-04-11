@@ -28,13 +28,17 @@ namespace Flare::Logging
       LOG_LEVEL_P = 'P',            // The severity of the message in pascal case.
       LOG_LEVEL_U = 'U',            // The severity of the message in upper case.
       LOGGER_NAME = 'N',            // The logger that is used to log the message.
+      ESCAPE_SEQUENCE = 'E',
+      FOREGROUND_COLOR = 'F',
+      BACKGROUND_COLOR = 'B',
       ELAPSED = 'e',                // Displays the time since the last message from the logger in it's most significant unit.
       ELAPSED_SECONDS = 's',        // The number of seconds since the last message from the logger. 
       ELAPSED_MILLISECONDS = 'm',   // The number of milliseconds since the last message from the logger.
       ELAPSED_MICROSECONDS = 'u',   // The number of microseconds since the last message from the logger.
       ELAPSED_NANOSECONDS = 'n',    // The number of nanoseconds since the last message from the logger.
-      TIME = 't',                   // The time of instanciation of the context upon logging.
-      THREAD_ID = 'T',              // The thread ID used by ? Where ? Leaving unimplemented for now.
+      TIME = 'T',                   // The time of instanciation of the context upon logging.
+      PROCESS_ID = 'p',             // The process ID used by ? Where ? Leaving unimplemented for now.
+      THREAD_ID = 't',              // The thread ID used by ? Where ? Leaving unimplemented for now.
       ERROR_LCC = '?'               // Error Character.
    };
 

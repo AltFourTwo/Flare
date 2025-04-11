@@ -32,7 +32,7 @@ typename std::format_parse_context::iterator std::formatter<Flare::Logging::Logg
       x_Itr++;
 
    // Create a string for SubFormat.
-   if ( x_Itr - x_SubFormatBegin ) // Essentially, if result > 0
+   if ( x_Itr - x_SubFormatBegin > 0 )
       m_SubFormat = std::format( "{{:{}}}", std::string( x_SubFormatBegin, x_Itr ) );
    else
       m_SubFormat = "{}";
@@ -78,6 +78,11 @@ typename std::format_context::iterator std::formatter<Flare::Logging::LoggingCon
       case Flare::Logging::LoggingControlCharacter::LOGGER_NAME:
          x_BackInserter = std::vformat_to( x_BackInserter, m_SubFormat, std::make_format_args( a_LoggingContext.m_Logger.GetName() ) );
          break;
+
+      case Flare::Logging::LoggingControlCharacter::ESCAPE_SEQUENCE:
+      case Flare::Logging::LoggingControlCharacter::FOREGROUND_COLOR:
+      case Flare::Logging::LoggingControlCharacter::BACKGROUND_COLOR:
+         throw; // TODO
 
       case Flare::Logging::LoggingControlCharacter::ELAPSED:
       case Flare::Logging::LoggingControlCharacter::ELAPSED_SECONDS:

@@ -79,7 +79,7 @@ namespace SandboxTesting
 
       //m_Shader = Flare::Rendering::Shader::Create( x_VertexSource->AsText(), x_PixelSource->AsText() );
 
-      Flare::Ref<Flare::FileAsset> x_SomeSource = Flare::ResourceManager::GetInstance().LoadAsset<Flare::FileAsset>
+      Flare::Ref<Flare::FileAsset> x_SomeSource = Flare::ResourceManager::LoadAsset<Flare::FileAsset>
          ( "./resources/shaders/ShaderTest.notglsl", "Test Shader", true );
 
       m_Shader = Flare::Rendering::Shader::Create( x_SomeSource->AsText() );

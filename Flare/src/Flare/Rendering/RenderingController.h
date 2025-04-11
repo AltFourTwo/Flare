@@ -1,6 +1,8 @@
 #pragma once
 #include "Rendering.h"
 
+#include "Flare/Core/SmartPointers.h"
+
 namespace Flare::Rendering
 {
    class Renderer;
@@ -15,18 +17,26 @@ namespace Flare::Rendering
       Ref<Renderer> m_CurrentRenderer = m_PrimaryRenderer;
 
       /*****  C-TOR D-TOR  *****/
+      private:
+      RenderingController() noexcept;
+      ~RenderingController() = default;
+
       public:
-      RenderingController();
       RenderingController( const RenderingController& ) = delete;
 
       /*****   FUNCTIONS   *****/
       public:
+      static RenderingController& Initialize();
       void InitializePrimaryRenderer( API a_API, bool a_SetCurrent = false );
       void InitializeSecondaryRenderer( API a_API, bool a_SetCurrent = false );
       void SwitchRenderers();
 
       private:
       void InitializeRenderer( Ref<Renderer>& a_Renderer, API a_API, bool a_SetCurrent );
+
+      /*****   OPERATORS    *****/
+      public:
+      void operator=( const RenderingController& ) = delete;
 
       /*****   GETTERS   *****/
       public:

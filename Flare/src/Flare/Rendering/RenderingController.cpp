@@ -1,7 +1,7 @@
 #include "FlarePCH.h"
 #include "RenderingController.h"
 
-#include "Flare/Core/Application.h"
+#include "Flare/Core/Assert.h"
 #include "Renderer.h"
 
 namespace Flare::Rendering
@@ -9,16 +9,35 @@ namespace Flare::Rendering
    RenderingController* RenderingController::s_Instance = nullptr;
 
    /*****  C-TOR D-TOR  *****/
-   RenderingController::RenderingController() :
+   RenderingController::RenderingController() noexcept :
       m_PrimaryRenderer( nullptr ),
       m_SecondaryRenderer( nullptr ),
       m_CurrentRenderer( m_PrimaryRenderer )
-   {
-      FLARE_CORE_ASSERT( !s_Instance, "An instance of Flare::RenderingController aleady exists!" ); // TODO more logs & error codes.
-      s_Instance = this;
-   }
+   {}
 
    /*****   FUNCTIONS   *****/
+   RenderingController& RenderingController::Initialize()
+   {
+      FLARE_CORE_ASSERT( !s_Instance, "An instance of Flare::RenderingController aleady exists!" ); // TODO more logs & error codes.
+      s_Instance = new RenderingController();
+
+      // Default for now.
+      s_Instance->InitializePrimaryRenderer( Rendering::API::OpenGL, true );
+
+      /*
+      * Validate config.
+      * If config contains valid primary renderer
+      *    InitializePrimaryRenderer( API from config , true);
+      * else
+      *    Find appropriate renderer for system.
+      *
+      * If config contains valid secondary renderer
+      *    InitializeSecondaryRenderer( API from config , false);
+      */
+
+      return *s_Instance;
+   }
+
    void RenderingController::SwitchRenderers()
    {
       if ( m_PrimaryRenderer == nullptr || m_SecondaryRenderer == nullptr )
@@ -51,33 +70,10 @@ namespace Flare::Rendering
    }
 
    /*****   GETTERS   *****/
-   Renderer& RenderingController::GetRenderer()
-   {
-      return *Application::GetRenderingController().m_CurrentRenderer;
-   }
-
-   Renderer& RenderingController::GetPrimaryRenderer()
-   {
-      return *Application::GetRenderingController().m_PrimaryRenderer;
-   }
-
-   Renderer& RenderingController::GetSecondaryRenderer()
-   {
-      return *Application::GetRenderingController().m_SecondaryRenderer;
-   }
-
-   const API RenderingController::GetCurrentRendererUnderlyingAPI()
-   {
-      return Application::GetRenderingController().m_CurrentRenderer->GetCommandInterfaceAPI();
-   }
-
-   const API RenderingController::GetPrimaryRendererUnderlyingAPI()
-   {
-      return Application::GetRenderingController().m_PrimaryRenderer->GetCommandInterfaceAPI();
-   }
-
-   const API RenderingController::GetSecondaryRendererUnderlyingAPI()
-   {
-      return Application::GetRenderingController().m_SecondaryRenderer->GetCommandInterfaceAPI();
-   }
+   Renderer& RenderingController::GetRenderer() { return *GetInstance().m_CurrentRenderer; }
+   Renderer& RenderingController::GetPrimaryRenderer() { return *GetInstance().m_PrimaryRenderer; }
+   Renderer& RenderingController::GetSecondaryRenderer() { return *GetInstance().m_SecondaryRenderer; }
+   const API RenderingController::GetCurrentRendererUnderlyingAPI() { return GetRenderer().GetCommandInterfaceAPI(); }
+   const API RenderingController::GetPrimaryRendererUnderlyingAPI() { return GetPrimaryRenderer().GetCommandInterfaceAPI(); }
+   const API RenderingController::GetSecondaryRendererUnderlyingAPI() { return GetSecondaryRenderer().GetCommandInterfaceAPI(); }
 }

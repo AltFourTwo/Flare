@@ -1,7 +1,7 @@
 #include "FlarePCH.h"
 #include "OpenGLShaderDataTypes.h"
 
-#include "Flare/Logging/Console.h"
+#include "Flare/Core/Assert.h"
 
 #include <glad/glad.h>
 

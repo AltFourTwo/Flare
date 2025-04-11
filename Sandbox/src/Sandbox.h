@@ -1,5 +1,6 @@
 #pragma once
-#include "Flare/Core/EntryPoint.h"
+
+#include "Flare/Core/Application.h"
 
 class Sandbox : public Flare::Application
 {
