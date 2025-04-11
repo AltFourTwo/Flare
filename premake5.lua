@@ -22,6 +22,7 @@ IncludeDir = {}
 IncludeDir["Utility"] = "Utility/src/"
 IncludeDir["GoogleTest"] = "UnitTest/vendor/GoogleTest/googletest/include";
 IncludeDir["GoogleMock"] = "UnitTest/vendor/GoogleTest/googlemock/include";
+IncludeDir["spdlog"] = "Flare/vendor/spdlog/include"
 IncludeDir["GLFW"] = "Flare/vendor/GLFW/include"
 IncludeDir["Glad"] = "Flare/vendor/Glad/include"
 IncludeDir["GLM"] = "Flare/vendor/GLM/"
@@ -58,6 +59,7 @@ project "Flare"
     {
         "%{prj.name}/src",
         "%{IncludeDir.Utility}",
+        "%{IncludeDir.spdlog}",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
@@ -73,13 +75,18 @@ project "Flare"
         "opengl32.lib"
     }
     
+    defines
+    {
+        "FLARE_LIB"
+    }
+    
     filter "system:windows"
         systemversion "latest"
     
         defines
         {
             "FLARE_FOR_WINDOWS",
-            "FLARE_DLL",
+            --"FLARE_DLL",
             "GLFW_INCLUDE_NONE"
         }
     
@@ -225,6 +232,7 @@ project "Sandbox"
         "%{IncludeDir.Utility}",
 
         -- Temporary Includes ? --
+        "%{IncludeDir.spdlog}",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
