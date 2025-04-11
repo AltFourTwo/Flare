@@ -1,4 +1,5 @@
 #pragma once
+#include "Flare/Core/SmartPointers.h"
 #include "IRendererBindable.h"
 #include "ShaderDataType.h"
 

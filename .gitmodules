@@ -10,3 +10,6 @@
 [submodule "Flare/vendor/GLM"]
 	path = Flare/vendor/GLM
 	url = https://github.com/g-truc/glm
+[submodule "Flare/vendor/spdlog"]
+	path = Flare/vendor/spdlog
+	url = https://github.com/AltFourTwo/spdlog

@@ -1,36 +1,44 @@
 #pragma once
 #include "Logging.h"
 #include "LoggingContext.h"
+#include "Flare/Core/SmartPointers.h"
 
 #include <iostream>
 
 namespace Flare::Logging
 {
+   class Logger;
+   using SharedLogger = Ref<Logger>;
+
    class Logger
    {
-      /*****   CONSTANTS   *****/
-      public:
-      static const char* DEFAULT_LOGGER_NAME;
-      static const char* DEFAULT_FORMAT;
-      static const LogLevel DEFAULT_LOG_LEVEL = LogLevel::Trace;
+      const char* DEFAULT_FORMAT = "{:M}";
+      const LogLevel DEFAULT_LOG_LEVEL = LogLevel::Trace;
 
       /*****   VARIABLES   *****/
       private:
+      bool m_Enabled = true;
       std::string m_LoggerName;
       std::string m_FormatString;
-      LogLevel m_BaseLoggingLevel;
+      LogLevel m_SeverityFilter;
       mutable std::chrono::system_clock::time_point m_LastMessageTimeStamp;
 
       /*****  C-TOR D-TOR  *****/
+      private:
+      Logger( const char* a_LoggerName ) noexcept;
+      Logger( std::string&& a_LoggerName ) noexcept;
+
       public:
-      Logger( const char* a_LoggerName, const LogLevel a_BaseLoggingLevel, const char* a_FormatString ) noexcept;
-      Logger( const std::string& a_LoggerName, const LogLevel a_BaseLoggingLevel, const std::string& a_FormatString ) noexcept;
-      Logger( const std::string& a_LoggerName, const LogLevel a_BaseLoggingLevel, std::string&& a_FormatString ) noexcept;
-      Logger( std::string&& a_LoggerName, const LogLevel a_BaseLoggingLevel, const std::string& a_FormatString ) noexcept;
-      Logger( std::string&& a_LoggerName, const LogLevel a_BaseLoggingLevel, std::string&& a_FormatString ) noexcept;
+      virtual ~Logger() = default;
 
       /*****   FUNCTIONS   *****/
       public:
+      void Enable() { m_Enabled = true; }
+      void Disable() { m_Enabled = false; }
+
+      static SharedLogger Create( const char* a_LoggerName = "Unnamed Logger" );
+      static SharedLogger Create( std::string&& a_LoggerName );
+
       template<typename... Ts>
       inline void Trace( const char* a_Message, const Ts&... args )
       {
@@ -107,38 +115,35 @@ namespace Flare::Logging
       template<typename... Ts>
       void Log( const LogLevel& a_LogLevel, const char*& a_Message, const Ts&... args )
       {
-         if ( a_LogLevel >= m_BaseLoggingLevel )
-         {
-            std::string x_Message = std::move( std::format( a_Message, args... ) );
-            LoggingContext x_Context( *this, a_LogLevel, x_Message );
-            std::cout << std::format( m_FormatString, x_Context );
-            m_LastMessageTimeStamp = std::chrono::system_clock::now();
-         }
+         if ( !m_Enabled || a_LogLevel < m_SeverityFilter )
+            return;
+
+         std::string x_Message = std::move( std::format( a_Message, args... ) );
+         LoggingContext x_Context( *this, a_LogLevel, x_Message );
+         std::cout << std::format( m_FormatString, x_Context );
+         m_LastMessageTimeStamp = std::chrono::system_clock::now();
       }
 
       template<>
       void Log( const LogLevel& a_LogLevel, const char*& a_Message )
       {
-         if ( a_LogLevel >= m_BaseLoggingLevel )
-         {
-            std::string x_Message( a_Message );
-            LoggingContext x_Context( *this, a_LogLevel, x_Message );
-            std::cout << std::format( m_FormatString, x_Context );
-            m_LastMessageTimeStamp = std::chrono::system_clock::now();
-         }
+         if ( !m_Enabled || a_LogLevel < m_SeverityFilter )
+            return;
+
+         std::string x_Message( a_Message );
+         LoggingContext x_Context( *this, a_LogLevel, x_Message );
+         std::cout << std::format( m_FormatString, x_Context );
+         m_LastMessageTimeStamp = std::chrono::system_clock::now();
       }
 
       /*****   SETTERS   *****/
       public:
-      inline void SetLoggingLevel( LogLevel a_LogLevel ) { m_BaseLoggingLevel = a_LogLevel; }
-      inline void SetName( const std::string& a_Name ) { m_LoggerName = a_Name; }
-      inline void SetName( std::string&& a_Name ) { m_LoggerName = std::move( a_Name ); }
-      inline void SetFormatString( const std::string& a_FormatString ) { m_FormatString = a_FormatString; }
+      inline void SetLoggingLevel( LogLevel a_LogLevel ) { m_SeverityFilter = a_LogLevel; }
       inline void SetFormatString( std::string&& a_FormatString ) { m_FormatString = std::move( a_FormatString ); }
 
       /*****   GETTERS   *****/
       public:
-      inline LogLevel GetLoggingLevel() const { return m_BaseLoggingLevel; }
+      inline LogLevel GetLoggingLevel() const { return m_SeverityFilter; }
       inline const std::string& GetName() const { return m_LoggerName; }
       inline const std::string& GetFormatString() const { return m_FormatString; }
       inline const std::chrono::system_clock::time_point& GetLastMessageTimeStamp() const { return m_LastMessageTimeStamp; }

@@ -1,21 +1,21 @@
 
 // Sections should appear in this order.
 
-/*****   NAMESPACE   CONSTANTS   *****/
+/*****   NAMESPACE CONSTANTS   *****/
 
-/*****   NAMESPACE   VARIABLES   *****/
+/*****   NAMESPACE VARIABLES   *****/
 
-/*****   NAMESPACE   FUNCTIONS   *****/
+/*****   NAMESPACE FUNCTIONS   *****/
 
-/*****   FRIENDS     *****/
+/*****   FRIENDS   *****/
 
-/*****   NESTED      *****/
+/*****   NESTED   *****/
 
 /*****   CONSTANTS   *****/
 
 /*****   VARIABLES   *****/
 
-/*****  C-TOR D-TOR  *****/
+/*****   C-TOR D-TOR   *****/
 
 /*****   FUNCTIONS   *****/
 
@@ -23,7 +23,7 @@
 
 /*****   PROPERTIES   *****/
 
-/*****   OPERATORS    *****/
+/*****   OPERATORS   *****/
 
 /*****   GETTERS   *****/
 

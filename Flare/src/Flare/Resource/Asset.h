@@ -1,5 +1,5 @@
 #pragma once
-#include "Flare/Core/Core.h"
+#include "Flare/Core/SmartPointers.h"
 
 #include <string>
 

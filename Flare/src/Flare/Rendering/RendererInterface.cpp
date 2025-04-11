@@ -1,7 +1,7 @@
 #include "FlarePCH.h"
 #include "RendererInterface.h"
 
-#include "Flare/Logging/Console.h"
+#include "Flare/Core/Assert.h"
 
 // Following includes should be surrounded by ifdefs according to platform.
 #include "Platforms/OpenGL/OpenGLRendererInterface.h"
