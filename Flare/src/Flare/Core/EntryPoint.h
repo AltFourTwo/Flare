@@ -12,6 +12,7 @@ int main( int argc, char** argv )
 {
    printf( "It begins!\n" );
 
+   Flare::Log::Init();
    Flare::Application* app = Flare::Start();
    FLARE_CORE_TRACE( "App Initialized!" );
 

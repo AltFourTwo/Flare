@@ -38,7 +38,6 @@ namespace Flare
    {
       /* TODO Config Loading shenanigans. */
 
-      Logging::LogService::Initialize();
       ResourceManager::Initialize();
 
       m_MainWindow = std::unique_ptr<UserInterface::Window>( UserInterface::Window::Create( false ) );

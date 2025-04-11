@@ -39,12 +39,12 @@ namespace Flare::UserInterface
 
    void WindowsWindow::Init( const WindowModel& a_Model )
    {
-      LOG_TRACE( "WindowsWindow Init!" );
+      FLARE_CORE_TRACE("WindowsWindow Init!");
 
       if ( !s_GLFWInitialized )
       {
          int x_Success = glfwInit();
-         FLARE_CORE_ASSERT( x_Success ); // TODO more logs & error codes.
+         FLARE_CORE_ASSERT( x_Success, "GLFW Failed to initialize."); // TODO more logs & error codes.
 
          glfwSetErrorCallback( GLFWErrorCallback );
 
@@ -53,12 +53,12 @@ namespace Flare::UserInterface
 
       if ( UserInput::WindowsInput::Initialize<UserInput::WindowsInput>( Rendering::API::OpenGL ) )
       {
-         LOG_TRACE( "Input scheme initialized and tied to window!" );
+         FLARE_CORE_TRACE( "Input scheme initialized and tied to window!" );
          SetInputScheme( UserInput::WindowsInput::GetInstance() );
       }
       else
       {
-         LOG_TRACE( "Input scheme already initialized! Tying existing scheme to window." );
+         FLARE_CORE_TRACE( "Input scheme already initialized! Tying existing scheme to window." );
          SetInputScheme( UserInput::WindowsInput::GetInstance() );
       }
 
@@ -207,7 +207,7 @@ namespace Flare::UserInterface
       glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 6 );
       glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
 
-      LOG_TRACE( "WindowsWindow Init Completed!" );
+      FLARE_CORE_TRACE( "WindowsWindow Init Completed!" );
    }
 
    void WindowsWindow::Shutdown()

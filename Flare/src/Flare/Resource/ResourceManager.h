@@ -37,7 +37,7 @@ namespace Flare
          // TODO Add to resource map.
          return std::make_shared<T>( a_Name, a_PersistentData );
       }
-       
+
       template<typename T> requires DerivedFromAsset<T>
       static Ref<T> LoadAsset( const std::string& a_Filepath, const std::string& a_Name = "Unnamed Asset", bool a_PersistentData = false )
       {

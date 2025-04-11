@@ -5,7 +5,6 @@
 #include "Flare/Core/Core.h"
 #include "Flare/Events/Event.h"
 #include "Flare/UserInput/Input.h"
-#include "Flare/Logging/LogEmitter.h"
 
 namespace Flare::UserInterface
 {
@@ -25,7 +24,7 @@ namespace Flare::UserInterface
       {}
    };
 
-   class Window : protected Logging::LogEmitter
+   class Window
    {
       public:
       using EventCallback = std::function<void( Flare::Events::Event& )>;
@@ -36,12 +35,7 @@ namespace Flare::UserInterface
 
       /*****  C-TOR D-TOR  *****/
       public:
-      Window() :
-         LogEmitter( "Main Window Logger" )
-      {
-         m_Logger->SetLoggingLevel( Logging::LogLevel::Trace );
-         m_Logger->SetFormatString( "{0:T%F} at {0:T%H:%M:%OS} | {0:N} says : {0:M} ({0:P})\n" );
-      }
+      Window() {}
 
       virtual ~Window() {}
 
